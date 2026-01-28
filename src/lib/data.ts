@@ -115,7 +115,7 @@ export const profileData: ProfileData = {
   contacts: [
     { type: 'discord', label: 'DISCORD', value: '_flowizy' },
     { type: 'telegram', label: 'TELEGRAM', value: '@chaegunn', link: 'https://t.me/chaegunn' },
-    { type: 'linkedin', label: 'LINKEDIN', value: 'Chaegeon Oh', link: 'https://linkedin.com/in/chaegunn' },
+    { type: 'linkedin', label: 'LINKEDIN', value: 'Chaegeon Oh', link: 'https://www.linkedin.com/in/%EC%B1%84%EA%B1%B4-%EC%98%A4-159157342/' },
     { type: 'github', label: 'GITHUB', value: 'fl0wizy', link: 'https://github.com/fl0wizy' },
     { type: 'email', label: 'PERSONAL EMAIL', value: 'dhcorjs063@gmail.com', link: 'mailto:dhcorjs063@gmail.com' },
     { type: 'email', label: 'ACADEMIC EMAIL', value: 'dhcorjs@ajou.ac.kr', link: 'mailto:dhcorjs@ajou.ac.kr' },
@@ -383,23 +383,55 @@ def hello():
 
 ---
 
-## 7. 배포 방법
+## 7. 배포 방법 (글 작성 후 필수!)
 
-### 7.1 로컬 미리보기
+게시글을 작성하거나 수정한 후에는 반드시 아래 과정을 거쳐야 블로그에 반영됩니다.
+
+### 7.1 로컬 미리보기 (선택)
+
+배포 전에 로컬에서 먼저 확인하고 싶다면:
 
 \`\`\`bash
 npm run dev
 \`\`\`
 
-브라우저에서 \`http://localhost:5173\`으로 접속합니다.
+브라우저에서 \`http://localhost:5173\`으로 접속하여 확인합니다.
+확인이 끝나면 터미널에서 \`Ctrl + C\`로 종료합니다.
 
-### 7.2 GitHub Pages 배포
+### 7.2 GitHub에 커밋 및 푸시
+
+\`\`\`bash
+# 1. 모든 변경사항 스테이징
+git add .
+
+# 2. 커밋 (메시지는 자유롭게)
+git commit -m "새 글 추가: 글제목"
+
+# 3. GitHub에 푸시
+git push origin main
+\`\`\`
+
+### 7.3 GitHub Pages 배포
 
 \`\`\`bash
 npm run deploy
 \`\`\`
 
 이 명령어가 자동으로 빌드하고 \`gh-pages\` 브랜치에 배포합니다.
+SSH 키 암호를 여러 번 물어볼 수 있는데, 정상입니다.
+"Published"가 나오면 배포 완료!
+
+### 7.4 한 줄로 모두 실행하기
+
+매번 명령어 4개 치기 귀찮으면 한 줄로:
+
+\`\`\`bash
+git add . && git commit -m "update" && git push origin main && npm run deploy
+\`\`\`
+
+### 7.5 배포 확인
+
+2-3분 후 https://fl0wizy.github.io 에 접속하여 변경사항을 확인합니다.
 
 ---
 
