@@ -1,0 +1,39 @@
+.blog-page {
+  padding-bottom: 4rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.archive-section {
+  padding: 0 4.5rem;
+}
+
+.archive-section .section-header {
+  animation: slideInLeft 0.5s ease-out 0.3s backwards;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.no-posts {
+  background: linear-gradient(135deg, rgba(15, 12, 25, 0.9) 0%, rgba(10, 10, 18, 0.95) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 4rem 2rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.no-posts p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .archive-section {
+    padding: 0 1.5rem;
+  }
+}

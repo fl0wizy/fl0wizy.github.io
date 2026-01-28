@@ -1,0 +1,298 @@
+.profile-card-container {
+  padding: 2.5rem 4.5rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.profile-image-wrapper {
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* 프로필 이미지 글로우 효과 - 약하게 */
+.profile-image-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-purple-dark) 100%);
+  border-radius: 22px;
+  opacity: 0.12;
+  filter: blur(10px);
+  transition: all var(--transition-normal);
+  z-index: -1;
+}
+
+.profile-image-wrapper:hover::before {
+  opacity: 0.2;
+  filter: blur(12px);
+  transform: scale(1.02);
+}
+
+.profile-image {
+  width: 140px;
+  height: 140px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-input) 100%);
+  border: 1px solid rgba(149, 128, 255, 0.15);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+  border-color: rgba(149, 128, 255, 0.3);
+  box-shadow: 0 0 20px rgba(149, 128, 255, 0.15);
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(15, 12, 28, 0.95) 0%, rgba(20, 18, 38, 0.9) 100%);
+}
+
+.placeholder-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 50px;
+}
+
+.placeholder-bars span {
+  width: 16px;
+  background: linear-gradient(180deg, var(--accent-purple-light) 0%, var(--accent-purple) 100%);
+  border-radius: 4px;
+  transition: all var(--transition-normal);
+}
+
+.profile-image:hover .placeholder-bars span {
+  box-shadow: 0 0 10px rgba(149, 128, 255, 0.4);
+}
+
+.placeholder-bars span:nth-child(1) {
+  height: 55%;
+}
+
+.placeholder-bars span:nth-child(2) {
+  height: 100%;
+}
+
+.placeholder-bars span:nth-child(3) {
+  height: 75%;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.profile-title {
+  font-size: 0.7rem;
+  color: var(--accent-purple);
+  letter-spacing: 0.2em;
+  margin: 0 0 0.4rem;
+  font-weight: 500;
+}
+
+.profile-korean-name {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0 0 0.6rem;
+  font-style: italic;
+}
+
+.profile-bio {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Contact Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.1rem;
+  background: rgba(15, 15, 25, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  color: inherit;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  user-select: text;
+}
+
+.contact-card:hover {
+  background: rgba(20, 20, 35, 0.6);
+  border-color: rgba(100, 100, 130, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--contact-icon-color, var(--accent-purple));
+  flex-shrink: 0;
+  transition: all var(--transition-normal);
+}
+
+.contact-card:hover .contact-icon {
+  box-shadow: 0 0 15px color-mix(in srgb, var(--contact-icon-color) 40%, transparent);
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.contact-label {
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.contact-value {
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.contact-text {
+  cursor: text;
+  user-select: text;
+}
+
+.contact-link {
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.contact-link:hover {
+  color: var(--accent-purple);
+}
+
+.contact-link svg {
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity var(--transition-fast);
+}
+
+.contact-link:hover svg {
+  opacity: 1;
+}
+
+/* Copy Button */
+.copy-button {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: all var(--transition-fast);
+}
+
+.contact-card:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.copy-button.copied {
+  color: var(--accent-green);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .profile-image {
+    width: 110px;
+    height: 110px;
+  }
+
+  .profile-name {
+    font-size: 1.6rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-card-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .copy-button {
+    opacity: 1;
+  }
+}

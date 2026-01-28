@@ -1,0 +1,128 @@
+.hero-header {
+  position: relative;
+  height: 240px;
+  border-radius: 16px;
+  margin: 1.5rem 4.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  animation: fadeIn 0.6s ease-out;
+  cursor: pointer;
+}
+
+/* 확대 애니메이션 */
+.hero-header:hover .hero-background {
+  transform: scale(1.03);
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, transparent 0%, rgba(8, 8, 16, 0.3) 50%, rgba(8, 8, 16, 0.8) 100%),
+    url('/images/background.png') center/cover no-repeat;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Stars effect - 배경 이미지 위에 별 효과 */
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 20% 50%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 30% 15%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(2px 2px at 40% 80%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 50% 35%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 60% 65%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 70% 10%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 80% 75%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 90% 55%, rgba(255, 255, 255, 0.6), transparent);
+  background-size: 100% 100%;
+  animation: twinkle 5s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+/* Nebula effect */
+.nebula {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% 60%, rgba(80, 50, 150, 0.08) 0%, transparent 50%);
+  filter: blur(1px);
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  padding: 1.75rem 2rem;
+  animation: slideUp 0.8s ease-out 0.2s backwards;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+  color: var(--accent-purple);
+}
+
+.hero-badge svg {
+  opacity: 0.8;
+}
+
+.badge-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--accent-purple);
+  font-weight: 500;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title .highlight {
+  color: var(--accent-purple);
+  text-shadow: 
+    0 0 30px rgba(149, 128, 255, 0.4),
+    0 0 60px rgba(149, 128, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-header {
+    height: 180px;
+    margin: 1rem 1.5rem;
+    border-radius: 12px;
+  }
+
+  .hero-title {
+    font-size: 1.4rem;
+  }
+
+  .badge-text {
+    font-size: 0.55rem;
+  }
+  
+  .hero-content {
+    padding: 1.25rem 1.5rem;
+  }
+}
