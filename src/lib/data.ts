@@ -572,11 +572,11 @@ contacts: [
 \`\`\`typescript
 experiences: [
   {
-    title: 'Senior Security Researcher',  // 직책
-    company: 'ChainGuard Labs',           // 회사명
-    period: '2024 ~ 현재',                 // 기간
-    description: 'Tier-1 DeFi 프로토콜의 스마트 컨트랙트 감사를 주도하고 있습니다.',  // 설명
-    tags: ['Solidity', 'Rust', 'DeFi Security'],  // 관련 기술 태그
+    title: 'The 10th President of the Student Council',  // 직책
+    company: 'Ajou University-department of cyber security',           // 회사명
+    period: '2025-01 ~ 2025-12',                 // 기간
+    description: '2025년도 아주대학교 사이버보안학과 제10대 학생회장으로 역임.',  // 설명
+    tags: ['학생회', '자치활동', '책임감감'],  // 관련 기술 태그
     current: true,                        // 현재 재직 중 여부 (보라색 강조)
   },
   {
@@ -601,11 +601,19 @@ experiences: [
 \`\`\`typescript
 projects: [
   {
-    title: 'DeFi Audit Bot',              // 프로젝트명
-    type: 'Open Source Tool',             // 프로젝트 유형
-    year: '2023',                         // 연도
-    description: 'Solidity 0.8.x 컨트랙트에서 일반적인 재진입 공격 및 접근 제어 문제를 탐지하기 위한 자동 정적 분석 도구입니다.',
-    tags: ['Python', 'Slither', 'Static Analysis'],
+    title: 'Visualize on-chain data',              // 프로젝트명
+    type: 'Data Analytics & Visualization',             // 프로젝트 유형
+    year: '2025-03 ~ 2025-06',                         // 연도
+    description: 'ARKHAM, DUNE, Etherscan 등과 같이 정적인 데이터에서 유의미한 데이터를 추출하고 이를 보기 쉽게 가시화한 프로젝트입니다.',
+    tags: ['Java', 'SpringBoot', 'Vue.js'],
+    link: 'https://github.com/fl0wizy/defi-audit-bot',  // 프로젝트 링크 (선택사항)
+  },
+  {
+    title: 'Blockchain Audit Project',              // 프로젝트명
+    type: 'DeFi Security & Audit',             // 프로젝트 유형
+    year: '2025-07 ~ 2025-10',                         // 연도
+    description: 'Flare, Trader Joe, Ekubo와 같은 정통 DEX부터 담보대출 시스템 등 DeFi 프로토콜 감사를 수행한 프로젝트입니다.',
+    tags: ['EVM', 'Solidity', 'CodeArena'],
     link: 'https://github.com/fl0wizy/defi-audit-bot',  // 프로젝트 링크 (선택사항)
   },
 ],
@@ -620,6 +628,23 @@ projects: [
 \`\`\`typescript
 education: [
   {
+    title: 'Department of Cyber Security',
+    institution: 'Ajou University',
+    subInfo: '아주대학교 사이버보안학과',
+    period: '2022 ~ 현재',
+    description: '시스템 보안 및 탈중앙화를 중점적으로 공부하고 있습니다.',
+    tags: ['시스템 보안', '운영체제', '네트워크'],
+    current: true,                        // 현재 재학 중 (파란색 강조)
+  },
+  {
+    title: 'Hspace Internship',  // 프로그램명
+    institution: 'Hspace',                   // 기관명
+    subInfo: '교육 인턴',                 // 부가 정보 (선택사항)
+    period: '2025-07 ~ 2025-08',           // 기간
+    description: 'Web과 Web3, 인프라에 대한 전반적인 지식을 습득했습니다.',
+    tags: ['Web Security', 'Web3', 'Secureum', 'DEFCON'],
+  },
+  {
     title: 'HuntinMaster (KISA) Web/Web3 Track Trainee',  // 프로그램명
     institution: 'KISA',                   // 기관명
     subInfo: '우수 수료생',                 // 부가 정보 (선택사항)
@@ -628,13 +653,12 @@ education: [
     tags: ['Web Security', 'Web3', 'Audit', 'Bug Bounty'],
   },
   {
-    title: 'Department of Cyber Security',
-    institution: 'Ajou University',
-    subInfo: '아주대학교 사이버보안학과',
-    period: '2018 ~ 현재',
-    description: '시스템 보안 및 분산 시스템을 중점적으로 공부하고 있습니다.',
-    tags: ['시스템 보안', '알고리즘'],
-    current: true,                        // 현재 재학 중 (파란색 강조)
+    title: 'upside Academy',  // 프로그램명
+    institution: 'Theory x 두나무',                   // 기관명
+    subInfo: 'A.K.A fl0wizy',                 // 부가 정보 (선택사항)
+    period: '2026-02 ~ 2026-06',           // 기간
+    description: '전분야 보안의 전반적인 지식과 web3의 깊은 이해를 가지게 되었습니다.',
+    tags: ['Solidity', 'Foundry', 'Web3', 'Audit', 'Threat Modeling'],
   },
 ],
 \`\`\`
@@ -650,16 +674,16 @@ skills: [
   {
     name: 'Web3 보안',                     // 스킬명
     category: 'Smart Contracts',          // 카테고리
-    level: 'expert',                      // 수준: beginner, intermediate, advanced, expert
+    level: 'intermediate',                      // 수준: beginner, intermediate, advanced, expert
     description: 'EVM, 가스 최적화 및 프로토콜 보안 패턴에 대한 깊은 이해를 보유하고 있습니다.',
     tags: ['Solidity', 'Yul', 'Foundry'],
   },
   {
     name: 'Web Security',
-    category: 'Application Security',
-    level: 'advanced',
-    description: 'OWASP Top 10 취약점 분석 및 침투 테스트 경험이 있습니다.',
-    tags: ['Burp Suite', 'XSS', 'SQLi'],
+    category: 'Network Security',
+    level: 'intermediate',
+    description: '네트워크 보안 기술에 대한 깊은 이해를 보유하고 있습니다.',
+    tags: ['Burp Suite', 'XSS', 'SQLi', 'Wireshark', 'Nmap', 'business'],
   },
 ],
 \`\`\`
