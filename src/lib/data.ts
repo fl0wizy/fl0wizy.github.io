@@ -167,7 +167,7 @@ export const profileData: ProfileData = {
       tags: ['Web Security', 'Web3', 'Secureum', 'DEFCON'],
     },
     {
-      title: 'HuntinMaster (KISA) Web/Web3 Track Trainee',  // 프로그램명
+      title: 'HuntingMaster (KISA) Web/Web3 Track Trainee',  // 프로그램명
       institution: 'KISA',                   // 기관명
       subInfo: '우수 수료생',                 // 부가 정보 (선택사항)
       period: '2025-07 ~ 2025-10',           // 기간
@@ -185,7 +185,7 @@ export const profileData: ProfileData = {
   ],
   skills: [
     {
-      name: 'Web3 보안',                     // 스킬명
+      name: 'Web3 security',                     // 스킬명
       category: 'Smart Contracts',          // 카테고리
       level: 'intermediate',                      // 수준: beginner, intermediate, advanced, expert
       description: 'EVM, 가스 최적화 및 프로토콜 보안 패턴에 대한 깊은 이해를 보유하고 있습니다.',
