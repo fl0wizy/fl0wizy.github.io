@@ -111,7 +111,7 @@ export const profileData: ProfileData = {
   name: 'flowizy',
   title: 'SECURITY RESEARCHER',
   bio: '관심 있는 것들을 공부하고 기록합니다.',
-  profileImage: '/images/cheageon.jpg', // 프로필 이미지 경로
+  profileImage: '/images/chaegeon.jpg', // 프로필 이미지 경로
   contacts: [
     { type: 'discord', label: 'DISCORD', value: '_flowizy' },
     { type: 'telegram', label: 'TELEGRAM', value: '@chaegunn', link: 'https://t.me/chaegunn' },
