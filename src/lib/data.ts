@@ -129,7 +129,7 @@ export const profileData: ProfileData = {
       company: 'Ajou University-department of cyber security',           // 회사명
       period: '2025-01 ~ 2025-12',                 // 기간
       description: '2025년도 아주대학교 사이버보안학과 제10대 학생회장으로 역임.',  // 설명
-      tags: ['학생회', '자치활동', '책임감감'],  // 관련 기술 태그
+      tags: ['학생회', '자치활동', '책임감'],  // 관련 기술 태그
       current: true,                        // 현재 재직 중 여부 (보라색 강조)
     },
   ],
