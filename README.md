@@ -27,20 +27,27 @@ npm run deploy
 
 ### 새 글 작성하기
 
-`src/lib/data.ts` 파일의 `blogPosts` 배열에 새 객체를 추가하세요:
+`src/content/posts/` 폴더에 새 `*.md` 파일을 추가하세요.
 
-```typescript
-{
-  id: 'my-new-post',           // URL에 사용될 고유 ID
-  title: '글 제목',
-  description: '간단한 설명',
-  content: `마크다운 형식의 본문`,
-  date: '2026-01-29 10:00',    // YYYY-MM-DD HH:MM 형식
-  category: 'daily',           // 카테고리 ID
-  tags: ['태그1', '태그2'],
-  published: true,             // false로 설정하면 숨김
-}
+파일 예시:
+
+```md
+---
+id: "my-new-post"                 # URL에 사용될 고유 ID
+title: "글 제목"
+description: "간단한 설명"
+date: "2026-01-29 10:00"          # YYYY-MM-DD HH:MM 형식
+category: "daily"                 # 카테고리 ID
+tags: ["태그1", "태그2"]
+published: true                   # false로 설정하면 숨김
+---
+
+# 마크다운 형식의 본문
+
+본문 내용을 작성하세요.
 ```
+
+글 목록은 `date` 기준 최신순으로 자동 정렬됩니다.
 
 ### 사용 가능한 카테고리
 
