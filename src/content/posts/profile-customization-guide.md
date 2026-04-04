@@ -5,7 +5,7 @@ description: "프로필 사진, 배경 이미지, 연락처, 경력, 학력 등 
 date: "2026-01-29 10:00"
 category: "daily"
 tags: ["블로그", "프로필", "커스터마이징", "가이드"]
-published: true
+published: false
 ---
 # 프로필 및 블로그 커스터마이징 완벽 가이드
 
