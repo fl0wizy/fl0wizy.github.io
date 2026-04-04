@@ -245,6 +245,40 @@
   border: 1px solid var(--border-color);
 }
 
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.post-content thead {
+  background: rgba(149, 128, 255, 0.08);
+}
+
+.post-content th,
+.post-content td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-content th {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.post-content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.post-content input[type='checkbox'] {
+  margin-right: 0.5rem;
+}
+
 /* Post Tags */
 .post-page .post-tags {
   display: flex;

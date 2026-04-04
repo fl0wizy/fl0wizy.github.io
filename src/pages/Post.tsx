@@ -1,80 +1,8 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { getPostById, formatDate, getRelativeTime } from '../lib/data';
 import './Post.css';
-
-// 간단한 마크다운 파서
-function parseMarkdown(text: string): string {
-  let html = text;
-  
-  // 코드 블록 (```language ... ```)
-  html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, (_, lang, code) => {
-    return `<pre><code class="language-${lang || 'text'}">${escapeHtml(code.trim())}</code></pre>`;
-  });
-  
-  // 인라인 코드
-  html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
-  
-  // 제목
-  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-  html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-  
-  // 굵은 텍스트
-  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  
-  // 기울임 텍스트
-  html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  
-  // 취소선
-  html = html.replace(/~~([^~]+)~~/g, '<del>$1</del>');
-  
-  // 링크
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-  
-  // 이미지
-  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />');
-  
-  // 인용문
-  html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>');
-  
-  // 순서 없는 리스트
-  html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-  html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
-  
-  // 순서 있는 리스트
-  html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-  
-  // 수평선
-  html = html.replace(/^---$/gm, '<hr />');
-  
-  // 단락
-  html = html.replace(/\n\n/g, '</p><p>');
-  html = `<p>${html}</p>`;
-  
-  // 빈 <p> 태그 제거
-  html = html.replace(/<p>\s*<\/p>/g, '');
-  html = html.replace(/<p>\s*(<h[1-6]>)/g, '$1');
-  html = html.replace(/(<\/h[1-6]>)\s*<\/p>/g, '$1');
-  html = html.replace(/<p>\s*(<pre>)/g, '$1');
-  html = html.replace(/(<\/pre>)\s*<\/p>/g, '$1');
-  html = html.replace(/<p>\s*(<ul>)/g, '$1');
-  html = html.replace(/(<\/ul>)\s*<\/p>/g, '$1');
-  html = html.replace(/<p>\s*(<blockquote>)/g, '$1');
-  html = html.replace(/(<\/blockquote>)\s*<\/p>/g, '$1');
-  html = html.replace(/<p>\s*(<hr \/>)/g, '$1');
-  html = html.replace(/(<hr \/>)\s*<\/p>/g, '$1');
-  
-  return html;
-}
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
 
 // 카테고리 라벨
 const categoryLabels: Record<string, string> = {
@@ -149,8 +77,16 @@ export default function Post() {
 
         <article 
           className="post-content"
-          dangerouslySetInnerHTML={{ __html: parseMarkdown(post.content) }}
-        />
+        >
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              a: ({ ...props }) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+            }}
+          >
+            {post.content}
+          </ReactMarkdown>
+        </article>
 
         {post.tags && post.tags.length > 0 && (
           <div className="post-tags">

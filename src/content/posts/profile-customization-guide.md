@@ -280,16 +280,17 @@ BLOG 페이지 상단 배너의 "Searching for vulnerabilities" 텍스트를 변
 
 | 수정 항목 | 파일 위치 |
 |----------|----------|
-| 프로필 사진 | `public/images/` + `data.ts` |
-| 배경 이미지 | `public/images/` + `Header.css` |
-| 기본 정보 (이름, 소개) | `data.ts` → `profileData` |
-| 연락처 | `data.ts` → `profileData.contacts` |
-| 경력 | `data.ts` → `profileData.experiences` |
-| 프로젝트 | `data.ts` → `profileData.projects` |
-| 학력 | `data.ts` → `profileData.education` |
-| 스킬 | `data.ts` → `profileData.skills` |
-| 사이드바 로고 텍스트 | `Sidebar.tsx` |
-| 헤더 타이틀 | `Header.tsx` |
+| 프로필 사진 | `public/images/` + `src/lib/data.ts` |
+| 배경 이미지 | `public/images/` + `src/components/Header/Header.css` |
+| 기본 정보 (이름, 소개) | `src/lib/data.ts` → `profileData` |
+| 연락처 | `src/lib/data.ts` → `profileData.contacts` |
+| 경력 | `src/lib/data.ts` → `profileData.experiences` |
+| 프로젝트 | `src/lib/data.ts` → `profileData.projects` |
+| 학력 | `src/lib/data.ts` → `profileData.education` |
+| 스킬 | `src/lib/data.ts` → `profileData.skills` |
+| 게시글 본문 | `src/content/posts/*.md` |
+| 사이드바 로고 텍스트 | `src/components/Sidebar/Sidebar.tsx` |
+| 헤더 타이틀 | `src/components/Header/Header.tsx` |
 
 ---
 

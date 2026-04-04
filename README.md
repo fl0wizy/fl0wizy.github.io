@@ -29,6 +29,8 @@ npm run deploy
 
 `src/content/posts/` 폴더에 새 `*.md` 파일을 추가하세요.
 
+게시글 본문은 각 마크다운 파일로 관리되고, 앱은 `src/lib/posts.ts`에서 이를 자동으로 읽어 `blogPosts` 목록으로 변환합니다. `src/lib/data.ts`는 게시글 본문 저장소가 아니라 타입, 카테고리, 프로필 데이터 같은 공통 설정 파일입니다.
+
 파일 예시:
 
 ```md
@@ -48,6 +50,8 @@ published: true                   # false로 설정하면 숨김
 ```
 
 글 목록은 `date` 기준 최신순으로 자동 정렬됩니다.
+
+본문 렌더링은 `react-markdown` + `remark-gfm` 기반이라 표, 체크리스트, 취소선 같은 GitHub 스타일 마크다운도 사용할 수 있습니다.
 
 ### 사용 가능한 카테고리
 
