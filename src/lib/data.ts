@@ -206,6 +206,35 @@ export const profileData: ProfileData = {
 
 // ===== 유틸리티 함수 =====
 
+function findCategoryById(categoryId: string, categoryTree: Category[] = categories): Category | undefined {
+  for (const category of categoryTree) {
+    if (category.id === categoryId) {
+      return category;
+    }
+
+    if (category.children) {
+      const found = findCategoryById(categoryId, category.children);
+      if (found) {
+        return found;
+      }
+    }
+  }
+
+  return undefined;
+}
+
+function collectCategoryIds(category: Category): string[] {
+  const ids = [category.id];
+
+  if (category.children) {
+    for (const child of category.children) {
+      ids.push(...collectCategoryIds(child));
+    }
+  }
+
+  return ids;
+}
+
 /**
  * 카테고리별 포스트 개수를 계산합니다.
  */
@@ -213,7 +242,14 @@ export function getPostCountByCategory(categoryId: string): number {
   if (categoryId === 'all') {
     return blogPosts.filter(post => post.published).length;
   }
-  return blogPosts.filter(post => post.published && post.category === categoryId).length;
+
+  const category = findCategoryById(categoryId);
+  if (!category) {
+    return 0;
+  }
+
+  const categoryIds = new Set(collectCategoryIds(category));
+  return blogPosts.filter(post => post.published && categoryIds.has(post.category)).length;
 }
 
 /**
@@ -223,7 +259,14 @@ export function getPostsByCategory(categoryId: string): BlogPost[] {
   if (categoryId === 'all') {
     return blogPosts.filter(post => post.published);
   }
-  return blogPosts.filter(post => post.published && post.category === categoryId);
+
+  const category = findCategoryById(categoryId);
+  if (!category) {
+    return [];
+  }
+
+  const categoryIds = new Set(collectCategoryIds(category));
+  return blogPosts.filter(post => post.published && categoryIds.has(post.category));
 }
 
 /**
