@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fl0wizy.github.io/sitemap.xml
