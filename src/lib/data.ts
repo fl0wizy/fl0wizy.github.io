@@ -37,6 +37,14 @@ export interface Experience {
   current?: boolean;
 }
 
+export interface Award {
+  title: string;
+  organizer: string;
+  period: string;
+  description: string;
+  tags: string[];
+}
+
 export interface Project {
   title: string;
   type: string;
@@ -71,6 +79,7 @@ export interface ProfileData {
   profileImage?: string;
   contacts: ContactInfo[];
   experiences: Experience[];
+  awards: Award[];
   projects: Project[];
   education: Education[];
   skills: Skill[];
@@ -117,7 +126,7 @@ export const profileData: ProfileData = {
   profileImage: '/images/chaegeon.jpg', // 프로필 이미지 경로
   contacts: [
     { type: 'discord', label: 'DISCORD', value: '_flowizy' },
-    { type: 'telegram', label: 'TELEGRAM', value: '@chaegunn', link: 'https://t.me/chaegunn' },
+    { type: 'telegram', label: 'TELEGRAM', value: '@chaaccak', link: 'https://t.me/chaaccak' },
     { type: 'linkedin', label: 'LINKEDIN', value: 'Chaegeon Oh', link: 'https://www.linkedin.com/in/%EC%B1%84%EA%B1%B4-%EC%98%A4-159157342/' },
     { type: 'github', label: 'GITHUB', value: 'fl0wizy', link: 'https://github.com/fl0wizy' },
     { type: 'email', label: 'PERSONAL EMAIL', value: 'dhcorjs063@gmail.com', link: 'mailto:dhcorjs063@gmail.com' },
@@ -131,6 +140,29 @@ export const profileData: ProfileData = {
       description: '2025년도 아주대학교 사이버보안학과 제10대 학생회장으로 역임.',  // 설명
       tags: ['학생회', '자치활동', '책임감'],  // 관련 기술 태그
       current: true,                        // 현재 재직 중 여부 (보라색 강조)
+    },
+  ],
+  awards: [
+    {
+      title: '2025-1 아주대학교 파란학기 프로젝트 (입상)',
+      organizer: 'Ajou University',
+      period: '2025-03 ~ 2025-06',
+      description: '온체인 데이터를 분석하고 시각화하는 프로젝트를 수행해 파란학기 프로젝트에서 입상했습니다.',
+      tags: ['데이터 분석', '시각화', '프로젝트'],
+    },
+    {
+      title: '이화체인 x BNB 아이디어해커톤 (최우수상)',
+      organizer: '이화체인 x BNB',
+      period: '2025-08',
+      description: '블록체인 아이디어를 기획하고 발표해 해커톤에서 최우수상을 수상했습니다.',
+      tags: ['해커톤', '아이디어', '블록체인'],
+    },
+    {
+      title: 'Monad blitz 3rd (4등)',
+      organizer: 'Monad',
+      period: '2025-11',
+      description: 'Monad blitz 3rd에 참가해 프로젝트 완성도와 아이디어를 인정받아 4등을 기록했습니다.',
+      tags: ['Monad', '경진대회', '프로토타이핑'],
     },
   ],
   projects: [
@@ -178,9 +210,9 @@ export const profileData: ProfileData = {
       tags: ['Web Security', 'Web3', 'Audit', 'Bug Bounty'],
     },
     {
-      title: 'upside Academy',  // 프로그램명
+      title: '두나무 인턴',  // 프로그램명
       institution: 'Theory x 두나무',                   // 기관명
-      subInfo: 'A.K.A fl0wizy',                 // 부가 정보 (선택사항)
+      subInfo: 'A.K.A flowizy',                 // 부가 정보 (선택사항)
       period: '2026-02 ~ 2026-06',           // 기간
       description: '전분야 보안의 전반적인 지식과 web3의 깊은 이해를 가지게 되었습니다.',
       tags: ['Solidity', 'Foundry', 'Web3', 'Audit', 'Threat Modeling'],
@@ -206,35 +238,6 @@ export const profileData: ProfileData = {
 
 // ===== 유틸리티 함수 =====
 
-function findCategoryById(categoryId: string, categoryTree: Category[] = categories): Category | undefined {
-  for (const category of categoryTree) {
-    if (category.id === categoryId) {
-      return category;
-    }
-
-    if (category.children) {
-      const found = findCategoryById(categoryId, category.children);
-      if (found) {
-        return found;
-      }
-    }
-  }
-
-  return undefined;
-}
-
-function collectCategoryIds(category: Category): string[] {
-  const ids = [category.id];
-
-  if (category.children) {
-    for (const child of category.children) {
-      ids.push(...collectCategoryIds(child));
-    }
-  }
-
-  return ids;
-}
-
 /**
  * 카테고리별 포스트 개수를 계산합니다.
  */
@@ -242,14 +245,7 @@ export function getPostCountByCategory(categoryId: string): number {
   if (categoryId === 'all') {
     return blogPosts.filter(post => post.published).length;
   }
-
-  const category = findCategoryById(categoryId);
-  if (!category) {
-    return 0;
-  }
-
-  const categoryIds = new Set(collectCategoryIds(category));
-  return blogPosts.filter(post => post.published && categoryIds.has(post.category)).length;
+  return blogPosts.filter(post => post.published && post.category === categoryId).length;
 }
 
 /**
@@ -259,14 +255,7 @@ export function getPostsByCategory(categoryId: string): BlogPost[] {
   if (categoryId === 'all') {
     return blogPosts.filter(post => post.published);
   }
-
-  const category = findCategoryById(categoryId);
-  if (!category) {
-    return [];
-  }
-
-  const categoryIds = new Set(collectCategoryIds(category));
-  return blogPosts.filter(post => post.published && categoryIds.has(post.category));
+  return blogPosts.filter(post => post.published && post.category === categoryId);
 }
 
 /**

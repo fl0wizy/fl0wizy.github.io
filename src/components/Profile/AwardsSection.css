@@ -1,0 +1,192 @@
+.awards-section {
+  padding: 0 4.5rem 2.5rem;
+  animation: slideUp 0.5s ease-out backwards;
+  animation-delay: 0.25s;
+}
+
+.awards-section .section-header {
+  color: var(--text-primary);
+}
+
+.awards-section .timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.awards-section .timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.35rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(120, 110, 80, 0.25);
+}
+
+.awards-section .timeline-item {
+  position: relative;
+  padding-bottom: 1.5rem;
+  animation: slideInLeft 0.4s ease-out backwards;
+}
+
+.awards-section .timeline-item:nth-child(1) { animation-delay: 0.35s; }
+.awards-section .timeline-item:nth-child(2) { animation-delay: 0.45s; }
+.awards-section .timeline-item:nth-child(3) { animation-delay: 0.55s; }
+
+.awards-section .timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.awards-section .timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.7rem;
+  top: 1.2rem;
+  width: 10px;
+  height: 10px;
+  background: #d7a95b;
+  border-radius: 50%;
+  transition: all var(--transition-normal);
+  box-shadow: 0 0 15px rgba(215, 169, 91, 0.45), 0 0 30px rgba(215, 169, 91, 0.18);
+}
+
+.awards-section .timeline-item:hover::before {
+  box-shadow: 0 0 20px rgba(215, 169, 91, 0.7), 0 0 40px rgba(215, 169, 91, 0.3);
+  background: #e9be76;
+}
+
+.award-card {
+  background: rgba(215, 169, 91, 0.03);
+  border: 1px solid rgba(120, 110, 80, 0.15);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.award-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(215, 169, 91, 0.06) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.award-card:hover {
+  border-color: rgba(215, 169, 91, 0.28);
+  box-shadow: 0 0 25px rgba(215, 169, 91, 0.09);
+}
+
+.award-card:hover::before {
+  opacity: 1;
+}
+
+.award-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+
+.award-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(215, 169, 91, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d7a95b;
+  flex-shrink: 0;
+  transition: all var(--transition-normal);
+}
+
+.award-card:hover .award-icon {
+  box-shadow: 0 0 15px rgba(215, 169, 91, 0.35);
+  background: rgba(215, 169, 91, 0.16);
+}
+
+.award-title-info {
+  flex: 1;
+}
+
+.award-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.2rem;
+}
+
+.award-organizer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+  font-family: var(--font-mono);
+}
+
+.award-period {
+  padding: 0.35rem 0.8rem;
+  background: rgba(215, 169, 91, 0.1);
+  border: 1px solid rgba(215, 169, 91, 0.16);
+  border-radius: 20px;
+  font-size: 0.65rem;
+  color: #f0cb8b;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.award-card:hover .award-period {
+  box-shadow: 0 0 10px rgba(215, 169, 91, 0.2);
+}
+
+.award-description {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+
+.award-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.award-tags .tag {
+  font-size: 0.68rem;
+  padding: 0.2rem 0.6rem;
+  background: rgba(215, 169, 91, 0.04);
+  border: 1px solid rgba(215, 169, 91, 0.12);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.award-card:hover .award-tags .tag {
+  border-color: rgba(215, 169, 91, 0.22);
+  color: #f0cb8b;
+}
+
+@media (max-width: 768px) {
+  .awards-section {
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .award-header {
+    flex-wrap: wrap;
+  }
+
+  .award-period {
+    order: -1;
+    width: auto;
+    margin-bottom: 0.5rem;
+  }
+}

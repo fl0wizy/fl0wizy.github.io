@@ -1,6 +1,7 @@
 import {
   ProfileCard,
   ExperienceSection,
+  AwardsSection,
   ProjectsSection,
   EducationSection,
   SkillsSection,
@@ -12,6 +13,7 @@ export default function Profile() {
     <div className="profile-page">
       <ProfileCard />
       <ExperienceSection />
+      <AwardsSection />
       <ProjectsSection />
       <EducationSection />
       <SkillsSection />
