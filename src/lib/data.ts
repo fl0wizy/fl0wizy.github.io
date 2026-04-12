@@ -210,7 +210,7 @@ export const profileData: ProfileData = {
       tags: ['Web Security', 'Web3', 'Audit', 'Bug Bounty'],
     },
     {
-      title: '두나무 인턴',  // 프로그램명
+      title: 'Upside Academy',  // 프로그램명
       institution: 'Theory x 두나무',                   // 기관명
       subInfo: 'A.K.A flowizy',                 // 부가 정보 (선택사항)
       period: '2026-02 ~ 2026-06',           // 기간
