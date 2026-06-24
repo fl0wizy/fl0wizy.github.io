@@ -116,6 +116,49 @@ export const categories: Category[] = [
   { id: 'daily', name: '일상(Daily)', icon: 'user' },
 ];
 
+// ===== 카테고리별 시그니처 색상 =====
+// 카드 뱃지·사이드바 활성·글 페이지 강조선이 이 색을 따라갑니다.
+// 채도를 낮춘 부드러운 톤 (다크 배경에서 너무 쨍하지 않게)
+export const categoryColors: Record<string, string> = {
+  all: '#a79bea',
+  security: '#a79bea', // 상위(보안) — 브랜드 보라(소프트)
+  'web-security': '#6f9fd8', // 파랑
+  'web3-blockchain': '#a79bea', // 보라
+  'research-article': '#5fc2b2', // 청록
+  'study-dev-security': '#8b8ee0', // 인디고
+  'wargame-ctf': '#db8585', // 빨강
+  reversing: '#74c195', // 초록
+  pwn: '#e6a572', // 주황
+  crypto: '#db8fb4', // 핑크
+  development: '#6fbecf', // 시안
+  travel: '#d4c277', // 앰버
+  daily: '#9ca3af', // 그레이
+};
+
+// ===== 카테고리 ID → 표시 라벨 =====
+export const categoryLabels: Record<string, string> = {
+  daily: '일상(DAILY)',
+  security: '보안(SECURITY)',
+  'web-security': 'Web Security',
+  'web3-blockchain': 'Web3/Blockchain',
+  'research-article': 'Research/Article',
+  'study-dev-security': 'Study',
+  'wargame-ctf': 'Wargame/CTF',
+  reversing: 'Reversing',
+  pwn: 'Pwn',
+  crypto: 'Crypto',
+  development: '개발(DEVELOPMENT)',
+  travel: '여행(TRAVEL)',
+};
+
+export function getCategoryColor(id: string): string {
+  return categoryColors[id] ?? '#9580ff';
+}
+
+export function getCategoryLabel(id: string): string {
+  return categoryLabels[id] ?? id;
+}
+
 // ===== 프로필 데이터 =====
 // 이 객체를 수정하여 프로필 페이지의 정보를 변경할 수 있습니다.
 
@@ -294,4 +337,55 @@ export function getRelativeTime(dateString: string): string {
 export function formatDate(dateString: string): string {
   const [datePart, timePart] = dateString.split(' ');
   return `${datePart} / ${timePart}`;
+}
+
+/**
+ * 본문 길이로 예상 읽기 시간(분)을 계산합니다.
+ * 한글 ~500자/분, 영어 ~200단어/분 기준의 근사치.
+ */
+export function getReadingTime(content: string): number {
+  const text = content
+    .replace(/```[\s\S]*?```/g, ' ') // 코드 블록 제외
+    .replace(/`[^`]*`/g, ' ')
+    .replace(/[#>*_~\-|]/g, ' ');
+  const korean = (text.match(/[가-힣]/g) || []).length;
+  const words = (text.match(/[A-Za-z0-9]+/g) || []).length;
+  const minutes = Math.ceil(korean / 500 + words / 200);
+  return Math.max(1, minutes);
+}
+
+export interface TocHeading {
+  id: string;
+  text: string;
+  level: number;
+}
+
+/**
+ * 마크다운 본문에서 대제목(h2, `##`)만 순서대로 추출해 목차를 만듭니다.
+ * h1(글 제목)과 h3(소제목)은 목차가 너무 빽빽해지므로 제외합니다.
+ * 부여하는 id(`heading-N`)는 Post 렌더 시 h2에 매기는 id와 동일 순번이라
+ * 목차 클릭/스크롤 추적이 정확히 매칭됩니다. (펜스 코드 블록 내부 `#`은 제외)
+ */
+export function extractHeadings(content: string): TocHeading[] {
+  const lines = content.split('\n');
+  const out: TocHeading[] = [];
+  let inFence = false;
+  let i = 0;
+  for (const line of lines) {
+    if (/^\s*(```|~~~)/.test(line)) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) continue;
+    const m = line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
+    if (!m) continue;
+    if (m[1].length !== 2) continue; // 대제목(##)만
+    const text = m[2]
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+      .replace(/[*_`]/g, '')
+      .trim();
+    out.push({ id: `heading-${i}`, text, level: m[1].length });
+    i++;
+  }
+  return out;
 }

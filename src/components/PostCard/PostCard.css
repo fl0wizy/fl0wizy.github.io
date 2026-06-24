@@ -43,7 +43,7 @@
 }
 
 .post-date {
-  color: var(--accent-purple);
+  color: var(--cat, var(--accent-purple));
   opacity: 0.9;
 }
 
@@ -57,17 +57,17 @@
   display: inline-block;
   padding: 0.2rem 0.6rem;
   background: transparent;
-  border: 1px solid rgba(149, 128, 255, 0.35);
+  border: 1px solid color-mix(in srgb, var(--cat, var(--accent-purple)) 40%, transparent);
   border-radius: 15px;
   font-size: 0.55rem;
-  color: var(--accent-purple-light);
+  color: var(--cat, var(--accent-purple-light));
   font-weight: 500;
   letter-spacing: 0.02em;
   transition: all var(--transition-fast);
 }
 
 .post-card:hover .post-category-badge {
-  border-color: var(--accent-purple);
+  border-color: var(--cat, var(--accent-purple));
 }
 
 /* Post Title */
@@ -81,7 +81,7 @@
 }
 
 .post-card:hover .post-title {
-  color: var(--accent-purple-light);
+  color: var(--cat, var(--accent-purple-light));
 }
 
 /* Post Description */
@@ -108,7 +108,7 @@
 .post-tag {
   font-size: 0.6rem;
   padding: 0.12rem 0.4rem;
-  color: var(--accent-purple);
+  color: var(--cat, var(--accent-purple));
   opacity: 0.7;
   transition: all var(--transition-fast);
 }

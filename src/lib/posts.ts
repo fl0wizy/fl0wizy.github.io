@@ -92,6 +92,16 @@ function parsePostDate(date: string): number {
   return Number.isNaN(parsed) ? 0 : parsed;
 }
 
+// 본문 맨 위의 h1(# 제목)을 제거한다 — 페이지 상단에 제목이 이미 크게 표시되므로 중복.
+function stripLeadingH1(markdown: string): string {
+  const trimmed = markdown.replace(/^\s+/, '');
+  if (trimmed.startsWith('# ')) {
+    const newline = trimmed.indexOf('\n');
+    return newline === -1 ? '' : trimmed.slice(newline + 1).replace(/^\s+/, '');
+  }
+  return trimmed;
+}
+
 const markdownModules = import.meta.glob('../content/posts/*.md', {
   eager: true,
   query: '?raw',
@@ -112,7 +122,7 @@ export const blogPosts: BlogPost[] = Object.entries(markdownModules)
       category: frontmatter.category || 'daily',
       tags,
       published: frontmatter.published ?? true,
-      content: content.trim(),
+      content: stripLeadingH1(content),
     };
   })
   .sort((a, b) => parsePostDate(b.date) - parsePostDate(a.date));

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { categories, getPostCountByCategory } from '../../lib/data';
+import type { CSSProperties } from 'react';
+import { categories, getPostCountByCategory, getCategoryColor } from '../../lib/data';
 import type { Category } from '../../lib/data';
 import './Sidebar.css';
 
@@ -127,7 +128,7 @@ function CategoryItem({ category, level, selectedCategory, onSelect }: CategoryI
       <button
         className={`category-item ${isSelected ? 'selected' : ''} level-${level}`}
         onClick={handleClick}
-        style={{ paddingLeft: `${level * 16 + 12}px` }}
+        style={{ paddingLeft: `${level * 16 + 12}px`, '--cat': getCategoryColor(category.id) } as CSSProperties}
       >
         <span className="category-icon">{getIcon(category.icon)}</span>
         <span className="category-name">{category.name}</span>
