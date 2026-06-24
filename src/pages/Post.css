@@ -4,19 +4,31 @@
   animation: fadeIn 0.4s ease-out;
 }
 
-/* 본문 + 우측 레일 2단 레이아웃 */
+/* 본문 + 우측 레일 2단 레이아웃
+   헤더(제목·날짜·읽기시간·구분선)는 두 컬럼에 걸치고,
+   그 아래 행에서 본문(좌)과 목차(우)가 같은 높이에서 시작한다. */
 .post-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 220px;
-  gap: 3.5rem;
+  grid-template-areas:
+    'head head'
+    'content rail';
+  column-gap: 3.5rem;
   align-items: start;
   max-width: 1120px;
 }
 
+.post-head {
+  grid-area: head;
+  max-width: 760px;
+  animation: slideUp 0.5s ease-out 0.1s backwards;
+}
+
 .post-container {
+  grid-area: content;
   max-width: 760px;
   min-width: 0;
-  animation: slideUp 0.5s ease-out 0.1s backwards;
+  animation: slideUp 0.5s ease-out 0.15s backwards;
 }
 
 .post-not-found {
@@ -417,6 +429,7 @@
 
 /* ===== 우측 레일: 목차 + 키워드 ===== */
 .post-rail {
+  grid-area: rail;
   position: sticky;
   top: 2rem;
   animation: fadeIn 0.5s ease-out 0.2s backwards;
@@ -496,6 +509,9 @@
 @media (max-width: 1100px) {
   .post-layout {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'head'
+      'content';
   }
 
   .post-rail {

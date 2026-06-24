@@ -180,7 +180,7 @@ export default function Post() {
   return (
     <div className="post-page" style={{ '--cat': categoryColor } as CSSProperties}>
       <div className="post-layout">
-        <div className="post-container">
+        <header className="post-head">
           {/* 뒤로가기 */}
           <Link to="/" className="back-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -215,7 +215,9 @@ export default function Post() {
               약 {readingTime}분
             </span>
           </div>
+        </header>
 
+        <div className="post-container">
           <article className="post-content">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
               {post.content}
