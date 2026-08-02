@@ -238,16 +238,14 @@
   box-shadow: 0 0 10px rgba(149, 128, 255, 0.3);
 }
 
-.expand-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform var(--transition-normal);
-  opacity: 0.5;
-}
-
-.expand-icon.expanded {
-  transform: rotate(180deg);
+/* 전체를 뺀 나머지 카테고리의 개수 — 모든 줄이 보라 알약이면 시끄러워서
+   위치·크기만 맞추고 색은 죽인다. */
+.post-count.subtle {
+  background: none;
+  box-shadow: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  opacity: 0.65;
 }
 
 .category-children {

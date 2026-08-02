@@ -77,11 +77,6 @@ const Icons = {
       <circle cx="12" cy="7" r="4" />
     </svg>
   ),
-  chevronDown: () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <polyline points="6 9 12 15 18 9" />
-    </svg>
-  ),
   book: () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -110,38 +105,25 @@ interface CategoryItemProps {
   onSelect: (id: string) => void;
 }
 
+// 하위 카테고리는 항상 펼쳐 둔다. 항목 수가 적어 접을 이유가 없고,
+// 접기 토글이 카테고리 선택 클릭과 겹쳐서 고르려다 닫히는 문제가 있었다.
 function CategoryItem({ category, level, selectedCategory, onSelect }: CategoryItemProps) {
-  const [isExpanded, setIsExpanded] = useState(level === 0);
   const hasChildren = category.children && category.children.length > 0;
   const isSelected = selectedCategory === category.id;
-  const postCount = category.id === 'all' ? getPostCountByCategory('all') : undefined;
-
-  const handleClick = () => {
-    if (hasChildren) {
-      setIsExpanded(!isExpanded);
-    }
-    onSelect(category.id);
-  };
+  const postCount = getPostCountByCategory(category.id);
 
   return (
     <div className="category-item-wrapper">
       <button
         className={`category-item ${isSelected ? 'selected' : ''} level-${level}`}
-        onClick={handleClick}
+        onClick={() => onSelect(category.id)}
         style={{ paddingLeft: `${level * 16 + 12}px`, '--cat': getCategoryColor(category.id) } as CSSProperties}
       >
         <span className="category-icon">{getIcon(category.icon)}</span>
         <span className="category-name">{category.name}</span>
-        {postCount !== undefined && (
-          <span className="post-count">{postCount}</span>
-        )}
-        {hasChildren && (
-          <span className={`expand-icon ${isExpanded ? 'expanded' : ''}`}>
-            <Icons.chevronDown />
-          </span>
-        )}
+        <span className={`post-count ${category.id === 'all' ? '' : 'subtle'}`}>{postCount}</span>
       </button>
-      {hasChildren && isExpanded && (
+      {hasChildren && (
         <div className="category-children">
           {category.children!.map((child) => (
             <CategoryItem
