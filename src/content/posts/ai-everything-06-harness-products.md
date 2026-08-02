@@ -8,13 +8,13 @@ tags: ["ClaudeCode", "Codex", "Antigravity", "Gemini", "AGENTS.md", "Hooks", "Pl
 published: true
 ---
 
-이 글은 실제 제품들을 하네스 관점으로 읽는 편이다. 이번 글에서는 모델과 하네스라는 두 층위가 어떻게 다른지, 같은 회사·같은 모델군인 ChatGPT와 Codex가 왜 다른 결과를 내는지, 그리고 Claude Code와 Codex를 각각 어떤 구조로 이해하면 되는지를 본다.
+이 글은 실제 제품들을 하네스 관점에서 정리한 개념 노트다. 모델과 하네스라는 두 층위가 어떻게 다른지, 같은 회사·같은 모델군인 ChatGPT와 Codex가 왜 다른 결과를 내는지, 그리고 Claude Code와 Codex의 구조까지 한 번에 훑어본다.
 
 ---
 
-## 1. 가장 흔한 혼동부터 잡자
+## 1. 모델과 하네스는 층위가 다르다
 
-많은 사람이 이렇게 정리한다.
+회사별로 이렇게 나란히 정리하기 쉽다.
 
 ```
 X OpenAI  : codex
@@ -22,7 +22,7 @@ X Anthropic : claude code
 X Google  : gemini
 ```
 
-앞의 둘은 하네스 이름이 맞지만 세 번째가 틀렸다. **Gemini는 모델이다.** 세 개를 나란히 놓으면 층위가 어긋난다. 2026년 8월 기준으로 정확히 정리하면 이렇다.
+앞의 둘은 하네스 이름이 맞다. 세 번째 줄이 문제다. **Gemini는 모델이지 하네스가 아니다.** 세 개를 나란히 놓으면 층위가 어긋난다. 2026년 8월 기준으로 바로잡으면 이렇다.
 
 | 회사 | 모델 (엔진) | 하네스 (운영체제) |
 |---|---|---|
@@ -34,7 +34,7 @@ X Google  : gemini
 
 **하네스는 모델을 바꿔 끼울 수 있다.** Cursor에서 모델을 Claude에서 GPT로 바꿔도 Cursor는 그대로다. 이게 두 층이 분리되어 있다는 증거다.
 
-2026년 구글 쪽 변화는 특히 주의해야 한다. 구글은 2026년 I/O에서 Gemini CLI를 Antigravity CLI로 전환한다고 발표했다. 2026년 6월 18일부로 Gemini CLI와 Gemini Code Assist IDE 확장이 일부 요금제에서 요청 처리를 중단했고, Antigravity 2.0은 데스크톱 앱, Go 기반 CLI, SDK, Google Cloud 엔터프라이즈 티어로 구성된다. 이 네 가지가 하나의 agent harness를 공유하기 때문에, 코어 에이전트가 개선되면 어디서 쓰든 자동 반영된다. Node.js 기반이던 Gemini CLI를 Go로 재작성해 메모리와 시작 시간도 개선했다 (출처: [Google Developers Blog](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/), [Google I/O 2026 developer highlights](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/)).
+이 혼동에는 이유가 있다. 2026년 구글 쪽 변화 때문이다. 구글은 2026년 I/O에서 Gemini CLI를 Antigravity CLI로 전환한다고 발표했다. 2026년 6월 18일부로 Gemini CLI와 Gemini Code Assist IDE 확장이 일부 요금제에서 요청 처리를 중단했고, Antigravity 2.0은 데스크톱 앱, Go 기반 CLI, SDK, Google Cloud 엔터프라이즈 티어로 구성된다. 이 네 가지가 하나의 agent harness를 공유하기 때문에, 코어 에이전트가 개선되면 어디서 쓰든 자동 반영된다. Node.js 기반이던 Gemini CLI를 Go로 재작성해 메모리와 시작 시간도 개선했다 (출처: [Google Developers Blog](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/), [Google I/O 2026 developer highlights](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/)).
 
 구글이 자기 문서에서 **agent harness라는 단어를 1급 개념으로 쓴다는 사실 자체**가 이 시리즈의 논지를 뒷받침한다. 하네스는 이제 제품 아키텍처의 중심이다.
 
@@ -62,7 +62,7 @@ ChatGPT는 무엇인가에 답하고, Codex는 어떻게 고치는가를 실행�
 
 ## 3. Claude Code를 5층 하네스로 읽기
 
-공식 문서는 CLAUDE.md, Skills, MCP, Subagents, Agent Teams, Hooks, Plugins를 각각 독립된 확장 지점으로 설명한다. 아래 5층은 공식 제품 분류가 아니라 **학습을 돕기 위한 지도**다.
+공식 문서는 CLAUDE.md, Skills, MCP, Subagents, Agent Teams, Hooks, Plugins를 각각 독립된 확장 지점으로 설명한다. 아래 5층은 공식 제품 분류가 아니라 **학습용으로 그린 지도**다.
 
 ```
 5층  Plugins / marketplaces           여러 프로젝트·팀에 배포하는 기능 묶음
@@ -95,17 +95,17 @@ ChatGPT는 무엇인가에 답하고, Codex는 어떻게 고치는가를 실행�
 - **여러 프로젝트·팀에 배포할 것**: Plugin
 - **외부 도구나 데이터 연결**: MCP
 
-`.claude` 폴더는 작업 서랍장으로 이해하면 된다. `CLAUDE.md`는 벽에 붙인 기본 규칙(프로젝트 설명, 명령, 원칙, 구조)이고, `.claude/skills/`는 반복 업무 매뉴얼, `.claude/agents/`는 역할별 담당자 카드(조사자·리뷰어·작성자 subagent), `.claude/settings.json`은 출입카드와 보안 규칙표(권한, 승인 흐름, hooks 설정), `.claude/commands/`는 자주 쓰는 버튼(반복 호출하는 slash command)이다. `~/.claude/`는 개인 책상 서랍으로, 개인 선호와 개인 Skill·명령, 사용자 메모리가 들어간다. **프로젝트 공용 서랍과 개인 서랍을 섞지 마라.** 회사 냉장고에 모두가 먹을 반찬과 내 개인 간식을 뒤섞어 두면 헷갈린다.
+`.claude` 폴더는 작업 서랍장에 해당한다. `CLAUDE.md`는 벽에 붙인 기본 규칙(프로젝트 설명, 명령, 원칙, 구조)이고, `.claude/skills/`는 반복 업무 매뉴얼, `.claude/agents/`는 역할별 담당자 카드(조사자·리뷰어·작성자 subagent), `.claude/settings.json`은 출입카드와 보안 규칙표(권한, 승인 흐름, hooks 설정), `.claude/commands/`는 자주 쓰는 버튼(반복 호출하는 slash command)이다. `~/.claude/`는 개인 책상 서랍으로, 개인 선호와 개인 Skill·명령, 사용자 메모리가 들어간다. **프로젝트 공용 서랍과 개인 서랍은 섞지 않는다.** 회사 냉장고에 공용 반찬과 개인 간식을 뒤섞어 두면 헷갈리는 것과 같다.
 
 ---
 
 ## 4. CLAUDE.md 운영 규칙 6영역
 
-CLAUDE.md를 처음 만들 때 흔한 실수는 두 가지다. 너무 적게 써서 매번 같은 설명을 반복하거나, 너무 많이 써서 Claude가 무엇을 우선할지 모르게 만드는 것. 담을 내용은 여섯 영역으로 나누면 정리된다.
+CLAUDE.md는 두 실수 사이에서 균형을 잡아야 한다. 너무 적게 쓰면 매번 같은 설명을 반복하게 되고, 너무 많이 쓰면 Claude가 무엇을 우선할지 모르게 된다. 담을 내용은 여섯 영역으로 나누면 정리된다.
 
 - **대화 방식**: 인사말 제거, 답변 길이, 모르면 모른다고 말하기. 출력 톤과 불확실성 표시에 해당한다.
 - **변경 통제**: 큰 변경 전 확인, 요청 범위만 수정, 변경 요약. 작업 범위와 승인 루프다.
-- **사용자·프로젝트 맥락**: 내가 누구인지, 무엇을 만드는지, 선호 톤. 기본 컨텍스트다.
+- **사용자·프로젝트 맥락**: 사용자가 누구인지, 무엇을 만드는지, 선호 톤. 기본 컨텍스트다.
 - **기억과 연속성**: MEMORY.md, 세션 요약, 실패 기록. 장기 메모리와 인수인계다.
 - **개발 작업 안전**: 관련 파일만 수정, 파괴적 작업 전 확인, 스택 고정. 최소 권한과 변경 안전성이다.
 - **고위험 행동 차단**: 배포, DB 변경, 외부 전송, 이메일은 사람 승인. 거버넌스 영역이다.
@@ -144,7 +144,7 @@ CLAUDE.md를 처음 만들 때 흔한 실수는 두 가지다. 너무 적게 써
 
 작업이 길어지면 파일을 셋으로 나누는 편이 낫다. `CLAUDE.md`에는 매 세션 적용되는 기본 규칙을, `MEMORY.md`에는 중요한 결정과 세션 요약을, `ERRORS.md`에는 실패한 접근과 해결 방법을 둔다. 며칠에서 몇 주에 걸친 작업, 같은 실수를 반복해서 고치고 싶을 때 각각 효과가 있다.
 
-한 가지는 분명히 해 두고 싶다. **CLAUDE.md는 마법의 계약서가 아니다.** 너무 길거나 서로 충돌하는 규칙이 많으면 오히려 품질이 떨어진다. 반드시 지켜야 하는 일은 settings, permissions, hooks, 테스트처럼 더 강한 장치로 옮겨야 한다. 가족 규칙표에 "불조심"을 적어 두는 것만으로 부족하고, 실제로 가스 차단기와 화재경보기가 필요한 것과 같다.
+**CLAUDE.md는 마법의 계약서가 아니다.** 너무 길거나 서로 충돌하는 규칙이 많으면 오히려 품질이 떨어진다. 반드시 지켜야 하는 일은 settings, permissions, hooks, 테스트처럼 더 강한 장치로 옮겨야 한다. 가족 규칙표에 "불조심"을 적어 두는 것만으로 부족하고, 실제로 가스 차단기와 화재경보기가 필요한 것과 같다.
 
 ---
 
@@ -165,7 +165,7 @@ CLAUDE.md를 처음 만들 때 흔한 실수는 두 가지다. 너무 적게 써
 - **Subagents** (4층 전문 담당자): 독립 담당자에게 맡기면 더 깨끗한 작업
 - **Headless Mode `-p`** (자동화 실행): 사람 없이 반복 실행하는 무인 접수 창구
 
-이 중 실무에서 특히 효과가 큰 것이 네 가지다.
+이 중 특히 효과가 큰 것이 네 가지다.
 
 첫째, **Plan Mode**. 여러 파일을 고치는 작업은 바로 실행시키지 말고 계획부터 본다.
 
@@ -242,9 +242,9 @@ Google은 **관찰 가능성**을 하네스의 생명선으로 놓는다. MCP와
 
 ## 8. 처음 익히는 순서
 
-거창하게 시작할 필요 없다. 프로젝트 루트에 짧은 CLAUDE.md(또는 AGENTS.md)를 만들어 매번 다시 말하지 않아도 되는 기본 규칙의 감각을 익히고, 반복해서 붙여넣는 절차를 Skill로 만들고, 꼭 실행해야 하는 검사를 Hook으로 옮기고, 긴 조사나 독립 검토를 Subagent에게 맡기고, 여러 프로젝트에서 쓰는 구성이 생기면 그때 Plugin으로 묶는다. 순서대로 하나씩이다.
+거창하게 시작할 필요는 없다. 프로젝트 루트에 짧은 CLAUDE.md(또는 AGENTS.md)를 만들어 매번 다시 말하지 않아도 되는 기본 규칙의 감각을 익히고, 반복해서 붙여넣는 절차를 Skill로 만들고, 꼭 실행해야 하는 검사를 Hook으로 옮기고, 긴 조사나 독립 검토를 Subagent에게 맡기고, 여러 프로젝트에서 쓰는 구성이 생기면 그때 Plugin으로 묶는다. 순서대로 하나씩이다.
 
-**읽기 전용 리뷰부터 시작하는 것을 권한다.** 권한과 검증 흐름을 안전하게 익힐 수 있다.
+**읽기 전용 리뷰부터 시작하면 권한과 검증 흐름을 안전하게 익힐 수 있다.**
 
 ---
 
