@@ -19,6 +19,9 @@ export interface Category {
   name: string;
   icon?: string;
   children?: Category[];
+  // 네비게이션 항목으로는 두지 않지만 이 카테고리가 흡수하는 post category id들.
+  // 글 옆 배지로만 쓰이는 세부 분류(research/study/CTF 등)를 여기에 모은다.
+  mergedIds?: string[];
 }
 
 export interface ContactInfo {
@@ -100,11 +103,10 @@ export const categories: Category[] = [
         id: 'web3-blockchain',
         name: 'Web3 / Blockchain',
         icon: 'zap',
-        children: [
-          { id: 'research-article', name: 'research/Article' },
-          { id: 'study-dev-security', name: 'study(dev/security)' },
-          { id: 'wargame-ctf', name: 'wargame/CTF' },
-        ],
+        // 사이드바는 얕게 유지한다. research/study/CTF는 고르는 대상이 아니라
+        // 글의 성격 표시일 뿐이므로 배지(categoryLabels)로만 노출하고,
+        // 목록에서는 이 노드 하나로 모아 본다.
+        mergedIds: ['research-article', 'study-dev-security', 'wargame-ctf'],
       },
       { id: 'reversing', name: 'Reversing', icon: 'cpu' },
       { id: 'pwn', name: 'Pwn', icon: 'terminal' },
@@ -294,6 +296,7 @@ function collectSubtreeIds(categoryId: string, list: Category[] = categories): s
       const ids: string[] = [];
       const walk = (node: Category) => {
         ids.push(node.id);
+        node.mergedIds?.forEach(mergedId => ids.push(mergedId));
         node.children?.forEach(walk);
       };
       walk(category);
