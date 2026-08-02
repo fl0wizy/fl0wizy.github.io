@@ -36,6 +36,7 @@ const CATEGORY_IDS = [
   'reversing',
   'pwn',
   'crypto',
+  'ai',
   'development',
   'travel',
   'daily',

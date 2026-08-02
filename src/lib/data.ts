@@ -113,6 +113,7 @@ export const categories: Category[] = [
       { id: 'crypto', name: 'Crypto', icon: 'lock' },
     ],
   },
+  { id: 'ai', name: 'AI', icon: 'bot' },
   { id: 'development', name: '개발(Development)', icon: 'code' },
   { id: 'travel', name: '여행(Travel)', icon: 'map' },
   { id: 'daily', name: '일상(Daily)', icon: 'user' },
@@ -132,6 +133,7 @@ export const categoryColors: Record<string, string> = {
   reversing: '#74c195', // 초록
   pwn: '#e6a572', // 주황
   crypto: '#db8fb4', // 핑크
+  ai: '#a3c76d', // 라임 그린 (소프트)
   development: '#6fbecf', // 시안
   travel: '#d4c277', // 앰버
   daily: '#9ca3af', // 그레이
@@ -149,6 +151,7 @@ export const categoryLabels: Record<string, string> = {
   reversing: 'Reversing',
   pwn: 'Pwn',
   crypto: 'Crypto',
+  ai: 'AI',
   development: '개발(DEVELOPMENT)',
   travel: '여행(TRAVEL)',
 };
