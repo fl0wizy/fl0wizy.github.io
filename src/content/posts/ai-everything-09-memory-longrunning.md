@@ -1,6 +1,6 @@
 ---
 id: "ai-everything-09-memory-longrunning"
-title: "AI의 모든 것 (09) — 장시간 실행과 메모리 소유권: 기억을 잃으면 에이전트도 잃는다"
+title: "AI의 모든 것 (09) – 장시간 실행과 메모리 소유권: 기억을 잃으면 에이전트도 잃는다"
 description: "교대근무 문제와 세션 인계, feature list는 검증 대장, 메모리 소유권 4모델과 락인."
 date: "2026-08-02 10:30"
 category: "ai"
@@ -10,7 +10,7 @@ published: true
 
 
 > 이 편에서 정리할 것
-> 1. 긴 작업에서 컨텍스트가 끝나는 지점의 문제 — **교대근무 문제**
+> 1. 긴 작업에서 컨텍스트가 끝나는 지점의 문제 – **교대근무 문제**
 > 2. 세션 인계 구조: progress file · feature list · git history · init script
 > 3. **메모리 소유권 4모델**과 락인 위험
 > 4. 좋은 메모리는 "많이 저장"이 아니라 "잘 고르고 검증"이다
@@ -29,7 +29,7 @@ Anthropic의 *Effective harnesses for long-running agents* 는 **각 새 세션�
 
 > **야간 근무자가 아무 인수인계 없이 출근하면, 낮 근무자가 무엇을 했는지 다시 조사해야 한다.**
 
-### Context anxiety — 잘 알려지지 않은 실패 모드
+### Context anxiety – 잘 알려지지 않은 실패 모드
 
 Anthropic의 harness design 글이 짚는 흥미로운 현상이다.
 
@@ -50,7 +50,7 @@ Anthropic의 harness design 글이 짚는 흥미로운 현상이다.
 > 사람이 회의록만 믿고 원본 계약서를 버리지 않는 것처럼,
 > AI도 **progress file, feature list, git history 같은 원천 기록**을 함께 가져야 한다.
 
-### Context reset — 위험해 보이지만 강력하다
+### Context reset – 위험해 보이지만 강력하다
 
 새 세션을 시작하는 일. 잘 설계하면 오히려 강력하다. **새 세션은 오래된 잡음을 제거하고, 구조화된 인계 문서만 읽고 출발한다.**
 
@@ -102,7 +102,7 @@ Anthropic 글에서 가장 실전적인 부분이다.
 
 JSON이 도움이 되는 이유: 자유로운 Markdown 목록은 에이전트가 항목을 합치거나 문장을 바꾸기 쉽다. JSON은 구조가 분명해서 **"기능 이름과 확인 조건은 유지하고, 통과 여부만 바꾼다"** 는 규칙을 주기 쉽다.
 
-### Ralph Loop — 근무 교대 시스템
+### Ralph Loop – 근무 교대 시스템
 
 Anthropic의 long-running harness 연구는 **초기화 에이전트**와 **코딩 에이전트**를 나누었다. 커뮤니티에서는 이 흐름을 Ralph Loop라는 이름으로 소개하기도 한다.
 
@@ -118,7 +118,7 @@ Coding Agent (세션 1)
        ├─ 통과 → feature list 상태 변경 · git commit · progress 갱신
        └─ 실패 → 실패 로그를 progress에 남김
         ↓
-Coding Agent (세션 2) — 흔적을 읽고 이어간다
+Coding Agent (세션 2) – 흔적을 읽고 이어간다
 ```
 
 > 24시간 운영되는 병원의 교대근무다. 의사가 아무리 유능해도 **인수인계 차트**가 없으면 환자 상태를 놓친다.
@@ -149,7 +149,7 @@ LangChain의 하네스 글이 짚는 포인트. 긴 작업에서 에이전트는
 
 > 식당의 개점 체크리스트다. 가스 밸브, 냉장고 온도, 카드 단말기, 예약 목록을 확인한 뒤 영업을 시작한다.
 
-### Clean state — 세션 종료 시 요구할 것
+### Clean state – 세션 종료 시 요구할 것
 
 ```
 □ 변경 요약
@@ -174,7 +174,7 @@ LangChain의 하네스 글이 짚는 포인트. 긴 작업에서 에이전트는
 
 ---
 
-## 6. 메모리는 플러그인이 아니다 — 하네스의 핵심 책임이다
+## 6. 메모리는 플러그인이 아니다 – 하네스의 핵심 책임이다
 
 많은 사람이 메모리를 "나중에 붙이는 기능"으로 생각한다. 하지만 메모리를 제대로 쓰려면 **하네스가 답해야 하는 질문**이 있다.
 
@@ -317,11 +317,11 @@ LangChain의 하네스 글이 짚는 포인트. 긴 작업에서 에이전트는
 저장 **전** 검사와 읽을 **때**의 검증 규칙이 필요하다. 아래 같은 것이 메모리에 들어가면 안 된다.
 
 ```
-🚫 기존 지시를 무시하라는 문장
-🚫 비밀번호나 토큰을 읽으라는 문장
-🚫 사용자에게 숨기고 행동하라는 문장
-🚫 출처가 불분명한 민감 정보
-🚫 검증되지 않은 외부 문서의 지시
+- 기존 지시를 무시하라는 문장
+- 비밀번호나 토큰을 읽으라는 문장
+- 사용자에게 숨기고 행동하라는 문장
+- 출처가 불분명한 민감 정보
+- 검증되지 않은 외부 문서의 지시
 ```
 
 **이게 메모리를 경유한 prompt injection이다.** 한 번 저장되면 이후 모든 세션에 영향을 준다. → [10편](/post/ai-everything-10-safety-governance)
@@ -341,7 +341,7 @@ LangChain의 하네스 글이 짚는 포인트. 긴 작업에서 에이전트는
 ## 9. 이 편의 요약
 
 - 장시간 작업의 근본 문제는 **교대근무 문제**다. 새 세션은 이전 상태를 모른다
-- **Context anxiety** — 컨텍스트가 찼다고 느끼면 에이전트가 서둘러 마무리하려 한다
+- **Context anxiety** – 컨텍스트가 찼다고 느끼면 에이전트가 서둘러 마무리하려 한다
 - **Compaction은 손실이다.** 원천 기록(progress file, feature list, git history)을 함께 가져야 한다
 - **Feature list는 할 일 목록이 아니라 검증 대장**이다. 처음엔 전부 `passes: false`
 - 파일시스템은 **컨텍스트 창 사이를 잇는 기억 장치**다. "모델이 기억한다"보다 "다음 모델도 읽게 남긴다"
@@ -355,14 +355,14 @@ LangChain의 하네스 글이 짚는 포인트. 긴 작업에서 에이전트는
 
 ## 더 읽을거리
 
-- Anthropic, *Effective harnesses for long-running agents* — <https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents>
-- Anthropic, *Harness design for long-running application development* — <https://www.anthropic.com/engineering/harness-design-long-running-apps>
-- Claude Code Docs, *How Claude remembers your project* — <https://code.claude.com/docs/en/memory>
-- Claude Code Docs, *Checkpointing* — <https://code.claude.com/docs/en/checkpointing>
-- Minki Kang et al., *ACON* — <https://arxiv.org/abs/2510.00615>
-- 김동학, 《하네스 엔지니어링 백과사전》 제8장·제14장·부록 D — <https://wikidocs.net/346800>, <https://wikidocs.net/346806>, <https://wikidocs.net/350444>
+- Anthropic, *Effective harnesses for long-running agents* – <https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents>
+- Anthropic, *Harness design for long-running application development* – <https://www.anthropic.com/engineering/harness-design-long-running-apps>
+- Claude Code Docs, *How Claude remembers your project* – <https://code.claude.com/docs/en/memory>
+- Claude Code Docs, *Checkpointing* – <https://code.claude.com/docs/en/checkpointing>
+- Minki Kang et al., *ACON* – <https://arxiv.org/abs/2510.00615>
+- 김동학, 《하네스 엔지니어링 백과사전》 제8장·제14장·부록 D – <https://wikidocs.net/346800>, <https://wikidocs.net/346806>, <https://wikidocs.net/350444>
 
 ---
 
-👉 다음 편: [10. 안전·거버넌스·운영](/post/ai-everything-10-safety-governance)
-👈 이전 편: [08. 평가 하네스](/post/ai-everything-08-eval-harness)
+다음 편: [10. 안전·거버넌스·운영](/post/ai-everything-10-safety-governance)
+이전 편: [08. 평가 하네스](/post/ai-everything-08-eval-harness)

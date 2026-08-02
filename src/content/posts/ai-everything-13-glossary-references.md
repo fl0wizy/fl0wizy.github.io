@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-13-glossary-references"
-title: "AI의 모든 것 (13) — 용어집 · 한 장 치트시트 · 레퍼런스 지도"
-description: "막혔을 때 돌아오는 지도 — 한 장 치트시트, 용어집, 전체 레퍼런스."
+title: "AI의 모든 것 (13) – 용어집 · 한 장 치트시트 · 레퍼런스 지도"
+description: "막혔을 때 돌아오는 지도 – 한 장 치트시트, 용어집, 전체 레퍼런스."
 date: "2026-08-02 11:10"
 category: "ai"
 tags: ["용어집", "치트시트", "레퍼런스", "Glossary"]
@@ -57,7 +57,7 @@ Agent = Model + Harness
 
 **답하지 못한 부분이 있다면, 그 부분은 AI가 추측할 가능성이 높다.**
 
-### 실패 신호 5가지 — 프롬프트가 아니라 하네스를 봐야 할 때
+### 실패 신호 5가지 – 프롬프트가 아니라 하네스를 봐야 할 때
 
 | 실패 신호 | 의심할 지점 |
 |---|---|
@@ -254,77 +254,77 @@ Agent = Model + Harness
 
 ## 3부. 레퍼런스 지도
 
-### 📕 한국어 단행본
+### 한국어 단행본
 
-- **김동학, 《하네스 엔지니어링 백과사전》** (위키독스, v1.86) — <https://wikidocs.net/book/19689>
+- **김동학, 《하네스 엔지니어링 백과사전》** (위키독스, v1.86) – <https://wikidocs.net/book/19689>
   이 시리즈의 뼈대. 전 15장 + 부록 A~O. 각 장 끝에 가족 여행 준비·이사 체크리스트 같은 **일상생활 실습**이 붙어 있고, 부록에는 하네스 성숙도 체크리스트, 업무 하네스 설계 카드, 도입 실패 사례, 직군별 적용 예시, Q&A 71문항, 워크숍 진행안, 실습 키트가 들어 있다. **유료 전자책이므로 원문을 구매해서 보길 권한다.**
   실습 도구: Claude Code용 `/harness-lab`, Codex CLI용 `$harness-lab` 스킬
 
-### 🏢 공식 문서 — Anthropic
+### 공식 문서 – Anthropic
 
-- *Building Effective AI Agents* — <https://www.anthropic.com/engineering/building-effective-agents>
-- *Effective context engineering for AI agents* — <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
-- *Writing effective tools for AI agents* — <https://www.anthropic.com/engineering/writing-tools-for-agents>
-- *Effective harnesses for long-running agents* — <https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents>
-- *Demystifying evals for AI agents* — <https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents>
-- *Harness design for long-running application development* — <https://www.anthropic.com/engineering/harness-design-long-running-apps>
-- *Building agents with the Claude Agent SDK* — <https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk>
-- *Equipping agents for the real world with Agent Skills* — <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>
-- *Introducing the Model Context Protocol* — <https://www.anthropic.com/news/model-context-protocol>
+- *Building Effective AI Agents* – <https://www.anthropic.com/engineering/building-effective-agents>
+- *Effective context engineering for AI agents* – <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
+- *Writing effective tools for AI agents* – <https://www.anthropic.com/engineering/writing-tools-for-agents>
+- *Effective harnesses for long-running agents* – <https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents>
+- *Demystifying evals for AI agents* – <https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents>
+- *Harness design for long-running application development* – <https://www.anthropic.com/engineering/harness-design-long-running-apps>
+- *Building agents with the Claude Agent SDK* – <https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk>
+- *Equipping agents for the real world with Agent Skills* – <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>
+- *Introducing the Model Context Protocol* – <https://www.anthropic.com/news/model-context-protocol>
 
-### 📘 공식 문서 — Claude Code
+### 공식 문서 – Claude Code
 
-- Overview — <https://code.claude.com/docs/en/overview>
-- Configure permissions — <https://code.claude.com/docs/en/permissions>
-- Automate workflows with hooks — <https://code.claude.com/docs/en/hooks-guide>
-- Create custom subagents — <https://code.claude.com/docs/en/sub-agents>
-- Orchestrate teams of Claude Code sessions — <https://code.claude.com/docs/en/agent-teams>
-- Connect Claude Code to tools via MCP — <https://code.claude.com/docs/en/mcp>
-- Settings — <https://code.claude.com/docs/en/settings>
-- How Claude remembers your project — <https://code.claude.com/docs/en/memory>
-- Checkpointing — <https://code.claude.com/docs/en/checkpointing>
-- Interactive mode — <https://code.claude.com/docs/en/interactive-mode>
-- CLI reference — <https://code.claude.com/docs/en/cli-reference>
-- Agent SDK overview — <https://code.claude.com/docs/en/agent-sdk/overview>
-- Extend Claude with skills — <https://docs.anthropic.com/en/docs/claude-code/skills>
-- Create plugins — <https://docs.anthropic.com/en/docs/claude-code/plugins>
-- Hooks reference — <https://docs.anthropic.com/en/docs/claude-code/hooks>
+- Overview – <https://code.claude.com/docs/en/overview>
+- Configure permissions – <https://code.claude.com/docs/en/permissions>
+- Automate workflows with hooks – <https://code.claude.com/docs/en/hooks-guide>
+- Create custom subagents – <https://code.claude.com/docs/en/sub-agents>
+- Orchestrate teams of Claude Code sessions – <https://code.claude.com/docs/en/agent-teams>
+- Connect Claude Code to tools via MCP – <https://code.claude.com/docs/en/mcp>
+- Settings – <https://code.claude.com/docs/en/settings>
+- How Claude remembers your project – <https://code.claude.com/docs/en/memory>
+- Checkpointing – <https://code.claude.com/docs/en/checkpointing>
+- Interactive mode – <https://code.claude.com/docs/en/interactive-mode>
+- CLI reference – <https://code.claude.com/docs/en/cli-reference>
+- Agent SDK overview – <https://code.claude.com/docs/en/agent-sdk/overview>
+- Extend Claude with skills – <https://docs.anthropic.com/en/docs/claude-code/skills>
+- Create plugins – <https://docs.anthropic.com/en/docs/claude-code/plugins>
+- Hooks reference – <https://docs.anthropic.com/en/docs/claude-code/hooks>
 
-### 🟢 공식 문서 — OpenAI
+### 공식 문서 – OpenAI
 
-- *Harness engineering: leveraging Codex in an agent-first world* — <https://openai.com/index/harness-engineering/>
-- *Unrolling the Codex agent loop* — <https://openai.com/index/unrolling-the-codex-agent-loop/>
-- Agents SDK — <https://developers.openai.com/api/docs/guides/agents>
-- Using tools — <https://developers.openai.com/api/docs/guides/tools>
-- Function calling — <https://developers.openai.com/api/docs/guides/function-calling>
-- Web search — <https://developers.openai.com/api/docs/guides/tools-web-search>
-- MCP and Connectors — <https://developers.openai.com/api/docs/guides/tools-connectors-mcp>
-- Structured Outputs — <https://developers.openai.com/api/docs/guides/structured-outputs>
-- Codex: AGENTS.md — <https://developers.openai.com/codex/guides/agents-md>
-- Codex CLI — <https://developers.openai.com/codex/cli>
-- Codex: Agent Skills — <https://developers.openai.com/codex/skills>
-- Codex: Subagents — <https://developers.openai.com/codex/subagents>
-- Codex: Hooks — <https://developers.openai.com/codex/hooks>
-- Codex: Worktrees — <https://developers.openai.com/codex/app/worktrees>
-- Codex App Server — <https://developers.openai.com/codex/app-server>
-- Agents SDK Tracing — <https://openai.github.io/openai-agents-python/tracing/>
-- Agents SDK Handoffs — <https://openai.github.io/openai-agents-python/handoffs/>
+- *Harness engineering: leveraging Codex in an agent-first world* – <https://openai.com/index/harness-engineering/>
+- *Unrolling the Codex agent loop* – <https://openai.com/index/unrolling-the-codex-agent-loop/>
+- Agents SDK – <https://developers.openai.com/api/docs/guides/agents>
+- Using tools – <https://developers.openai.com/api/docs/guides/tools>
+- Function calling – <https://developers.openai.com/api/docs/guides/function-calling>
+- Web search – <https://developers.openai.com/api/docs/guides/tools-web-search>
+- MCP and Connectors – <https://developers.openai.com/api/docs/guides/tools-connectors-mcp>
+- Structured Outputs – <https://developers.openai.com/api/docs/guides/structured-outputs>
+- Codex: AGENTS.md – <https://developers.openai.com/codex/guides/agents-md>
+- Codex CLI – <https://developers.openai.com/codex/cli>
+- Codex: Agent Skills – <https://developers.openai.com/codex/skills>
+- Codex: Subagents – <https://developers.openai.com/codex/subagents>
+- Codex: Hooks – <https://developers.openai.com/codex/hooks>
+- Codex: Worktrees – <https://developers.openai.com/codex/app/worktrees>
+- Codex App Server – <https://developers.openai.com/codex/app-server>
+- Agents SDK Tracing – <https://openai.github.io/openai-agents-python/tracing/>
+- Agents SDK Handoffs – <https://openai.github.io/openai-agents-python/handoffs/>
 
-### 🔵 공식 문서 — Google
+### 공식 문서 – Google
 
-- *An important update: Transitioning Gemini CLI to Antigravity CLI* — <https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/>
-- *I/O 2026 developer highlights: Antigravity, Gemini API, AI Studio* — <https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/>
-- *Announcing the Agent2Agent Protocol (A2A)* — <https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/>
-- *Developer's Guide to AI Agent Protocols* — <https://developers.googleblog.com/en/developers-guide-to-ai-agent-protocols/>
-- Google PAIR, *People + AI Guidebook* — <https://pair.withgoogle.com/guidebook/>
+- *An important update: Transitioning Gemini CLI to Antigravity CLI* – <https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/>
+- *I/O 2026 developer highlights: Antigravity, Gemini API, AI Studio* – <https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/>
+- *Announcing the Agent2Agent Protocol (A2A)* – <https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/>
+- *Developer's Guide to AI Agent Protocols* – <https://developers.googleblog.com/en/developers-guide-to-ai-agent-protocols/>
+- Google PAIR, *People + AI Guidebook* – <https://pair.withgoogle.com/guidebook/>
 
-### 🔌 프로토콜 · 표준
+### 프로토콜 · 표준
 
-- Model Context Protocol — <https://modelcontextprotocol.io/docs/getting-started/intro>
-- A2A Protocol — <https://a2a-protocol.org/latest/>
-- AGENTS.md open format — <https://agents.md/>
+- Model Context Protocol – <https://modelcontextprotocol.io/docs/getting-started/intro>
+- A2A Protocol – <https://a2a-protocol.org/latest/>
+- AGENTS.md open format – <https://agents.md/>
 
-### 📄 논문 · 연구
+### 논문 · 연구
 
 | 논문 | 무엇을 보였나 | 링크 |
 |---|---|---|
@@ -341,29 +341,29 @@ Agent = Model + Harness
 | **Human-AI Interaction Guidelines** (Amershi et al., CHI 2019) | AI UX 18원칙 | <https://doi.org/10.1145/3290605.3300233> |
 | **UXAgent** (Wang et al., 2025) | LLM 에이전트로 사용성 테스트 시뮬레이션 | <https://arxiv.org/abs/2504.09407> |
 
-### 🛡️ 보안 · 거버넌스
+### 보안 · 거버넌스
 
-- OWASP, *Top 10 for Large Language Model Applications* — <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
-- NIST, *AI RMF: Generative AI Profile (AI 600-1)* — <https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf>
-- Simon Willison, *Prompt injection* 시리즈 — <https://simonwillison.net/series/prompt-injection/>
+- OWASP, *Top 10 for Large Language Model Applications* – <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
+- NIST, *AI RMF: Generative AI Profile (AI 600-1)* – <https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf>
+- Simon Willison, *Prompt injection* 시리즈 – <https://simonwillison.net/series/prompt-injection/>
 
-### 🏗️ 프레임워크 · 기업 블로그
+### 프레임워크 · 기업 블로그
 
-- LangChain, *The Anatomy of an Agent Harness* — <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
-- LangChain, *Improving Deep Agents with harness engineering* — <https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering>
-- LangChain, *Better Harness: A Recipe for Harness Hill-Climbing with Evals* — <https://www.langchain.com/blog/better-harness-a-recipe-for-harness-hill-climbing-with-evals>
-- LangChain, *Plan-and-Execute Agents* — <https://www.langchain.com/blog/planning-agents>
-- Birgitta Böckeler, *Harness engineering for coding agent users* (martinfowler.com) — <https://martinfowler.com/articles/harness-engineering.html>
-- Mitchell Hashimoto, *My AI Adoption Journey* (2026.02.05) — 하네스 관점을 명확히 사용한 초기 글
+- LangChain, *The Anatomy of an Agent Harness* – <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
+- LangChain, *Improving Deep Agents with harness engineering* – <https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering>
+- LangChain, *Better Harness: A Recipe for Harness Hill-Climbing with Evals* – <https://www.langchain.com/blog/better-harness-a-recipe-for-harness-hill-climbing-with-evals>
+- LangChain, *Plan-and-Execute Agents* – <https://www.langchain.com/blog/planning-agents>
+- Birgitta Böckeler, *Harness engineering for coding agent users* (martinfowler.com) – <https://martinfowler.com/articles/harness-engineering.html>
+- Mitchell Hashimoto, *My AI Adoption Journey* (2026.02.05) – 하네스 관점을 명확히 사용한 초기 글
 
-### 🔧 배경 개념
+### 배경 개념
 
-- Synopsys, *What is Wiring Harness?* — <https://www.synopsys.com/glossary/what-is-wiring-harness.html>
-- ISTQB Glossary, *test harness* — <https://glossary.istqb.org/en_US/term/test-harness>
+- Synopsys, *What is Wiring Harness?* – <https://www.synopsys.com/glossary/what-is-wiring-harness.html>
+- ISTQB Glossary, *test harness* – <https://glossary.istqb.org/en_US/term/test-harness>
 
 ---
 
-## 4부. 마지막 정리 — 이 시리즈의 8문장
+## 4부. 마지막 정리 – 이 시리즈의 8문장
 
 1. **Agent = Model + Harness.** 모델만 바꿔서 해결되는 문제는 생각보다 적다.
 2. **원시 LLM은 운영체제 없는 CPU다.** 계산은 하지만 혼자서 일을 끝내지 못한다.
@@ -376,6 +376,6 @@ Agent = Model + Harness
 
 ---
 
-👈 이전 편: [12. 실전 사례와 생태계](/post/ai-everything-12-cases-ecosystem)
-🏠 [00. 시리즈 지도로 돌아가기](/post/ai-everything-00-index)
-📝 [내 학습 노트 팩트체크](/post/ai-study-notes-verified)
+이전 편: [12. 실전 사례와 생태계](/post/ai-everything-12-cases-ecosystem)
+[00. 시리즈 지도로 돌아가기](/post/ai-everything-00-index)
+[내 학습 노트 팩트체크](/post/ai-study-notes-verified)

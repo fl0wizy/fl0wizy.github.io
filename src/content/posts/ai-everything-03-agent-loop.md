@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-03-agent-loop"
-title: "AI의 모든 것 (03) — 에이전트 루프의 해부: 마법이 아니라 반복문이다"
-description: "에이전트는 마법이 아니라 반복문이다 — 루프 7단계, 메시지 계층, ReAct vs Plan-and-Execute."
+title: "AI의 모든 것 (03) – 에이전트 루프의 해부: 마법이 아니라 반복문이다"
+description: "에이전트는 마법이 아니라 반복문이다 – 루프 7단계, 메시지 계층, ReAct vs Plan-and-Execute."
 date: "2026-08-02 09:30"
 category: "ai"
 tags: ["AgentLoop", "ReAct", "PlanAndExecute", "ToolCalling", "Handoff", "메시지계층"]
@@ -10,9 +10,9 @@ published: true
 
 
 > 이 편에서 정리할 것
-> 1. 에이전트 루프 7단계 — 하네스가 LLM 호출 **전후로** 무엇을 하는가
+> 1. 에이전트 루프 7단계 – 하네스가 LLM 호출 **전후로** 무엇을 하는가
 > 2. 메시지 계층(system / developer / user / tool)과 왜 섞으면 안 되는가
-> 3. ReAct vs Plan-and-Execute — 언제 무엇을 쓰는가
+> 3. ReAct vs Plan-and-Execute – 언제 무엇을 쓰는가
 
 ---
 
@@ -51,7 +51,7 @@ published: true
            → 다시 ②로
 ```
 
-### ① 프롬프트 조립 — LLM이 등장하기 **전**
+### ① 프롬프트 조립 – LLM이 등장하기 **전**
 
 여기가 내가 노트에서 놓쳤던 부분이다. **하네스는 LLM을 호출하기 전에 이미 일한다.**
 
@@ -84,7 +84,7 @@ Claude Code 기준으로 실제 일어나는 일:
 
 모델은 단순 텍스트만 내지 않는다. `tool_calls` / `tool_use` 같은 **구조화된 객체**를 반환한다. 하네스는 이게 최종 답변인지, 도구 실행 요청인지, handoff 요청인지 구분한다.
 
-### ④ 도구 실행 — 여기서 하네스가 진짜 일한다
+### ④ 도구 실행 – 여기서 하네스가 진짜 일한다
 
 ```
 1. 인자 스키마 검증          ← 필수 필드 있나, 타입 맞나
@@ -102,8 +102,8 @@ Claude Code 기준으로 실제 일어나는 일:
 도구 결과를 모델이 이해할 수 있는 **관찰 메시지**로 바꾼다. 오류가 나면 단순히 숨기지 말고, **모델이 복구할 수 있도록** "어떤 오류가 났고 어떤 제약이 있는지"를 전달한다.
 
 ```
-❌ 나쁨: "Error"
-✅ 좋음: "FileNotFoundError: /src/config.yaml 없음.
+X 나쁨: "Error"
+O 좋음: "FileNotFoundError: /src/config.yaml 없음.
          /src 아래 파일: app.py, utils.py, config.example.yaml
          → config.example.yaml을 복사해서 쓰는 것을 검토하세요"
 ```
@@ -127,7 +127,7 @@ Claude Code 기준으로 실제 일어나는 일:
 
 ---
 
-## 3. 메시지 계층 — 섞으면 안 되는 것
+## 3. 메시지 계층 – 섞으면 안 되는 것
 
 에이전트에게 주는 지시는 계층이 있다. 회사의 "사규", 팀장의 "업무 지시", 고객의 "요청"이 다른 것과 같다.
 
@@ -136,7 +136,7 @@ Claude Code 기준으로 실제 일어나는 일:
 | **시스템 메시지** | 모델의 최상위 행동 원칙 | 사규 | 최고 |
 | **개발자 메시지** | 애플리케이션·프로젝트 규칙 | 팀장의 업무 지시 | 높음 |
 | **사용자 메시지** | 지금 해결해야 할 요청 | 고객 요청 | 중간 |
-| **도구 결과** | 외부 시스템에서 돌아온 관찰값 | 조회 결과 | **낮음 — 신뢰하지 않는 입력** |
+| **도구 결과** | 외부 시스템에서 돌아온 관찰값 | 조회 결과 | **낮음 – 신뢰하지 않는 입력** |
 
 **잘 설계된 하네스는 이 계층을 섞지 않는다.**
 
@@ -172,7 +172,7 @@ Claude Code 기준으로 실제 일어나는 일:
 
 **의사가 간호사에게 "혈압을 재 주세요"라고 요청하는 장면**과 같다. 의사가 직접 혈압계를 조작할 수도 있지만, 대개는 측정을 요청하고 결과를 받아 판단한다.
 
-### client tool vs server tool — 실행 위치의 문제
+### client tool vs server tool – 실행 위치의 문제
 
 여기서 흔한 오해를 잡고 가자. "도구 실행은 전부 내 컴퓨터에서 일어난다"는 아니다.
 
@@ -180,12 +180,12 @@ Claude Code 기준으로 실제 일어나는 일:
 |---|---|---|
 | 실행 위치 | 내 컴퓨터 / 내 애플리케이션 | 모델 제공자의 인프라 |
 | 예시 | 로컬 MCP 서버, 파일 읽기, bash | 제공자의 web search·code execution, remote MCP connector |
-| 내가 훅으로 막을 수 있나 | ✅ | ❌ |
-| 로그가 내 손에 남나 | ✅ 전부 | ⚠️ 부분적 |
+| 내가 훅으로 막을 수 있나 | O | X |
+| 로그가 내 손에 남나 | 전부 | 부분적 |
 
 **공통점은 하나다. 어느 쪽이든 모델 가중치가 직접 네트워크를 찌르지는 않는다.** 모델은 요청을 *출력*할 뿐이고, 실행은 항상 모델 바깥의 런타임이 한다.
 
-### JSON schema — 도구 입력의 메뉴판
+### JSON schema – 도구 입력의 메뉴판
 
 사람끼리는 "대충 찾아봐"가 통하지만, 컴퓨터 도구는 `query`, `start_date`, `max_results`처럼 명확한 입력을 요구한다.
 
@@ -274,12 +274,12 @@ Claude Code 기준으로 실제 일어나는 일:
 
 ## 더 읽을거리
 
-- Shunyu Yao et al., *ReAct* — <https://arxiv.org/abs/2210.03629>
-- LangChain, *Plan-and-Execute Agents* — <https://www.langchain.com/blog/planning-agents>
-- OpenAI, *Unrolling the Codex agent loop* — <https://openai.com/index/unrolling-the-codex-agent-loop/>
-- 김동학, 《하네스 엔지니어링 백과사전》 제2장 — <https://wikidocs.net/346794>
+- Shunyu Yao et al., *ReAct* – <https://arxiv.org/abs/2210.03629>
+- LangChain, *Plan-and-Execute Agents* – <https://www.langchain.com/blog/planning-agents>
+- OpenAI, *Unrolling the Codex agent loop* – <https://openai.com/index/unrolling-the-codex-agent-loop/>
+- 김동학, 《하네스 엔지니어링 백과사전》 제2장 – <https://wikidocs.net/346794>
 
 ---
 
-👉 다음 편: [04. 컨텍스트 엔지니어링](/post/ai-everything-04-context-engineering)
-👈 이전 편: [02. 하네스란 무엇인가](/post/ai-everything-02-what-is-harness)
+다음 편: [04. 컨텍스트 엔지니어링](/post/ai-everything-04-context-engineering)
+이전 편: [02. 하네스란 무엇인가](/post/ai-everything-02-what-is-harness)

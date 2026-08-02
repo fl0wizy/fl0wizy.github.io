@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-06-harness-products"
-title: "AI의 모든 것 (06) — Claude Code · Codex · Antigravity: 모델과 하네스를 헷갈리지 말 것"
-description: "Gemini는 모델이지 하네스가 아니다 — Claude Code 5층 구조, Codex 부품 지도, Antigravity 전환."
+title: "AI의 모든 것 (06) – Claude Code · Codex · Antigravity: 모델과 하네스를 헷갈리지 말 것"
+description: "Gemini는 모델이지 하네스가 아니다 – Claude Code 5층 구조, Codex 부품 지도, Antigravity 전환."
 date: "2026-08-02 10:00"
 category: "ai"
 tags: ["ClaudeCode", "Codex", "Antigravity", "Gemini", "AGENTS.md", "Hooks", "Plugin"]
@@ -10,7 +10,7 @@ published: true
 
 
 > 이 편에서 정리할 것
-> 1. **모델과 하네스는 다른 층위다** — 가장 흔한 혼동 바로잡기
+> 1. **모델과 하네스는 다른 층위다** – 가장 흔한 혼동 바로잡기
 > 2. Codex와 ChatGPT의 차이 = 이 시리즈 최고의 실증 사례
 > 3. Claude Code를 **5층 하네스**로 읽는 법
 > 4. Codex의 하네스 부품 지도
@@ -22,9 +22,9 @@ published: true
 많은 사람이 이렇게 정리한다.
 
 ```
-❌ OpenAI  : codex
-❌ Anthropic : claude code
-❌ Google  : gemini
+X OpenAI  : codex
+X Anthropic : claude code
+X Google  : gemini
 ```
 
 앞의 둘은 하네스 이름이 맞지만 **세 번째가 틀렸다. Gemini는 모델이다.** 세 개를 나란히 놓으면 층위가 어긋난다.
@@ -33,7 +33,7 @@ published: true
 
 | 회사 | **모델** (엔진) | **하네스** (운영체제) |
 |---|---|---|
-| **Anthropic** | Claude — Opus 5 / Sonnet 5 / Haiku 4.5 / Fable 5 | **Claude Code** (CLI · 데스크톱 · 웹 · IDE), Claude Agent SDK |
+| **Anthropic** | Claude – Opus 5 / Sonnet 5 / Haiku 4.5 / Fable 5 | **Claude Code** (CLI · 데스크톱 · 웹 · IDE), Claude Agent SDK |
 | **OpenAI** | GPT-5.x 계열 | **Codex** (CLI · 앱 · 클라우드), Agents SDK, Responses API |
 | **Google** | **Gemini** 3.x 계열 | **Antigravity** (데스크톱 · CLI · SDK), Jules |
 
@@ -65,7 +65,7 @@ published: true
 
 ---
 
-## 2. Codex와 ChatGPT의 차이 — 같은 회사, 같은 모델군, 다른 결과
+## 2. Codex와 ChatGPT의 차이 – 같은 회사, 같은 모델군, 다른 결과
 
 이건 "하네스가 결과를 만든다"는 명제의 **가장 깨끗한 실증 사례**다.
 
@@ -84,7 +84,7 @@ published: true
 
 계정과 사용량 창을 공유하는 경우도 있어 더 헷갈리는데, 그럴수록 결론이 선명해진다. **차이를 만든 건 모델이 아니라 하네스다.**
 
-(참고: [ChatGPT vs Codex — Same Account, Different Loop](https://www.morphllm.com/comparisons/chatgpt-vs-codex), [AI 코딩 에이전트 비교](https://growwstacks.com/blog/chatgpt-vs-openai-codex-vs-claude-code-best-ai-coding-agent-2026))
+(참고: [ChatGPT vs Codex – Same Account, Different Loop](https://www.morphllm.com/comparisons/chatgpt-vs-codex), [AI 코딩 에이전트 비교](https://growwstacks.com/blog/chatgpt-vs-openai-codex-vs-claude-code-best-ai-coding-agent-2026))
 
 ---
 
@@ -120,7 +120,7 @@ published: true
 여러 저장소에서 같은 걸 쓴다     → Plugin으로 묶는다
 ```
 
-### 판단 기준표 — "이건 어디에 넣지?"
+### 판단 기준표 – "이건 어디에 넣지?"
 
 | 질문 | 어울리는 위치 |
 |---|---|
@@ -199,14 +199,14 @@ CLAUDE.md를 처음 만들 때 흔한 실수는 두 가지다. **너무 적게 �
 | `MEMORY.md` | 중요한 결정과 세션 요약 | 며칠~몇 주에 걸친 작업을 할 때 |
 | `ERRORS.md` | 실패한 접근과 해결 방법 | 같은 실수를 반복해서 고치고 싶을 때 |
 
-> ⚠️ **CLAUDE.md는 마법의 계약서가 아니다.**
+> **CLAUDE.md는 마법의 계약서가 아니다.**
 > 너무 길거나 서로 충돌하는 규칙이 많으면 오히려 품질이 떨어진다.
 > 반드시 지켜야 하는 일은 settings, permissions, hooks, 테스트처럼 **더 강한 장치**로 옮겨야 한다.
 > 가족 규칙표에 "불조심"을 적어 두는 것만으로 부족하고, 실제로 가스 차단기와 화재경보기가 필요한 것과 같다.
 
 ---
 
-## 5. Claude Code 파워 기능 12가지 — 5층 지도에 붙이기
+## 5. Claude Code 파워 기능 12가지 – 5층 지도에 붙이기
 
 | 기능 | 하네스 위치 | 쉬운 비유 | 핵심 질문 |
 |---|---|---|---|
@@ -225,19 +225,19 @@ CLAUDE.md를 처음 만들 때 흔한 실수는 두 가지다. **너무 적게 �
 
 ### 특히 실무에서 효과가 큰 4가지
 
-**① Plan Mode** — 여러 파일을 고치는 작업은 바로 실행시키지 말고 계획부터 본다.
+**① Plan Mode** – 여러 파일을 고치는 작업은 바로 실행시키지 말고 계획부터 본다.
 
 ```
 먼저 계획만 세워줘. 어떤 파일을 읽고, 무엇을 바꿀지 설명한 뒤 내가 승인하면 진행해.
 ```
 
-**② Checkpoints / `/rewind`** — Claude의 파일 편집을 자동 추적해 이전 지점으로 돌아갈 수 있다. 단, **Git을 대체하지 않는다.** bash 명령으로 바뀐 파일이나 Claude Code 바깥에서 생긴 변경은 되돌릴 수 없는 경우가 있다.
+**② Checkpoints / `/rewind`** – Claude의 파일 편집을 자동 추적해 이전 지점으로 돌아갈 수 있다. 단, **Git을 대체하지 않는다.** bash 명령으로 바뀐 파일이나 Claude Code 바깥에서 생긴 변경은 되돌릴 수 없는 경우가 있다.
 
 > checkpoint = 임시 저장, Git = 정식 기록.
 
-**③ `/memory`와 `/compact`** — Claude가 앞의 결정을 놓치는 것처럼 보이면 모델을 탓하기 전에 `/memory`로 "지금 어떤 기억이 올라와 있는가"를 확인한다. 대화가 너무 길면 `/compact`. 단 요약은 손실이니 중요한 결정은 `MEMORY.md` / `PROGRESS.md`에도 남긴다.
+**③ `/memory`와 `/compact`** – Claude가 앞의 결정을 놓치는 것처럼 보이면 모델을 탓하기 전에 `/memory`로 "지금 어떤 기억이 올라와 있는가"를 확인한다. 대화가 너무 길면 `/compact`. 단 요약은 손실이니 중요한 결정은 `MEMORY.md` / `PROGRESS.md`에도 남긴다.
 
-**④ 독립 리뷰 세션** — Claude가 직접 만든 결과를 같은 세션에서 검토하게 하면 앞의 가정에 끌린다. 사람이 자기 글의 오탈자를 못 찾는 것과 같다.
+**④ 독립 리뷰 세션** – Claude가 직접 만든 결과를 같은 세션에서 검토하게 하면 앞의 가정에 끌린다. 사람이 자기 글의 오탈자를 못 찾는 것과 같다.
 
 ```
 (새 세션에서)
@@ -276,7 +276,7 @@ Codex의 기능들을 하네스 관점으로 읽으면 각각이 하나의 부�
 
 동네 카페 비유: 운영 수칙(위생 기준·마감 절차) + 레시피 카드(음료 제조 순서) + 직원 분담(원가 조사 / 포스터 문구) + 별도 작업대(신메뉴 실험) + 자동 체크리스트(마감 시간). **이 전체가 카페 운영 하네스다.**
 
-### OpenAI Responses API — 도구를 하나의 흐름으로
+### OpenAI Responses API – 도구를 하나의 흐름으로
 
 Responses API는 모델 응답, 도구 호출, built-in tools, function calling, MCP 연결을 한 흐름으로 구성한다.
 
@@ -326,8 +326,8 @@ OpenAI 하네스 글에서 가장 눈여겨볼 부분은 "에이전트가 코드
 |---|---|---|---|
 | 핵심 강조 | 하네스는 **조직 지식의 결정체** | **환경 설계자**로서의 개발자 | **관찰 가능성**이 하네스의 생명선 |
 | 대표 구조 | CLAUDE.md + hooks + skills + agents | AGENTS.md + 에이전트 간 코드 리뷰 루프 | MCP + A2A 표준 레이어 |
-| 가장 경계하는 것 | **Staleness** — 하네스 파일이 낡아 컨텍스트 드리프트 | 1,000페이지 매뉴얼 (지도를 줘라) | 복잡한 하네스는 수명이 짧다 |
-| 다음 방향 | 세션 상태 관리, 게이트 시스템, 레이어드 아키텍처 | **Self-Harness** — 에이전트가 하네스를 스스로 개선 | 표준화로 멀티에이전트 민주화 |
+| 가장 경계하는 것 | **Staleness** – 하네스 파일이 낡아 컨텍스트 드리프트 | 1,000페이지 매뉴얼 (지도를 줘라) | 복잡한 하네스는 수명이 짧다 |
+| 다음 방향 | 세션 상태 관리, 게이트 시스템, 레이어드 아키텍처 | **Self-Harness** – 에이전트가 하네스를 스스로 개선 | 표준화로 멀티에이전트 민주화 |
 
 **세 관점의 합의:**
 
@@ -369,14 +369,14 @@ OpenAI 하네스 글에서 가장 눈여겨볼 부분은 "에이전트가 코드
 
 ## 더 읽을거리
 
-- Claude Code Docs — <https://code.claude.com/docs/en/overview>
-- Anthropic, *Building agents with the Claude Agent SDK* — <https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk>
-- OpenAI, *Harness engineering* — <https://openai.com/index/harness-engineering/>
-- OpenAI Codex, *Custom instructions with AGENTS.md* — <https://developers.openai.com/codex/guides/agents-md>
-- Google Developers Blog, *Transitioning Gemini CLI to Antigravity CLI* — <https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/>
-- 김동학, 《하네스 엔지니어링 백과사전》 제6장·제7장 — <https://wikidocs.net/346798>, <https://wikidocs.net/346799>
+- Claude Code Docs – <https://code.claude.com/docs/en/overview>
+- Anthropic, *Building agents with the Claude Agent SDK* – <https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk>
+- OpenAI, *Harness engineering* – <https://openai.com/index/harness-engineering/>
+- OpenAI Codex, *Custom instructions with AGENTS.md* – <https://developers.openai.com/codex/guides/agents-md>
+- Google Developers Blog, *Transitioning Gemini CLI to Antigravity CLI* – <https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/>
+- 김동학, 《하네스 엔지니어링 백과사전》 제6장·제7장 – <https://wikidocs.net/346798>, <https://wikidocs.net/346799>
 
 ---
 
-👉 다음 편: [07. 멀티에이전트](/post/ai-everything-07-multi-agent)
-👈 이전 편: [05. 도구 엔지니어링과 MCP](/post/ai-everything-05-tools-and-mcp)
+다음 편: [07. 멀티에이전트](/post/ai-everything-07-multi-agent)
+이전 편: [05. 도구 엔지니어링과 MCP](/post/ai-everything-05-tools-and-mcp)

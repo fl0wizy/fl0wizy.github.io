@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-08-eval-harness"
-title: "AI의 모든 것 (08) — 평가 하네스: '체감상 좋아졌다'는 지표가 아니다"
-description: "'체감상 좋아졌다'는 지표가 아니다 — 루브릭, LLM-as-judge, 환경 상태 기반 평가, 회귀 평가."
+title: "AI의 모든 것 (08) – 평가 하네스: '체감상 좋아졌다'는 지표가 아니다"
+description: "'체감상 좋아졌다'는 지표가 아니다 – 루브릭, LLM-as-judge, 환경 상태 기반 평가, 회귀 평가."
 date: "2026-08-02 10:20"
 category: "ai"
 tags: ["Eval", "LLMasJudge", "Rubric", "GeneratorEvaluator", "회귀평가", "검증루프"]
@@ -11,13 +11,13 @@ published: true
 
 > 이 편에서 정리할 것
 > 1. Eval이 왜 선택이 아니라 필수인가
-> 2. 계산형 검사 vs 추론형 검사 — 어디에 무엇을 쓰는가
-> 3. **환경 상태 기반 평가** — "했다는 말"과 "실제로 됐다"의 차이
+> 2. 계산형 검사 vs 추론형 검사 – 어디에 무엇을 쓰는가
+> 3. **환경 상태 기반 평가** – "했다는 말"과 "실제로 됐다"의 차이
 > 4. Generator-Evaluator 3-agent 구조
 
 ---
 
-## 1. Eval은 AI용 시험지다 — 다만 객관식이 아니다
+## 1. Eval은 AI용 시험지다 – 다만 객관식이 아니다
 
 **Eval**은 AI 시스템의 품질을 측정하는 테스트다.
 
@@ -43,7 +43,7 @@ published: true
 }
 ```
 
-### 왜 필수인가 — 비결정성 때문이다
+### 왜 필수인가 – 비결정성 때문이다
 
 [01편](/post/ai-everything-01-llm-and-token)에서 봤듯 LLM은 샘플링으로 토큰을 고른다. 같은 요청에도 표현이나 접근이 달라진다.
 
@@ -121,7 +121,7 @@ AI가 다른 AI의 출력을 평가하게 하는 방식.
 
 ---
 
-## 4. 검증 루프 3종 — 무엇이 무엇을 잡는가
+## 4. 검증 루프 3종 – 무엇이 무엇을 잡는가
 
 | 검증 방식 | 예시 | 잘 잡는 문제 | 한계 |
 |---|---|---|---|
@@ -155,7 +155,7 @@ AI가 다른 AI의 출력을 평가하게 하는 방식.
 
 ---
 
-## 5. 환경 상태 기반 평가 — 이 편에서 가장 중요한 것
+## 5. 환경 상태 기반 평가 – 이 편에서 가장 중요한 것
 
 Anthropic의 evals 글이 짚는 핵심이다.
 
@@ -211,7 +211,7 @@ Planner ────→ Generator ────→ Evaluator ──(통과)──
 
 **Planner의 균형:** 여행 계획으로 비유하면, "첫날은 숙소 체크인과 근처 식사까지 정한다"는 좋은 계획이다. 하지만 아직 영업시간도 확인하지 않은 식당 이름과 이동 시간을 분 단위로 확정하는 건 위험하다. **설계도를 그리되 현장의 실제 측정과 피드백을 받을 여지를 남겨야 한다.**
 
-### Sprint contract — 이번 반복의 약속
+### Sprint contract – 이번 반복의 약속
 
 무엇을 만들고, 무엇은 만들지 않으며, 어떤 기준을 통과해야 하는지 적는다.
 
@@ -231,18 +231,18 @@ Evaluator를 그냥 두면 항상 좋은 평가자가 되지 않는다. 그래�
 
 > **좋은 평가자는 칭찬을 잘하는 사람이 아니라, 재현 가능한 결함을 찾아내는 사람이다.**
 >
-> ❌ "괜찮아 보여"
-> ✅ "아이 한 명이 견과류 알레르기가 있는데 케이크 재료 확인이 빠졌고, 초대장에는 시작 시간만 있고 종료 시간이 없다"
+> X "괜찮아 보여"
+> O "아이 한 명이 견과류 알레르기가 있는데 케이크 재료 확인이 빠졌고, 초대장에는 시작 시간만 있고 종료 시간이 없다"
 
 ### 관련 연구
 
-- **[Self-Refine](https://arxiv.org/abs/2303.17651)** — 모델이 피드백과 개선을 반복해 품질을 올린다
-- **[Reflexion](https://arxiv.org/abs/2303.11366)** — 언어적 피드백을 기억으로 남겨 다음 시도를 개선한다
-- Anthropic의 **evaluator-optimizer workflow** — 한 LLM 호출이 결과를 만들고 다른 호출이 평가와 피드백을 제공
+- **[Self-Refine](https://arxiv.org/abs/2303.17651)** – 모델이 피드백과 개선을 반복해 품질을 올린다
+- **[Reflexion](https://arxiv.org/abs/2303.11366)** – 언어적 피드백을 기억으로 남겨 다음 시도를 개선한다
+- Anthropic의 **evaluator-optimizer workflow** – 한 LLM 호출이 결과를 만들고 다른 호출이 평가와 피드백을 제공
 
 ---
 
-## 7. 회귀 평가 — 실패를 자산으로 바꾸기
+## 7. 회귀 평가 – 실패를 자산으로 바꾸기
 
 한 번 고친 버그가 다시 나타나는 것을 **회귀**라고 한다. AI 하네스도 회귀 평가가 필요하다.
 
@@ -254,7 +254,7 @@ Evaluator를 그냥 두면 항상 좋은 평가자가 되지 않는다. 그래�
 
 이 루프가 있어야 AI 시스템이 시간이 지날수록 좋아진다.
 
-### 하네스 힐클라이밍 — eval은 하네스의 훈련 데이터다
+### 하네스 힐클라이밍 – eval은 하네스의 훈련 데이터다
 
 LangChain의 *Better Harness* 글은 eval을 하네스 엔지니어링의 **"훈련 데이터"** 로 설명한다. 각 eval case는 "이 상황에서 에이전트가 올바른 행동을 했는가?"라는 신호를 제공하고, 그 신호가 다음 하네스 수정으로 이어진다.
 
@@ -291,7 +291,7 @@ LangChain의 *Better Harness* 글은 eval을 하네스 엔지니어링의 **"훈
 
 > "좋은 결과란 무엇인가?"를 **문장으로 적고**, 그 기준을 작은 예제들로 시험해 본다.
 
-### 품질 검사는 가능한 한 앞쪽에 — Keep quality left
+### 품질 검사는 가능한 한 앞쪽에 – Keep quality left
 
 | 검사 시점 | 넣기 좋은 검사 | 이유 |
 |---|---|---|
@@ -323,14 +323,14 @@ LangChain의 *Better Harness* 글은 eval을 하네스 엔지니어링의 **"훈
 
 ## 더 읽을거리
 
-- Anthropic, *Demystifying evals for AI agents* — <https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents>
-- Anthropic, *Harness design for long-running application development* — <https://www.anthropic.com/engineering/harness-design-long-running-apps>
-- LangChain, *Better Harness: A Recipe for Harness Hill-Climbing with Evals* — <https://www.langchain.com/blog/better-harness-a-recipe-for-harness-hill-climbing-with-evals>
-- Aman Madaan et al., *Self-Refine* — <https://arxiv.org/abs/2303.17651>
-- Noah Shinn et al., *Reflexion* — <https://arxiv.org/abs/2303.11366>
-- 김동학, 《하네스 엔지니어링 백과사전》 제5장·제9장 — <https://wikidocs.net/346797>, <https://wikidocs.net/346801>
+- Anthropic, *Demystifying evals for AI agents* – <https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents>
+- Anthropic, *Harness design for long-running application development* – <https://www.anthropic.com/engineering/harness-design-long-running-apps>
+- LangChain, *Better Harness: A Recipe for Harness Hill-Climbing with Evals* – <https://www.langchain.com/blog/better-harness-a-recipe-for-harness-hill-climbing-with-evals>
+- Aman Madaan et al., *Self-Refine* – <https://arxiv.org/abs/2303.17651>
+- Noah Shinn et al., *Reflexion* – <https://arxiv.org/abs/2303.11366>
+- 김동학, 《하네스 엔지니어링 백과사전》 제5장·제9장 – <https://wikidocs.net/346797>, <https://wikidocs.net/346801>
 
 ---
 
-👉 다음 편: [09. 장시간 실행과 메모리 소유권](/post/ai-everything-09-memory-longrunning)
-👈 이전 편: [07. 멀티에이전트](/post/ai-everything-07-multi-agent)
+다음 편: [09. 장시간 실행과 메모리 소유권](/post/ai-everything-09-memory-longrunning)
+이전 편: [07. 멀티에이전트](/post/ai-everything-07-multi-agent)

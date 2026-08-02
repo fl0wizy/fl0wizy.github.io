@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-11-patterns-decisions"
-title: "AI의 모든 것 (11) — 12가지 패턴 · 7가지 설계 결정 · 3가지 역발상"
-description: "12가지 패턴, 7가지 설계 결정, 3가지 역발상 — 그리고 비계는 언젠가 걷어내야 한다."
+title: "AI의 모든 것 (11) – 12가지 패턴 · 7가지 설계 결정 · 3가지 역발상"
+description: "12가지 패턴, 7가지 설계 결정, 3가지 역발상 – 그리고 비계는 언젠가 걷어내야 한다."
 date: "2026-08-02 10:50"
 category: "ai"
 tags: ["디자인패턴", "하네스두께", "비계", "Scaffolding", "설계결정", "Vercel"]
@@ -13,7 +13,7 @@ published: true
 > 1. 반복 가능한 **12가지 하네스 패턴**
 > 2. 설계자가 실제로 내려야 하는 **7가지 결정**
 > 3. 직관이 배신하는 **3가지 역발상**
-> 4. **비계(scaffolding)** — 하네스는 언젠가 일부를 걷어내야 한다
+> 4. **비계(scaffolding)** – 하네스는 언젠가 일부를 걷어내야 한다
 
 ---
 
@@ -209,7 +209,7 @@ published: true
 
 **서로 독립적이지 않다.** 멀티 에이전트로 갈수록 컨텍스트 격리와 검증 루프가 중요해진다. 전체 도구를 항상 노출하면 권한 설계와 도구 선택 정확도가 더 큰 문제가 된다.
 
-### 일상 버전 — "새 취미 시작하기"로 바꿔보기
+### 일상 버전 – "새 취미 시작하기"로 바꿔보기
 
 기타를 배운다고 하자.
 
@@ -251,13 +251,13 @@ published: true
 
 ---
 
-## 3. 역발상 1 — 도구가 많을수록 좋은 에이전트가 되는 것은 아니다
+## 3. 역발상 1 – 도구가 많을수록 좋은 에이전트가 되는 것은 아니다
 
 가장 흔한 직관: **"도구를 많이 붙이면 더 똑똑해지지 않을까?"**
 
 실제로는 정반대일 수 있다. 도구가 많아지면 선택 부담과 컨텍스트 부담이 늘어난다. 버튼이 80개인 리모컨은 강력해 보이지만 기본 작업조차 불편해진다.
 
-### Vercel d0 사례 — 도구를 줄였더니 더 좋아졌다
+### Vercel d0 사례 – 도구를 줄였더니 더 좋아졌다
 
 Vercel은 내부 text-to-SQL 에이전트 **d0**를 운영했다. Slack에서 자연어로 질문하면 분석 인프라에 SQL을 날려 답을 얻는 데이터 에이전트다.
 
@@ -276,7 +276,7 @@ Vercel은 내부 text-to-SQL 에이전트 **d0**를 운영했다. Slack에서 �
 | 평균 토큰 사용량 | 약 102k | 약 61k | **37% 감소** |
 | 평균 단계 수 | 약 12단계 | 약 7단계 | 42% 감소 |
 
-### ⚠️ 여기서 잘못된 교훈을 뽑지 말 것
+### 여기서 잘못된 교훈을 뽑지 말 것
 
 **"bash 하나면 모든 에이전트가 좋아진다"가 아니다.**
 
@@ -303,7 +303,7 @@ Vercel의 접근이 가능했던 이유는 **그들의 semantic layer가 이미 
 
 ---
 
-## 4. 역발상 2 — ReAct가 항상 더 현대적이고 계획은 구식인가?
+## 4. 역발상 2 – ReAct가 항상 더 현대적이고 계획은 구식인가?
 
 ReAct는 튜토리얼에 자주 등장하고 똑똑해 보인다. 하지만 **매 단계 새로 생각한다 = 매 단계 비용과 지연이 생긴다.**
 
@@ -320,7 +320,7 @@ ReAct는 튜토리얼에 자주 등장하고 똑똑해 보인다. 하지만 **�
 
 ---
 
-## 5. 역발상 3 — 허용적인 하네스가 더 빨리 출시되는가?
+## 5. 역발상 3 – 허용적인 하네스가 더 빨리 출시되는가?
 
 개발 중에는 허용적인 하네스가 좋아 보인다. 승인 창도 없고 마찰도 없다. **그래서 데모는 빨리 나온다.**
 
@@ -346,7 +346,7 @@ ReAct는 튜토리얼에 자주 등장하고 똑똑해 보인다. 하지만 **�
 
 ---
 
-## 6. 하네스 두께 — 신뢰와 통제 사이
+## 6. 하네스 두께 – 신뢰와 통제 사이
 
 **하네스 두께는 '모델을 얼마나 믿을 것인가'와 '코드로 얼마나 통제할 것인가' 사이의 아키텍처적 베팅이다.**
 
@@ -387,7 +387,7 @@ ReAct는 튜토리얼에 자주 등장하고 똑똑해 보인다. 하지만 **�
 
 건물이 완성되면 비계는 일부 또는 전부 제거된다. 모델이 약할 때는 계획 단계·도구 제한·명시적 라우팅·검증 루프가 두껍게 필요하다. **그러나 모델이 성장하면 어떤 비계는 필요 없어진다.** 그대로 남겨 두면 오히려 새 모델의 능력을 방해하는 낡은 규칙이 된다.
 
-### ⚠️ 그렇다고 마음대로 제거하면 안 된다
+### 그렇다고 마음대로 제거하면 안 된다
 
 오늘의 모델은 **특정 하네스와 함께 학습되고, 특정 도구 형식과 피드백 루프에 익숙해졌을 수 있다.** 비계를 바꾸면 더 단순해지는 게 아니라 **일시적으로 성능이 떨어질 수도 있다.**
 
@@ -412,17 +412,17 @@ ReAct는 튜토리얼에 자주 등장하고 똑똑해 보인다. 하지만 **�
 Anthropic의 harness design 글은 어떤 장치가 실제로 성능을 지탱하는 **load-bearing** 요소인지 확인해야 한다고 설명한다. 겉보기엔 장식 같은 난간이 사실은 안전장치일 수 있고, 반대로 오래전 안내판이 지금은 장애물일 수 있다.
 
 ```
-✅ evaluator를 빼면 품질이 떨어지는지 따로 본다
-✅ planner를 단순화해도 sprint가 유지되는지 따로 본다
-✅ 브라우저 검증을 줄이면 사용자 흐름 오류가 늘어나는지 따로 본다
-❌ 한 번에 여러 장치를 줄이면 무엇이 실제로 필요했는지 알 수 없다
+O evaluator를 빼면 품질이 떨어지는지 따로 본다
+O planner를 단순화해도 sprint가 유지되는지 따로 본다
+O 브라우저 검증을 줄이면 사용자 흐름 오류가 늘어나는지 따로 본다
+X 한 번에 여러 장치를 줄이면 무엇이 실제로 필요했는지 알 수 없다
 ```
 
 ### 실무 적용 원칙
 
 ```
 1. 처음에는 필요한 만큼 비계를 세운다
-2. 비계는 문서화한다 — 왜 이 제어가 필요한지, 어떤 실패를 막는지
+2. 비계는 문서화한다 – 왜 이 제어가 필요한지, 어떤 실패를 막는지
 3. 새 모델·새 도구가 나오면 비계 제거 후보를 찾는다
 4. 비계는 한 번에 하나씩 줄이고, 제거 전후를 eval·테스트·로그로 비교한다
 5. 성능이 떨어지면 다시 보강하되, 더 작고 명확한 비계로 되돌린다
@@ -472,7 +472,7 @@ OpenAI의 하네스 글은 에이전트가 실제 제품을 만들 때 **기술 
 - 패턴 12개는 네 묶음: **메모리/문맥 · 워크플로/오케스트레이션 · 도구/권한 · 자동화**
 - 적용 순서의 핵심: **자동화보다 먼저 질서를 만든다**
 - 7가지 결정은 서로 독립적이지 않다. 캔버스를 채우면 "왜 이렇게 생겼는가"를 설명할 수 있다
-- **역발상 1:** 도구가 많다고 똑똑해지지 않는다. Vercel d0 — 도구를 줄였더니 3.5배 빨라졌다. 단, **핵심은 "모델이 읽기 좋은 환경"이지 "도구 삭제"가 아니다**
+- **역발상 1:** 도구가 많다고 똑똑해지지 않는다. Vercel d0 – 도구를 줄였더니 3.5배 빨라졌다. 단, **핵심은 "모델이 읽기 좋은 환경"이지 "도구 삭제"가 아니다**
 - **역발상 2:** ReAct가 항상 낫지 않다. 반복·병렬 작업은 계획 후 실행이 유리하다
 - **역발상 3:** 허용적 하네스는 데모만 빠르다. 운영에서 **마찰은 보험**이다
 - 세 역발상의 공통점: **개발 때 기분 좋은 선택 ≠ 운영에서 살아남는 선택**
@@ -484,13 +484,13 @@ OpenAI의 하네스 글은 에이전트가 실제 제품을 만들 때 **기술 
 
 ## 더 읽을거리
 
-- Anthropic, *Building Effective AI Agents* — <https://www.anthropic.com/engineering/building-effective-agents>
-- Vercel, *We removed 80% of our agent's tools* — <https://vercel.com/blog>
-- LangChain, *Improving Deep Agents with harness engineering* — <https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering>
-- Birgitta Böckeler, *Harness engineering for coding agent users* — <https://martinfowler.com/articles/harness-engineering.html>
-- 김동학, 《하네스 엔지니어링 백과사전》 제11장·제12장 — <https://wikidocs.net/346803>, <https://wikidocs.net/346804>
+- Anthropic, *Building Effective AI Agents* – <https://www.anthropic.com/engineering/building-effective-agents>
+- Vercel, *We removed 80% of our agent's tools* – <https://vercel.com/blog>
+- LangChain, *Improving Deep Agents with harness engineering* – <https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering>
+- Birgitta Böckeler, *Harness engineering for coding agent users* – <https://martinfowler.com/articles/harness-engineering.html>
+- 김동학, 《하네스 엔지니어링 백과사전》 제11장·제12장 – <https://wikidocs.net/346803>, <https://wikidocs.net/346804>
 
 ---
 
-👉 다음 편: [12. 실전 사례와 생태계](/post/ai-everything-12-cases-ecosystem)
-👈 이전 편: [10. 안전·거버넌스·운영](/post/ai-everything-10-safety-governance)
+다음 편: [12. 실전 사례와 생태계](/post/ai-everything-12-cases-ecosystem)
+이전 편: [10. 안전·거버넌스·운영](/post/ai-everything-10-safety-governance)

@@ -1,6 +1,6 @@
 ---
 id: "ai-everything-05-tools-and-mcp"
-title: "AI의 모든 것 (05) — 도구 엔지니어링과 MCP: 버튼 200개짜리 리모컨을 만들지 마라"
+title: "AI의 모든 것 (05) – 도구 엔지니어링과 MCP: 버튼 200개짜리 리모컨을 만들지 마라"
 description: "도구 폭발 문제와 범위 설계, MCP vs A2A, Skill을 업무 매뉴얼로 만드는 법."
 date: "2026-08-02 09:50"
 category: "ai"
@@ -10,9 +10,9 @@ published: true
 
 
 > 이 편에서 정리할 것
-> 1. 도구 레이어가 실제로 하는 5가지 책임 — "API 주소를 붙였다"가 아니다
+> 1. 도구 레이어가 실제로 하는 5가지 책임 – "API 주소를 붙였다"가 아니다
 > 2. 도구 폭발 문제와 범위 설계
-> 3. MCP와 A2A의 차이 — 도구 연결 vs 에이전트 협업
+> 3. MCP와 A2A의 차이 – 도구 연결 vs 에이전트 협업
 > 4. Skill을 "긴 프롬프트"가 아닌 **업무 매뉴얼**로 만드는 법
 
 ---
@@ -45,8 +45,8 @@ AI에게 도구란 검색, 계산, 파일 읽기, 이메일 초안 작성, 티�
 ### 이름 = 레스토랑 메뉴판
 
 ```
-❌ do_stuff, handle, process, run
-✅ search_policy_docs, create_gmail_draft, run_unit_tests, lookup_order_status
+X do_stuff, handle, process, run
+O search_policy_docs, create_gmail_draft, run_unit_tests, lookup_order_status
 ```
 
 메뉴판에 "요리1"이라고 적혀 있으면 손님도 직원도 헷갈린다.
@@ -119,7 +119,7 @@ LangChain의 하네스 글이 강조하는 실무 습관이다. 큰 검색 결�
 
 ---
 
-## 5. 도구 폭발 문제 — 가장 흔한 실수
+## 5. 도구 폭발 문제 – 가장 흔한 실수
 
 > "도구를 많이 붙이면 더 똑똑해지지 않을까?"
 
@@ -143,7 +143,7 @@ LangChain의 하네스 글이 강조하는 실무 습관이다. 큰 검색 결�
 5. 장시간 작업에서는 단계별로 도구를 동적으로 열어 준다
 ```
 
-**예시 — 리서치 에이전트의 단계별 도구 개방**
+**예시 – 리서치 에이전트의 단계별 도구 개방**
 
 ```
 1단계 (조사)   : web_search, file_search, read_note
@@ -162,11 +162,11 @@ LangChain의 하네스 글이 강조하는 실무 습관이다. 큰 검색 결�
 
 > 백화점 안내 데스크와 같다. 모든 매장 직원을 한곳에 세워 두지 않는다. 먼저 안내 데스크에서 "어떤 매장이 필요한지" 찾고, 그다음 해당 매장으로 이동한다.
 
-⚠️ 커뮤니티 자료에서 "95% 감소" 같은 숫자를 보게 되는데, 공식 문서 기준은 **85% 이상**이다. 인상적인 수치는 항상 1차 출처를 확인하자.
+주의: 커뮤니티 자료에서 "95% 감소" 같은 숫자를 보게 되는데, 공식 문서 기준은 **85% 이상**이다. 인상적인 수치는 항상 1차 출처를 확인하자.
 
 ---
 
-## 6. MCP — AI용 USB-C 포트
+## 6. MCP – AI용 USB-C 포트
 
 **MCP(Model Context Protocol)** 는 AI 애플리케이션이 외부 도구와 데이터 소스에 연결하기 위한 **공개 표준**이다.
 
@@ -188,14 +188,14 @@ MCP가 데이터베이스에 연결해 준다고 해서 Claude가 우리 회사�
 연결할수록 확인할 것도 늘어난다. 외부 도구 접근 = 권한·보안·데이터 노출·잘못된 실행 위험.
 
 ```
-✅ 처음에는 꼭 필요한 MCP만 연결한다
-✅ 읽기 전용부터 시작한다
-✅ 중요한 행동은 승인 흐름과 Hook으로 감싼다
+O 처음에는 꼭 필요한 MCP만 연결한다
+O 읽기 전용부터 시작한다
+O 중요한 행동은 승인 흐름과 Hook으로 감싼다
 ```
 
 ---
 
-## 7. MCP vs A2A — 도구 연결 vs 에이전트 협업
+## 7. MCP vs A2A – 도구 연결 vs 에이전트 협업
 
 둘 다 "에이전트가 혼자 답변만 만들던 단계"에서 벗어나게 하지만, 방향이 다르다.
 
@@ -226,7 +226,7 @@ A2A는 구글이 시작해 **Linux Foundation에 기증**한 프로토콜이다.
 
 ---
 
-## 8. Skill — 반복 업무를 폴더로 패키징하기
+## 8. Skill – 반복 업무를 폴더로 패키징하기
 
 **Claude Skills**는 반복 업무를 "매번 다시 설명하는 프롬프트"가 아니라 **재사용 가능한 업무 매뉴얼**로 만드는 방법이다.
 
@@ -269,10 +269,10 @@ my-skill/
 **description 작성 요령:**
 
 ```yaml
-# ❌ 나쁨
+# X 나쁨
 description: 제안서 작성을 도와드립니다.
 
-# ✅ 좋음
+# O 좋음
 description: >
   이 스킬은 고객 제안서를 작성합니다.
   "제안서 써줘", "견적 제안 만들어줘", "RFP 답변 초안",
@@ -306,7 +306,7 @@ description: >
 
 **Skill도 작은 하네스다. 배포 전 eval을 가져야 한다.** → [08편](/post/ai-everything-08-eval-harness)
 
-### ⚠️ Skill의 보안 위험
+### Skill의 보안 위험
 
 Skill은 지시뿐 아니라 **스크립트와 리소스**를 포함할 수 있다. Anthropic 공식 블로그도 악의적인 스킬이 환경에 취약점을 만들거나 데이터 유출, 의도하지 않은 행동을 유도할 수 있다고 경고한다.
 
@@ -316,7 +316,7 @@ Plugin은 더 위험하다. Skill + Hook + Subagent + MCP 연결이 한 묶음�
 
 ---
 
-## 9. 권한 — 하네스의 안전벨트
+## 9. 권한 – 하네스의 안전벨트
 
 Claude Code의 permissions 문서는 `allow` / `ask` / `deny` 규칙과 **`deny → ask → allow` 평가 순서**를 설명한다.
 
@@ -353,14 +353,14 @@ Claude Code의 permissions 문서는 `allow` / `ask` / `deny` 규칙과 **`deny 
 
 ## 더 읽을거리
 
-- Anthropic, *Writing effective tools for AI agents* — <https://www.anthropic.com/engineering/writing-tools-for-agents>
-- Anthropic, *Equipping agents for the real world with Agent Skills* — <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>
-- Model Context Protocol 공식 문서 — <https://modelcontextprotocol.io/docs/getting-started/intro>
-- A2A Protocol — <https://a2a-protocol.org/latest/>
-- Timo Schick et al., *Toolformer* — <https://arxiv.org/abs/2302.04761>
-- 김동학, 《하네스 엔지니어링 백과사전》 제4장·제7장 — <https://wikidocs.net/346796>
+- Anthropic, *Writing effective tools for AI agents* – <https://www.anthropic.com/engineering/writing-tools-for-agents>
+- Anthropic, *Equipping agents for the real world with Agent Skills* – <https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills>
+- Model Context Protocol 공식 문서 – <https://modelcontextprotocol.io/docs/getting-started/intro>
+- A2A Protocol – <https://a2a-protocol.org/latest/>
+- Timo Schick et al., *Toolformer* – <https://arxiv.org/abs/2302.04761>
+- 김동학, 《하네스 엔지니어링 백과사전》 제4장·제7장 – <https://wikidocs.net/346796>
 
 ---
 
-👉 다음 편: [06. Claude Code · Codex · Antigravity](/post/ai-everything-06-harness-products)
-👈 이전 편: [04. 컨텍스트 엔지니어링](/post/ai-everything-04-context-engineering)
+다음 편: [06. Claude Code · Codex · Antigravity](/post/ai-everything-06-harness-products)
+이전 편: [04. 컨텍스트 엔지니어링](/post/ai-everything-04-context-engineering)

@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-12-cases-ecosystem"
-title: "AI의 모든 것 (12) — 실전 사례와 생태계: 하네스가 전부다"
-description: "ACI 연구부터 OpenAI Codex·Vercel d0·Magentic-One까지 — 하네스가 결과를 만든 실전 사례들."
+title: "AI의 모든 것 (12) – 실전 사례와 생태계: 하네스가 전부다"
+description: "ACI 연구부터 OpenAI Codex·Vercel d0·Magentic-One까지 – 하네스가 결과를 만든 실전 사례들."
 date: "2026-08-02 11:00"
 category: "ai"
 tags: ["ACI", "SWEagent", "Codex", "Vercel", "MagenticOne", "Cursor", "사례연구", "하네스생태계"]
@@ -10,14 +10,14 @@ published: true
 
 
 > 이 편에서 정리할 것
-> 1. **ACI(Agent-Computer Interface)** — 인터페이스가 성능을 바꾼다는 연구 근거
+> 1. **ACI(Agent-Computer Interface)** – 인터페이스가 성능을 바꾼다는 연구 근거
 > 2. 실제 회사들의 하네스: OpenAI Codex · Anthropic · Vercel · GitHub · Cursor · Microsoft · Replit
 > 3. 하네스 생태계는 어떻게 층으로 갈라지는가
 > 4. 하네스 엔지니어링의 짧은 역사
 
 ---
 
-## 1. ACI — 인터페이스가 성능을 만든다
+## 1. ACI – 인터페이스가 성능을 만든다
 
 [SWE-agent 논문](https://arxiv.org/abs/2405.15793)이 던지는 질문은 단순하다.
 
@@ -62,7 +62,7 @@ published: true
 
 ---
 
-## 3. OpenAI Codex — 사람이 코드를 직접 쓰지 않는 개발팀
+## 3. OpenAI Codex – 사람이 코드를 직접 쓰지 않는 개발팀
 
 **규모:** 3인 팀, 약 5개월, Codex 주도 개발 → 대규모 프로덕션 코드 + PR 1,500개.
 
@@ -90,8 +90,8 @@ published: true
 이 사례의 가장 중요한 구조적 교훈. **지식은 채팅창이 아니라 저장소에 있다.**
 
 ```
-❌ 채팅에서 설명 → 세션 끝나면 사라짐
-✅ 저장소의 docs/ 에 기록 → 다음 에이전트도 읽음
+X 채팅에서 설명 → 세션 끝나면 사라짐
+O 저장소의 docs/ 에 기록 → 다음 에이전트도 읽음
 ```
 
 ### 처리량이 병합 철학을 바꾼다
@@ -115,7 +115,7 @@ published: true
 
 ---
 
-## 4. Anthropic long-running agents — 세션을 넘어 일하는 에이전트
+## 4. Anthropic long-running agents – 세션을 넘어 일하는 에이전트
 
 | 하네스 요소 | 의미 |
 |---|---|
@@ -139,7 +139,7 @@ decisions.md      중요한 결정과 이유
 
 ---
 
-## 5. Anthropic Research — 멀티 에이전트 리서치 시스템
+## 5. Anthropic Research – 멀티 에이전트 리서치 시스템
 
 | 하네스 요소 | 의미 |
 |---|---|
@@ -152,24 +152,24 @@ decisions.md      중요한 결정과 이유
 **쓸 때:**
 
 ```
-✅ 조사 방향이 여러 개로 나뉜다
-✅ 각 방향이 독립적으로 진행될 수 있다
-✅ 순차 조사는 너무 오래 걸린다
-✅ 마지막에 결과를 통합할 책임자가 있다
+O 조사 방향이 여러 개로 나뉜다
+O 각 방향이 독립적으로 진행될 수 있다
+O 순차 조사는 너무 오래 걸린다
+O 마지막에 결과를 통합할 책임자가 있다
 ```
 
 **쓰지 말 때:**
 
 ```
-❌ 업무가 짧고 단순하다
-❌ 여러 에이전트가 같은 정보를 중복 조사할 가능성이 크다
-❌ 결과 통합 비용이 더 크다
-❌ 도구와 문맥이 많이 겹친다
+X 업무가 짧고 단순하다
+X 여러 에이전트가 같은 정보를 중복 조사할 가능성이 크다
+X 결과 통합 비용이 더 크다
+X 도구와 문맥이 많이 겹친다
 ```
 
 ---
 
-## 6. Vercel d0 — 도구를 줄였더니 더 좋아진 데이터 에이전트
+## 6. Vercel d0 – 도구를 줄였더니 더 좋아진 데이터 에이전트
 
 | 구분 | 기존 방식 | 바뀐 방식 |
 |---|---|---|
@@ -192,7 +192,7 @@ decisions.md      중요한 결정과 이유
 
 ---
 
-## 7. GitHub Copilot coding agent — 이슈에서 PR까지
+## 7. GitHub Copilot coding agent – 이슈에서 PR까지
 
 | 하네스 요소 | 의미 |
 |---|---|
@@ -216,7 +216,7 @@ decisions.md      중요한 결정과 이유
 
 ---
 
-## 8. Cursor Background Agents — 원격 머신에서 일하는 비동기 에이전트
+## 8. Cursor Background Agents – 원격 머신에서 일하는 비동기 에이전트
 
 | 하네스 요소 | 의미 |
 |---|---|
@@ -240,7 +240,7 @@ decisions.md      중요한 결정과 이유
 
 ---
 
-## 9. Microsoft Magentic-One — 팀장 에이전트와 전문가 에이전트
+## 9. Microsoft Magentic-One – 팀장 에이전트와 전문가 에이전트
 
 | 역할 | 의미 |
 |---|---|
@@ -267,7 +267,7 @@ decisions.md      중요한 결정과 이유
 
 ---
 
-## 10. Replit Agent — 아이디어에서 배포까지
+## 10. Replit Agent – 아이디어에서 배포까지
 
 | 하네스 요소 | 의미 |
 |---|---|
@@ -281,7 +281,7 @@ decisions.md      중요한 결정과 이유
 
 ---
 
-## 11. Claude Agent Skills — 절차 지식을 폴더로
+## 11. Claude Agent Skills – 절차 지식을 폴더로
 
 | Skill 구성 | 하네스 의미 |
 |---|---|
@@ -313,15 +313,15 @@ decisions.md      중요한 결정과 이유
 
 ### 다섯 가지 설계 패턴으로 압축하면
 
-1. **점진적 공개 (Progressive disclosure)** — 필요한 만큼만 펼친다
-2. **작업 공간 격리 (Workspace isolation)** — worktree, VM, 샌드박스
-3. **저장소가 진실의 원천 (Repo as source of truth)** — 채팅이 아니라 파일
-4. **기계적 아키텍처 강제 (Mechanical enforcement)** — 훅, 린터, 테스트
-5. **통합 피드백 루프 (Unified feedback loop)** — 실패가 다음 하네스 수정으로
+1. **점진적 공개 (Progressive disclosure)** – 필요한 만큼만 펼친다
+2. **작업 공간 격리 (Workspace isolation)** – worktree, VM, 샌드박스
+3. **저장소가 진실의 원천 (Repo as source of truth)** – 채팅이 아니라 파일
+4. **기계적 아키텍처 강제 (Mechanical enforcement)** – 훅, 린터, 테스트
+5. **통합 피드백 루프 (Unified feedback loop)** – 실패가 다음 하네스 수정으로
 
 ---
 
-## 13. 하네스 생태계 — 실행 계층은 상품화된다
+## 13. 하네스 생태계 – 실행 계층은 상품화된다
 
 시장이 층으로 갈라지고 있다.
 
@@ -339,7 +339,7 @@ decisions.md      중요한 결정과 이유
 
 ---
 
-## 14. 짧은 역사 — "하네스 엔지니어링"이라는 말은 어디서 왔나
+## 14. 짧은 역사 – "하네스 엔지니어링"이라는 말은 어디서 왔나
 
 | 시점 | 사건 | 의미 |
 |---|---|---|
@@ -348,7 +348,7 @@ decisions.md      중요한 결정과 이유
 | 2026.02.05 | **Mitchell Hashimoto** (HashiCorp·Terraform 창업자), 「My AI Adoption Journey」에서 하네스 관점을 명확히 제시 | **개념의 언어화** |
 | 2026.02 (수일 뒤) | OpenAI, 「Harness engineering: leveraging Codex in an agent-first world」 발행 | **산업 전체로 확산** |
 | 2026.02 | Martin Fowler(ThoughtWorks), Ethan Mollick(Wharton) 등 동시다발 논의 | 담론 형성 |
-| 2026.03~04 | 한국 — 토스 테크, channel.io 등 선도 기술 블로그 번역·해설 → 교육 플랫폼 확산 | 국내 유입 |
+| 2026.03~04 | 한국 – 토스 테크, channel.io 등 선도 기술 블로그 번역·해설 → 교육 플랫폼 확산 | 국내 유입 |
 
 ### 바이브코딩 vs 하네스 엔지니어링
 
@@ -378,7 +378,7 @@ decisions.md      중요한 결정과 이유
 
 ---
 
-## 16. 환경 감사 질문 — 내 환경을 점검하기
+## 16. 환경 감사 질문 – 내 환경을 점검하기
 
 | 질문 | 하네스 개선 방향 |
 |---|---|
@@ -392,7 +392,7 @@ decisions.md      중요한 결정과 이유
 
 ---
 
-## 17. 최소 하네스 — 거창하게 시작하지 않아도 된다
+## 17. 최소 하네스 – 거창하게 시작하지 않아도 된다
 
 ```
 1. 반복되는 일 하나를 고른다
@@ -424,15 +424,15 @@ decisions.md      중요한 결정과 이유
 
 ## 더 읽을거리
 
-- John Yang et al., *SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering* — <https://arxiv.org/abs/2405.15793>
-- Carlos E. Jimenez et al., *SWE-bench* — <https://arxiv.org/abs/2310.06770>
-- OpenAI, *Harness engineering* — <https://openai.com/index/harness-engineering/>
-- OpenAI, *Unlocking the Codex harness: how we built the App Server* — <https://openai.com/index/>
-- Anthropic, *How we built our multi-agent research system* — <https://www.anthropic.com/engineering/built-multi-agent-research-system>
-- Microsoft Research, *Magentic-One* — <https://www.microsoft.com/en-us/research/>
-- 김동학, 《하네스 엔지니어링 백과사전》 제13장·제15장·부록 F — <https://wikidocs.net/346805>, <https://wikidocs.net/350438>, <https://wikidocs.net/350446>
+- John Yang et al., *SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering* – <https://arxiv.org/abs/2405.15793>
+- Carlos E. Jimenez et al., *SWE-bench* – <https://arxiv.org/abs/2310.06770>
+- OpenAI, *Harness engineering* – <https://openai.com/index/harness-engineering/>
+- OpenAI, *Unlocking the Codex harness: how we built the App Server* – <https://openai.com/index/>
+- Anthropic, *How we built our multi-agent research system* – <https://www.anthropic.com/engineering/built-multi-agent-research-system>
+- Microsoft Research, *Magentic-One* – <https://www.microsoft.com/en-us/research/>
+- 김동학, 《하네스 엔지니어링 백과사전》 제13장·제15장·부록 F – <https://wikidocs.net/346805>, <https://wikidocs.net/350438>, <https://wikidocs.net/350446>
 
 ---
 
-👉 다음 편: [13. 용어집 · 치트시트 · 레퍼런스](/post/ai-everything-13-glossary-references)
-👈 이전 편: [11. 12패턴 + 7결정 + 3역발상](/post/ai-everything-11-patterns-decisions)
+다음 편: [13. 용어집 · 치트시트 · 레퍼런스](/post/ai-everything-13-glossary-references)
+이전 편: [11. 12패턴 + 7결정 + 3역발상](/post/ai-everything-11-patterns-decisions)

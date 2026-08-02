@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-02-what-is-harness"
-title: "AI의 모든 것 (02) — 하네스란 무엇인가: 배선에서 AI까지"
-description: "배선 하네스에서 AI 하네스까지 — 최소 5요소, 제품급 12요소, 메모리·스킬·프로토콜."
+title: "AI의 모든 것 (02) – 하네스란 무엇인가: 배선에서 AI까지"
+description: "배선 하네스에서 AI 하네스까지 – 최소 5요소, 제품급 12요소, 메모리·스킬·프로토콜."
 date: "2026-08-02 09:20"
 category: "ai"
 tags: ["하네스", "Harness", "Agent", "하네스엔지니어링", "Guides", "Sensors"]
@@ -16,7 +16,7 @@ published: true
 
 ---
 
-## 1. 단어의 뿌리 — 묶고 지탱하고 연결하는 것
+## 1. 단어의 뿌리 – 묶고 지탱하고 연결하는 것
 
 **harness**는 원래 "묶고 지탱하고 연결하는 장치"다. 등산 안전벨트도 하네스, 말에 씌우는 마구도 하네스, 자동차 안의 전선 묶음(wiring harness)도 하네스다.
 
@@ -37,7 +37,7 @@ published: true
 
 ---
 
-## 2. 소프트웨어의 test harness — 이미 있던 유산
+## 2. 소프트웨어의 test harness – 이미 있던 유산
 
 소프트웨어 분야에는 오래전부터 **test harness**라는 말이 있었다. ISTQB는 이를 "테스트 실행에 필요한 stub과 driver로 구성된 테스트 환경"으로 정의한다.
 
@@ -69,8 +69,8 @@ Anthropic의 「Building Effective Agents」는 두 가지를 구분한다.
 
 그리고 이 흐름을 연구가 뒷받침한다.
 
-- [ReAct](https://arxiv.org/abs/2210.03629) (2022) — LLM이 추론과 행동을 번갈아 수행할 수 있음을 보였다. 모델이 생각만 하는 게 아니라 외부 환경과 상호작용한다
-- [Toolformer](https://arxiv.org/abs/2302.04761) (2023) — 모델이 계산기·검색·번역·캘린더를 언제 어떻게 호출할지 학습할 수 있음을 보였다
+- [ReAct](https://arxiv.org/abs/2210.03629) (2022) – LLM이 추론과 행동을 번갈아 수행할 수 있음을 보였다. 모델이 생각만 하는 게 아니라 외부 환경과 상호작용한다
+- [Toolformer](https://arxiv.org/abs/2302.04761) (2023) – 모델이 계산기·검색·번역·캘린더를 언제 어떻게 호출할지 학습할 수 있음을 보였다
 
 **"AI에게 손과 발이 생겼다"는 뜻이다.** 예전 AI는 머릿속으로만 답했다. 지금은 계산기를 두드리고, 책장을 찾고, 파일을 열고, 프로그램을 실행한다. 손과 발이 생기면 할 수 있는 일이 많아지지만, 동시에 **안전교육도 필요해진다.**
 
@@ -196,7 +196,7 @@ Anthropic의 「Building Effective Agents」는 두 가지를 구분한다.
                  모델
 ```
 
-### 축 1. 메모리 — 계속 들고 있을 필요가 없는 상태
+### 축 1. 메모리 – 계속 들고 있을 필요가 없는 상태
 
 | 유형 | 의미 | 일상 비유 |
 |---|---|---|
@@ -207,7 +207,7 @@ Anthropic의 「Building Effective Agents」는 두 가지를 구분한다.
 
 넷 다 "기억"이지만 같은 방식으로 다루면 안 된다. 자세한 것은 [09편](/post/ai-everything-09-memory-longrunning).
 
-### 축 2. 스킬 — 반복 가능한 절차 지식
+### 축 2. 스킬 – 반복 가능한 절차 지식
 
 | 요소 | 의미 | 일상 비유 |
 |---|---|---|
@@ -217,7 +217,7 @@ Anthropic의 「Building Effective Agents」는 두 가지를 구분한다.
 
 **프롬프트와 스킬은 다르다.** 프롬프트는 그때그때 주는 지시이고, 스킬은 반복되는 업무 방식을 **재사용 가능한 형태로 보관**한 것이다.
 
-### 축 3. 프로토콜 — 상호작용의 약속
+### 축 3. 프로토콜 – 상호작용의 약속
 
 | 유형 | 무엇을 다루는가 | 일상 비유 |
 |---|---|---|
@@ -225,7 +225,7 @@ Anthropic의 「Building Effective Agents」는 두 가지를 구분한다.
 | Agent-to-Agent | 에이전트↔에이전트 | 팀원끼리 일을 나누고 인수인계하는 방식 |
 | Agent-to-Tools | 에이전트↔도구 | 장비 사용 시 지켜야 하는 규칙 |
 
-### 중재 장치 — 바깥 요소와 만나는 방식을 통제한다
+### 중재 장치 – 바깥 요소와 만나는 방식을 통제한다
 
 | 장치 | 역할 | 일상 비유 |
 |---|---|---|
@@ -288,7 +288,7 @@ Anthropic의 「Building Effective Agents」는 두 가지를 구분한다.
      (대부분 여기)                                              (제품 개발팀)
 ```
 
-### Harnessability — 하네스를 걸기 쉬운 환경인가
+### Harnessability – 하네스를 걸기 쉬운 환경인가
 
 설계 전에 물어야 할 질문이 하나 더 있다. "어떤 하네스를 붙일까?"가 아니라 **"이 환경은 하네스를 걸기 쉬운가?"**
 
@@ -312,20 +312,20 @@ Anthropic의 「Building Effective Agents」는 두 가지를 구분한다.
 - **원시 LLM은 OS 없는 CPU다.** 하네스가 그 OS다
 - 최소 5요소: 목표 문서 / 컨텍스트 지도 / 도구 목록 / 검증 방법 / 기록 방식
 - 제품급 12요소는 위험도가 높을수록 필요해진다. 많을수록 좋은 게 아니다
-- 설계의 핵심 질문: **"무엇을 모델 밖으로 꺼내 구조화할까"** — 메모리·스킬·프로토콜 + 중재 장치
+- 설계의 핵심 질문: **"무엇을 모델 밖으로 꺼내 구조화할까"** – 메모리·스킬·프로토콜 + 중재 장치
 - 프롬프트는 말이고 하네스는 구조다. 말은 중요하지만 구조가 있어야 반복 가능해진다
 
 ---
 
 ## 더 읽을거리
 
-- LangChain, *The Anatomy of an Agent Harness* — <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
-- Birgitta Böckeler, *Harness engineering for coding agent users* — <https://martinfowler.com/articles/harness-engineering.html>
-- Anthropic, *Building Effective AI Agents* — <https://www.anthropic.com/engineering/building-effective-agents>
-- ISTQB Glossary, *test harness* — <https://glossary.istqb.org/en_US/term/test-harness>
-- 김동학, 《하네스 엔지니어링 백과사전》 제1장 — <https://wikidocs.net/346793>
+- LangChain, *The Anatomy of an Agent Harness* – <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
+- Birgitta Böckeler, *Harness engineering for coding agent users* – <https://martinfowler.com/articles/harness-engineering.html>
+- Anthropic, *Building Effective AI Agents* – <https://www.anthropic.com/engineering/building-effective-agents>
+- ISTQB Glossary, *test harness* – <https://glossary.istqb.org/en_US/term/test-harness>
+- 김동학, 《하네스 엔지니어링 백과사전》 제1장 – <https://wikidocs.net/346793>
 
 ---
 
-👉 다음 편: [03. 에이전트 루프의 해부](/post/ai-everything-03-agent-loop)
-👈 이전 편: [01. LLM과 토큰](/post/ai-everything-01-llm-and-token)
+다음 편: [03. 에이전트 루프의 해부](/post/ai-everything-03-agent-loop)
+이전 편: [01. LLM과 토큰](/post/ai-everything-01-llm-and-token)

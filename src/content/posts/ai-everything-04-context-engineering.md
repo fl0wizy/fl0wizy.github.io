@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-04-context-engineering"
-title: "AI의 모든 것 (04) — 컨텍스트 엔지니어링: 책상 위에 무엇을 올릴 것인가"
-description: "컨텍스트는 희소 자원이다 — Lost in the Middle, CLAUDE.md를 지도로 쓰는 법, 압축 4전략."
+title: "AI의 모든 것 (04) – 컨텍스트 엔지니어링: 책상 위에 무엇을 올릴 것인가"
+description: "컨텍스트는 희소 자원이다 – Lost in the Middle, CLAUDE.md를 지도로 쓰는 법, 압축 4전략."
 date: "2026-08-02 09:40"
 category: "ai"
 tags: ["컨텍스트엔지니어링", "CLAUDE.md", "AGENTS.md", "RAG", "Compaction", "LostInTheMiddle"]
@@ -11,7 +11,7 @@ published: true
 
 > 이 편에서 정리할 것
 > 1. 프롬프트 / 컨텍스트 / 하네스 엔지니어링의 3층 구분
-> 2. 컨텍스트가 왜 **희소 자원**인가 — 많이 넣으면 나빠지는 이유
+> 2. 컨텍스트가 왜 **희소 자원**인가 – 많이 넣으면 나빠지는 이유
 > 3. CLAUDE.md·AGENTS.md를 백과사전이 아니라 **지도**로 쓰는 법
 
 ---
@@ -47,7 +47,7 @@ published: true
 전문 용어는 처음 등장할 때 한 문장으로 풀이하라.
 ```
 
-### 좋은 시스템 지시의 조건 — 헌법처럼 짧고 강하게
+### 좋은 시스템 지시의 조건 – 헌법처럼 짧고 강하게
 
 | 조건 | 설명 |
 |---|---|
@@ -68,7 +68,7 @@ Anthropic의 컨텍스트 엔지니어링 글은 컨텍스트를 **"LLM 추론 �
 > 책상 위에 필요한 자료가 없으면 AI는 **추측한다.**
 > 책상 위에 모든 자료를 올려놓으면 중요한 문서를 **찾지 못한다.**
 
-### Lost in the Middle — 실증적 근거
+### Lost in the Middle – 실증적 근거
 
 [Nelson F. Liu et al.](https://arxiv.org/abs/2307.03172)의 연구는 관련 정보의 **위치**가 바뀌면 성능이 크게 떨어질 수 있다고 보고했다. 특히 시작이나 끝에 있을 때보다 **중간에 있을 때** 성능이 저하된다.
 
@@ -87,7 +87,7 @@ Anthropic의 컨텍스트 엔지니어링 글은 컨텍스트를 **"LLM 추론 �
 
 긴 회의록과 같다. 중요한 결정이 맨 앞이나 맨 끝에 있으면 기억나지만, 중간 어딘가에 묻히면 참석자도 놓친다.
 
-### Context Rot — 어지러워진 책상
+### Context Rot – 어지러워진 책상
 
 시간이 지나며 오래된 대화, 긴 로그, 불필요한 도구 결과가 쌓여 모델 판단을 흐리게 만드는 현상. 해결책은 "더 넣기"가 아니라 **요약 · 파일 저장 · 필요한 순간 검색**이다.
 
@@ -130,7 +130,7 @@ Anthropic의 컨텍스트 엔지니어링 글은 컨텍스트를 **"LLM 추론 �
 
 ---
 
-## 6. AGENTS.md와 CLAUDE.md — 백과사전이 아니라 지도
+## 6. AGENTS.md와 CLAUDE.md – 백과사전이 아니라 지도
 
 두 파일의 정신은 같다. **"이 프로젝트에서는 이렇게 일해라"라고 말하는 README.**
 
@@ -202,7 +202,7 @@ paths:
 테스트를 추가했다면 실행 방법도 함께 남긴다.
 ```
 
-### ⚠️ CLAUDE.md는 보안 장치가 아니다
+### CLAUDE.md는 보안 장치가 아니다
 
 공식 문서도 CLAUDE.md와 memory를 **"컨텍스트"** 로 다룬다고 설명한다. 즉 Claude가 읽고 **참고하는** 내용이지, 운영체제 수준에서 절대 어길 수 없는 장치가 아니다.
 
@@ -213,7 +213,7 @@ paths:
 
 ---
 
-## 7. RAG와 file search — AI에게 사서 역할을 주기
+## 7. RAG와 file search – AI에게 사서 역할을 주기
 
 **RAG(Retrieval-Augmented Generation)** 는 "AI가 답변하기 전에 관련 문서를 찾아 읽게 하는 방식"이다.
 
@@ -235,7 +235,7 @@ paths:
 | **JIT 검색** | 전체 파일을 넣지 않고 필요할 때 grep/head/search로 읽음 | 창고 전체가 아니라 필요한 상자만 꺼내기 |
 | **구조화 메모** | `progress.md`, `feature_list.json`처럼 정리된 파일로 남김 | 인수인계 문서 작성 |
 
-### Progressive disclosure — 필요한 만큼만 펼치기
+### Progressive disclosure – 필요한 만큼만 펼치기
 
 Claude Skills의 핵심 설계 원리이기도 하다. 처음부터 모든 매뉴얼을 컨텍스트에 넣는 게 아니라, **이름과 설명만 먼저 보여주고 필요할 때 본문과 추가 파일을 단계적으로 읽게** 한다.
 
@@ -284,25 +284,25 @@ Claude Skills의 핵심 설계 원리이기도 하다. 처음부터 모든 매�
 
 - 프롬프트(**어떻게 말할까**) ⊂ 컨텍스트(**무엇을 보여줄까**) ⊂ 하네스(**어떤 환경에서 일하게 할까**)
 - **컨텍스트 창은 무한한 창고가 아니라 제한된 책상이다.** 많이 넣으면 중요한 게 묻힌다
-- **Lost in the Middle** — 정보의 위치가 성능을 바꾼다. 중요한 건 앞이나 뒤에
+- **Lost in the Middle** – 정보의 위치가 성능을 바꾼다. 중요한 건 앞이나 뒤에
 - 컨텍스트 재료 6가지: 시스템 지시 / 사용자 요청 / RAG / 장기 메모리 / 도구 / 출력 형식
 - **AGENTS.md·CLAUDE.md는 백과사전이 아니라 지도**여야 한다. 60줄 이하 + `docs/`
 - CLAUDE.md는 **컨텍스트지 보안 장치가 아니다.** 반드시 막을 건 permissions·Hook으로
 - 컨텍스트 관리 4전략: 압축 / 관찰 마스킹 / JIT 검색 / 구조화 메모
-- **Progressive disclosure** — 목차 먼저, 본문은 필요할 때
+- **Progressive disclosure** – 목차 먼저, 본문은 필요할 때
 - **압축은 손실이다.** 중요한 결정은 반드시 파일로도 남긴다
 
 ---
 
 ## 더 읽을거리
 
-- Anthropic, *Effective context engineering for AI agents* — <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
-- Nelson F. Liu et al., *Lost in the Middle* — <https://arxiv.org/abs/2307.03172>
-- Minki Kang et al., *ACON: Optimizing Context Compression for Long-horizon LLM Agents* — <https://arxiv.org/abs/2510.00615>
-- AGENTS.md open format — <https://agents.md/>
-- 김동학, 《하네스 엔지니어링 백과사전》 제3장 — <https://wikidocs.net/346795>
+- Anthropic, *Effective context engineering for AI agents* – <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
+- Nelson F. Liu et al., *Lost in the Middle* – <https://arxiv.org/abs/2307.03172>
+- Minki Kang et al., *ACON: Optimizing Context Compression for Long-horizon LLM Agents* – <https://arxiv.org/abs/2510.00615>
+- AGENTS.md open format – <https://agents.md/>
+- 김동학, 《하네스 엔지니어링 백과사전》 제3장 – <https://wikidocs.net/346795>
 
 ---
 
-👉 다음 편: [05. 도구 엔지니어링과 MCP](/post/ai-everything-05-tools-and-mcp)
-👈 이전 편: [03. 에이전트 루프의 해부](/post/ai-everything-03-agent-loop)
+다음 편: [05. 도구 엔지니어링과 MCP](/post/ai-everything-05-tools-and-mcp)
+이전 편: [03. 에이전트 루프의 해부](/post/ai-everything-03-agent-loop)

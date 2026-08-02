@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-07-multi-agent"
-title: "AI의 모든 것 (07) — 멀티에이전트: 모델이 섞일 필요는 없다"
-description: "모델이 섞일 필요 없다 — Subagent vs Agent Teams, 문맥 경계로 나누기, 쓰지 말아야 할 때."
+title: "AI의 모든 것 (07) – 멀티에이전트: 모델이 섞일 필요는 없다"
+description: "모델이 섞일 필요 없다 – Subagent vs Agent Teams, 문맥 경계로 나누기, 쓰지 말아야 할 때."
 date: "2026-08-02 10:10"
 category: "ai"
 tags: ["멀티에이전트", "Subagent", "AgentTeams", "Orchestrator", "오케스트레이션", "Handoff"]
@@ -10,7 +10,7 @@ published: true
 
 
 > 이 편에서 정리할 것
-> 1. **멀티에이전트의 판정 기준은 모델 다양성이 아니다** — 그럼 무엇인가
+> 1. **멀티에이전트의 판정 기준은 모델 다양성이 아니다** – 그럼 무엇인가
 > 2. Subagent(심부름)와 Agent Teams(회의)의 결정적 차이
 > 3. 역할 이름이 아니라 **문맥 경계**로 나누는 법
 > 4. 멀티에이전트를 **쓰지 말아야 할 때**
@@ -54,7 +54,7 @@ Anthropic의 멀티에이전트 리서치 시스템도 lead agent와 subagent들
 
 ---
 
-## 2. Subagent와 Agent Teams — 결정적 차이
+## 2. Subagent와 Agent Teams – 결정적 차이
 
 같은 "여러 에이전트"라도 두 종류로 갈린다. 이걸 구분하지 못하면 잘못된 구조를 고른다.
 
@@ -96,7 +96,7 @@ Anthropic의 멀티에이전트 리서치 시스템도 lead agent와 subagent들
 
 ---
 
-## 3. Subagent — 격리를 통한 병렬성
+## 3. Subagent – 격리를 통한 병렬성
 
 Subagent 하나에는 보통 네 가지가 들어간다.
 
@@ -136,7 +136,7 @@ Subagent 하나에는 보통 네 가지가 들어간다.
 
 ---
 
-## 4. Agent Teams — 소통을 통한 조율
+## 4. Agent Teams – 소통을 통한 조율
 
 세 가지 움직이는 부분이 있다.
 
@@ -183,12 +183,12 @@ Subagent 하나에는 보통 네 가지가 들어간다.
 
 ---
 
-## 6. 가장 중요한 원칙 — 역할이 아니라 **문맥 경계**로 나눈다
+## 6. 가장 중요한 원칙 – 역할이 아니라 **문맥 경계**로 나눈다
 
 멀티에이전트 설계에서 **가장 흔한 실수**는 일을 역할 이름으로 나누는 것이다.
 
 ```
-❌ 계획 담당 → 구현 담당 → 테스트 담당
+X 계획 담당 → 구현 담당 → 테스트 담당
    보기에는 깔끔하지만, 정보가 전달될 때마다 손실된다
 ```
 
@@ -260,8 +260,8 @@ Subagent든 Agent Teams든, 실제 흐름은 이 패턴들의 조합이다.
 **① 작업 설명이 흐리면 에이전트들이 서로 같은 일을 한다.**
 
 ```
-❌ "조사해 줘"
-✅ "공식 문서 기준으로 보안 위험 5개를 표로 정리하고, 코드 수정은 하지 마"
+X "조사해 줘"
+O "공식 문서 기준으로 보안 위험 5개를 표로 정리하고, 코드 수정은 하지 마"
 ```
 
 모든 에이전트에게 **목적 / 기대 출력 형식 / 사용할 도구와 자료 / 다루지 말아야 할 범위**가 분명해야 한다.
@@ -269,8 +269,8 @@ Subagent든 Agent Teams든, 실제 흐름은 이 패턴들의 조합이다.
 **② 검증 에이전트가 실제로 검증하지 않고 "괜찮다"고 말한다.**
 
 ```
-❌ "잘 봐줘"
-✅ "전체 테스트를 실행하고, 이 세 가지 케이스가 통과하기 전에는 완료라고 말하지 마"
+X "잘 봐줘"
+O "전체 테스트를 실행하고, 이 세 가지 케이스가 통과하기 전에는 완료라고 말하지 마"
 ```
 
 **검증은 감상이 아니라 절차여야 한다.**
@@ -307,7 +307,7 @@ Anthropic의 「Building Effective Agents」도 같은 방향을 권한다. 먼�
 
 ---
 
-## 10. 하나 더 — 하네스는 모델의 한계를 가정한다
+## 10. 하나 더 – 하네스는 모델의 한계를 가정한다
 
 Anthropic의 managed agents 글은 중요한 경고를 한다.
 
@@ -334,13 +334,13 @@ Anthropic의 managed agents 글은 중요한 경고를 한다.
 
 ## 더 읽을거리
 
-- Anthropic, *How we built our multi-agent research system* — <https://www.anthropic.com/engineering/built-multi-agent-research-system>
-- Claude Code Docs, *Create custom subagents* — <https://code.claude.com/docs/en/sub-agents>
-- Claude Code Docs, *Orchestrate teams of Claude Code sessions* — <https://code.claude.com/docs/en/agent-teams>
-- OpenAI Agents SDK, *Handoffs* — <https://openai.github.io/openai-agents-python/handoffs/>
-- 김동학, 《하네스 엔지니어링 백과사전》 부록 E — <https://wikidocs.net/350445>
+- Anthropic, *How we built our multi-agent research system* – <https://www.anthropic.com/engineering/built-multi-agent-research-system>
+- Claude Code Docs, *Create custom subagents* – <https://code.claude.com/docs/en/sub-agents>
+- Claude Code Docs, *Orchestrate teams of Claude Code sessions* – <https://code.claude.com/docs/en/agent-teams>
+- OpenAI Agents SDK, *Handoffs* – <https://openai.github.io/openai-agents-python/handoffs/>
+- 김동학, 《하네스 엔지니어링 백과사전》 부록 E – <https://wikidocs.net/350445>
 
 ---
 
-👉 다음 편: [08. 평가 하네스](/post/ai-everything-08-eval-harness)
-👈 이전 편: [06. Claude Code · Codex · Antigravity](/post/ai-everything-06-harness-products)
+다음 편: [08. 평가 하네스](/post/ai-everything-08-eval-harness)
+이전 편: [06. Claude Code · Codex · Antigravity](/post/ai-everything-06-harness-products)

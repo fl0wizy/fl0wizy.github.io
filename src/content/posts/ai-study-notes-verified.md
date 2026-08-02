@@ -1,6 +1,6 @@
 ---
 id: "ai-study-notes-verified"
-title: "AI의 모든 것 (부록) — 내 학습 노트 팩트체크 리포트"
+title: "AI의 모든 것 (부록) – 내 학습 노트 팩트체크 리포트"
 description: "내가 공부하며 적은 노트 원문을 보존하고, 15개 항목을 맞음/보정/틀림으로 판정한 팩트체크 리포트."
 date: "2026-08-02 08:50"
 category: "ai"
@@ -13,8 +13,8 @@ published: true
 
 이 문서는 두 부분이다.
 
-1. **원문 보존** — 내가 공부하며 적은 노트를 한 글자도 빼지 않고 그대로 둔다.
-2. **팩트체크** — 각 주장을 ✅ 맞음 / ⚠️ 부분적으로 맞음(용어·범위 보정 필요) / ❌ 틀림 으로 판정하고, 근거와 정정문을 붙인다.
+1. **원문 보존** – 내가 공부하며 적은 노트를 한 글자도 빼지 않고 그대로 둔다.
+2. **팩트체크** – 각 주장을 O 맞음 / △ 부분적으로 맞음(용어·범위 보정 필요) / X 틀림 으로 판정하고, 근거와 정정문을 붙인다.
 
 판정 원칙은 하나다. **결론이 아니라 전제를 검증한다.** "AI = LLM + 하네스"라는 결론이 실용적으로 유용해도, 그 안에 깔린 "AI라는 말의 범위"라는 전제가 틀렸으면 나중에 다른 곳에서 깨진다.
 
@@ -68,22 +68,22 @@ published: true
 
 | # | 주장 | 판정 |
 |---|------|------|
-| 1 | AI = LLM + 하네스 | ⚠️ 범위 오류 — `Agent = Model + Harness`가 정확 |
-| 2 | LLM은 "토큰 가중치"로 다음 말을 예측 | ⚠️ 용어 오류 — 가중치는 모델 파라미터, 출력은 확률분포 |
-| 3 | input Token → LLM → output Token | ✅ 맞음 (단, output이 텍스트만은 아님) |
-| 4 | 하네스 = LLM 보조 프레임워크 | ✅ 맞음, 업계 정의와 일치 |
-| 5 | google의 하네스 = gemini | ❌ **틀림** — Gemini는 모델. 하네스는 Gemini CLI → Antigravity CLI |
+| 1 | AI = LLM + 하네스 | 범위 오류 – `Agent = Model + Harness`가 정확 |
+| 2 | LLM은 "토큰 가중치"로 다음 말을 예측 | 용어 오류 – 가중치는 모델 파라미터, 출력은 확률분포 |
+| 3 | input Token → LLM → output Token | 맞음 (단, output이 텍스트만은 아님) |
+| 4 | 하네스 = LLM 보조 프레임워크 | 맞음, 업계 정의와 일치 |
+| 5 | google의 하네스 = gemini | **틀림** – Gemini는 모델. 하네스는 Gemini CLI → Antigravity CLI |
 | 6 | Codex와 ChatGPT의 차이 | (질문) 모델 차이가 아니라 **하네스 차이** |
-| 7 | 에이전트 1개면 단일 에이전트 | ⚠️ 기준을 "에이전트 수"가 아니라 "독립 컨텍스트 루프 수"로 |
-| 8 | 같은 모델만 써도 멀티에이전트인가? | ✅ **맞다. 모델이 섞일 필요 없다** |
-| 9 | MCP·웹검색은 모두 하네스에서 실행 | ⚠️ 대체로 맞지만 예외 — server tool은 제공자 서버에서 실행 |
-| 10 | 토크나이저가 claude code에 있나? | ❌ **아니다** — 토큰화는 제공자 서버에서 |
-| 10b | 토큰은 모델마다 다르다 | ✅ 맞음 |
-| 11 | 하네스 엔지니어링 3가지 방법 | ⚠️ 맞지만 "요청 계층"과 "집행 계층"이 빠짐 |
-| 12 | CLAUDE.md는 LLM에 넘기기 전 로드된다 | ✅ 맞음 (단, 보안장치는 아님) |
-| 13 | 하네스 엔지니어링 = 기존 하네스를 내 색으로 | ✅ 실무적으로 정확한 정의 |
-| 14 | claude code를 움직이는 건 output Token | ⚠️ 핵심은 맞지만 "LLM 호출 이전 단계"가 존재 |
-| 15 | 다이어그램(미들웨어 위치) | ✅ 구조 맞음, 화살표 방향만 보정 |
+| 7 | 에이전트 1개면 단일 에이전트 | 기준을 "에이전트 수"가 아니라 "독립 컨텍스트 루프 수"로 |
+| 8 | 같은 모델만 써도 멀티에이전트인가? | **맞다. 모델이 섞일 필요 없다** |
+| 9 | MCP·웹검색은 모두 하네스에서 실행 | 대체로 맞지만 예외 – server tool은 제공자 서버에서 실행 |
+| 10 | 토크나이저가 claude code에 있나? | **아니다** – 토큰화는 제공자 서버에서 |
+| 10b | 토큰은 모델마다 다르다 | 맞음 |
+| 11 | 하네스 엔지니어링 3가지 방법 | 맞지만 "요청 계층"과 "집행 계층"이 빠짐 |
+| 12 | CLAUDE.md는 LLM에 넘기기 전 로드된다 | 맞음 (단, 보안장치는 아님) |
+| 13 | 하네스 엔지니어링 = 기존 하네스를 내 색으로 | 실무적으로 정확한 정의 |
+| 14 | claude code를 움직이는 건 output Token | 핵심은 맞지만 "LLM 호출 이전 단계"가 존재 |
+| 15 | 다이어그램(미들웨어 위치) | 구조 맞음, 화살표 방향만 보정 |
 
 **요약: 14개 항목 중 명백한 오류 2개(#5, #10), 보정 필요 6개, 나머지는 맞다.** 특히 #8(멀티에이전트에 모델 다양성이 필요 없다)은 스스로 던진 질문에 스스로 옳은 답을 내린 경우다.
 
@@ -91,7 +91,7 @@ published: true
 
 ## 3부. 항목별 상세
 
-### #1 ⚠️ "AI = LLM + 하네스"
+### #1 [보정] "AI = LLM + 하네스"
 
 **무엇이 문제인가.** 결론(오늘의 AI 제품은 모델과 그 주변 구조로 이루어진다)은 옳지만, 등호 왼쪽에 "AI"를 놓은 것이 범위 오류다. AI는 1950년대부터 있던 상위 개념이고, 규칙 기반 시스템, 탐색 알고리즘, 고전 머신러닝, 컴퓨터 비전, 강화학습을 모두 포함한다. 그중 딥러닝의 한 갈래가 LLM이다.
 
@@ -111,7 +111,7 @@ AI (인공지능)
 
 ---
 
-### #2 ⚠️ "LLM = 토큰 가중치를 이용해서 다음 말을 예측"
+### #2 [보정] "LLM = 토큰 가중치를 이용해서 다음 말을 예측"
 
 **무엇이 문제인가.** "토큰 가중치"라는 이름의 물건은 없다. 두 개의 서로 다른 것이 섞여 있다.
 
@@ -138,7 +138,7 @@ AI (인공지능)
 
 ---
 
-### #3 ✅ "input Token → LLM → output Token"
+### #3 [맞음] "input Token → LLM → output Token"
 
 맞다. 다만 **한 가지를 더해야 한다.** output이 항상 사람이 읽는 문장인 것은 아니다. 현대의 tool calling 환경에서 모델은 `tool_use` 같은 **구조화된 객체**를 뱉는다.
 
@@ -157,22 +157,22 @@ AI (인공지능)
 
 ---
 
-### #4 ✅ "하네스 = LLM 보조 프레임워크"
+### #4 [맞음] "하네스 = LLM 보조 프레임워크"
 
 맞다. 그리고 업계 정의는 이보다 더 과감하다.
 
-> **"모델이 아니라면, 그것은 하네스다."** — LangChain
+> **"모델이 아니라면, 그것은 하네스다."** – LangChain
 
 시스템 프롬프트, 도구, MCP, 파일시스템, 샌드박스, 오케스트레이션 로직, hook/middleware가 전부 하네스다. Martin Fowler 사이트의 Birgitta Böckeler는 하네스를 두 축으로 나눈다.
 
-- **Guides (feedforward)** — 행동 *전에* 방향을 잡는 것: CLAUDE.md, AGENTS.md, Skill, 출력 형식, 금지 규칙
-- **Sensors (feedback)** — 행동 *후에* 결과를 관찰하는 것: 테스트, 린터, 스크린샷, LLM 리뷰, 사람 검토
+- **Guides (feedforward)** – 행동 *전에* 방향을 잡는 것: CLAUDE.md, AGENTS.md, Skill, 출력 형식, 금지 규칙
+- **Sensors (feedback)** – 행동 *후에* 결과를 관찰하는 것: 테스트, 린터, 스크린샷, LLM 리뷰, 사람 검토
 
 "보조"라는 말이 살짝 약하게 들릴 수 있다. 책 1장의 비유가 더 정확하다. **원시 LLM은 운영체제 없는 CPU다.** CPU만으로는 문서를 쓸 수 없다. RAM(컨텍스트 창), 디스크(파일·벡터DB), 장치 드라이버(도구·MCP), 운영체제(하네스)가 있어야 "컴퓨터를 쓴다"는 경험이 생긴다.
 
 ---
 
-### #5 ❌ "google : gemini" — 이 노트에서 가장 큰 오류
+### #5 [틀림] "google : gemini" – 이 노트에서 가장 큰 오류
 
 **무엇이 문제인가.** Gemini는 **모델 이름**이다(그리고 소비자용 챗 앱 이름이다). 하네스가 아니다. 같은 줄에 있는 `codex`와 `claude code`는 하네스가 맞아서, 세 개를 나란히 놓으면 층위가 어긋난다.
 
@@ -185,7 +185,7 @@ AI (인공지능)
 | Google | **Gemini** (3.x 계열) | **Antigravity**(데스크톱·CLI·SDK), 이전의 Gemini CLI, Jules |
 
 **2026년 구글 쪽 상황을 특히 조심해야 한다.** 구글은 2026년 I/O에서 Gemini CLI를 **Antigravity CLI로 전환**한다고 발표했고, 2026년 6월 18일부로 Gemini CLI와 Gemini Code Assist IDE 확장이 일부 요금제에서 요청 처리를 중단했다. Antigravity 2.0은 데스크톱 앱 + Go 기반 CLI + SDK가 **하나의 agent harness를 공유**하는 구조다.
-(출처: [Google Developers Blog — Transitioning Gemini CLI to Antigravity CLI](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/), [Google I/O 2026 developer highlights](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/))
+(출처: [Google Developers Blog – Transitioning Gemini CLI to Antigravity CLI](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/), [Google I/O 2026 developer highlights](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/))
 
 구글이 자기 문서에서 "agent harness"라는 단어를 쓰고, 데스크톱·CLI·SDK가 그 하네스를 공유한다고 설명한다는 사실 자체가 이 노트의 논지를 뒷받침한다. **하네스는 이제 제품 아키텍처의 1급 개념이다.**
 
@@ -211,13 +211,13 @@ AI (인공지능)
 | 지침 파일 | 없음(커스텀 인스트럭션) | **AGENTS.md** |
 
 거칠게 말하면 **ChatGPT는 "무엇인가"에 답하고, Codex는 "어떻게 고치는가"를 실행한다.** ChatGPT는 에러를 설명하고 Codex는 에러를 고친다. 계정과 사용량 창을 공유하는 경우도 있어서 더 헷갈리는데, 그럴수록 "같은 모델, 다른 하네스"라는 사실이 선명해진다.
-(참고: [ChatGPT vs Codex — Same Account, Different Loop](https://www.morphllm.com/comparisons/chatgpt-vs-codex), [GrowwStacks 비교](https://growwstacks.com/blog/chatgpt-vs-openai-codex-vs-claude-code-best-ai-coding-agent-2026))
+(참고: [ChatGPT vs Codex – Same Account, Different Loop](https://www.morphllm.com/comparisons/chatgpt-vs-codex), [GrowwStacks 비교](https://growwstacks.com/blog/chatgpt-vs-openai-codex-vs-claude-code-best-ai-coding-agent-2026))
 
 이건 이 시리즈 전체의 **최고의 실증 사례**다. 같은 회사, 사실상 같은 모델군인데 결과물의 성격이 완전히 다르다. 차이를 만든 건 모델이 아니라 하네스다.
 
 ---
 
-### #7 ⚠️ "agent가 한 개면 단일 AI agent"
+### #7 [보정] "agent가 한 개면 단일 AI agent"
 
 방향은 맞다. 다만 판정 기준을 더 정확하게 잡아야 한다. **세는 단위는 "에이전트"라는 말이 아니라 "독립된 컨텍스트 창 + 자기 루프"다.**
 
@@ -228,16 +228,16 @@ AI (인공지능)
 
 ---
 
-### #8 ✅ "같은 LLM만 써도 멀티에이전트인가? 모델이 섞일 필요 없나?"
+### #8 [맞음] "같은 LLM만 써도 멀티에이전트인가? 모델이 섞일 필요 없나?"
 
 **맞다. 모델이 섞일 필요 전혀 없다.** 스스로 던진 질문에 스스로 옳은 답을 냈다.
 
 멀티에이전트를 정의하는 것은 모델 다양성이 아니라 다음 네 가지다.
 
-1. **독립된 컨텍스트 창** — 각 에이전트가 자기 책상을 가진다
-2. **고유한 시스템 프롬프트/역할** — "너는 조사 담당이다"
-3. **분리된 도구 권한** — 조사 담당에게 배포 권한을 주지 않는다
-4. **조율 구조** — 누가 나누고 누가 합치는가
+1. **독립된 컨텍스트 창** – 각 에이전트가 자기 책상을 가진다
+2. **고유한 시스템 프롬프트/역할** – "너는 조사 담당이다"
+3. **분리된 도구 권한** – 조사 담당에게 배포 권한을 주지 않는다
+4. **조율 구조** – 누가 나누고 누가 합치는가
 
 > 세션 하나에서 10개 서브에이전트를 오케스트레이션하고 그 10개가 전부 Opus와만 통신한다 → **멀티에이전트가 맞다.**
 
@@ -263,7 +263,7 @@ Anthropic의 멀티에이전트 리서치 시스템도 lead agent와 subagent들
 
 ---
 
-### #9 ⚠️ "MCP 호출, 웹 검색은 모두 하네스에서 이루어진다"
+### #9 [보정] "MCP 호출, 웹 검색은 모두 하네스에서 이루어진다"
 
 **직관은 옳다.** 모델 가중치가 직접 네트워크 소켓을 여는 일은 없다. 모델은 "이 도구를 이렇게 호출해줘"라는 **요청을 텍스트/구조화 객체로 출력할 뿐**이고, 실행은 항상 모델 바깥의 런타임이 한다.
 
@@ -273,7 +273,7 @@ Anthropic의 멀티에이전트 리서치 시스템도 lead agent와 subagent들
 |---|---|---|
 | 실행 위치 | 내 컴퓨터 / 내 애플리케이션 | 모델 제공자의 인프라 |
 | 예시 | 로컬 MCP 서버, 파일 읽기, bash, 로컬 브라우저 | Anthropic의 web search·code execution 도구, MCP connector / OpenAI Responses API의 web search·file search·code interpreter·remote MCP |
-| 하네스가 통제하는가 | 전면 통제 (권한·샌드박스·훅) | 제한적 — 제공자 정책에 따름 |
+| 하네스가 통제하는가 | 전면 통제 (권한·샌드박스·훅) | 제한적 – 제공자 정책에 따름 |
 
 그러니 정정문은 이렇다.
 
@@ -285,7 +285,7 @@ Anthropic의 멀티에이전트 리서치 시스템도 lead agent와 subagent들
 
 ---
 
-### #10 ❌ "자연어를 토큰으로 바꿔서 전달 → 그러면 claude code(하네스)에 있는가?"
+### #10 [틀림] "자연어를 토큰으로 바꿔서 전달 → 그러면 claude code(하네스)에 있는가?"
 
 **아니다.** 토크나이저는 하네스에 없다(있어도 참고용 추정치다).
 
@@ -308,13 +308,13 @@ Anthropic의 멀티에이전트 리서치 시스템도 lead agent와 subagent들
 
 즉 하네스가 화면에 보여주는 토큰 수는 (a) 응답의 `usage` 필드에 서버가 알려준 값이거나 (b) 근사 추정치다. Anthropic은 미리 세고 싶을 때 쓰라고 **별도의 token counting 엔드포인트**를 제공하는데, 이게 필요하다는 사실 자체가 "클라이언트는 정확히 셀 수 없다"는 증거다.
 
-**#10b "토큰은 모델마다 다르다" — ✅ 완전히 맞다.** 모델마다 토크나이저와 어휘(vocabulary)가 다르다. OpenAI 계열은 tiktoken 기반 BPE를 공개했고, Anthropic·Google은 자체 토크나이저를 쓴다. 그래서 **같은 문장이라도 모델마다 토큰 수가 다르다.**
+**#10b "토큰은 모델마다 다르다" – O 완전히 맞다.** 모델마다 토크나이저와 어휘(vocabulary)가 다르다. OpenAI 계열은 tiktoken 기반 BPE를 공개했고, Anthropic·Google은 자체 토크나이저를 쓴다. 그래서 **같은 문장이라도 모델마다 토큰 수가 다르다.**
 
 실무에서 한국어 사용자가 반드시 알아야 할 점: **한국어는 영어보다 토큰을 더 먹는다.** 대부분의 토크나이저가 영어 텍스트로 최적화되어 있어서, 같은 의미를 담아도 한국어 프롬프트가 1.5~3배의 토큰을 쓰는 경우가 흔하다. 컨텍스트 예산을 짤 때 "글자 수 ÷ 4 = 토큰"류의 영어권 어림셈을 그대로 쓰면 안 된다.
 
 ---
 
-### #11 ⚠️ 하네스 엔지니어링의 3가지 방법
+### #11 [보정] 하네스 엔지니어링의 3가지 방법
 
 노트의 세 항목은 다 맞다. 다만 **가장 중요한 축이 빠졌다: 규칙의 "강제력"에는 등급이 있다.**
 
@@ -344,7 +344,7 @@ MCP는 이 다섯 층 중 하나가 아니라, **여러 층 옆에 붙는 외부
 
 ---
 
-### #12 ✅ "CLAUDE.md를 LLM에 넘기기 전에 세션 메모리에 로드"
+### #12 [맞음] "CLAUDE.md를 LLM에 넘기기 전에 세션 메모리에 로드"
 
 맞다. 그리고 세 가지를 더하면 완성된다.
 
@@ -356,7 +356,7 @@ MCP는 이 다섯 층 중 하나가 아니라, **여러 층 옆에 붙는 외부
 
 ---
 
-### #13 ✅ "하네스를 만드는 사람이 아니라 기존 하네스를 내 색깔로"
+### #13 [맞음] "하네스를 만드는 사람이 아니라 기존 하네스를 내 색깔로"
 
 실무적으로 아주 정확한 정의다. 대부분의 사람은 Claude Code / Codex / Antigravity라는 **기본 하네스 위에** 자기 CLAUDE.md, 자기 Skill, 자기 Hook, 자기 권한 정책을 얹는다. 이게 하네스 엔지니어링의 90%다.
 
@@ -370,7 +370,7 @@ MCP는 이 다섯 층 중 하나가 아니라, **여러 층 옆에 붙는 외부
 
 ---
 
-### #14 ⚠️ "claude code를 움직이게 하는 Token = LLM의 output Token"
+### #14 [보정] "claude code를 움직이게 하는 Token = LLM의 output Token"
 
 **핵심 통찰이고, 대부분 맞다.** 도구 실행, 파일 수정, 서브에이전트 생성 같은 **행동**의 방아쇠는 output token(정확히는 `tool_use` 블록)이다. 이걸 스스로 알아낸 건 좋은 관찰이다.
 
@@ -398,7 +398,7 @@ output token (텍스트 or tool_use)
 
 > 하네스는 두 번 움직인다. **LLM 호출 전에는 프롬프트를 조립하려고**(입력이 방아쇠), **LLM 호출 후에는 행동을 실행하려고**(output token이 방아쇠). 노트가 짚은 것은 후자이고, 후자가 에이전트를 에이전트답게 만드는 부분이 맞다.
 
-**"Token이 뜨면 그만큼 LLM 서버에서 소모한 거임" — 대체로 맞지만 세 가지 보정.**
+**"Token이 뜨면 그만큼 LLM 서버에서 소모한 거임" – 대체로 맞지만 세 가지 보정.**
 
 1. **input token도 과금된다.** 오히려 코딩 에이전트는 input이 압도적으로 많다. 파일 내용, 도구 스키마, 대화 기록이 매 턴 다시 들어가기 때문이다.
 2. **prompt caching이 있다.** 반복되는 앞부분(시스템 프롬프트, CLAUDE.md, 도구 정의)을 캐시하면 cache read는 일반 input보다 훨씬 싸다. 대신 cache write는 조금 더 비싸다. 그래서 화면의 토큰 수와 실제 청구액은 선형 비례하지 않는다.
@@ -406,25 +406,25 @@ output token (텍스트 or tool_use)
 
 ---
 
-### #15 ✅ 다이어그램 검증
+### #15 [맞음] 다이어그램 검증
 
 원본 스케치의 구조는 맞다. 확인·보정할 점만.
 
 | 요소 | 판정 | 비고 |
 |---|---|---|
-| User ↔ claude code 양방향 | ✅ | |
-| claude code ↔ MCP 양방향 (아래) | ✅ | 로컬 MCP 기준. remote MCP는 경계 오른쪽으로 가야 함 |
-| claude code → LLM "MCP를 호출해줘" | ✅ | 정확히는 "도구 정의 + 사용자 요청"을 보냄 |
-| LLM → claude code "1번 MCP 호출해. A 사이트가서 HTML 읽어" | ✅ | 이게 `tool_use` 출력. 아주 정확한 이해 |
-| 세로선 = local / remote 경계 | ✅ | 좋은 표현. 이 선이 곧 "토큰화가 일어나는 지점"이기도 하다 |
-| 미들웨어 위치 (경계 위, LLM 옆) | ⚠️ | 위치는 맞는데 화살표가 한 방향처럼 보인다 |
+| User ↔ claude code 양방향 | O | |
+| claude code ↔ MCP 양방향 (아래) | O | 로컬 MCP 기준. remote MCP는 경계 오른쪽으로 가야 함 |
+| claude code → LLM "MCP를 호출해줘" | O | 정확히는 "도구 정의 + 사용자 요청"을 보냄 |
+| LLM → claude code "1번 MCP 호출해. A 사이트가서 HTML 읽어" | O | 이게 `tool_use` 출력. 아주 정확한 이해 |
+| 세로선 = local / remote 경계 | O | 좋은 표현. 이 선이 곧 "토큰화가 일어나는 지점"이기도 하다 |
+| 미들웨어 위치 (경계 위, LLM 옆) | △ | 위치는 맞는데 화살표가 한 방향처럼 보인다 |
 
 **미들웨어 보정.** 미들웨어(프록시/게이트웨이/LangChain middleware 등)는 **요청과 응답을 모두 가로채는 양방향 인터셉터**다. 하는 일: 로깅·트레이싱, 비용 집계, 라우팅(쉬운 요청은 싼 모델로), 캐싱, PII 마스킹, 가드레일, 재시도. 그래서 화살표는 `하네스 ⇄ 미들웨어 ⇄ LLM`으로 양방향이어야 한다.
 
 또 원본에 없어서 추가하면 좋은 것 두 가지:
 
-- **server tool 경로** — LLM 쪽(경계 오른편)에도 제공자가 실행하는 도구가 붙는다 (#9)
-- **하네스 내부 구성** — 하네스 상자를 열면 시스템 프롬프트 / 컨텍스트 조립기 / 도구 실행기 / 권한 게이트 / 훅 / 메모리가 들어 있다
+- **server tool 경로** – LLM 쪽(경계 오른편)에도 제공자가 실행하는 도구가 붙는다 (#9)
+- **하네스 내부 구성** – 하네스 상자를 열면 시스템 프롬프트 / 컨텍스트 조립기 / 도구 실행기 / 권한 게이트 / 훅 / 메모리가 들어 있다
 
 재구성한 다이어그램은 `/images/ai/harness-architecture.excalidraw` 에 있다.
 
@@ -451,15 +451,15 @@ output token (텍스트 or tool_use)
 
 ## 5부. 이 검증에 쓴 근거
 
-- 위키독스 **《하네스 엔지니어링 백과사전》** (김동학, v1.86) — <https://wikidocs.net/book/19689>
-- LangChain, *The Anatomy of an Agent Harness* — <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
-- Birgitta Böckeler, *Harness engineering for coding agent users* (martinfowler.com) — <https://martinfowler.com/articles/harness-engineering.html>
-- Anthropic, *Building Effective AI Agents* — <https://www.anthropic.com/engineering/building-effective-agents>
-- Anthropic, *Effective context engineering for AI agents* — <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
-- OpenAI, *Harness engineering: leveraging Codex in an agent-first world* — <https://openai.com/index/harness-engineering/>
-- Google Developers Blog, *Transitioning Gemini CLI to Antigravity CLI* — <https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/>
-- Google, *I/O 2026 developer highlights* — <https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/>
-- Nelson F. Liu et al., *Lost in the Middle* — <https://arxiv.org/abs/2307.03172>
-- John Yang et al., *SWE-agent: Agent-Computer Interfaces* — <https://arxiv.org/abs/2405.15793>
+- 위키독스 **《하네스 엔지니어링 백과사전》** (김동학, v1.86) – <https://wikidocs.net/book/19689>
+- LangChain, *The Anatomy of an Agent Harness* – <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
+- Birgitta Böckeler, *Harness engineering for coding agent users* (martinfowler.com) – <https://martinfowler.com/articles/harness-engineering.html>
+- Anthropic, *Building Effective AI Agents* – <https://www.anthropic.com/engineering/building-effective-agents>
+- Anthropic, *Effective context engineering for AI agents* – <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
+- OpenAI, *Harness engineering: leveraging Codex in an agent-first world* – <https://openai.com/index/harness-engineering/>
+- Google Developers Blog, *Transitioning Gemini CLI to Antigravity CLI* – <https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/>
+- Google, *I/O 2026 developer highlights* – <https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/>
+- Nelson F. Liu et al., *Lost in the Middle* – <https://arxiv.org/abs/2307.03172>
+- John Yang et al., *SWE-agent: Agent-Computer Interfaces* – <https://arxiv.org/abs/2405.15793>
 
 > **검증 기준일: 2026-08-02.** 이 분야는 분기 단위로 바뀐다. 특히 제품명·모델명·CLI 이름은 원문 공식 문서를 다시 확인하는 것을 권한다.

@@ -1,6 +1,6 @@
 ---
 id: "ai-everything-01-llm-and-token"
-title: "AI의 모든 것 (01) — LLM과 토큰: 예측 기계의 해부"
+title: "AI의 모든 것 (01) – LLM과 토큰: 예측 기계의 해부"
 description: "AI⊃ML⊃딥러닝⊃LLM 지도, '토큰 가중치' 오해 해체, 토큰화가 일어나는 위치와 비용 구조까지."
 date: "2026-08-02 09:10"
 category: "ai"
@@ -12,7 +12,7 @@ published: true
 > 이 편에서 정리할 것
 > 1. AI · ML · 딥러닝 · LLM의 포함 관계를 정확히 잡는다
 > 2. "토큰 가중치"라는 흔한 오해를 해체하고, 실제로 무엇이 일어나는지 본다
-> 3. 토큰화가 **어디서** 일어나는지 — 하네스인가 서버인가 — 를 확정한다
+> 3. 토큰화가 **어디서** 일어나는지 – 하네스인가 서버인가 – 를 확정한다
 
 ---
 
@@ -21,9 +21,9 @@ published: true
 많은 사람이 "AI = LLM"이라고 생각한다. 요즘 AI라고 부르는 것의 대부분이 LLM이라서 실용적으로는 통하지만, 개념 지도가 틀어지면 나중에 다른 곳에서 깨진다.
 
 ```
-AI (인공지능) — 1950s~ · 규칙기반 · 탐색 · 전문가시스템
+AI (인공지능) – 1950s~ · 규칙기반 · 탐색 · 전문가시스템
 ├─ 기호주의 AI (추론엔진 · 제약해결)
-└─ ML (머신러닝) — 데이터에서 규칙을 학습
+└─ ML (머신러닝) – 데이터에서 규칙을 학습
    ├─ 고전 ML (SVM · 랜덤포레스트 · 회귀)
    └─ 딥러닝 (다층 신경망)
       ├─ CV · 음성 · 확산모델
@@ -33,8 +33,8 @@ AI (인공지능) — 1950s~ · 규칙기반 · 탐색 · 전문가시스템
 
 **그래서 정확한 공식은 이것이다.**
 
-> `AI = LLM + 하네스` (❌)
-> `Agent = Model + Harness` (✅)
+> `AI = LLM + 하네스` (X)
+> `Agent = Model + Harness` (O)
 
 LLM은 AI의 부분집합이고, 우리가 "AI가 일한다"고 느끼는 것은 LLM이 하네스와 결합된 **에이전트** 상태다. 이 등식은 [LangChain](https://www.langchain.com/blog/the-anatomy-of-an-agent-harness)과 [Martin Fowler 사이트](https://martinfowler.com/articles/harness-engineering.html)가 공통으로 쓰는 정의다.
 
@@ -91,7 +91,7 @@ LLM은 AI의 부분집합이고, 우리가 "AI가 일한다"고 느끼는 것은
 
 이미지, 오디오, PDF도 결국 토큰으로 변환되어 컨텍스트를 차지한다. **"이미지는 공짜"가 아니다.** 스크린샷 한 장이 수천 토큰일 수 있다.
 
-### (2) 출력은 문장만이 아니다 — 이게 에이전트의 핵심
+### (2) 출력은 문장만이 아니다 – 이게 에이전트의 핵심
 
 현대의 tool calling 환경에서 모델의 출력은 종종 **구조화된 객체**다.
 
@@ -119,7 +119,7 @@ LLM은 AI의 부분집합이고, 우리가 "AI가 일한다"고 느끼는 것은
 
 ---
 
-## 4. 토큰화는 어디서 일어나는가 — 하네스인가, 서버인가
+## 4. 토큰화는 어디서 일어나는가 – 하네스인가, 서버인가
 
 내가 노트에 던졌던 질문이다. **답: 제공자 서버다. 하네스에는 없다.**
 
@@ -159,7 +159,7 @@ LLM은 AI의 부분집합이고, 우리가 "AI가 일한다"고 느끼는 것은
 
 Anthropic이 별도의 **token counting 엔드포인트**를 제공한다는 사실 자체가 "클라이언트는 정확히 셀 수 없다"는 증거다. 보내기 전에 정확히 알고 싶으면 서버에 물어봐야 한다.
 
-### "토큰은 모델마다 다르다" — 완전히 맞다
+### "토큰은 모델마다 다르다" – 완전히 맞다
 
 | 제공자 | 토크나이저 | 공개 여부 |
 |---|---|---|
@@ -182,7 +182,7 @@ Anthropic이 별도의 **token counting 엔드포인트**를 제공한다는 사
 
 ---
 
-## 5. 컨텍스트 창 — RAM이 아니라 책상이다
+## 5. 컨텍스트 창 – RAM이 아니라 책상이다
 
 컨텍스트 창은 모델이 **한 번에 볼 수 있는 토큰 범위**다. 자주 쓰이는 비유가 "RAM"인데, 이건 초보자용 지도로는 좋지만 정확하지는 않다.
 
@@ -205,11 +205,11 @@ Anthropic이 별도의 **token counting 엔드포인트**를 제공한다는 사
 
 ---
 
-## 6. 토큰과 돈 — "Token이 뜨면 그만큼 소모한 거임"의 정확한 버전
+## 6. 토큰과 돈 – "Token이 뜨면 그만큼 소모한 거임"의 정확한 버전
 
 대체로 맞다. 다만 세 가지를 보정해야 청구서를 이해할 수 있다.
 
-### (1) input token도 과금된다 — 그것도 압도적으로
+### (1) input token도 과금된다 – 그것도 압도적으로
 
 코딩 에이전트는 output보다 **input이 훨씬 많다.** 매 턴마다 시스템 프롬프트, CLAUDE.md, 도구 스키마, 대화 기록, 읽은 파일 내용이 **전부 다시** 들어가기 때문이다.
 
@@ -250,11 +250,11 @@ Anthropic이 별도의 **token counting 엔드포인트**를 제공한다는 사
 
 ## 더 읽을거리
 
-- Nelson F. Liu et al., *Lost in the Middle: How Language Models Use Long Contexts* — <https://arxiv.org/abs/2307.03172>
-- Anthropic, *Effective context engineering for AI agents* — <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
-- 김동학, 《하네스 엔지니어링 백과사전》 제2장 — <https://wikidocs.net/346794>
+- Nelson F. Liu et al., *Lost in the Middle: How Language Models Use Long Contexts* – <https://arxiv.org/abs/2307.03172>
+- Anthropic, *Effective context engineering for AI agents* – <https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents>
+- 김동학, 《하네스 엔지니어링 백과사전》 제2장 – <https://wikidocs.net/346794>
 
 ---
 
-👉 다음 편: [02. 하네스란 무엇인가 — 배선에서 AI까지](/post/ai-everything-02-what-is-harness)
-👈 이전 편: [00. 시리즈 지도](/post/ai-everything-00-index)
+다음 편: [02. 하네스란 무엇인가 – 배선에서 AI까지](/post/ai-everything-02-what-is-harness)
+이전 편: [00. 시리즈 지도](/post/ai-everything-00-index)

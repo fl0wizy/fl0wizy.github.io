@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-10-safety-governance"
-title: "AI의 모든 것 (10) — 안전·거버넌스·운영: 부탁은 규칙이 아니다"
-description: "부탁은 규칙이 아니다 — 요청/집행/격리 3단계, prompt injection, audit log, garbage collection."
+title: "AI의 모든 것 (10) – 안전·거버넌스·운영: 부탁은 규칙이 아니다"
+description: "부탁은 규칙이 아니다 – 요청/집행/격리 3단계, prompt injection, audit log, garbage collection."
 date: "2026-08-02 10:40"
 category: "ai"
 tags: ["권한", "PromptInjection", "샌드박스", "AuditLog", "Hooks", "거버넌스", "OWASP"]
@@ -10,10 +10,10 @@ published: true
 
 
 > 이 편에서 정리할 것
-> 1. **요청 / 집행 / 격리** — 강제력의 3단계
+> 1. **요청 / 집행 / 격리** – 강제력의 3단계
 > 2. Prompt injection이 왜 아직 안 풀린 문제인가
 > 3. Audit log와 운영 지표
-> 4. 하네스도 낡는다 — garbage collection
+> 4. 하네스도 낡는다 – garbage collection
 
 ---
 
@@ -35,7 +35,7 @@ published: true
 
 > **하네스 관점에서 Hook은 "말로 부탁하는 규칙"을 "실행 가능한 안전장치"로 바꾸는 방법이다.**
 
-⚠️ 다만 Hook을 너무 많이 붙이면 작업 흐름이 무거워진다. **모든 문을 열 때마다 경보가 울리면 아무도 그 경보를 신뢰하지 않게 된다.** Hook은 이 세 가지에 우선 적용한다.
+주의: 다만 Hook을 너무 많이 붙이면 작업 흐름이 무거워진다. **모든 문을 열 때마다 경보가 울리면 아무도 그 경보를 신뢰하지 않게 된다.** Hook은 이 세 가지에 우선 적용한다.
 
 ```
 ① 항상 같은 방식으로 실행되어야 하는 일
@@ -45,7 +45,7 @@ published: true
 
 ---
 
-## 2. 권한 설계 — 최소 권한 원칙
+## 2. 권한 설계 – 최소 권한 원칙
 
 **AI 안전의 첫 원칙은 최소 권한이다.** 필요한 권한만 주고, 고위험 행동은 사람 승인을 요구한다.
 
@@ -80,7 +80,7 @@ Claude Code permissions 문서의 `allow` / `ask` / `deny` 규칙과 **`deny →
 }
 ```
 
-### Human-in-the-loop — 사람이 반드시 봐야 할 것
+### Human-in-the-loop – 사람이 반드시 봐야 할 것
 
 AI를 못 믿어서가 아니라, **책임과 맥락이 필요한 판단**을 사람이 맡는 것이다.
 
@@ -98,7 +98,7 @@ AI를 못 믿어서가 아니라, **책임과 맥락이 필요한 판단**을 �
 
 ---
 
-## 3. Prompt Injection — 아직 안 풀린 문제
+## 3. Prompt Injection – 아직 안 풀린 문제
 
 **Prompt injection**은 외부 문서나 웹페이지가 AI에게 악성 지시를 심어, 원래 사용자의 의도와 다르게 행동하게 만드는 공격이다.
 
@@ -155,7 +155,7 @@ AI를 못 믿어서가 아니라, **책임과 맥락이 필요한 판단**을 �
 
 ---
 
-## 5. Audit log — 결과만 보면 이유를 모른다
+## 5. Audit log – 결과만 보면 이유를 모른다
 
 AI 에이전트에는 감사 로그가 특히 중요하다. **결과만 보면 왜 그런 행동을 했는지 알기 어렵기 때문이다.**
 
@@ -178,7 +178,7 @@ Google 관점의 한마디가 이걸 잘 요약한다.
 
 ---
 
-## 6. 운영 지표 — 품질만이 아니다
+## 6. 운영 지표 – 품질만이 아니다
 
 AI 하네스는 품질뿐 아니라 **비용과 속도**도 관리해야 한다. 도구 호출이 많고 컨텍스트가 길면 비용이 증가한다. 여러 evaluator를 돌리면 품질은 올라가지만 시간이 길어진다.
 
@@ -191,7 +191,7 @@ AI 하네스는 품질뿐 아니라 **비용과 속도**도 관리해야 한다.
 | **사람 개입률** | 승인 또는 수정이 필요한 비율 |
 | **회귀율** | 이전에 고친 실패가 다시 발생한 비율 |
 
-### 운영 대시보드 — 하네스의 건강검진표
+### 운영 대시보드 – 하네스의 건강검진표
 
 ```
 □ 이번 주 작업 수
@@ -206,7 +206,7 @@ AI 하네스는 품질뿐 아니라 **비용과 속도**도 관리해야 한다.
 
 ---
 
-## 7. 하네스도 낡는다 — Garbage Collection
+## 7. 하네스도 낡는다 – Garbage Collection
 
 Anthropic의 managed agents 글이 던지는 경고.
 
@@ -232,7 +232,7 @@ Anthropic의 managed agents 글이 던지는 경고.
 
 **빠르게 만들수록 더 자주 정리해야 한다.** 처리량이 늘어날수록 정리 루프도 함께 필요하다.
 
-Anthropic 관점에서 가장 과소평가된 위험이 이것이다. **Staleness — 하네스 파일이 실제 업무와 어긋나면 에이전트는 잘못된 방향으로 안내받는다.** 이것이 컨텍스트 드리프트로 이어진다. 기존 기술 부채만큼 심각하지만 **아직 측정 도구가 없다.**
+Anthropic 관점에서 가장 과소평가된 위험이 이것이다. **Staleness – 하네스 파일이 실제 업무와 어긋나면 에이전트는 잘못된 방향으로 안내받는다.** 이것이 컨텍스트 드리프트로 이어진다. 기존 기술 부채만큼 심각하지만 **아직 측정 도구가 없다.**
 
 ### 운영자가 던질 3가지 질문
 
@@ -327,15 +327,15 @@ Anthropic 관점에서 가장 과소평가된 위험이 이것이다. **Stalenes
 
 ## 더 읽을거리
 
-- OWASP, *Top 10 for Large Language Model Applications* — <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
-- NIST, *AI RMF: Generative AI Profile (AI 600-1)* — <https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf>
-- Simon Willison, *Prompt injection* 시리즈 — <https://simonwillison.net/series/prompt-injection/>
-- Claude Code Docs, *Configure permissions* — <https://code.claude.com/docs/en/permissions>
-- Claude Code Docs, *Automate workflows with hooks* — <https://code.claude.com/docs/en/hooks-guide>
-- Amershi et al., *Guidelines for Human-AI Interaction* — <https://doi.org/10.1145/3290605.3300233>
-- 김동학, 《하네스 엔지니어링 백과사전》 제10장·제13장 — <https://wikidocs.net/346802>, <https://wikidocs.net/346805>
+- OWASP, *Top 10 for Large Language Model Applications* – <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
+- NIST, *AI RMF: Generative AI Profile (AI 600-1)* – <https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf>
+- Simon Willison, *Prompt injection* 시리즈 – <https://simonwillison.net/series/prompt-injection/>
+- Claude Code Docs, *Configure permissions* – <https://code.claude.com/docs/en/permissions>
+- Claude Code Docs, *Automate workflows with hooks* – <https://code.claude.com/docs/en/hooks-guide>
+- Amershi et al., *Guidelines for Human-AI Interaction* – <https://doi.org/10.1145/3290605.3300233>
+- 김동학, 《하네스 엔지니어링 백과사전》 제10장·제13장 – <https://wikidocs.net/346802>, <https://wikidocs.net/346805>
 
 ---
 
-👉 다음 편: [11. 12패턴 + 7결정 + 3역발상](/post/ai-everything-11-patterns-decisions)
-👈 이전 편: [09. 장시간 실행과 메모리 소유권](/post/ai-everything-09-memory-longrunning)
+다음 편: [11. 12패턴 + 7결정 + 3역발상](/post/ai-everything-11-patterns-decisions)
+이전 편: [09. 장시간 실행과 메모리 소유권](/post/ai-everything-09-memory-longrunning)

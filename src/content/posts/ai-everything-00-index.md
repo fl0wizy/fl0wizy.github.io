@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-00-index"
-title: "AI의 모든 것 (00) — 시리즈 지도: 왜 '모델'이 아니라 '하네스'인가"
-description: "왜 '모델'이 아니라 '하네스'인가 — AI의 모든 것 시리즈 전체 지도와 8개 핵심 문장."
+title: "AI의 모든 것 (00) – 시리즈 지도: 왜 '모델'이 아니라 '하네스'인가"
+description: "왜 '모델'이 아니라 '하네스'인가 – AI의 모든 것 시리즈 전체 지도와 8개 핵심 문장."
 date: "2026-08-02 09:00"
 category: "ai"
 tags: ["AI", "LLM", "하네스", "Agent", "ClaudeCode", "Codex", "MCP"]
@@ -46,7 +46,7 @@ AI가 실패했을 때 대부분의 사람은 먼저 모델을 의심한다. 하
 
 ![AI 에이전트 실행 구조](/images/ai/harness-architecture.svg)
 
-편집 가능한 원본: [`harness-architecture.excalidraw`](/images/ai/harness-architecture.excalidraw) — excalidraw.com에서 `파일 열기`로 불러오면 그대로 수정된다.
+편집 가능한 원본: [`harness-architecture.excalidraw`](/images/ai/harness-architecture.excalidraw) – excalidraw.com에서 `파일 열기`로 불러오면 그대로 수정된다.
 
 같은 흐름을 텍스트로 보면 이렇다.
 
@@ -54,7 +54,7 @@ AI가 실패했을 때 대부분의 사람은 먼저 모델을 의심한다. 하
 User → 하네스   ① 프롬프트 (자연어)
 하네스 내부      CLAUDE.md 로드 · @파일 확장 · Skill 메타데이터 · 도구 스키마 조립 · Hook 실행
                  ← LLM 호출 전에도 움직인다
-하네스 → LLM    ② 조립된 요청 (JSON 문자열) — 미들웨어가 있으면 로깅·라우팅·캐싱 후 전달
+하네스 → LLM    ② 조립된 요청 (JSON 문자열) – 미들웨어가 있으면 로깅·라우팅·캐싱 후 전달
 LLM 서버        ★ 여기서 문자열 → 토큰
 LLM → 하네스    ③ output token = tool_use
 하네스          ④ 권한 게이트 (allow / ask / deny)
@@ -69,7 +69,7 @@ LLM → 하네스    ⑧ 최종 답변
 
 ## 14편 지도
 
-### 1부. 이해의 길 — 무엇이 어떻게 도는가
+### 1부. 이해의 길 – 무엇이 어떻게 도는가
 
 | 편 | 제목 | 한 줄 |
 |---|---|---|
@@ -77,7 +77,7 @@ LLM → 하네스    ⑧ 최종 답변
 | [02](/post/ai-everything-02-what-is-harness) | 하네스란 무엇인가 | 배선 하네스 → 테스트 하네스 → AI 하네스. 원시 LLM은 OS 없는 CPU다 |
 | [03](/post/ai-everything-03-agent-loop) | 에이전트 루프 | 관찰-계획-행동-검증-기록. 7단계로 해부한다 |
 
-### 2부. 구현의 길 — 무엇을 어떻게 만드는가
+### 2부. 구현의 길 – 무엇을 어떻게 만드는가
 
 | 편 | 제목 | 한 줄 |
 |---|---|---|
@@ -86,7 +86,7 @@ LLM → 하네스    ⑧ 최종 답변
 | [06](/post/ai-everything-06-harness-products) | Claude Code · Codex · Antigravity | **Gemini는 모델이지 하네스가 아니다** |
 | [07](/post/ai-everything-07-multi-agent) | 멀티에이전트 | 모델이 섞일 필요는 없다. Subagent와 Agent Teams는 다르다 |
 
-### 3부. 운영의 길 — 어떻게 믿고 맡기는가
+### 3부. 운영의 길 – 어떻게 믿고 맡기는가
 
 | 편 | 제목 | 한 줄 |
 |---|---|---|
@@ -94,7 +94,7 @@ LLM → 하네스    ⑧ 최종 답변
 | [09](/post/ai-everything-09-memory-longrunning) | 장시간 실행·메모리 | 기억을 소유하지 못하면 에이전트를 소유하기 어렵다 |
 | [10](/post/ai-everything-10-safety-governance) | 안전·거버넌스 | 부탁은 규칙이 아니다. 훅이 규칙이다 |
 
-### 4부. 판단의 길 — 무엇을 고를 것인가
+### 4부. 판단의 길 – 무엇을 고를 것인가
 
 | 편 | 제목 | 한 줄 |
 |---|---|---|
@@ -104,7 +104,7 @@ LLM → 하네스    ⑧ 최종 답변
 
 ### 부록
 
-- [내 학습 노트 팩트체크](/post/ai-study-notes-verified) — 15개 항목 검증. 틀린 것 2개, 보정 6개.
+- [내 학습 노트 팩트체크](/post/ai-study-notes-verified) – 15개 항목 검증. 틀린 것 2개, 보정 6개.
 
 ---
 
@@ -127,14 +127,14 @@ LLM → 하네스    ⑧ 최종 답변
 
 이 시리즈의 뼈대가 된 자료. 특히 첫 번째는 한국어로 이 주제를 통째로 다룬 유일한 단행본이다.
 
-- 김동학, **《하네스 엔지니어링 백과사전》** — <https://wikidocs.net/book/19689> (유료 전자책. 실습 워크시트·성숙도 체크리스트·Q&A 71문항 등 전자책 전용 부록이 있다)
-- LangChain, *The Anatomy of an Agent Harness* — <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
-- Birgitta Böckeler, *Harness engineering for coding agent users* — <https://martinfowler.com/articles/harness-engineering.html>
-- OpenAI, *Harness engineering* — <https://openai.com/index/harness-engineering/>
-- Anthropic, *Building Effective AI Agents* — <https://www.anthropic.com/engineering/building-effective-agents>
+- 김동학, **《하네스 엔지니어링 백과사전》** – <https://wikidocs.net/book/19689> (유료 전자책. 실습 워크시트·성숙도 체크리스트·Q&A 71문항 등 전자책 전용 부록이 있다)
+- LangChain, *The Anatomy of an Agent Harness* – <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
+- Birgitta Böckeler, *Harness engineering for coding agent users* – <https://martinfowler.com/articles/harness-engineering.html>
+- OpenAI, *Harness engineering* – <https://openai.com/index/harness-engineering/>
+- Anthropic, *Building Effective AI Agents* – <https://www.anthropic.com/engineering/building-effective-agents>
 
 전체 레퍼런스 지도는 [13편](/post/ai-everything-13-glossary-references)에.
 
 ---
 
-👉 다음 편: [01. LLM과 토큰 — 예측 기계의 해부](/post/ai-everything-01-llm-and-token)
+다음 편: [01. LLM과 토큰 – 예측 기계의 해부](/post/ai-everything-01-llm-and-token)
