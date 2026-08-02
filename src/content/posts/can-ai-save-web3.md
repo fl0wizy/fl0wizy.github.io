@@ -1,5 +1,5 @@
 ---
-id: "future-of-web3-audit"
+id: "can-ai-save-web3"
 title: "AI는 web3를 구할 수 있을까"
 description: "AI가 web3에 미친 영향을 전반적으로 분석하고 견해를 작성했음"
 date: "2026-08-02 00:00"

@@ -284,11 +284,43 @@ export const profileData: ProfileData = {
 /**
  * 카테고리별 포스트 개수를 계산합니다.
  */
+// 카테고리 트리에서 해당 노드와 그 하위 노드 id를 전부 모은다.
+// 부모 카테고리(security, web3-blockchain)에는 글이 직접 달리지 않으므로,
+// 부모를 눌렀을 때 자손에 달린 글까지 보이게 하려면 이 목록이 필요하다.
+// 트리에 없는 id면 null.
+function collectSubtreeIds(categoryId: string, list: Category[] = categories): string[] | null {
+  for (const category of list) {
+    if (category.id === categoryId) {
+      const ids: string[] = [];
+      const walk = (node: Category) => {
+        ids.push(node.id);
+        node.children?.forEach(walk);
+      };
+      walk(category);
+      return ids;
+    }
+
+    if (category.children) {
+      const found = collectSubtreeIds(categoryId, category.children);
+      if (found) {
+        return found;
+      }
+    }
+  }
+
+  return null;
+}
+
+function matchesCategory(categoryId: string): (post: BlogPost) => boolean {
+  const ids = new Set(collectSubtreeIds(categoryId) ?? [categoryId]);
+  return post => post.published && ids.has(post.category);
+}
+
 export function getPostCountByCategory(categoryId: string): number {
   if (categoryId === 'all') {
     return blogPosts.filter(post => post.published).length;
   }
-  return blogPosts.filter(post => post.published && post.category === categoryId).length;
+  return blogPosts.filter(matchesCategory(categoryId)).length;
 }
 
 /**
@@ -298,7 +330,7 @@ export function getPostsByCategory(categoryId: string): BlogPost[] {
   if (categoryId === 'all') {
     return blogPosts.filter(post => post.published);
   }
-  return blogPosts.filter(post => post.published && post.category === categoryId);
+  return blogPosts.filter(matchesCategory(categoryId));
 }
 
 /**
