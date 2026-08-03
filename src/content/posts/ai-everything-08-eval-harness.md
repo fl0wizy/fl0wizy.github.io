@@ -8,7 +8,7 @@ tags: ["Eval", "LLMasJudge", "Rubric", "GeneratorEvaluator", "회귀평가", "�
 published: true
 ---
 
-이 글은 평가 하네스를 공부하며 정리한 노트다. eval이 왜 선택이 아니라 필수인지, 계산형 검사와 추론형 검사를 어디에 쓰는지, "했다는 말"과 "실제로 됐다"를 구분하는 환경 상태 기반 평가, 그리고 Generator-Evaluator 3-agent 구조까지 한 번에 훑는다.
+이 글에서는 eval이 왜 선택이 아니라 필수인지, 계산형 검사와 추론형 검사를 어디에 쓰는지, "했다는 말"과 "실제로 됐다"를 구분하는 환경 상태 기반 평가, 그리고 Generator-Evaluator 3-agent 구조까지 한 번에 훑는다.
 
 ---
 

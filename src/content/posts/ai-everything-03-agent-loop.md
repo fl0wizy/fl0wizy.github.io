@@ -8,7 +8,7 @@ tags: ["AgentLoop", "ReAct", "PlanAndExecute", "ToolCalling", "Handoff", "메시
 published: true
 ---
 
-이 글은 에이전트가 실제로 어떻게 돌아가는지 공부하며 정리한 노트다. 이번 글에서는 루프 7단계, 메시지 계층, tool calling의 구조, ReAct와 Plan-and-Execute의 선택 기준을 한 번에 훑어본다.
+이번 글에서는 루프 7단계, 메시지 계층, tool calling의 구조, ReAct와 Plan-and-Execute의 선택 기준을 한 번에 훑어본다.
 
 ---
 

@@ -8,7 +8,7 @@ tags: ["ClaudeCode", "Codex", "Antigravity", "Gemini", "AGENTS.md", "Hooks", "Pl
 published: true
 ---
 
-이 글은 실제 제품들을 하네스 관점에서 정리한 개념 노트다. 모델과 하네스라는 두 층위가 어떻게 다른지, 같은 회사·같은 모델군인 ChatGPT와 Codex가 왜 다른 결과를 내는지, Claude Code와 Codex의 구조는 어떻게 생겼는지, 그리고 요청 하나가 실제로 어느 기계에서 처리되는지 – 문자열이 토큰으로 번역되는 자리와 웹 검색이 실행되는 자리 – 까지 한 번에 훑어본다.
+이 글에서는 실제 제품들을 하네스 관점에서 읽는다. 모델과 하네스라는 두 층위가 어떻게 다른지, 같은 회사·같은 모델군인 ChatGPT와 Codex가 왜 다른 결과를 내는지, Claude Code와 Codex의 구조는 어떻게 생겼는지, 그리고 요청 하나가 실제로 어느 기계에서 처리되는지 – 문자열이 토큰으로 번역되는 자리와 웹 검색이 실행되는 자리 – 까지 한 번에 훑어본다.
 
 ---
 
@@ -19,8 +19,8 @@ published: true
 회사별로 이렇게 나란히 정리하기 쉽다.
 
 ```
-X OpenAI  : codex
-X Anthropic : claude code
+O OpenAI  : codex
+O Anthropic : claude code
 X Google  : gemini
 ```
 
@@ -38,7 +38,7 @@ X Google  : gemini
 
 이 혼동에는 이유가 있다. 2026년 구글 쪽 변화 때문이다. 구글은 2026년 I/O에서 Gemini CLI를 Antigravity CLI로 전환한다고 발표했다. 2026년 6월 18일부로 Gemini CLI와 Gemini Code Assist IDE 확장이 일부 요금제에서 요청 처리를 중단했고, Antigravity 2.0은 데스크톱 앱, Go 기반 CLI, SDK, Google Cloud 엔터프라이즈 티어로 구성된다. 이 네 가지가 하나의 agent harness를 공유하기 때문에, 코어 에이전트가 개선되면 어디서 쓰든 자동 반영된다. Node.js 기반이던 Gemini CLI를 Go로 재작성해 메모리와 시작 시간도 개선했다 (출처: [Google Developers Blog](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/), [Google I/O 2026 developer highlights](https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/)).
 
-구글이 자기 문서에서 **agent harness라는 단어를 1급 개념으로 쓴다는 사실 자체**가 이 시리즈의 논지를 뒷받침한다. 하네스는 이제 제품 아키텍처의 중심이다.
+구글이 자기 문서에서 **agent harness라는 단어를 1급 개념으로 쓴다는 사실 자체**가 상징적이다. 하네스는 이제 제품 아키텍처의 중심이다.
 
 ---
 
@@ -88,7 +88,7 @@ ChatGPT는 무엇인가에 답하고, Codex는 어떻게 고치는가를 실행�
 여러 저장소에서 같은 걸 쓴다     → Plugin으로 묶는다
 ```
 
-"이건 어디에 넣지?"라는 질문의 답도 같은 원리로 나온다.
+무엇을 어디에 둘지도 같은 원리로 정해진다.
 
 - **항상 알아야 하는 규칙**: `CLAUDE.md` 또는 `.claude/rules/`
 - **가끔 필요한 긴 절차**: Skill

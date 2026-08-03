@@ -8,7 +8,6 @@ tags: ["권한", "PromptInjection", "샌드박스", "AuditLog", "Hooks", "거버
 published: true
 ---
 
-이 글은 AI 에이전트의 안전과 권한을 공부하며 정리한 개념 노트다.
 이번 글에서는 강제력의 3단계(요청·집행·격리)와 부탁·집행의 구분, prompt injection, audit log와 운영 지표, 하네스의 노화 문제를 한 번에 훑어본다.
 
 ---
