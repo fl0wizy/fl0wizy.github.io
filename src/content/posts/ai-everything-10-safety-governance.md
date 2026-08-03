@@ -55,7 +55,7 @@ Human-in-the-loop도 최소 권한의 연장선이다. AI를 못 믿어서가 �
 
 ---
 
-## 3. Prompt Injection – 아직 안 풀린 문제
+## 3. Prompt Injection
 
 Prompt injection은 외부 문서나 웹페이지가 AI에게 악성 지시를 심어, 원래 사용자의 의도와 다르게 행동하게 만드는 공격이다. 비유하면 **AI가 읽는 문서 속에 가짜 상사의 지시가 숨어 있는 것**이다.
 
@@ -72,7 +72,7 @@ Prompt injection은 외부 문서나 웹페이지가 AI에게 악성 지시를 �
 
 에이전트가 이 페이지를 읽으면, 모델 입장에서는 도구 결과라는 이름으로 들어온 텍스트일 뿐이다. **사용자 지시와 구분할 근거가 문맥 안에 없다.**
 
-[OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)는 prompt injection, insecure output handling, supply chain vulnerabilities를 핵심 위험으로 다룬다. Simon Willison은 이 문제를 장기간 추적하며 단순 구분자만으로는 해결되지 않는다고 반복해 지적한다.
+웹·애플리케이션 보안 위험 목록을 공개하는 비영리 재단 OWASP의 [Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)는 prompt injection, insecure output handling, supply chain vulnerabilities를 핵심 위험으로 다룬다. Django 공동 창시자이자 LLM 보안 분야 저술가인 Simon Willison은 이 문제를 장기간 추적하며 단순 구분자만으로는 해결되지 않는다고 반복해 지적한다.
 
 방어 원칙은 다섯 가지다.
 
@@ -103,17 +103,17 @@ Secret 분리도 필수다. API 키, 비밀번호, 토큰은 AI가 필요하지 
 
 ---
 
-## 5. Audit log – 결과만 보면 이유를 모른다
+## 5. Audit log (감사 로그)
 
-AI 에이전트에는 감사 로그가 특히 중요하다. **결과만 보면 왜 그런 행동을 했는지 알기 어렵기 때문이다.** 좋은 감사 로그에는 사용자 요청, 사용한 모델(버전 포함), 읽은 문서, 호출한 도구, 도구 입력과 출력 요약, 승인한 사람, 실패와 재시도, 최종 결과가 남는다.
+Audit log는 누가, 언제, 무엇을, 왜 실행했는지를 시간 순으로 남긴 기록이다. AI 에이전트에는 감사 로그가 특히 중요하다. **결과만 보면 왜 그런 행동을 했는지 알기 어렵기 때문이다.** 좋은 감사 로그에는 사용자 요청, 사용한 모델(버전 포함), 읽은 문서, 호출한 도구, 도구 입력과 출력 요약, 승인한 사람, 실패와 재시도, 최종 결과가 남는다.
 
 Google 관점의 한마디가 이걸 잘 요약한다. 관찰 가능성이 하네스의 생명선이고, 에이전트가 뭘 했는지 추적하지 못하면 하네스가 아니라 블랙박스라는 것이다.
 
 ---
 
-## 6. 운영 지표 – 품질만이 아니다
+## 6. 운영 지표
 
-AI 하네스는 품질뿐 아니라 **비용과 속도**도 관리해야 한다. 도구 호출이 많고 컨텍스트가 길면 비용이 증가한다. 여러 evaluator를 돌리면 품질은 올라가지만 시간이 길어진다.
+운영 지표는 하네스가 실제로 어떻게 작동하고 있는지를 수치로 보여 주는 관측 항목이다. AI 하네스는 품질뿐 아니라 **비용과 속도**도 관리해야 한다. 도구 호출이 많고 컨텍스트가 길면 비용이 증가한다. 여러 evaluator를 돌리면 품질은 올라가지만 시간이 길어진다.
 
 지표는 여섯 가지로 추려진다.
 
@@ -128,7 +128,9 @@ AI 하네스는 품질뿐 아니라 **비용과 속도**도 관리해야 한다.
 
 ---
 
-## 7. 하네스도 낡는다 – Garbage Collection
+## 7. 하네스 가비지 컬렉션
+
+하네스 가비지 컬렉션은 더 이상 유효하지 않은 지시 파일, 중복 문서, 임시 스크립트, 낡은 규칙을 주기적으로 걷어내는 작업이다.
 
 Anthropic의 managed agents 글이 던지는 경고가 있다. 하네스는 **모델의 한계에 대한 가정**을 인코딩하기 때문에, 모델이 개선되면 그 가정이 stale해질 수 있다는 것이다. 시간이 지나면 문서가 오래되고, 정책이 바뀌고, 모델이 발전하고, 도구가 추가된다. 잘 설계된 하네스는 더하기만 하지 않고 뺄 줄도 안다.
 
@@ -144,9 +146,9 @@ Anthropic 관점에서 가장 과소평가된 위험이 이것이다. 하네스 
 
 ---
 
-## 8. UX도 안전장치다
+## 8. 안전장치로서의 UX
 
-안전은 백엔드 정책만의 문제가 아니다. **화면에서 사용자가 통제할 수 있어야 한다.** 디자인이 답해야 하는 질문들이 있다.
+안전장치로서의 UX는 사용자가 에이전트의 행동을 보고, 멈추고, 승인하고, 되돌릴 수 있게 하는 화면 설계를 말한다. 안전은 백엔드 정책만의 문제가 아니다. **화면에서 사용자가 통제할 수 있어야 한다.** 디자인이 답해야 하는 질문들이 있다.
 
 - 사용자는 에이전트가 지금 무엇을 하는지 아는가. 진행 상태, 단계 표시, 실행 로그 요약이 필요하다.
 - 사용자는 어디서 멈출 수 있는가. 중단, 되돌리기, 초안 저장, 재시도가 있어야 한다.
@@ -207,7 +209,7 @@ AI 기능에는 상태 모델도 필요하다. 대기 상태에서는 무엇을 
 ## 더 읽을거리
 
 - OWASP, *Top 10 for Large Language Model Applications* – <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
-- NIST, *AI RMF: Generative AI Profile (AI 600-1)* – <https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf>
+- NIST(미국 국립표준기술연구소), *AI RMF: Generative AI Profile (AI 600-1)* – <https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf>
 - Simon Willison, *Prompt injection* 시리즈 – <https://simonwillison.net/series/prompt-injection/>
 - Claude Code Docs, *Configure permissions* – <https://code.claude.com/docs/en/permissions>
 - Claude Code Docs, *Automate workflows with hooks* – <https://code.claude.com/docs/en/hooks-guide>

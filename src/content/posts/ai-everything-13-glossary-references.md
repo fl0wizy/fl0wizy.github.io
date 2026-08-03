@@ -119,10 +119,10 @@ Agent = Model + Harness
 - **Tool Calling** (담당자에게 업무 요청): 모델이 검색·파일 읽기·코드 실행 등을 요청하는 방식. 결과를 모델에게 잘 포장해 돌려줘야 한다.
 - **Client tool** (내 사무실 장비): 내 컴퓨터/애플리케이션에서 실행되는 도구. 사용자가 전부 통제할 수 있다.
 - **Server tool** (외부 대행 서비스): 제공자 인프라에서 실행되는 도구. 내 훅으로 막을 수 없다.
-- **MCP** (AI용 USB-C 포트): 외부 도구·데이터를 표준 방식으로 연결하는 프로토콜. 연결이 많아질수록 권한·보안도 설계해야 한다.
-- **A2A** (팀 간 업무 연락망): 에이전트가 다른 에이전트에게 일을 맡기고 조율하는 프로토콜. MCP는 도구 연결, A2A는 에이전트 협업이다.
-- **RAG** (사서가 책을 찾아 주는 방식): 답변 전에 관련 문서를 검색해 보여 주는 방식. 검색 품질이 낮으면 답변 품질도 낮다.
-- **Vector DB** (의미로 찾는 창고): 문서의 의미를 기준으로 검색하는 저장소. 저장을 잘한다고 검색까지 잘되는 건 아니다.
+- **MCP** (AI용 USB-C 포트): Model Context Protocol. Anthropic이 2024년 공개한, 외부 도구·데이터를 표준 방식으로 연결하는 개방 표준. 연결이 많아질수록 권한·보안도 설계해야 한다.
+- **A2A** (팀 간 업무 연락망): Agent2Agent Protocol. Google이 주도한, 에이전트가 다른 에이전트에게 일을 맡기고 조율하는 개방 표준. MCP는 도구 연결, A2A는 에이전트 협업이다.
+- **RAG** (사서가 책을 찾아 주는 방식): Retrieval-Augmented Generation. 답변 전에 외부 문서를 검색해 컨텍스트에 넣고 답하게 하는 방식. 검색 품질이 낮으면 답변 품질도 낮다.
+- **Vector DB** (의미로 찾는 창고): Vector Database. 문서의 의미를 기준으로 검색하는 저장소. 저장을 잘한다고 검색까지 잘되는 건 아니다.
 - **Embedding** (문서의 의미 좌표): 텍스트를 의미 공간의 숫자 벡터로 바꾼 것. 처음엔 "의미 주소" 정도로 이해하면 충분하다.
 
 ### 지시 파일과 스킬
@@ -145,15 +145,15 @@ Agent = Model + Harness
 - **Agent Teams** (같은 회의실의 협업팀): 팀 리드와 여러 에이전트가 공유 작업 목록으로 지속 협업하는 구조. 단순 작업에는 과하다.
 - **Shared Task List** (공동 체크리스트): 대기·진행중·완료 상태와 의존성을 함께 보는 목록. 실제 상태와 어긋나면 팀 전체가 잘못 움직인다.
 - **Context Boundary** (업무 칸막이): 어떤 정보를 함께 봐야 하고 어떤 정보는 떼어도 되는지 나누는 기준. 역할 이름으로 나누면 전달 손실이 생긴다.
-- **ReAct** (보면서 즉석으로 움직이기): 생각-행동-관찰을 반복하는 방식. 유연하지만 비용이 많이 든다.
-- **Plan-and-Execute** (계획 세우고 실행): 먼저 계획을 만든 뒤 단계별로 실행하는 방식. 구조가 분명한 작업에 유리하다.
+- **ReAct** (보면서 즉석으로 움직이기): Reasoning + Acting. 생각-행동-관찰을 반복하는 방식이자 2022년 논문 이름. 유연하지만 비용이 많이 든다.
+- **Plan-and-Execute** (계획 세우고 실행): 계획 후 실행. 먼저 계획을 만든 뒤 단계별로 실행하는 방식. 구조가 분명한 작업에 유리하다.
 - **Prompt Chaining** (릴레이 작업): 앞 단계 결과를 다음 단계 입력으로 넘긴다. 앞이 틀리면 뒤도 흔들린다.
 - **Routing** (접수 창구 분류): 요청을 보고 적절한 모델·도구·에이전트로 보낸다. 분류 기준이 흐리면 엉뚱한 담당자에게 간다.
 - **Parallelization** (여러 사람이 동시 준비): 독립 작업을 동시에 처리한다. 병합이 어렵거나 같은 파일을 동시 수정하면 위험하다.
 
 ### 평가와 검증
 
-- **Eval** (AI용 시험지): AI 결과를 테스트하고 점수화하는 절차. 한두 예시가 아니라 반복 가능한 기준이 필요하다.
+- **Eval** (AI용 시험지): Evaluation의 줄임말. AI 결과를 테스트하고 점수화하는 절차. 한두 예시가 아니라 반복 가능한 기준이 필요하다.
 - **Computational Sensor** (체온계, 맞춤법 검사기): 테스트·린터·타입 검사처럼 빠르고 결정적인 검사. 의미와 의도까지 판단한다고 기대하지 않는다.
 - **Inferential Sensor** (선생님의 서술형 채점): LLM 리뷰처럼 맥락을 읽고 판단하는 검사. 느리고 비싸며 결과가 흔들린다.
 - **Grader** (시험 채점자): 평가 점수를 매기는 함수/모델. 채점자도 틀린다.
@@ -262,7 +262,7 @@ Agent = Model + Harness
 - *I/O 2026 developer highlights: Antigravity, Gemini API, AI Studio* – <https://blog.google/innovation-and-ai/technology/developers-tools/google-io-2026-developer-highlights/>
 - *Announcing the Agent2Agent Protocol (A2A)* – <https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/>
 - *Developer's Guide to AI Agent Protocols* – <https://developers.googleblog.com/en/developers-guide-to-ai-agent-protocols/>
-- Google PAIR, *People + AI Guidebook* – <https://pair.withgoogle.com/guidebook/>
+- Google PAIR(People + AI Research), *People + AI Guidebook* – <https://pair.withgoogle.com/guidebook/>
 
 ### 프로토콜 · 표준
 
@@ -278,32 +278,32 @@ Agent = Model + Harness
 - **Self-Refine** (Madaan et al., 2023): 자기 피드백으로 반복 개선 – <https://arxiv.org/abs/2303.17651>
 - **Lost in the Middle** (Liu et al., 2023): 정보 위치가 성능을 바꾼다 – <https://arxiv.org/abs/2307.03172>
 - **SWE-bench** (Jimenez et al., 2023): 실제 GitHub 이슈 해결 벤치마크 – <https://arxiv.org/abs/2310.06770>
-- **SWE-agent** (Yang et al., 2024): ACI가 성능을 크게 바꾼다 – <https://arxiv.org/abs/2405.15793>
+- **SWE-agent** (Yang et al., 2024): Princeton 연구팀이 만든, GitHub 이슈를 코드 수정으로 해결하는 에이전트. ACI가 성능을 크게 바꾼다 – <https://arxiv.org/abs/2405.15793>
 - **AgentBench** (Liu et al., 2023): LLM을 에이전트로 평가 – <https://arxiv.org/abs/2308.03688>
 - **Voyager** (Wang et al., 2023): 개방형 환경의 자율 에이전트 – <https://arxiv.org/abs/2305.16291>
-- **ACON** (Kang et al., 2025): 장기 에이전트의 컨텍스트 압축 최적화 – <https://arxiv.org/abs/2510.00615>
+- **ACON** (Kang et al., 2025): Agent Context Optimization. 장기 에이전트의 컨텍스트 압축 최적화 – <https://arxiv.org/abs/2510.00615>
 - **Human-AI Interaction Guidelines** (Amershi et al., CHI 2019): AI UX 18원칙 – <https://doi.org/10.1145/3290605.3300233>
 - **UXAgent** (Wang et al., 2025): LLM 에이전트로 사용성 테스트 시뮬레이션 – <https://arxiv.org/abs/2504.09407>
 
 ### 보안 · 거버넌스
 
-- OWASP, *Top 10 for Large Language Model Applications* – <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
-- NIST, *AI RMF: Generative AI Profile (AI 600-1)* – <https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf>
-- Simon Willison, *Prompt injection* 시리즈 – <https://simonwillison.net/series/prompt-injection/>
+- OWASP(웹·애플리케이션 보안 비영리 재단), *Top 10 for Large Language Model Applications* – <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
+- NIST(미국 국립표준기술연구소), *AI RMF: Generative AI Profile (AI 600-1)* – <https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf>
+- Simon Willison(Django 공동 창시자이자 LLM 보안 분야 저술가), *Prompt injection* 시리즈 – <https://simonwillison.net/series/prompt-injection/>
 
 ### 프레임워크 · 기업 블로그
 
-- LangChain, *The Anatomy of an Agent Harness* – <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
+- LangChain(LLM 애플리케이션 개발 프레임워크 회사), *The Anatomy of an Agent Harness* – <https://www.langchain.com/blog/the-anatomy-of-an-agent-harness>
 - LangChain, *Improving Deep Agents with harness engineering* – <https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering>
 - LangChain, *Better Harness: A Recipe for Harness Hill-Climbing with Evals* – <https://www.langchain.com/blog/better-harness-a-recipe-for-harness-hill-climbing-with-evals>
 - LangChain, *Plan-and-Execute Agents* – <https://www.langchain.com/blog/planning-agents>
-- Birgitta Böckeler, *Harness engineering for coding agent users* (martinfowler.com) – <https://martinfowler.com/articles/harness-engineering.html>
-- Mitchell Hashimoto, *My AI Adoption Journey* (2026.02.05) – 하네스 관점을 명확히 사용한 초기 글
+- Birgitta Böckeler(ThoughtWorks의 AI 코딩 어시스턴트 분야 저술가), *Harness engineering for coding agent users* (martinfowler.com) – <https://martinfowler.com/articles/harness-engineering.html>
+- Mitchell Hashimoto(HashiCorp 공동 창업자, Ghostty 개발자), *My AI Adoption Journey* (2026.02.05) – 하네스 관점을 명확히 사용한 초기 글
 
 ### 배경 개념
 
-- Synopsys, *What is Wiring Harness?* – <https://www.synopsys.com/glossary/what-is-wiring-harness.html>
-- ISTQB Glossary, *test harness* – <https://glossary.istqb.org/en_US/term/test-harness>
+- Synopsys(반도체 설계 소프트웨어 회사), *What is Wiring Harness?* – <https://www.synopsys.com/glossary/what-is-wiring-harness.html>
+- ISTQB(국제 소프트웨어 테스팅 자격위원회) Glossary, *test harness* – <https://glossary.istqb.org/en_US/term/test-harness>
 
 ---
 
@@ -321,5 +321,3 @@ Agent = Model + Harness
 ---
 
 이전 편: [12. 실전 사례와 생태계](/post/ai-everything-12-cases-ecosystem)
-[00. 시리즈 지도로 돌아가기](/post/ai-everything-00-index)
-[내 학습 노트 팩트체크](/post/ai-study-notes-verified)
