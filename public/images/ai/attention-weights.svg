@@ -1,0 +1,170 @@
+<svg viewBox="0 0 1000 740" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+    <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="740" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">어텐션 참조도 계산 – 토큰 "그것"은 어느 토큰을 참고하는가</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="13">입력 문장 예시: "그 파일을 그것으로 고쳐줘" (토큰 일부 생략)</text>
+
+  <!-- ═══ 입력 토큰 행 ═══ -->
+  <text x="780" y="72" text-anchor="middle" fill="#8b7cf6" font-size="11" font-weight="600">현재 토큰</text>
+  <g text-anchor="middle">
+    <rect x="270" y="80" width="120" height="44" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="330" y="100" fill="#e8e8f0" font-size="15">그</text>
+    <text x="330" y="117" fill="#8a8aa0" font-size="10">벡터 x₁</text>
+    <rect x="420" y="80" width="120" height="44" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="480" y="100" fill="#e8e8f0" font-size="15">파일</text>
+    <text x="480" y="117" fill="#8a8aa0" font-size="10">벡터 x₂</text>
+    <rect x="570" y="80" width="120" height="44" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="630" y="100" fill="#e8e8f0" font-size="15">을</text>
+    <text x="630" y="117" fill="#8a8aa0" font-size="10">벡터 x₃</text>
+    <rect x="720" y="80" width="120" height="44" rx="8" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+    <text x="780" y="100" fill="#e8e8f0" font-size="15" font-weight="700">그것</text>
+    <text x="780" y="117" fill="#8a8aa0" font-size="10">벡터 x₄</text>
+  </g>
+
+  <!-- 토큰 → K 화살표 (수직) -->
+  <g stroke="#5a5a78" stroke-width="1.2" marker-end="url(#arr)">
+    <line x1="330" y1="124" x2="330" y2="171"/>
+    <line x1="480" y1="124" x2="480" y2="171"/>
+    <line x1="630" y1="124" x2="630" y2="171"/>
+    <line x1="780" y1="124" x2="780" y2="171"/>
+  </g>
+  <!-- 그것 → Q 직각 경로 -->
+  <path d="M 840 102 L 912 102 Q 920 102 920 110 L 920 171" fill="none" stroke="#5a5a78" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- 왼쪽 여백: 단계 설명 -->
+  <text x="24" y="150" fill="#b8b8cc" font-size="12" font-weight="600">Q · K 벡터 생성</text>
+  <text x="24" y="166" fill="#8a8aa0" font-size="11">각 토큰 × W_K, 현재 토큰 × W_Q</text>
+
+  <!-- ═══ K · Q 행 ═══ -->
+  <g text-anchor="middle" font-size="11.5">
+    <rect x="280" y="176" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="330" y="196" fill="#c9f5e3">K₁ = x₁·W_K</text>
+    <rect x="430" y="176" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="480" y="196" fill="#c9f5e3">K₂ = x₂·W_K</text>
+    <rect x="580" y="176" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="630" y="196" fill="#c9f5e3">K₃ = x₃·W_K</text>
+    <rect x="730" y="176" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="780" y="196" fill="#c9f5e3">K₄ = x₄·W_K</text>
+    <rect x="855" y="176" width="130" height="32" rx="7" fill="#0f1f19" stroke="#34d399" stroke-width="1.5"/>
+    <text x="920" y="196" fill="#c9f5e3" font-weight="700">Q = x₄·W_Q</text>
+  </g>
+
+  <!-- K → 원점수 화살표 (수직, 중심에서 왼쪽 22px) -->
+  <g stroke="#5a5a78" stroke-width="1.2" marker-end="url(#arr)">
+    <line x1="308" y1="208" x2="308" y2="291"/>
+    <line x1="458" y1="208" x2="458" y2="291"/>
+    <line x1="608" y1="208" x2="608" y2="291"/>
+    <line x1="758" y1="208" x2="758" y2="291"/>
+  </g>
+
+  <!-- Q 레일: Q 박스 아래에서 왼쪽으로, K 화살표와 교차하는 지점은 끊어서 표시 -->
+  <path d="M 920 208 L 920 244 Q 920 252 912 252 L 765 252" fill="none" stroke="#34d399" stroke-width="1.2" opacity="0.75"/>
+  <line x1="751" y1="252" x2="615" y2="252" stroke="#34d399" stroke-width="1.2" opacity="0.75"/>
+  <line x1="601" y1="252" x2="465" y2="252" stroke="#34d399" stroke-width="1.2" opacity="0.75"/>
+  <line x1="451" y1="252" x2="352" y2="252" stroke="#34d399" stroke-width="1.2" opacity="0.75"/>
+  <!-- 레일 분기점 -->
+  <circle cx="502" cy="252" r="2.5" fill="#34d399"/>
+  <circle cx="652" cy="252" r="2.5" fill="#34d399"/>
+  <circle cx="802" cy="252" r="2.5" fill="#34d399"/>
+  <!-- 레일 → 원점수 (수직, 중심에서 오른쪽 22px) -->
+  <g stroke="#34d399" stroke-width="1.2" opacity="0.75" marker-end="url(#arrG)">
+    <line x1="352" y1="252" x2="352" y2="291"/>
+    <line x1="502" y1="252" x2="502" y2="291"/>
+    <line x1="652" y1="252" x2="652" y2="291"/>
+    <line x1="802" y1="252" x2="802" y2="291"/>
+  </g>
+
+  <text x="24" y="258" fill="#b8b8cc" font-size="12" font-weight="600">① 내적 Q·Kᵢ = 원점수</text>
+  <text x="24" y="274" fill="#8a8aa0" font-size="11">아무 실수 값이 나온다</text>
+
+  <!-- ═══ 원점수 행 ═══ -->
+  <g text-anchor="middle" font-size="13">
+    <rect x="280" y="296" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="330" y="317" fill="#c9f5e3">−3.2</text>
+    <rect x="430" y="296" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="480" y="317" fill="#c9f5e3">18.4</text>
+    <rect x="580" y="296" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="630" y="317" fill="#c9f5e3">−8.8</text>
+    <rect x="730" y="296" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="780" y="317" fill="#c9f5e3">1.6</text>
+  </g>
+
+  <g stroke="#5a5a78" stroke-width="1.2" marker-end="url(#arr)">
+    <line x1="330" y1="328" x2="330" y2="391"/>
+    <line x1="480" y1="328" x2="480" y2="391"/>
+    <line x1="630" y1="328" x2="630" y2="391"/>
+    <line x1="780" y1="328" x2="780" y2="391"/>
+  </g>
+  <text x="24" y="356" fill="#b8b8cc" font-size="12" font-weight="600">② ÷ √d = 8 (d=64 가정)</text>
+  <text x="24" y="372" fill="#8a8aa0" font-size="11">내적 크기를 표준화한다</text>
+
+  <!-- ═══ 스케일 조정 행 ═══ -->
+  <g text-anchor="middle" font-size="13">
+    <rect x="280" y="396" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="330" y="417" fill="#c9f5e3">−0.40</text>
+    <rect x="430" y="396" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="480" y="417" fill="#c9f5e3">2.30</text>
+    <rect x="580" y="396" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="630" y="417" fill="#c9f5e3">−1.10</text>
+    <rect x="730" y="396" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="780" y="417" fill="#c9f5e3">0.20</text>
+  </g>
+
+  <g stroke="#5a5a78" stroke-width="1.2" marker-end="url(#arr)">
+    <line x1="330" y1="428" x2="330" y2="491"/>
+    <line x1="480" y1="428" x2="480" y2="491"/>
+    <line x1="630" y1="428" x2="630" y2="491"/>
+    <line x1="780" y1="428" x2="780" y2="491"/>
+  </g>
+  <text x="24" y="456" fill="#b8b8cc" font-size="12" font-weight="600">③ softmax = 참조도</text>
+  <text x="24" y="472" fill="#8a8aa0" font-size="11">합이 1인 비율로 바뀐다</text>
+
+  <!-- ═══ 참조도 행 ═══ -->
+  <g text-anchor="middle" font-size="13">
+    <rect x="280" y="496" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="330" y="517" fill="#c9f5e3">0.05</text>
+    <rect x="430" y="496" width="100" height="32" rx="7" fill="#241c08" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="480" y="517" fill="#fde68a" font-weight="700">0.82</text>
+    <rect x="580" y="496" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="630" y="517" fill="#c9f5e3">0.03</text>
+    <rect x="730" y="496" width="100" height="32" rx="7" fill="#0f1f19" stroke="#34d399"/>
+    <text x="780" y="517" fill="#c9f5e3">0.10</text>
+  </g>
+
+  <!-- 합류 버스: 각 참조도 → 아래 버스 → 중앙 화살표 -->
+  <g stroke="#5a5a78" stroke-width="1.2" stroke-linecap="round">
+    <line x1="330" y1="528" x2="330" y2="556"/>
+    <line x1="480" y1="528" x2="480" y2="556"/>
+    <line x1="630" y1="528" x2="630" y2="556"/>
+    <line x1="780" y1="528" x2="780" y2="556"/>
+    <line x1="330" y1="556" x2="780" y2="556"/>
+  </g>
+  <circle cx="480" cy="556" r="2.5" fill="#5a5a78"/>
+  <circle cx="630" cy="556" r="2.5" fill="#5a5a78"/>
+  <line x1="555" y1="556" x2="555" y2="583" stroke="#5a5a78" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <text x="24" y="556" fill="#b8b8cc" font-size="12" font-weight="600">④ Value 가중합</text>
+  <text x="24" y="572" fill="#8a8aa0" font-size="11">참조도 비율로 정보를 섞는다</text>
+
+  <!-- ═══ 새 표현 ═══ -->
+  <rect x="215" y="588" width="680" height="58" rx="9" fill="#12121f" stroke="#8b7cf6"/>
+  <text x="555" y="612" text-anchor="middle" fill="#e8e8f0" font-size="14">새 표현 = 0.05·V₁ + <tspan fill="#fbbf24" font-weight="700">0.82·V₂</tspan> + 0.03·V₃ + 0.10·V₄   (Vᵢ = xᵢ × W_V)</text>
+  <text x="555" y="634" text-anchor="middle" fill="#8a8aa0" font-size="12.5">→ "그것"의 표현에 "파일"의 정보가 82% 비중으로 섞여 들어간다</text>
+
+  <!-- 범례 -->
+  <rect x="215" y="666" width="12" height="12" rx="3" fill="none" stroke="#8b7cf6" stroke-width="1.5"/>
+  <text x="237" y="677" fill="#b8b8cc" font-size="12">학습으로 고정된 파라미터: W_Q · W_K · W_V (모델 성능의 원천)</text>
+  <rect x="215" y="690" width="12" height="12" rx="3" fill="none" stroke="#34d399" stroke-width="1.5"/>
+  <text x="237" y="701" fill="#b8b8cc" font-size="12">추론마다 새로 계산되는 중간값: Q · K · V · 원점수 · 참조도</text>
+
+  <text x="500" y="728" text-anchor="middle" fill="#66667e" font-size="11.5" font-style="italic">숫자는 설명용 예시 값이다. 실제 모델에서는 이 계산이 여러 어텐션 헤드와 여러 층에서 병렬로 반복된다.</text>
+</svg>
