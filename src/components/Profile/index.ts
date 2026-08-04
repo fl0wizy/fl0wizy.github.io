@@ -3,4 +3,5 @@ export { default as ExperienceSection } from './ExperienceSection';
 export { default as AwardsSection } from './AwardsSection';
 export { default as ProjectsSection } from './ProjectsSection';
 export { default as EducationSection } from './EducationSection';
+export { default as CertificationsSection } from './CertificationsSection';
 export { default as SkillsSection } from './SkillsSection';

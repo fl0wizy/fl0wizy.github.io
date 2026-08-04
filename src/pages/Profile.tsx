@@ -4,6 +4,7 @@ import {
   AwardsSection,
   ProjectsSection,
   EducationSection,
+  CertificationsSection,
   SkillsSection,
 } from '../components/Profile';
 import './Profile.css';
@@ -16,6 +17,7 @@ export default function Profile() {
       <AwardsSection />
       <ProjectsSection />
       <EducationSection />
+      <CertificationsSection />
       <SkillsSection />
     </div>
   );

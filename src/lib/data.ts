@@ -75,6 +75,12 @@ export interface Skill {
   tags: string[];
 }
 
+export interface Certification {
+  title: string;
+  issuer: string;
+  date: string;
+}
+
 export interface ProfileData {
   name: string;
   title: string;
@@ -85,6 +91,7 @@ export interface ProfileData {
   awards: Award[];
   projects: Project[];
   education: Education[];
+  certifications: Certification[];
   skills: Skill[];
 }
 
@@ -287,9 +294,9 @@ export const profileData: ProfileData = {
     {
       title: 'HuntingMaster (KISA) Web/Web3 Track Trainee',  // 프로그램명
       institution: 'KISA',                   // 기관명
-      subInfo: '우수 수료생',                 // 부가 정보 (선택사항)
+      subInfo: '우수 수료생 · Audit4ce 팀장',                 // 부가 정보 (선택사항)
       period: '2025-07 ~ 2025-10',           // 기간
-      description: 'Web과 Web3에 대한 전반적인 보안 지식을 습득했습니다.',
+      description: '웹해킹 이론과 DeFi(MEV·생태계 구조)를 학습하고, 팀 Audit4ce의 팀장으로 Web3 Audit 프로젝트(Flare FAsset · Trader Joe)를 이끌었습니다.',
       tags: ['Web Security', 'Web3', 'Audit', 'Bug Bounty'],
     },
     {
@@ -299,6 +306,23 @@ export const profileData: ProfileData = {
       period: '2026-02 ~ 2026-06',           // 기간
       description: 'Value Chain·EVM·DeFi·암호학·Cloud/Infra·LLM Security·ERC-4337 등 공격·방어 전반을 이수하고, 최종 프로젝트 BonDA를 수행했습니다.',
       tags: ['Solidity', 'Foundry', 'Web3', 'Audit', 'Threat Modeling'],
+    },
+  ],
+  certifications: [
+    {
+      title: 'JLPT N2',
+      issuer: '일본국제교육지원협회 (일본어능력시험)',
+      date: '2024-07',
+    },
+    {
+      title: '정보처리기능사',
+      issuer: '한국산업인력공단',
+      date: '2022-12',
+    },
+    {
+      title: '운전면허 2종 보통',
+      issuer: '경찰청',
+      date: '2021-02',
     },
   ],
   skills: [
