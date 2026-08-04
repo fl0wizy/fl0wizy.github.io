@@ -170,7 +170,7 @@ export function getCategoryLabel(id: string): string {
 export const profileData: ProfileData = {
   name: 'flowizy',
   title: 'SECURITY RESEARCHER',
-  bio: '관심 있는 것들을 공부하고 기록합니다.',
+  bio: '취약점은 코드 한 줄이 아니라 자산 흐름과 참여자 권한 구조에서 발생한다는 관점으로, 참여자별 위협 모델을 먼저 세우고 invariant가 깨지는 지점을 추적합니다. DA 레이어(EigenDA·Celestia·Avail) 대상 PoC·CVSS 포함 취약점 보고서 9건, DeFi·RWA 프로토콜 감사 경험이 있습니다.',
   profileImage: '/images/chaegeon.jpg', // 프로필 이미지 경로
   contacts: [
     { type: 'discord', label: 'DISCORD', value: '_flowizy' },
@@ -182,12 +182,26 @@ export const profileData: ProfileData = {
   ],
   experiences: [
     {
+      title: 'President of Layer-A',
+      company: 'Layer-A (아주대학교 블록체인 학회)',
+      period: '2026-08 ~ 2027-01',
+      description: '블록체인 학회 Layer-A 학회장으로 활동 중입니다.',
+      tags: ['블록체인', '학회 운영', '리더십'],
+      current: true,
+    },
+    {
+      title: 'Security Team Lead, Layer-A 4기',
+      company: 'Layer-A (아주대학교 블록체인 학회)',
+      period: '2025 하반기',
+      description: 'Web3 보안 스터디팀(6명) 커리큘럼 설계·운영. Ethernaut · Damn Vulnerable DeFi · onlypwner 전 과정 풀이와 주간 보안 사고 Case Study를 주도했습니다.',
+      tags: ['Web3 Security', 'Audit', '스터디 운영'],
+    },
+    {
       title: 'The 10th President of the Student Council',  // 직책
       company: 'Ajou University-department of cyber security',           // 회사명
-      period: '2025-01 ~ 2025-12',                 // 기간
+      period: '2025-02 ~ 2025-12',                 // 기간
       description: '2025년도 아주대학교 사이버보안학과 제10대 학생회장으로 역임.',  // 설명
       tags: ['학생회', '자치활동', '책임감'],  // 관련 기술 태그
-      current: true,                        // 현재 재직 중 여부 (보라색 강조)
     },
   ],
   awards: [
@@ -212,23 +226,44 @@ export const profileData: ProfileData = {
       description: 'Monad blitz 3rd에 참가해 프로젝트 완성도와 아이디어를 인정받아 4등을 기록했습니다.',
       tags: ['Monad', '경진대회', '프로토타이핑'],
     },
+    {
+      title: 'Hypersonic CTF 2026 (1위)',
+      organizer: 'Hypersonic',
+      period: '2026 상반기',
+      description: 'Hypersonic CTF 2026에서 1위를 기록했습니다.',
+      tags: ['CTF', 'Web3', '보안'],
+    },
   ],
   projects: [
     {
-      title: 'Visualize on-chain data',              // 프로젝트명
-      type: 'Data Analytics & Visualization',             // 프로젝트 유형
-      year: '2025-03 ~ 2025-06',                         // 연도
-      description: 'ARKHAM, DUNE, Etherscan 등과 같이 정적인 데이터에서 유의미한 데이터를 추출하고 이를 보기 쉽게 가시화한 프로젝트입니다.',
-      tags: ['Java', 'SpringBoot', 'Vue.js'],
-      link: 'https://github.com/fl0wizy/defi-audit-bot',  // 프로젝트 링크 (선택사항)
+      title: 'BonDA – DA 생태계 위협 모델링 & 모니터링',
+      type: 'Threat Modeling & Vulnerability Research',
+      year: '2026-05 ~ 2026-06',
+      description: 'EthereumDA(PeerDAS)·EigenDA·Celestia·Avail 4개 DA 레이어(총 $35.98B TVS · 73개 L2)를 STRIDE 위협 모델링하고 실시간 모니터링 대시보드를 구축했습니다. Ethereum 풀노드(EL/CL) 직접 운영으로 데이터를 자체 수집했고, PoC·CVSS 3.1 포함 정식 취약점 보고서 9건을 작성했습니다. 예: EigenDA Operator DoS – gRPC 플러드 PoC로 CPU 최대 ~800% 포화 실측.',
+      tags: ['STRIDE', 'DA Layer', 'PoC', 'CVSS'],
+      link: 'https://bonda.me',
+    },
+    {
+      title: 'hack-tree – 보안 지식 학습 플랫폼',
+      type: 'Full-stack & DevSecOps',
+      year: '2026-07 ~ 진행 중',
+      description: '웹해킹·포너블·CS 292개 보안 노드를 트리/공격체인 그래프로 탐색하는 초대제 플랫폼을 단독 설계·구축·운영 중입니다. 초대제 인증·RBAC 자체 구현(IDOR 방지·argon2·rate-limit, pytest 114개 검증), GitHub Actions→GHCR→SSH CI/CD(자동 롤백), Terraform + cloud-init으로 GCP 인프라 코드화까지 전 과정을 다룹니다.',
+      tags: ['Next.js', 'FastAPI', 'Terraform', 'CI/CD', 'DevSecOps'],
     },
     {
       title: 'Blockchain Audit Project',              // 프로젝트명
       type: 'DeFi Security & Audit',             // 프로젝트 유형
-      year: '2025-07 ~ 2025-10',                         // 연도
-      description: 'Flare, Trader Joe, Ekubo와 같은 정통 DEX부터 담보대출 시스템 등 DeFi 프로토콜 감사를 수행한 프로젝트입니다.',
-      tags: ['EVM', 'Solidity', 'CodeArena'],
-      link: 'https://github.com/fl0wizy/defi-audit-bot',  // 프로젝트 링크 (선택사항)
+      year: '2025-07 ~ 진행 중',                         // 연도
+      description: 'Flare FAsset(크로스체인 자산 시스템) 5주 감사를 시작으로 Trader Joe·Ekubo(DEX), Rootstock(사이드체인), Centrifuge v3.1(RWA)까지 참여자별 Attack Vector 도출 중심의 감사 방법론을 확장해 왔습니다.',
+      tags: ['EVM', 'Solidity', 'Audit', 'RWA'],
+    },
+    {
+      title: 'Visualize on-chain data',              // 프로젝트명
+      type: 'Data Analytics & Visualization',             // 프로젝트 유형
+      year: '2025-03 ~ 2025-06',                         // 연도
+      description: '다중 체인 약 2억 건의 온체인 데이터를 DB에 적재하고 노드 그래프·treemap·heatmap으로 가시화한 프로젝트입니다.',
+      tags: ['Java', 'SpringBoot', 'Vue.js'],
+      link: 'https://github.com/paran-timestamper/blockchain-analytics',
     },
   ],
   education: [
@@ -236,8 +271,8 @@ export const profileData: ProfileData = {
       title: 'Department of Cyber Security',
       institution: 'Ajou University',
       subInfo: '아주대학교 사이버보안학과',
-      period: '2022 ~ 현재',
-      description: '시스템 보안 및 탈중앙화를 중점적으로 공부하고 있습니다.',
+      period: '2022-03 ~ 2027-08 (졸업 예정)',
+      description: '시스템 보안 및 탈중앙화를 중점적으로 공부하고 있습니다. 정보보안 동아리 Whois · 블록체인 학회 Layer-A 활동.',
       tags: ['시스템 보안', '운영체제', '네트워크'],
       current: true,                        // 현재 재학 중 (파란색 강조)
     },
@@ -262,7 +297,7 @@ export const profileData: ProfileData = {
       institution: 'Theory x 두나무',                   // 기관명
       subInfo: 'A.K.A flowizy',                 // 부가 정보 (선택사항)
       period: '2026-02 ~ 2026-06',           // 기간
-      description: '전분야 보안의 전반적인 지식과 web3의 깊은 이해를 가지게 되었습니다.',
+      description: 'Value Chain·EVM·DeFi·암호학·Cloud/Infra·LLM Security·ERC-4337 등 공격·방어 전반을 이수하고, 최종 프로젝트 BonDA를 수행했습니다.',
       tags: ['Solidity', 'Foundry', 'Web3', 'Audit', 'Threat Modeling'],
     },
   ],
@@ -271,15 +306,29 @@ export const profileData: ProfileData = {
       name: 'Web3 security',                     // 스킬명
       category: 'Smart Contracts',          // 카테고리
       level: 'intermediate',                      // 수준: beginner, intermediate, advanced, expert
-      description: 'EVM, 가스 최적화 및 프로토콜 보안 패턴에 대한 깊은 이해를 보유하고 있습니다.',
-      tags: ['Solidity', 'Yul', 'Foundry'],
+      description: 'EVM·Foundry 기반 감사와 STRIDE 위협 모델링, DeFi invariant 분석(DEX/Lending/PerpDEX/Staking)을 수행합니다.',
+      tags: ['Solidity', 'EVM', 'Foundry', 'STRIDE'],
     },
     {
       name: 'Web Security',
       category: 'Network Security',
       level: 'intermediate',
-      description: '네트워크 보안 기술에 대한 깊은 이해를 보유하고 있습니다.',
-      tags: ['Burp Suite', 'XSS', 'SQLi', 'Wireshark', 'Nmap', 'business'],
+      description: 'SQLi·XSS·SSRF·인가 우회 등 웹해킹 워게임 다수 풀이 경험이 있습니다.',
+      tags: ['Burp Suite', 'XSS', 'SQLi', 'SSRF', 'JWT'],
+    },
+    {
+      name: 'Pwnable',
+      category: 'System Hacking',
+      level: 'intermediate',
+      description: '스택/힙 익스플로잇, ROP, Format String, Tcache 등 보호기법 우회 중심의 시스템 해킹을 다룹니다.',
+      tags: ['ROP', 'Heap', 'Tcache', 'Format String'],
+    },
+    {
+      name: 'Dev / Infra',
+      category: 'DevSecOps',
+      level: 'intermediate',
+      description: 'Python·Go·TypeScript로 개발하고, Docker·GCP·Terraform·CI/CD로 인프라를 코드화해 운영합니다.',
+      tags: ['Python', 'Go', 'TypeScript', 'Docker', 'Terraform'],
     },
   ],
 };
