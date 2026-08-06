@@ -288,7 +288,7 @@ export const profileData: ProfileData = {
       institution: 'Hspace',                   // 기관명
       subInfo: '인턴',                 // 부가 정보 (선택사항)
       period: '2025-07 ~ 2025-08',           // 기간
-      description: 'Web과 Web3, 인프라에 대한 전반적인 지식을 습득했습니다.',
+      description: 'Web과 Web3, 인프라에 대한 전반적인 지식을 습득하고, 보안 커뮤니티 운영 활동을 수행하였습니다.',
       tags: ['Web Security', 'Web3', 'Secureum', 'DEFCON'],
     },
     {
