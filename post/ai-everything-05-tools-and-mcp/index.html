@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <title>AI의 모든 것 (05) – 도구 엔지니어링과 MCP: 버튼 200개짜리 리모컨을 만들지 마라 | flowizy's DevLog</title>
+    <meta name="description" content="도구 폭발 문제와 범위 설계, MCP vs A2A, Skill을 업무 매뉴얼로 만드는 법.">
+    <meta property="og:title" content="AI의 모든 것 (05) – 도구 엔지니어링과 MCP: 버튼 200개짜리 리모컨을 만들지 마라 | flowizy's DevLog">
+    <meta property="og:description" content="도구 폭발 문제와 범위 설계, MCP vs A2A, Skill을 업무 매뉴얼로 만드는 법.">
+    <meta property="og:url" content="https://fl0wizy.github.io/post/ai-everything-05-tools-and-mcp">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://fl0wizy.github.io/post/ai-everything-05-tools-and-mcp">
+    
+    
+    
+    
+    
+    
+    
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="xBpPKxzhz-8Y708fYBi6IG1Du6zn0v_yKr4Hm-4PG5g">
+    <meta name="theme-color" content="#0d0d0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?')
+            .replace(/^\/+/, '/');
+
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.replace(/\/$/, '') + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-DWKahj0y.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-B8gBuBl2.css">
+  </head>
+  <body>
+    <div id="root"><div class="layout"><aside class="sidebar"><div class="sidebar-logo"><div class="logo-container"><div class="logo-image-wrapper"><img alt="flowizy" class="logo-profile-image" src="/images/profile.jpg"></div><div class="logo-text"><h1>flowizy's DevLog</h1><p>SECURITY RESEARCHER</p></div></div></div><nav class="sidebar-nav"><a class="nav-item " href="/profile" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path></svg><span>PROFILE</span></a><a class="nav-item " href="/" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>BLOG</span></a></nav><div class="sidebar-categories"><div class="categories-header"><span>CONTENT CATEGORIES</span></div><div class="categories-list"><div class="category-item-wrapper"><button class="category-item selected level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><span class="category-name">전체</span><span class="post-count ">21</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span><span class="category-name">보안(Security)</span><span class="post-count subtle">7</span></button><div class="category-children"><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #6f9fd8;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="category-name">Web Security</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span><span class="category-name">Web3 / Blockchain</span><span class="post-count subtle">7</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #74c195;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span><span class="category-name">Reversing</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #e6a572;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></span><span class="category-name">Pwn</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #db8fb4;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span class="category-name">Crypto</span><span class="post-count subtle">0</span></button></div></div></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a3c76d;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span><span class="category-name">AI</span><span class="post-count subtle">14</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #6fbecf;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span><span class="category-name">개발(Development)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #d4c277;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg></span><span class="category-name">여행(Travel)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #9ca3af;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="category-name">일상(Daily)</span><span class="post-count subtle">0</span></button></div></div></div></aside><main class="main-content"><div class="post-page" style="--cat: #a3c76d;"><div class="post-layout"><header class="post-head"><a class="back-link" href="/" data-discover="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>BACK TO LIST</a><div class="post-category-line"><span class="post-category-badge">AI</span></div><h1 class="post-title">AI의 모든 것 (05) – 도구 엔지니어링과 MCP: 버튼 200개짜리 리모컨을 만들지 마라</h1><div class="post-meta"><span class="post-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-08-02 / 09:50</span><span class="post-relative-time">약 4일 전</span><span class="post-reading-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>약 9분</span></div></header><div class="post-container"><article class="post-content"><p>이번 글에서는 도구 레이어의 5가지 책임, 도구 폭발 문제와 범위 설계, MCP와 A2A의 차이, Skill과 권한 설계를 한 번에 훑어본다.</p>
+<hr>
+<h2 id="heading-0">1. 도구(tool)의 정의</h2>
+<p>도구(tool)는 모델이 텍스트 생성 이외의 행동을 수행하기 위해 호출하는 함수다. 말 밖의 행동을 담당하는 부분인 셈이다. AI에게 도구란 검색, 계산, 파일 읽기, 이메일 초안 작성, 티켓 조회, DB 질의, 브라우저 클릭, 코드 실행이다. 도구 없는 AI가 기억력 좋은 사람이라면, 도구 있는 AI는 <strong>노트북·계산기·인터넷·회사 시스템을 가진 직원</strong>이다. 언어모델이 스스로 도구 호출 시점을 학습하게 한 2023년 Meta 논문 <a href="https://arxiv.org/abs/2302.04761" node="[object Object]" target="_blank" rel="noopener noreferrer">Toolformer</a>가 보여주듯, 언어 모델은 산술 계산이나 최신 사실 조회처럼 혼자서 약한 작업을 외부 도구로 보완할 수 있다.</p>
+<p>"도구를 연결했다"는 말은 API 주소를 붙였다는 뜻이 아니다. 도구 레이어는 다섯 가지 책임을 함께 맡는다.</p>
+<ul>
+<li><strong>등록</strong>: 어떤 도구가 있고 언제 써야 하는지 모델에게 알려 준다.</li>
+<li><strong>스키마 검증</strong>: 입력값의 이름·타입·필수 항목을 확인한다.</li>
+<li><strong>권한 확인</strong>: 읽기/쓰기/삭제/전송처럼 위험도가 다른 행동을 구분한다.</li>
+<li><strong>격리 실행</strong>: 가능한 한 샌드박스나 제한된 환경에서 실행한다.</li>
+<li><strong>결과 포맷팅</strong>: 도구 결과를 모델이 읽기 쉬운 관찰 메시지로 바꾼다.</li>
+</ul>
+<hr>
+<h2 id="heading-1">2. 좋은 도구 이름과 설명</h2>
+<p>이름은 레스토랑 메뉴판이다. 메뉴판에 "요리1"이라고 적혀 있으면 손님도 직원도 헷갈린다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>X do_stuff, handle, process, run
+O search_policy_docs, create_gmail_draft, run_unit_tests, lookup_order_status
+</code></pre></div>
+<p>설명은 사람용 API 문서가 아니라 모델용 판단 안내문이다. Anthropic의 <em>Writing effective tools for AI agents</em> 는 도구 설명이 에이전트 성능에 <strong>직접 영향</strong>을 준다고 설명한다. 좋은 도구 설명은 "이 함수는 무엇을 한다"에서 끝나지 않고, 언제 쓰는지, 언제 쓰면 안 되는지, 입력값 형식, 비슷한 도구와의 경계, 실패하면 어떤 메시지가 오는지까지 담는다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>search_policy_docs(query):
+  사내 정책 문서에서 관련 조항을 검색한다.
+  사용자가 휴가, 비용 처리, 보안, 개인정보와 관련된 질문을 할 때 사용한다.
+  외부 법령 검색에는 사용하지 않는다. (→ search_law 사용)
+  출력은 관련 문서 제목, 조항 요약, 마지막 수정일을 포함한다.
+</code></pre></div>
+<p>이것이 곧 ACI(Agent-Computer Interface) 설계다. 사람에게 좋은 인터페이스와 에이전트에게 좋은 인터페이스는 다르다. 이 이야기는 <a href="/post/ai-everything-12-cases-ecosystem" node="[object Object]" target="_blank" rel="noopener noreferrer">12편</a>에서 이어진다.</p>
+<hr>
+<h2 id="heading-2">3. 위험도로 도구를 나눈다</h2>
+<p>도구는 위험도로 나눠 다르게 다룬다. 파일 읽기·문서 검색·테스트 실행처럼 위험도가 낮은 것은 자동 허용할 수 있다. 파일 수정·초안 작성·내부 문서 업데이트 같은 중간 위험도는 로그를 남기고 경우에 따라 확인을 받는다. 이메일 전송·결제·삭제·배포처럼 위험도가 높은 것은 사람 승인이 필수다. 비밀키 노출이나 무단 데이터 추출은 금지 영역으로, 자동 차단한다.</p>
+<p>특히 중요한 설계 원칙이 하나 있다. <strong>바로 전송하는 도구와 초안을 만드는 도구는 반드시 분리한다.</strong> <code>send_email</code>과 <code>create_email_draft</code>는 다른 도구다.</p>
+<hr>
+<h2 id="heading-3">4. 도구 출력의 토큰 효율</h2>
+<p>검색 결과 100개를 그대로 넣는 것보다 상위 5개 + 요약 + 출처 + 신뢰도 + 날짜를 주는 편이 낫다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">json</span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code class="language-json">{
+  "top_results": [
+    {
+      "title": "휴가 정책 2026",
+      "summary": "연차는 반차 단위로 신청 가능하며, 팀장 승인이 필요하다.",
+      "last_updated": "2026-02-12",
+      "source": "docs/hr/vacation.md"
+    }
+  ],
+  "uncertainty": "정책은 2026년 2월 기준이며, 노무 이슈는 HR 확인 필요"
+}
+</code></pre></div>
+<p>큰 결과는 대화창이 아니라 파일로 보낸다. LLM 애플리케이션 개발 프레임워크를 만드는 회사인 LangChain의 하네스 글이 강조하는 실무 습관이다. 큰 검색 결과, 긴 로그, 많은 파일 목록을 모델 컨텍스트에 그대로 밀어 넣지 말고 <strong>파일이나 작업 공간에 저장</strong>하고, 모델에게는 어디에 저장했는지(경로), 핵심 요약은 무엇인지, 다음에 어떤 부분을 읽으면 되는지만 준다. 이삿짐센터가 모든 상자를 거실에 쏟아 놓지 않고 상자마다 라벨을 붙여 방별로 옮겨 두는 것과 같다. 필요한 상자만 열어 보는 식이다.</p>
+<hr>
+<h2 id="heading-4">5. 도구 폭발 문제</h2>
+<p>도구 폭발 문제는 에이전트에 붙인 도구 수가 늘어날수록 선택 정확도와 컨텍스트 효율이 함께 떨어지는 현상을 가리킨다. 도구를 많이 붙일수록 좋아 보이지만, <strong>실제로는 정반대의 일이 일어날 수 있다.</strong> 도구가 많아지면 모델이 매번 선택해야 할 것이 늘어나고, 각 도구의 설명을 읽어야 해서 컨텍스트를 소모하고, 비슷한 도구 사이에서 잘못 고를 가능성이 커진다. 집 안의 리모컨과 같다. 버튼이 80개인 리모컨은 강력해 보이지만, 전원을 켜고 음량을 조절하는 기본 작업조차 더 불편해진다.</p>
+<p>도구 범위 전략은 다섯 단계다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>1. 이 업무에 반드시 필요한 도구를 적는다
+2. 읽기 도구와 쓰기 도구를 분리한다
+3. 위험한 도구는 '승인 필요'로 표시한다
+4. 비슷한 도구는 하나로 합치거나 이름을 더 명확히 한다
+5. 장시간 작업에서는 단계별로 도구를 동적으로 열어 준다
+</code></pre></div>
+<p>리서치 에이전트라면 단계별 도구 개방이 이런 모습이 된다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>1단계 (조사)   : web_search, file_search, read_note
+2단계 (초안)   : + write_draft
+3단계 (발송)   : + send_email  ← 반드시 사람 승인
+</code></pre></div>
+<p>이처럼 <strong>도구를 단계별로 여는 방식이 곧 하네스 설계다.</strong></p>
+<p>도구가 정말 많을 때는 모든 도구 설명을 컨텍스트에 넣는 것 자체가 낭비다. OpenAI는 tool search로 큰 도구 표면을 런타임에 지연 로딩할 수 있다고 설명하고, Claude는 MCP Tool Search로 도구 검색·스케일링을 다룬다. 공식 문서는 이 방식이 일반적으로 도구 정의 컨텍스트를 <strong>85% 이상 줄인다</strong>고 설명한다. 백화점 안내 데스크와 같다. 모든 매장 직원을 한곳에 세워 두지 않고, 먼저 안내 데스크에서 어떤 매장이 필요한지 찾은 다음 해당 매장으로 이동한다.</p>
+<hr>
+<h2 id="heading-5">6. MCP (Model Context Protocol)</h2>
+<p>MCP(Model Context Protocol)는 Anthropic이 2024년 공개한, AI 애플리케이션이 외부 도구와 데이터 소스에 연결하기 위한 <strong>공개 표준</strong>이다. AI용 USB-C 포트에 해당한다. USB-C 포트에 다양한 장치를 꽂듯, 여러 서비스와 도구를 AI에 연결한다. Claude Code 문서는 MCP 서버를 통해 Jira, Sentry, Statsig, PostgreSQL, Figma, Slack, Gmail draft 등과 연결할 수 있다고 설명한다. OpenAI도 Responses API에서 built-in tools, function calling, tool search, remote MCP servers를 쓸 수 있다고 설명한다.</p>
+<p>MCP와 Skill은 함께 쓰인다. MCP가 도구에 연결되는 전선이라면, Skill은 그 도구를 어떤 순서와 기준으로 쓸지 알려 주는 매뉴얼이다. MCP가 데이터베이스에 연결해 준다고 해서 Claude가 우리 회사의 테이블 의미를 자동으로 아는 게 아니다. 테이블 의미, 개인정보 주의사항, 조회 가능 범위 같은 <strong>업무 지식은 Skill이나 CLAUDE.md에 담아야 한다.</strong></p>
+<p>도입 시 주의할 점도 있다. 연결할수록 확인할 것도 늘어난다. 외부 도구 접근은 곧 권한·보안·데이터 노출·잘못된 실행 위험이다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>O 처음에는 꼭 필요한 MCP만 연결한다
+O 읽기 전용부터 시작한다
+O 중요한 행동은 승인 흐름과 Hook으로 감싼다
+</code></pre></div>
+<hr>
+<h2 id="heading-6">7. MCP vs A2A – 도구 연결 vs 에이전트 협업</h2>
+<p>A2A(Agent2Agent Protocol)는 에이전트끼리 통신하기 위한 개방 표준이다. 둘 다 에이전트가 혼자 답변만 만들던 단계에서 벗어나게 하지만, 방향이 다르다.</p>
+<table><thead><tr><th>구분</th><th><strong>MCP</strong></th><th><strong>A2A (Agent2Agent)</strong></th></tr></thead><tbody><tr><td>중심 질문</td><td>이 에이전트가 어떤 <strong>도구와 데이터</strong>를 어떻게 쓸까?</td><td>어떤 <strong>에이전트</strong>에게 어떤 일을 맡기고 결과를 어떻게 합칠까?</td></tr><tr><td>연결 대상</td><td>도구, API, 데이터 소스</td><td>다른 에이전트, 원격 에이전트, 전문 에이전트</td></tr><tr><td>하네스 계층</td><td>도구 연결 계층</td><td>에이전트 협업 계층</td></tr><tr><td>설계 초점</td><td>도구 이름, 스키마, 권한, 오류 처리</td><td>역할, 위임, 상태 공유, 결과 통합</td></tr><tr><td>일상 비유</td><td>표준 공구함과 연결 포트</td><td>팀장과 전문가들의 업무 분담</td></tr></tbody></table>
+<p>둘은 경쟁 관계가 아니라 실제로는 함께 쓰인다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>오케스트레이터 에이전트
+ ├─ (A2A: 일을 맡긴다) → 항공권 에이전트 ── (MCP: 도구를 쓴다) → 항공권 API
+ └─ (A2A: 일을 맡긴다) → 일정 에이전트   ── (MCP: 도구를 쓴다) → 캘린더 API
+</code></pre></div>
+<p>판단 기준은 단순하다. 도구가 많아서 문제라면 MCP 관점으로 정리한다(도구 스키마, 권한, tool search, 오류 처리). 사람이 나누어 맡을 만큼 역할이 다른 일이라면 A2A 관점으로 정리한다(역할, 위임 경계, 상태 전달, 결과 병합). 이 구분이 흐려지면 설계가 복잡해진다. 도구 하나만 잘 호출하면 되는 일을 여러 에이전트에게 나누면 오히려 느려진다.</p>
+<p>A2A는 구글이 시작해 Linux Foundation에 기증한 프로토콜이다. 구글이 표준화의 이유로 내세우는 관찰 가능성 이야기는 <a href="/post/ai-everything-10-safety-governance" node="[object Object]" target="_blank" rel="noopener noreferrer">10편</a>에서 다룬다.</p>
+<hr>
+<h2 id="heading-7">8. Skill</h2>
+<p>Skill은 반복 업무의 절차·자료·예시를 폴더 하나로 패키징해 필요할 때만 불러 쓰는 단위다. Claude Skills는 반복 업무를 매번 다시 설명하는 프롬프트가 아니라 <strong>재사용 가능한 업무 매뉴얼</strong>로 만드는 방법이다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>my-skill/
+├── SKILL.md          ← 필수. 이것 하나면 최소 요건 충족
+├── references/       ← 선택. 긴 자료를 필요할 때만 열기
+│   ├── examples.md
+│   └── template.md
+├── templates/        ← 선택. 반복 산출물 형식
+└── scripts/          ← 선택. 결정적으로 처리할 일
+</code></pre></div>
+<p>잘 작동하는 스킬은 멋진 프롬프트가 아니라, 반복 업무를 위한 작은 업무 매뉴얼이다.</p>
+<p>CLAUDE.md와 Skill의 차이는 다음과 같다. CLAUDE.md가 회사 전체 안내서라면 Skill은 특정 업무 매뉴얼이다. CLAUDE.md는 프로젝트·저장소 맥락(기술 스택, 테스트 명령, 팀 규칙)을 담고, Skill은 반복 가능한 작업 능력(트리거, 워크플로우, 출력 형식, 예시)을 담는다. 집안 비유로 하면 "우리 집은 분리수거를 화요일 밤에 한다"는 CLAUDE.md, "종이 상자는 테이프를 떼고 접어서 이 박스에 넣는다"는 Skill이다.</p>
+<p>결정적인 차이는 언제 읽히는가다. <strong>CLAUDE.md는 세션마다 항상 들어가고, Skill 본문은 관련 요청이 있을 때만 들어간다.</strong> 긴 절차를 CLAUDE.md에 넣으면 매 세션 비용이 들고, Skill에 넣으면 쓸 때만 든다.</p>
+<p>잘 작동하는 Skill의 구성요소는 다섯 가지다.</p>
+<ol>
+<li><strong>YAML 트리거 헤더</strong>: <code>name</code>, <code>description</code>. description은 소개문이 아니라 트리거 규칙이다.</li>
+<li><strong>Overview</strong>: Claude가 지금 어떤 역할인지 빠르게 이해하게 하는 요약.</li>
+<li><strong>Workflow</strong>: 번호 붙은 단계별 순서. 한 단계 = 하나의 행동.</li>
+<li><strong>Output Format</strong>: 길이·구조·톤·형식. 이건 곧 평가 기준이기도 하다.</li>
+<li><strong>Examples &amp; Edge Cases</strong>: 정상 입력 1개 + 예외 입력 1개는 최소. 실전용이면 3~5개.</li>
+</ol>
+<p>description 작성 요령은 다음과 같다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">yaml</span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code class="language-yaml"># X 나쁨
+description: 제안서 작성을 도와드립니다.
+
+# O 좋음
+description: &gt;
+  이 스킬은 고객 제안서를 작성합니다.
+  "제안서 써줘", "견적 제안 만들어줘", "RFP 답변 초안",
+  "고객 대상 제안 문서", "세일즈 덱 초안" 같은 요청에 사용합니다.
+  내부 기획서나 개발 스펙 문서에는 사용하지 않습니다.
+</code></pre></div>
+<p>사용자가 실제로 말할 법한 표현을 5~7개 넣고, "이럴 때는 사용하지 말라"는 <strong>부정 경계</strong>를 넣고, 1인칭 소개가 아니라 3인칭 설명으로 쓴다.</p>
+<p>망가진 Skill은 다섯 가지 유형으로 나타난다. 침묵하는 스킬은 써야 할 때 실행이 안 되는 경우로, description이 모호한 게 원인이니 사용자 표현을 description에 추가한다. 하이재커는 엉뚱한 요청에도 실행되는 경우로, 범위가 넓고 부정 경계가 없는 게 원인이니 "이럴 때는 쓰지 말 것"을 명시한다. 표류하는 스킬은 결과가 매번 다른 경우로, 워크플로우와 출력 기준이 모호한 게 원인이니 테스트 가능한 지시로 바꾼다. 유리 멘탈 스킬은 예외 입력에서 깨지는 경우로, edge case가 부족한 게 원인이니 이상하거나 모순되거나 부족한 입력을 예시로 추가한다. 과한 의욕은 시키지 않은 섹션을 덧붙이는 경우로, 금지 사항이 없는 게 원인이니 출력 범위와 금지 행동을 명시한다.</p>
+<p>배포 전에는 다섯 가지를 테스트한다. 완벽한 입력에서 기대한 결과가 나오는가(정상 경로), 정보가 부족할 때 먼저 질문하는가(최소 입력), 모순·오타·긴 입력·다른 언어에서 무너지지 않는가(예외 상황), 쓰면 안 되는 요청에서 조용히 비활성인가(부정 테스트), 같은 입력 3번에 구조와 품질이 일관적인가(반복 테스트). <strong>Skill도 작은 하네스다. 배포 전 eval을 가져야 한다.</strong> 이 이야기는 <a href="/post/ai-everything-08-eval-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">08편</a>에서 이어진다.</p>
+<p>보안 위험도 있다. Skill은 지시뿐 아니라 스크립트와 리소스를 포함할 수 있다. Anthropic 공식 블로그도 악의적인 스킬이 환경에 취약점을 만들거나 데이터 유출, 의도하지 않은 행동을 유도할 수 있다고 경고한다. <strong>남이 만든 Skill은 편리한 매뉴얼이 아니라 실행될 수 있는 업무 절차다.</strong> 신뢰하기 전에 읽고 검사하는 게 순서다. Plugin은 더 위험하다. Skill + Hook + Subagent + MCP 연결이 한 묶음으로 들어오기 때문이다. 설치 전에 어떤 스크립트가 실행되는지, 어떤 권한을 요구하는지, 어떤 외부 도구에 연결되는지 확인하는 수밖에 없다.</p>
+<hr>
+<h2 id="heading-8">9. 권한(permissions)</h2>
+<p>권한(permissions)은 모델이 요청한 행동을 하네스가 실제로 허용할지 결정하는 규칙 집합이다. 하네스의 안전벨트에 해당한다. Claude Code의 permissions 문서는 <code>allow</code> / <code>ask</code> / <code>deny</code> 규칙과 <code>deny → ask → allow</code> 평가 순서를 설명한다.</p>
+<p>핵심 원칙은 <a href="/post/ai-everything-03-agent-loop" node="[object Object]" target="_blank" rel="noopener noreferrer">03편</a>에서 본 그대로다. <strong>모델의 판단과 시스템의 집행을 분리한다.</strong> 모델이 괜찮아 보인다고 판단해도, 실제 이메일 전송·결제·삭제·배포는 하네스의 권한 정책을 통과해야 한다. 구체적인 정책 설계와 설정 예시는 <a href="/post/ai-everything-10-safety-governance" node="[object Object]" target="_blank" rel="noopener noreferrer">10편</a>에서 다룬다.</p>
+<hr>
+<h2 id="heading-9">10. 정리</h2>
+<p>도구 레이어는 등록, 스키마 검증, 권한 확인, 격리 실행, 결과 포맷팅의 다섯 가지를 함께 맡는다. 도구 이름은 메뉴판이고 설명은 모델용 판단 안내문이라, 언제 쓰면 안 되는지까지 써야 한다. 도구가 많다고 똑똑해지지 않는다. 선택 부담과 컨텍스트 부담이 늘어날 뿐이고, 그래서 도구는 단계별로 열어 준다. 이게 하네스 설계다. MCP는 도구 연결(USB-C), A2A는 에이전트 협업으로 경쟁이 아니라 층이 다르다. Skill은 긴 프롬프트가 아니라 업무 매뉴얼이고, progressive disclosure로 컨텍스트를 아낀다. description은 소개문이 아니라 트리거 규칙이니 부정 경계를 반드시 넣는다. 남이 만든 Skill과 Plugin은 실행되는 코드이므로 읽고 검사한 뒤 설치한다. 권한은 <code>deny → ask → allow</code> 순으로 평가되며, 위험한 도구는 반드시 ask 또는 deny에 둔다.</p>
+<hr>
+<h2 id="heading-10">더 읽을거리</h2>
+<ul>
+<li>Anthropic, <em>Writing effective tools for AI agents</em> – <a href="https://www.anthropic.com/engineering/writing-tools-for-agents" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/writing-tools-for-agents</a></li>
+<li>Anthropic, <em>Equipping agents for the real world with Agent Skills</em> – <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills</a></li>
+<li>Model Context Protocol 공식 문서 – <a href="https://modelcontextprotocol.io/docs/getting-started/intro" node="[object Object]" target="_blank" rel="noopener noreferrer">https://modelcontextprotocol.io/docs/getting-started/intro</a></li>
+<li>A2A Protocol – <a href="https://a2a-protocol.org/latest/" node="[object Object]" target="_blank" rel="noopener noreferrer">https://a2a-protocol.org/latest/</a></li>
+<li>Timo Schick et al., <em>Toolformer</em> – <a href="https://arxiv.org/abs/2302.04761" node="[object Object]" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2302.04761</a></li>
+<li>김동학, 《하네스 엔지니어링 백과사전》 제4장·제7장 – <a href="https://wikidocs.net/346796" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/346796</a></li>
+</ul>
+<hr>
+<p>다음 편: <a href="/post/ai-everything-06-harness-products" node="[object Object]" target="_blank" rel="noopener noreferrer">06. Claude Code · Codex · Antigravity</a>
+이전 편: <a href="/post/ai-everything-04-context-engineering" node="[object Object]" target="_blank" rel="noopener noreferrer">04. 컨텍스트 엔지니어링</a></p></article><div class="post-tags"><span class="tag">#MCP</span><span class="tag">#A2A</span><span class="tag">#ToolCalling</span><span class="tag">#Skill</span><span class="tag">#도구설계</span><span class="tag">#권한</span></div></div><aside class="post-rail"><div class="post-rail-inner"><nav class="rail-block toc"><div class="rail-head">ON THIS PAGE</div><ul class="toc-list"><li class="toc-item level-2 "><a href="#heading-0">1. 도구(tool)의 정의</a></li><li class="toc-item level-2 "><a href="#heading-1">2. 좋은 도구 이름과 설명</a></li><li class="toc-item level-2 "><a href="#heading-2">3. 위험도로 도구를 나눈다</a></li><li class="toc-item level-2 "><a href="#heading-3">4. 도구 출력의 토큰 효율</a></li><li class="toc-item level-2 "><a href="#heading-4">5. 도구 폭발 문제</a></li><li class="toc-item level-2 "><a href="#heading-5">6. MCP (Model Context Protocol)</a></li><li class="toc-item level-2 "><a href="#heading-6">7. MCP vs A2A – 도구 연결 vs 에이전트 협업</a></li><li class="toc-item level-2 "><a href="#heading-7">8. Skill</a></li><li class="toc-item level-2 "><a href="#heading-8">9. 권한(permissions)</a></li><li class="toc-item level-2 "><a href="#heading-9">10. 정리</a></li><li class="toc-item level-2 "><a href="#heading-10">더 읽을거리</a></li></ul></nav><div class="rail-block keywords"><div class="rail-head">KEYWORDS</div><div class="rail-tags"><span class="rail-tag">#MCP</span><span class="rail-tag">#A2A</span><span class="rail-tag">#ToolCalling</span><span class="rail-tag">#Skill</span><span class="rail-tag">#도구설계</span><span class="rail-tag">#권한</span></div></div></div></aside></div></div></main></div></div>
+  
+
+</body></html>

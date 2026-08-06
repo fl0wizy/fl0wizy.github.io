@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <title>AI의 모든 것 (11) – 12가지 패턴 · 7가지 설계 결정 · 3가지 역발상 | flowizy's DevLog</title>
+    <meta name="description" content="12가지 패턴, 7가지 설계 결정, 3가지 역발상 – 그리고 비계는 언젠가 걷어내야 한다.">
+    <meta property="og:title" content="AI의 모든 것 (11) – 12가지 패턴 · 7가지 설계 결정 · 3가지 역발상 | flowizy's DevLog">
+    <meta property="og:description" content="12가지 패턴, 7가지 설계 결정, 3가지 역발상 – 그리고 비계는 언젠가 걷어내야 한다.">
+    <meta property="og:url" content="https://fl0wizy.github.io/post/ai-everything-11-patterns-decisions">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://fl0wizy.github.io/post/ai-everything-11-patterns-decisions">
+    
+    
+    
+    
+    
+    
+    
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="xBpPKxzhz-8Y708fYBi6IG1Du6zn0v_yKr4Hm-4PG5g">
+    <meta name="theme-color" content="#0d0d0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?')
+            .replace(/^\/+/, '/');
+
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.replace(/\/$/, '') + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-DWKahj0y.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-B8gBuBl2.css">
+  </head>
+  <body>
+    <div id="root"><div class="layout"><aside class="sidebar"><div class="sidebar-logo"><div class="logo-container"><div class="logo-image-wrapper"><img alt="flowizy" class="logo-profile-image" src="/images/profile.jpg"></div><div class="logo-text"><h1>flowizy's DevLog</h1><p>SECURITY RESEARCHER</p></div></div></div><nav class="sidebar-nav"><a class="nav-item " href="/profile" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path></svg><span>PROFILE</span></a><a class="nav-item " href="/" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>BLOG</span></a></nav><div class="sidebar-categories"><div class="categories-header"><span>CONTENT CATEGORIES</span></div><div class="categories-list"><div class="category-item-wrapper"><button class="category-item selected level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><span class="category-name">전체</span><span class="post-count ">21</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span><span class="category-name">보안(Security)</span><span class="post-count subtle">7</span></button><div class="category-children"><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #6f9fd8;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="category-name">Web Security</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span><span class="category-name">Web3 / Blockchain</span><span class="post-count subtle">7</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #74c195;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span><span class="category-name">Reversing</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #e6a572;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></span><span class="category-name">Pwn</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #db8fb4;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span class="category-name">Crypto</span><span class="post-count subtle">0</span></button></div></div></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a3c76d;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span><span class="category-name">AI</span><span class="post-count subtle">14</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #6fbecf;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span><span class="category-name">개발(Development)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #d4c277;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg></span><span class="category-name">여행(Travel)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #9ca3af;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="category-name">일상(Daily)</span><span class="post-count subtle">0</span></button></div></div></div></aside><main class="main-content"><div class="post-page" style="--cat: #a3c76d;"><div class="post-layout"><header class="post-head"><a class="back-link" href="/" data-discover="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>BACK TO LIST</a><div class="post-category-line"><span class="post-category-badge">AI</span></div><h1 class="post-title">AI의 모든 것 (11) – 12가지 패턴 · 7가지 설계 결정 · 3가지 역발상</h1><div class="post-meta"><span class="post-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-08-02 / 10:50</span><span class="post-relative-time">약 4일 전</span><span class="post-reading-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>약 14분</span></div></header><div class="post-container"><article class="post-content"><p>이번 글에서는 반복 가능한 12가지 패턴, 설계자가 실제로 내려야 하는 7가지 결정, 직관과 어긋나는 3가지 역발상, 그리고 비계(scaffolding)의 제거 원칙을 한 번에 훑어본다.</p>
+<hr>
+<h2 id="heading-0">1. 12가지 하네스 패턴</h2>
+<p>패턴은 정답이 아니라 <strong>자주 반복되는 좋은 해법</strong>이다. 메모리와 문맥, 워크플로와 오케스트레이션, 도구와 권한, 자동화의 네 묶음으로 나뉜다.</p>
+<p>먼저 메모리와 문맥(패턴 1~5)이다.</p>
+<h3>패턴 1. 영구 지침 파일</h3>
+<p>세션마다 다시 설명하지 않도록 프로젝트의 핵심 규칙을 파일로 고정한다. 냉장고에 붙여 둔 집안 규칙 메모와 같다. "분리수거는 수요일", "외출 시 가스 점검"을 매번 말로 하지 않는다.</p>
+<ul>
+<li><strong>언제 쓰나</strong>: 여러 세션에 걸쳐 같은 프로젝트를 다룰 때, 여러 사람이 같은 환경을 쓸 때</li>
+<li><strong>주의점</strong>: 너무 길어지면 안 읽히거나 충돌이 늘어난다. 백과사전이 아니라 지도와 체크리스트여야 한다</li>
+<li><strong>구현</strong>: <code>AGENTS.md</code>(OpenAI 계열), <code>CLAUDE.md</code>(Claude 계열)</li>
+</ul>
+<h3>패턴 2. 범위별 문맥 조립</h3>
+<p>하나의 거대한 규칙 파일 대신, 작업 위치와 상황에 맞는 규칙만 골라 조립한다. 백화점 전체 규칙을 전단지 한 장에 다 적지 않고, 식품관·창고·사무실에 각각 다른 안내문이 붙어 있는 것과 같다.</p>
+<ul>
+<li><strong>언제 쓰나</strong>: 모노레포, 다국어 프로젝트, 팀마다 관례가 다른 대규모 저장소</li>
+<li><strong>주의점</strong>: 규칙이 지나치게 흩어지면 지금 뭘 보고 있는지가 불투명해진다. 우선순위와 적용 범위를 문서화한다</li>
+</ul>
+<h3>패턴 3. 계층형 메모리</h3>
+<p>모든 기억을 똑같이 다루지 말고, 자주 쓰는 것과 가끔 쓰는 것을 층으로 나눈다. 책상 위, 서랍, 창고의 구분이다. 매일 쓰는 펜은 책상 위에, 가끔 보는 계약서는 서랍에, 오래 보관할 문서는 창고에 둔다. 최소 3층부터 시작한다. 항상 필요한 기억, 현재 작업용 기억, 기록 보관용 기억이다.</p>
+<h3>패턴 4. 메모리 정리 (드림 통합)</h3>
+<p>쌓인 메모리를 주기적으로 정리해 중복, 모순, 낡은 정보를 줄인다. 옷장이 아무리 커도 정리 안 하면 엉망이 된다. 계절이 바뀔 때 정리하고, 안 입는 옷을 빼고, 같은 종류를 묶는다.</p>
+<ul>
+<li><strong>주의점</strong>: 지나치게 공격적으로 정리하면 필요한 정보까지 잃는다. 자동 정리는 잊기가 아니라 정돈하기다</li>
+</ul>
+<h3>패턴 5. 점진적 문맥 압축</h3>
+<p>세션이 길어질수록 오래된 부분부터 단계적으로 요약하고 축소한다. 최근 논의는 자세히, 지난주 논의는 요약본으로, 오래된 내용은 결론만 남긴다.</p>
+<ul>
+<li><strong>언제 쓰나</strong>: 20~30턴 넘는 세션, 장시간 코딩, 고객 지원 이력, 긴 리서치</li>
+<li><strong>주의점</strong>: 압축은 본질적으로 손실이다. 중요한 결정사항은 별도 파일로 남긴다</li>
+</ul>
+<p>다음은 워크플로와 오케스트레이션(패턴 6~8)이다.</p>
+<h3>패턴 6. 탐색-계획-실행 루프</h3>
+<p>바로 수정하지 않고, 먼저 살펴보고, 계획을 세우고, 마지막에 실행한다. 집을 고치러 온 기사가 벽을 보자마자 드릴을 들면 불안하다. 좋은 기사는 상태를 보고, 원인을 설명하고, 방법을 말한 다음 작업한다.</p>
+<ul>
+<li><strong>언제 쓰나</strong>: 익숙하지 않은 코드베이스, 여러 파일을 건드리는 작업, 실수 비용이 큰 작업</li>
+<li><strong>주의점</strong>: 간단한 작업에서는 느려 보인다. 중요도에 따라 강도를 조절한다</li>
+<li><strong>구현</strong>: Claude Code의 Plan Mode</li>
+</ul>
+<h3>패턴 7. 문맥 격리 하위 에이전트</h3>
+<p>조사, 계획, 검증을 별도 하위 에이전트로 분리해 각자 필요한 문맥만 보게 한다. 한 사람이 회계, 법무, 디자인, 개발을 모두 같은 노트에 적으며 처리하면 정신이 없다.</p>
+<ul>
+<li><strong>주의점</strong>: 전달 과정에서 세부 맥락이 빠질 수 있다. 역할 이름이 아니라 문맥 경계로 나눈다 (<a href="/post/ai-everything-07-multi-agent" node="[object Object]" target="_blank" rel="noopener noreferrer">07편</a>)</li>
+</ul>
+<h3>패턴 8. 포크-조인 병렬성</h3>
+<p>독립적인 작업을 여러 갈래로 나눠 병렬 처리한 뒤 마지막에 합친다. 집안 대청소를 한 사람이 방마다 돌면 오래 걸린다. 가족이 각자 방 하나씩 맡고 마지막에 공용 공간만 함께 정리한다.</p>
+<ul>
+<li><strong>주의점</strong>: 마지막 병합이 어렵다. 특히 여러 브랜치가 같은 파일을 만지면 복잡성이 커진다</li>
+</ul>
+<p>Subagent는 격리를 통해 병렬성을 얻고, Agent Teams는 소통을 통해 조율을 얻는다. 먼저 독립 작업인지 지속 협업인지를 묻고 설계한다.</p>
+<p>이어서 도구와 권한(패턴 9~11)이다.</p>
+<h3>패턴 9. 점진적 도구 확장</h3>
+<p>처음부터 모든 도구를 보여주지 않고, 기본 세트로 시작해 필요할 때만 추가한다. 운전을 처음 배우는 사람에게 굴착기, 트럭, 오토바이, 지게차 키를 다 쥐여 주지 않는다.</p>
+<ul>
+<li><strong>주의점</strong>: 너무 늦게 열어 주면 에이전트가 불필요한 우회를 하거나 같은 질문을 반복한다</li>
+</ul>
+<h3>패턴 10. 명령 위험 분류</h3>
+<p>에이전트의 행동을 위험도에 따라 자동 허용, 확인 요청, 자동 차단으로 나눈다. 공항 보안 검색대와 같다. 모든 승객을 다 막을 수도 없고, 아무 검사 없이 보낼 수도 없다.</p>
+<ul>
+<li><strong>구현</strong>: <code>allow</code> / <code>ask</code> / <code>deny</code> 3단계</li>
+<li><strong>주의점</strong>: 지나치게 촘촘하면 생산성이 떨어지고, 느슨하면 사고가 난다</li>
+</ul>
+<h3>패턴 11. 단일 목적 도구 설계</h3>
+<p>범용 셸에만 의존하지 않고, 파일 읽기, 편집, 검색처럼 자주 쓰는 행동을 전용 도구로 분리한다. 스위스 아미 나이프 하나로 다 하는 것보다 가위는 가위, 드라이버는 드라이버가 낫다.</p>
+<ul>
+<li><strong>주의점</strong>: 모든 엣지 케이스를 전용 도구로 덮으려 하면 오히려 복잡해진다. 전용 도구에 제한된 범용 셸을 더한 조합이 현실적이다</li>
+</ul>
+<p>마지막으로 자동화(패턴 12)다.</p>
+<h3>패턴 12. 결정론적 수명 주기 훅</h3>
+<p>반드시 일어나야 하는 절차를 모델의 기억에 맡기지 않고, 시스템 이벤트에 연결해 자동 실행한다. 세탁기가 "헹굼을 잊지 마세요"라고 사람에게 부탁하는 대신, 프로그램에 따라 자동으로 헹굼과 탈수를 실행하는 것과 같다. <strong>매번 일어나야 하는 일은 지침이 아니라 훅에 있어야 한다.</strong> 사람의 기억은 흔들리지만, 시스템은 반복을 견딘다.</p>
+<ul>
+<li><strong>주의점</strong>: 훅이 너무 많아지면 디버깅이 어렵다. 어떤 이벤트에 무슨 훅이 연결되는지 시각화하고 문서화한다</li>
+</ul>
+<p>패턴을 적용하는 현실적인 순서는 이렇다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>1. 영구 지침 파일을 만든다 (AGENTS.md / CLAUDE.md)
+2. 탐색-계획-실행을 기본 습관으로 만든다
+3. 단일 목적 도구 몇 개만 만든다 (문서 검색, 파일 읽기, 테스트 실행)
+4. 명령 위험 분류로 allow / ask / deny를 정한다
+5. 작업이 길어지면 계층형 메모리와 문맥 압축을 넣는다
+6. 작업량이 커지면 하위 에이전트와 병렬성을 붙인다
+7. 마지막으로 수명 주기 훅으로 반복 절차를 시스템화한다
+</code></pre></div>
+<p>핵심은 <strong>자동화보다 먼저 질서를 만드는 것</strong>이다. 지침이 없고, 도구가 뒤죽박죽이고, 위험 구분이 없는데 훅부터 잔뜩 넣으면 오히려 복잡해진다.</p>
+<p>Anthropic의 「Building effective agents」 패턴과도 대응된다. Prompt chaining은 단계형 Skill과 중간 산출물, 승인 게이트에 해당한다. Routing은 요청 분류와 전문 Agent 선택, 경로별 규칙이다. Parallelization은 Subagent와 fork-join, 병렬 검토다. Orchestrator-workers는 Orchestrator와 Agent Team, 동적 작업 분해다. Evaluator-optimizer는 Generator-Evaluator 하네스와 루브릭, 반복 개선이다. Autonomous agent는 장시간 실행 하네스와 환경 피드백, 중단 조건, 사람 승인이다.</p>
+<hr>
+<h2 id="heading-1">2. 7가지 설계 결정</h2>
+<p>잘 설계된 하네스는 도구를 많이 붙이면 된다거나 무조건 멀티 에이전트가 좋다 같은 단순 공식으로 만들어지지 않는다. <strong>모든 선택에는 대가가 있다.</strong></p>
+<table><thead><tr><th>결정</th><th>한쪽</th><th>반대쪽</th><th>쉬운 설명</th></tr></thead><tbody><tr><td>에이전트 수</td><td>단일 에이전트</td><td>멀티 에이전트</td><td>혼자 일할지, 전문가 팀으로 나눌지</td></tr><tr><td>추론 전략</td><td>ReAct</td><td>계획 후 실행</td><td>매 단계 생각할지, 한 번 계획하고 빠르게 실행할지</td></tr><tr><td>컨텍스트 전략</td><td>강한 압축</td><td>풍부한 컨텍스트</td><td>책상을 비울지, 자료를 많이 펼칠지</td></tr><tr><td>검증 방식</td><td>계산적 검증</td><td>추론적 검증</td><td>테스트·린터 vs LLM 평가자</td></tr><tr><td>권한 설계</td><td>허용적</td><td>제한적</td><td>빠르게 움직일지, 승인 게이트를 둘지</td></tr><tr><td>도구 범위</td><td>전체 도구 상시 노출</td><td>단계별 최소 도구</td><td>모든 메뉴 vs 지금 필요한 메뉴</td></tr><tr><td>하네스 두께</td><td>얇은 하네스</td><td>두꺼운 하네스</td><td>모델에 맡길지, 코드와 규칙으로 통제할지</td></tr></tbody></table>
+<p>이 결정들은 서로 독립적이지 않다. 멀티 에이전트로 갈수록 컨텍스트 격리와 검증 루프가 중요해진다. 전체 도구를 항상 노출하면 권한 설계와 도구 선택 정확도가 더 큰 문제가 된다.</p>
+<p>일곱 결정을 캔버스로 만들어 각각의 선택과 이유, 나중에 다시 볼 신호를 채우면 <strong>이 하네스는 왜 이렇게 생겼는가</strong>를 설명할 수 있다. 다시 볼 신호는 이런 것들이다. 단일이냐 멀티냐는 도구가 30개 이상 겹치거나 전문 영역이 명확히 분리되는지 본다. ReAct냐 계획 후 실행이냐는 매 단계 새 판단이 필요한지, 반복 실행이 많은지 본다. 압축이냐 풍부한 컨텍스트냐는 모델이 중요한 내용을 놓치는지, 비용이 과도한지 본다. 계산적 검증이냐 추론적 검증이냐는 테스트로 잡히지 않는 품질 문제가 있는지 본다. 허용적이냐 제한적이냐는 되돌릴 수 없는 작업이 포함되는지 본다. 전체 도구냐 최소 도구냐는 도구 선택 오류가 늘어나는지 본다. 얇은 하네스냐 두꺼운 하네스냐는 모델이 이미 잘하는 일을 코드가 과하게 가로막고 있는지 본다.</p>
+<p>처음 적용할 때의 순서는 다음과 같다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>1. 단일 에이전트로 시작한다. 멀티는 분업 이유가 분명할 때만
+2. 탐색 업무는 ReAct로, 반복 업무는 계획 후 실행으로 나눈다
+3. 처음엔 풍부한 컨텍스트를 주고, 실패 패턴이 보이면 압축·검색을 설계한다
+4. 검증은 테스트·린터부터. 의미 판단이 필요할 때 LLM 평가자를 붙인다
+5. 위험한 행동은 반드시 ask 또는 deny로 분류한다
+6. 도구는 전체 노출보다 단계별 최소 노출을 기본값으로
+7. 하네스는 필요한 만큼만 두껍게. 모델이 좋아지면 낡은 통제는 제거한다
+</code></pre></div>
+<hr>
+<h2 id="heading-2">3. 도구 개수와 성능의 관계</h2>
+<p>도구 개수와 에이전트 성능은 비례하지 않는다. 첫 번째 역발상이 여기에 있다. 도구를 많이 붙이면 더 똑똑해질 것 같지만, <a href="/post/ai-everything-05-tools-and-mcp" node="[object Object]" target="_blank" rel="noopener noreferrer">05편의 도구 폭발 문제</a>에서 봤듯 도구가 늘어나면 선택 부담과 컨텍스트 부담도 함께 늘어난다.</p>
+<p>이를 수치로 보여준 것이 Next.js를 만든 프론트엔드 인프라 회사 Vercel의 내부 text-to-SQL 에이전트 <strong>d0</strong> 사례다. 여러 전문 도구와 hand-coded 로직으로 정교하게 만들었던 에이전트에서 전문 도구 대부분을 제거하고, 잘 정리된 semantic layer 파일(YAML·Markdown·JSON)을 <code>grep</code>, <code>cat</code>, <code>find</code> 같은 표준 Unix 도구로 직접 탐색하게 바꿨더니, 5개 대표 질의 벤치마크에서 평균 실행 시간 3.5배 단축, 성공률 80%→100%, 토큰 37% 감소가 나왔다. 전체 수치와 적용 체크리스트는 <a href="/post/ai-everything-12-cases-ecosystem" node="[object Object]" target="_blank" rel="noopener noreferrer">12편의 사례 분석</a>에 있다.</p>
+<p>여기서 잘못된 교훈을 뽑기 쉽다. 이 결과가 "bash 하나면 모든 에이전트가 좋아진다"는 뜻은 아니다. Vercel의 접근이 가능했던 이유는 그들의 semantic layer가 <strong>이미 잘 정리된 문서 구조였기 때문</strong>이다. 파일이 잘 명명되어 있고, 정의가 명확하며, YAML에 필요한 관계와 계산이 담겨 있었기에 모델이 직접 읽을 수 있었다. 핵심은 도구를 없애는 것이 아니라 모델이 읽고 판단하기 좋은 환경을 만드는 것이다.</p>
+<p>기존 구조는 모델을 보호하기 위해 많은 도구와 제약을 만들었다. 하지만 시간이 지나며 그 제약 자체가 유지보수 부담이 되고, 모델이 직접 처리할 수 있는 일까지 대신 처리하게 되었다. 어떤 직원에게 업무를 맡기면서 모든 작은 판단마다 전용 양식을 만드는 것과 비슷하다. 고객 이름 확인 양식, 제품 코드 확인 양식, 가격 확인 양식. 처음엔 체계적으로 보이지만, 양식이 너무 많아지면 직원은 일을 하기보다 양식 고르기에 시간을 쓴다.</p>
+<p><strong>단순화는 삭제가 아니라 설계다.</strong> 도구를 줄여도 샌드박스, 로그, 승인, 테스트 같은 기본 안전장치는 오히려 더 중요해진다.</p>
+<hr>
+<h2 id="heading-3">4. ReAct와 계획 기반 방식의 우열</h2>
+<p>ReAct(생각하고 행동하기를 번갈아 하는 방식)와 계획 후 실행 방식 사이에는 고정된 우열이 없다. 두 번째 역발상이 여기에 있다. ReAct는 튜토리얼에 자주 등장하고 똑똑해 보이지만, 매 단계 새로 생각한다는 것은 <strong>매 단계 비용과 지연이 생긴다</strong>는 뜻이다. LLMCompiler 연구(Kim et al.)는 병렬화 가능한 워크로드에서 계획을 먼저 세우고 병렬 실행하면 ReAct 대비 최대 3.7배 지연 개선, 최대 6.7배 비용 절감이 가능함을 보였다.</p>
+<p>두 방식의 구조와 업무 유형별 선택 기준은 <a href="/post/ai-everything-03-agent-loop" node="[object Object]" target="_blank" rel="noopener noreferrer">03편</a>에서 정리했다. 요점은 하나다. 탐색·디버깅처럼 중간 관찰이 방향을 바꾸는 일에는 ReAct를, 순서가 명확한 반복·병렬 작업에는 계획 후 실행을 쓰되, 후자에까지 매 단계 추론 비용을 낼 이유가 없다.</p>
+<hr>
+<h2 id="heading-4">5. 하네스 허용도와 출시 속도</h2>
+<p>하네스의 허용도가 높다고 출시가 빨라지는 것은 아니다. 세 번째 역발상이 여기에 있다. 개발 중에는 허용적인 하네스가 좋아 보인다. 승인 창도 없고 마찰도 없다. 그래서 데모는 빨리 나온다. 하지만 운영 환경에서는 다르다. 고객 데이터, 결제, 배포, 삭제, 권한 변경처럼 되돌리기 어려운 행동이 들어오면 <strong>마찰은 방해물이 아니라 보험이 된다.</strong> 고위험 도구 호출 앞에서 멈춰 묻는 구조는 사용자를 귀찮게 하려는 장치가 아니라, 사고를 복구 가능한 상태로 남겨 두는 장치다.</p>
+<p>위험도별 하네스 행동은 이렇게 나눈다. 파일 읽기, 검색, 테스트 실행 같은 낮은 위험은 자동 허용한다. 파일 수정이나 내부 문서 업데이트 같은 중간 위험은 로그를 기록하고 경우에 따라 확인한다. 배포, 결제, DB 삭제, 외부 발송 같은 높은 위험은 사용자 승인을 요구한다. 비밀키 노출이나 무단 데이터 추출은 자동 차단한다.</p>
+<p>세 역발상은 같은 모양을 가진다. 직관적인 선택은 개발 중에 기분이 좋다. 도구가 많으면 능력이 많아 보이고, 매 단계 추론하면 똑똑해 보이며, 승인 없이 실행하면 빨라 보인다. 그러나 실제 업무에서는 컨텍스트 압박, 불필요한 LLM 호출, 잘못된 도구 선택, 되돌릴 수 없는 실수가 성능을 갉아먹는다.</p>
+<hr>
+<h2 id="heading-5">6. 하네스 두께</h2>
+<p>하네스 두께는 모델을 얼마나 믿을 것인가와 코드로 얼마나 통제할 것인가 사이의 <strong>아키텍처적 베팅</strong>이다.</p>
+<table><thead><tr><th>구분</th><th>얇은 하네스</th><th>두꺼운 하네스</th></tr></thead><tbody><tr><td>기본 철학</td><td>모델의 판단을 신뢰한다</td><td>흐름을 코드로 명시한다</td></tr><tr><td>장점</td><td>단순·유연하며 모델 발전의 이점을 빨리 받는다</td><td>예측 가능·감사 가능하며 복잡한 업무를 통제하기 쉽다</td></tr><tr><td>단점</td><td>모델 실수나 모호한 판단에 더 노출된다</td><td>설계가 무거워지고 새 모델의 능력을 가로막을 수 있다</td></tr><tr><td>어울리는 상황</td><td>탐색, 창작, 코드 보조, 모델이 강한 영역</td><td>규제 업무, 결제·배포, 복잡한 다단계 워크플로</td></tr><tr><td>구현 느낌</td><td>도구 + 컨텍스트 + 권한 + 단순 루프</td><td>상태 그래프, 명시적 라우팅, 검증 노드, 계획 단계</td></tr></tbody></table>
+<p>얇은 하네스는 유능한 직원에게 목표와 도구만 주고 믿고 맡기는 방식이고, 두꺼운 하네스는 신입에게 체크리스트와 결재선과 작업순서와 중간점검표를 자세히 주는 방식이다. 정답은 없다. 숙련도, 위험도, 규제 환경, 실패 비용에 따라 달라진다.</p>
+<p>위험도별로 보면 아이디어 브레인스토밍과 개인 메모 정리는 얇은 하네스로 충분하다. 팀 회의록 공유는 중간, 고객에게 보내는 답변은 중간에서 두꺼움, 사업계획서 제출은 두꺼움, 결제·삭제·배포·법적 판단은 매우 두꺼운 하네스가 어울린다.</p>
+<hr>
+<h2 id="heading-6">7. 비계 (Scaffolding)</h2>
+<p>비계(scaffolding)는 모델이 아직 약한 부분을 임시로 떠받쳐 주는 하네스 구조를 가리킨다. 도구, 메모리, 컨텍스트 관리, 권한, 검증 루프, 오류 복구가 여기 해당한다.</p>
+<p><strong>비계는 건물을 짓지 않는다. 하지만 비계 없이는 작업자가 위층에 닿지 못한다.</strong> 건설 현장의 비계는 건물을 대신 짓지 않지만, 없으면 높은 층에 도달할 수 없다. 하네스의 성격을 가장 잘 보여 주는 비유가 이것이다.</p>
+<p>더 중요한 말이 있다. 비계는 <strong>임시 인프라</strong>다. 건물이 완성되면 비계는 일부 또는 전부 제거된다. 모델이 약할 때는 계획 단계, 도구 제한, 명시적 라우팅, 검증 루프가 두껍게 필요하다. 그러나 모델이 성장하면 어떤 비계는 필요 없어진다. 그대로 남겨 두면 오히려 새 모델의 능력을 방해하는 낡은 규칙이 된다.</p>
+<p>그렇다고 마음대로 걷어낼 수 있는 것도 아니다. 오늘의 모델은 특정 하네스와 함께 학습되고, 특정 도구 형식과 피드백 루프에 익숙해졌을 수 있다. 비계를 바꾸면 더 단순해지는 게 아니라 <strong>일시적으로 성능이 떨어질 수도 있다.</strong> 자동변속기 차로만 연습한 사람에게 갑자기 수동변속기 차를 주면 운전 실력이 사라진 것처럼 보인다. 사람이 나빠진 게 아니라 익숙한 조작 환경이 바뀐 것이다. 그래서 모델 성능은 모델 단독이 아니라 그 모델이 익숙한 하네스와 함께 평가하는 것이 맞다.</p>
+<p>미래 보장형 하네스인지 확인하는 질문이 있다. 더 강한 모델로 바꿨을 때 성능이 오르는가. 하네스 복잡도 증가 없이 성능이 향상되면 좋은 신호고, 새 모델이 낡은 규칙과 충돌하면 나쁜 신호다. 하네스 일부를 제거해도 품질이 유지되는가. 더 단순하고 빠른 구조로 이동할 수 있으면 좋은 신호고, 제거 즉시 품질이 급락하면 나쁜 신호다. 실패가 발생하면 어디서 실패했는지 보이는가. trace, log, eval, progress file로 원인을 확인할 수 있으면 좋은 신호고, 모델 탓인지 하네스 탓인지 모르면 나쁜 신호다. 비계 제거 후 회귀 평가가 있는가. 제거 전후 품질을 비교할 수 있으면 좋은 신호고, 감으로 줄이고 사고 후 복구하면 나쁜 신호다.</p>
+<p>핵심은 이것이다. 새 모델을 넣었을 때 <strong>하네스 복잡도를 늘리지 않고 성능이 오른다면 설계가 건강하다.</strong> 반대로 모델이 좋아졌는데도 하네스를 계속 복잡하게 만들어야 한다면, 하네스가 모델을 방해하고 있는 건 아닌지부터 의심할 신호다.</p>
+<p>제거는 하나씩 한다. Anthropic의 harness design 글은 어떤 장치가 실제로 성능을 지탱하는 load-bearing 요소인지 확인해야 한다고 설명한다. 겉보기엔 장식 같은 난간이 사실은 안전장치일 수 있고, 반대로 오래전 안내판이 지금은 장애물일 수 있다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>O evaluator를 빼면 품질이 떨어지는지 따로 본다
+O planner를 단순화해도 sprint가 유지되는지 따로 본다
+O 브라우저 검증을 줄이면 사용자 흐름 오류가 늘어나는지 따로 본다
+X 한 번에 여러 장치를 줄이면 무엇이 실제로 필요했는지 알 수 없다
+</code></pre></div>
+<p>실무 적용 원칙은 다음과 같다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>1. 처음에는 필요한 만큼 비계를 세운다
+2. 비계는 문서화한다 – 왜 이 제어가 필요한지, 어떤 실패를 막는지
+3. 새 모델·새 도구가 나오면 비계 제거 후보를 찾는다
+4. 비계는 한 번에 하나씩 줄이고, 제거 전후를 eval·테스트·로그로 비교한다
+5. 성능이 떨어지면 다시 보강하되, 더 작고 명확한 비계로 되돌린다
+</code></pre></div>
+<p>잘 설계된 하네스는 모델을 가두는 감옥이 아니라, 모델과 제품이 성장하면 일부를 걷어낼 수 있는 비계다.</p>
+<hr>
+<h2 id="heading-7">8. 에이전트가 읽기 쉬운 기술 선택</h2>
+<p>OpenAI의 하네스 글은 에이전트가 실제 제품을 만들 때 <strong>기술 선택도 달라진다</strong>고 보여 준다. 사람에게 보기 좋은 코드나 멋진 프레임워크가 항상 에이전트에게 좋은 것은 아니다.</p>
+<ul>
+<li>명확한 파일 이름과 폴더 구조: 검색과 탐색이 쉬워진다</li>
+<li>짧은 AGENTS.md와 구조화된 <code>docs/</code>: 필요한 문서를 찾기 쉽고 컨텍스트 낭비가 준다</li>
+<li>빠른 테스트와 린터: 수정 직후 실패를 바로 확인할 수 있다</li>
+<li>읽기 쉬운 로그와 trace: 실패 원인을 모델이 다시 관찰할 수 있다</li>
+<li>작은 PR과 작은 작업 단위: 변경 범위가 작아 리뷰와 되돌리기가 쉽다</li>
+<li>기계가 읽을 수 있는 설정과 스키마: 사람 설명 없이도 제약을 검증할 수 있다</li>
+</ul>
+<p>여기서 말하는 지루한 구조는 낮은 수준이 아니다. 오히려 운영에서는 지루하고 명확한 구조가 강하다. 사람도 정리된 주방에서 요리할 때 실수가 준다. 설계 결정표에 붙일 마지막 질문은 이것이다. 이 구조는 사람이 보기에도 좋지만, 에이전트가 읽고 고치고 검증하기에도 좋은가.</p>
+<hr>
+<h2 id="heading-8">9. 사례 수치와 1차 출처</h2>
+<p>사례 수치는 1차 출처와 측정 조건을 함께 확인해야 의미가 확정된다. 하네스 사례에는 인상적인 수치가 자주 등장하지만, 온라인 요약과 공식 문서가 어긋나는 경우가 있다. 둘을 구분하면 다음과 같다.</p>
+<ul>
+<li>"Vercel이 v0에서 도구의 80%를 줄였다"는 표현이 돌지만, v0(UI 생성)가 아니라 <strong>d0</strong>(내부 text-to-SQL 데이터 에이전트) 사례다.</li>
+<li>"Claude Code가 컨텍스트를 95% 줄인다"는 표현이 있지만, Tool Search 문서 기준은 도구 정의 컨텍스트 <strong>85% 이상</strong> 감소다.</li>
+<li>"Plan-and-Execute가 3.6배 빠르다"는 표현이 있지만, LLMCompiler 논문은 최대 3.7배 지연 개선, 최대 6.7배 비용 절감이고 병렬화 가능한 워크로드 한정이다.</li>
+</ul>
+<p>교훈은 간단하다. 인상적인 수치일수록 <strong>1차 출처</strong>를 확인하고, 그 수치가 어떤 조건에서 나왔는지 함께 읽는다.</p>
+<hr>
+<h2 id="heading-9">10. 정리</h2>
+<p>패턴 12개는 메모리/문맥, 워크플로/오케스트레이션, 도구/권한, 자동화의 네 묶음이고, 적용 순서의 핵심은 자동화보다 먼저 질서를 만드는 것이다. 7가지 결정은 서로 독립적이지 않으며, 캔버스를 채우면 하네스가 왜 이렇게 생겼는지 설명할 수 있다.</p>
+<p>역발상 세 가지는 같은 뿌리를 가진다. 도구가 많다고 똑똑해지지 않는다(Vercel d0는 도구를 줄이고 3.5배 빨라졌지만, 핵심은 모델이 읽기 좋은 환경이지 도구 삭제가 아니다). ReAct가 항상 낫지 않고 반복·병렬 작업은 계획 후 실행이 유리하다. 허용적 하네스는 데모만 빠르고, 운영에서 마찰은 보험이다. 결국 <strong>개발 때 기분 좋은 선택과 운영에서 살아남는 선택은 다르다.</strong></p>
+<p>하네스 두께는 신뢰와 통제 사이의 베팅이고 위험도에 따라 달라진다. 비계는 언젠가 걷어내야 하되, 하나씩, 회귀 평가와 함께 걷어낸다. 그리고 인상적인 숫자일수록 1차 출처와 조건을 확인한다.</p>
+<hr>
+<h2 id="heading-10">더 읽을거리</h2>
+<ul>
+<li>Anthropic, <em>Building Effective AI Agents</em> – <a href="https://www.anthropic.com/engineering/building-effective-agents" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/building-effective-agents</a></li>
+<li>Vercel, <em>We removed 80% of our agent's tools</em> – <a href="https://vercel.com/blog" node="[object Object]" target="_blank" rel="noopener noreferrer">https://vercel.com/blog</a></li>
+<li>LangChain, <em>Improving Deep Agents with harness engineering</em> – <a href="https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering</a></li>
+<li>Birgitta Böckeler, <em>Harness engineering for coding agent users</em> – <a href="https://martinfowler.com/articles/harness-engineering.html" node="[object Object]" target="_blank" rel="noopener noreferrer">https://martinfowler.com/articles/harness-engineering.html</a></li>
+<li>김동학, 《하네스 엔지니어링 백과사전》 제11장·제12장 – <a href="https://wikidocs.net/346803" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/346803</a>, <a href="https://wikidocs.net/346804" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/346804</a></li>
+</ul>
+<hr>
+<p>다음 편: <a href="/post/ai-everything-12-cases-ecosystem" node="[object Object]" target="_blank" rel="noopener noreferrer">12. 실전 사례와 생태계</a>
+이전 편: <a href="/post/ai-everything-10-safety-governance" node="[object Object]" target="_blank" rel="noopener noreferrer">10. 안전·거버넌스·운영</a></p></article><div class="post-tags"><span class="tag">#디자인패턴</span><span class="tag">#하네스두께</span><span class="tag">#비계</span><span class="tag">#Scaffolding</span><span class="tag">#설계결정</span><span class="tag">#Vercel</span></div></div><aside class="post-rail"><div class="post-rail-inner"><nav class="rail-block toc"><div class="rail-head">ON THIS PAGE</div><ul class="toc-list"><li class="toc-item level-2 "><a href="#heading-0">1. 12가지 하네스 패턴</a></li><li class="toc-item level-2 "><a href="#heading-1">2. 7가지 설계 결정</a></li><li class="toc-item level-2 "><a href="#heading-2">3. 도구 개수와 성능의 관계</a></li><li class="toc-item level-2 "><a href="#heading-3">4. ReAct와 계획 기반 방식의 우열</a></li><li class="toc-item level-2 "><a href="#heading-4">5. 하네스 허용도와 출시 속도</a></li><li class="toc-item level-2 "><a href="#heading-5">6. 하네스 두께</a></li><li class="toc-item level-2 "><a href="#heading-6">7. 비계 (Scaffolding)</a></li><li class="toc-item level-2 "><a href="#heading-7">8. 에이전트가 읽기 쉬운 기술 선택</a></li><li class="toc-item level-2 "><a href="#heading-8">9. 사례 수치와 1차 출처</a></li><li class="toc-item level-2 "><a href="#heading-9">10. 정리</a></li><li class="toc-item level-2 "><a href="#heading-10">더 읽을거리</a></li></ul></nav><div class="rail-block keywords"><div class="rail-head">KEYWORDS</div><div class="rail-tags"><span class="rail-tag">#디자인패턴</span><span class="rail-tag">#하네스두께</span><span class="rail-tag">#비계</span><span class="rail-tag">#Scaffolding</span><span class="rail-tag">#설계결정</span><span class="rail-tag">#Vercel</span></div></div></div></aside></div></div></main></div></div>
+  
+
+</body></html>

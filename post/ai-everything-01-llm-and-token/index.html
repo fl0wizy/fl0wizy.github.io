@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <title>AI의 모든 것 (01) – LLM과 토큰: 예측 기계의 해부 | flowizy's DevLog</title>
+    <meta name="description" content="AI⊃ML⊃딥러닝⊃LLM 지도, '토큰 가중치' 오해 해체, 토큰화가 일어나는 위치와 비용 구조까지.">
+    <meta property="og:title" content="AI의 모든 것 (01) – LLM과 토큰: 예측 기계의 해부 | flowizy's DevLog">
+    <meta property="og:description" content="AI⊃ML⊃딥러닝⊃LLM 지도, '토큰 가중치' 오해 해체, 토큰화가 일어나는 위치와 비용 구조까지.">
+    <meta property="og:url" content="https://fl0wizy.github.io/post/ai-everything-01-llm-and-token">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://fl0wizy.github.io/post/ai-everything-01-llm-and-token">
+    
+    
+    
+    
+    
+    
+    
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="xBpPKxzhz-8Y708fYBi6IG1Du6zn0v_yKr4Hm-4PG5g">
+    <meta name="theme-color" content="#0d0d0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?')
+            .replace(/^\/+/, '/');
+
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.replace(/\/$/, '') + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-DWKahj0y.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-B8gBuBl2.css">
+  </head>
+  <body>
+    <div id="root"><div class="layout"><aside class="sidebar"><div class="sidebar-logo"><div class="logo-container"><div class="logo-image-wrapper"><img alt="flowizy" class="logo-profile-image" src="/images/profile.jpg"></div><div class="logo-text"><h1>flowizy's DevLog</h1><p>SECURITY RESEARCHER</p></div></div></div><nav class="sidebar-nav"><a class="nav-item " href="/profile" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path></svg><span>PROFILE</span></a><a class="nav-item " href="/" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>BLOG</span></a></nav><div class="sidebar-categories"><div class="categories-header"><span>CONTENT CATEGORIES</span></div><div class="categories-list"><div class="category-item-wrapper"><button class="category-item selected level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><span class="category-name">전체</span><span class="post-count ">21</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span><span class="category-name">보안(Security)</span><span class="post-count subtle">7</span></button><div class="category-children"><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #6f9fd8;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="category-name">Web Security</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span><span class="category-name">Web3 / Blockchain</span><span class="post-count subtle">7</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #74c195;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span><span class="category-name">Reversing</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #e6a572;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></span><span class="category-name">Pwn</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #db8fb4;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span class="category-name">Crypto</span><span class="post-count subtle">0</span></button></div></div></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a3c76d;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span><span class="category-name">AI</span><span class="post-count subtle">14</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #6fbecf;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span><span class="category-name">개발(Development)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #d4c277;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg></span><span class="category-name">여행(Travel)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #9ca3af;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="category-name">일상(Daily)</span><span class="post-count subtle">0</span></button></div></div></div></aside><main class="main-content"><div class="post-page" style="--cat: #a3c76d;"><div class="post-layout"><header class="post-head"><a class="back-link" href="/" data-discover="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>BACK TO LIST</a><div class="post-category-line"><span class="post-category-badge">AI</span></div><h1 class="post-title">AI의 모든 것 (01) – LLM과 토큰: 예측 기계의 해부</h1><div class="post-meta"><span class="post-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-08-02 / 09:10</span><span class="post-relative-time">약 4일 전</span><span class="post-reading-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>약 7분</span></div></header><div class="post-container"><article class="post-content"><p>이 글에서는 AI·ML·딥러닝·LLM의 포함 관계, "토큰 가중치"라는 표현에 섞여 있는 모델 파라미터와 어텐션 가중치, 토큰화가 일어나는 위치와 토큰 비용 구조를 정리한다.</p>
+<hr>
+<h2 id="heading-0">1. AI · ML · 딥러닝 · LLM의 포함 관계</h2>
+<p><strong>AI · ML · 딥러닝 · LLM</strong>은 나란히 놓인 별개 기술이 아니라, 뒤로 갈수록 범위가 좁아지는 포함 관계에 있는 개념들이다. "AI = LLM"이라고 생각하기 쉽다. 요즘 AI라고 부르는 것의 대부분이 LLM이라서 실용적으로는 통하지만, 개념 지도가 틀어지면 나중에 다른 곳에서 깨진다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>AI (인공지능) – 1950s~ · 규칙기반 · 탐색 · 전문가시스템
+├─ 기호주의 AI (추론엔진 · 제약해결)
+└─ ML (머신러닝) – 데이터에서 규칙을 학습
+   ├─ 고전 ML (SVM · 랜덤포레스트 · 회귀)
+   └─ 딥러닝 (다층 신경망)
+      ├─ CV · 음성 · 확산모델
+      └─ LLM (Transformer · 다음 토큰 예측)
+         └─ 에이전트 = LLM + 하네스
+</code></pre></div>
+<p>그래서 <code>AI = LLM + 하네스</code>는 틀린 공식이고, <strong><code>Agent = Model + Harness</code>가 정확한 공식이다.</strong> LLM은 AI의 부분집합이고, 우리가 "AI가 일한다"고 느끼는 것은 LLM이 하네스와 결합된 에이전트 상태다. 이 등식은 LLM 애플리케이션 개발 프레임워크를 만드는 <a href="https://www.langchain.com/blog/the-anatomy-of-an-agent-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">LangChain</a>과, 소프트웨어 설계·리팩터링 저술가 <a href="https://martinfowler.com/articles/harness-engineering.html" node="[object Object]" target="_blank" rel="noopener noreferrer">Martin Fowler의 사이트</a>가 공통으로 쓰는 정의다.</p>
+<hr>
+<h2 id="heading-1">2. 모델 파라미터와 어텐션 가중치</h2>
+<p><strong>토큰 가중치</strong>는 정식 용어가 아니라, 모델 파라미터와 어텐션 가중치라는 서로 다른 두 개념이 섞여 있는 표현이다. "토큰 가중치로 다음 말을 예측한다"는 문장에 그 혼동이 그대로 드러난다.</p>
+<ul>
+<li><strong>모델 파라미터(weights)</strong>: 토큰마다 붙은 값이 아니라, 신경망 전체가 학습으로 얻은 수십~수천억 개의 숫자다. 학습이 끝나면 고정된다.</li>
+<li><strong>어텐션 가중치(attention weights)</strong>: 이것은 실제로 토큰 간 관계의 가중치다. 다만 추론할 때마다 새로 계산되는 중간값이지, 저장된 지식이 아니다.</li>
+</ul>
+<p>즉 "토큰 가중치"라는 표현은 어텐션의 직관을 파라미터의 자리에 잘못 놓은 것이다. 실제로 일어나는 일은 7단계다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>입력 텍스트 "이 파일 고쳐줘"
+ → ① 토큰화        [이, 파일, 고, 쳐, 줘]
+ → ② 임베딩        각 토큰 → 벡터
+ → ③ Transformer   어텐션이 토큰 간 참조도 계산
+ → ④ logits        어휘 전체(예: 10만 개) 각각의 점수
+ → ⑤ softmax       확률분포로 변환
+ → ⑥ 샘플링        temperature · top-p
+ → ⑦ 다음 토큰 1개 확정 → (②로 돌아가 반복)
+</code></pre></div>
+<p>핵심은 ④~⑦이다. 모델은 다음에 올 말을 하나 고르는 게 아니라 <strong>어휘 전체에 대한 확률분포</strong>를 만든다. 어휘가 10만 개면 매 스텝 10만 개의 점수를 낸다. 여기서 10만이라는 숫자는 이 글에서 든 예시 값이고, 실제 어휘 크기는 모델마다 다르다. 그중 하나를 고르는 것은 샘플링 규칙이다. <code>temperature=0</code>이면 최고 확률을 그냥 고르고, 높이면 다양성이 생긴다. 그리고 이 과정을 토큰 하나씩 반복한다. 문장 전체를 한 번에 짓는 게 아니다.</p>
+<p>이 사실이 실무에서 갖는 의미가 있다. LLM이 같은 질문에 다른 답을 하는 건 버그가 아니라 ⑥번 샘플링 단계 때문이다. 그래서 "한 번 잘 됐다"는 검증이 아니고, 다중 trial이 필요하다(<a href="/post/ai-everything-08-eval-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">08편 평가 하네스</a>에서 다룬다). 재현이 필요하면 <code>temperature</code>를 낮추고 시드를 고정하되, 그래도 완전 결정론은 아니다. 프롬프트를 잘 써서 확률분포를 원하는 쪽으로 기울이는 것이 프롬프트 엔지니어링의 실체다.</p>
+<p>정확한 서술은 이렇다. <strong>LLM은 학습된 파라미터를 통해 어휘 전체에 대한 확률분포를 계산하고, 샘플링 규칙에 따라 다음 토큰 하나를 고르는 일을 반복한다.</strong> 여기까지가 이 시리즈를 읽는 데 필요한 전부다. ③~⑦ 각 단계의 내부 – 어텐션의 참조도 계산, 어휘 크기가 결정되는 곳, temperature와 top-p의 동작 – 는 <a href="/post/ai-everything-deep-01-transformer" node="[object Object]" target="_blank" rel="noopener noreferrer">심화 01편</a>에서 한 단계씩 해부한다.</p>
+<hr>
+<h2 id="heading-2">3. input token → LLM → output token</h2>
+<p><strong>input token</strong>은 모델에 들어가는 토큰이고, <strong>output token</strong>은 모델이 한 번에 하나씩 생성해 내보내는 토큰이다. 이 기본 구조에 두 가지를 더 얹으면 그림이 정확해진다.</p>
+<p>첫째, 입력은 텍스트만이 아니다. 이미지, 오디오, PDF도 결국 토큰으로 변환되어 컨텍스트를 차지한다. 이미지는 공짜가 아니다. 스크린샷 한 장이 수천 토큰일 수 있다.</p>
+<p>둘째, 출력은 문장만이 아니다. 이게 에이전트의 핵심이다. 현대의 tool calling 환경에서 모델의 출력은 종종 <strong>구조화된 객체</strong>다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">jsonc</span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code class="language-jsonc">// 모델이 실제로 뱉는 것
+{
+  "type": "tool_use",
+  "id": "toolu_01A...",
+  "name": "Read",
+  "input": { "file_path": "/Users/me/project/main.py" }
+}
+</code></pre></div>
+<p>하네스는 이 출력을 받아 세 갈래로 분류한다.</p>
+<ul>
+<li>순수 텍스트: 사용자에게 보여주고 루프를 종료한다</li>
+<li><code>tool_use</code>: 권한 검사 후 도구를 실행하고, 결과를 관찰 메시지로 포장해 다시 모델을 호출한다</li>
+<li>handoff 요청: 다른 전문 에이전트에게 위임한다</li>
+</ul>
+<p>Anthropic의 에이전트형 코딩 CLI인 Claude Code 같은 하네스를 움직이게 하는 것도 결국 LLM의 output token이다. 도구 실행, 파일 수정, 서브에이전트 생성의 방아쇠는 전부 이 <code>tool_use</code> 블록이다. 다만 하네스는 LLM 호출 이전에도 움직인다. 이 부분은 <a href="/post/ai-everything-03-agent-loop" node="[object Object]" target="_blank" rel="noopener noreferrer">03편 에이전트 루프</a>에서 7단계로 자세히 본다.</p>
+<hr>
+<h2 id="heading-3">4. 토큰화가 일어나는 위치</h2>
+<p><strong>토큰화</strong>(tokenization)는 문자열을 모델 어휘의 토큰 ID 배열로 바꾸는 과정이고, 이 변환은 하네스가 아니라 <strong>제공자 서버</strong>에서 일어난다. 하네스에는 토크나이저가 없다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>[내 컴퓨터 = 하네스]
+  타이핑: "이 파일 고쳐줘"
+    ↓
+  JSON 조립 ── 여전히 문자열! ──
+    ↓ HTTPS
+──────────────────────────────────
+[제공자 서버]
+  ★ 토큰화 ★  문자열 → 토큰 ID 배열
+    ↓
+  모델 추론
+    ↓
+  응답 + usage: { input_tokens, output_tokens }
+──────────────────────────────────
+    ↓
+  하네스가 화면에 "15.2k tokens" 표시
+</code></pre></div>
+<p>하네스가 서버로 보내는 것은 이런 JSON이다. 어디에도 토큰 ID는 없다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">jsonc</span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code class="language-jsonc">{
+  "model": "claude-opus-5",
+  "system": "...CLAUDE.md 내용...",
+  "messages": [{ "role": "user", "content": "이 파일 고쳐줘" }],
+  "tools": [ /* 도구 스키마들 */ ]
+}
+</code></pre></div>
+<p>그럼 Claude Code가 보여주는 토큰 수는 뭔가. 응답의 <code>usage</code> 필드에 서버가 알려준 값이거나, 클라이언트 측 근사 추정치, 둘 중 하나다. Anthropic이 별도의 token counting 엔드포인트를 제공한다는 사실 자체가 클라이언트는 정확히 셀 수 없다는 증거다. 보내기 전에 정확히 알고 싶으면 서버에 물어봐야 한다.</p>
+<p>토크나이저는 모델마다 다르다. OpenAI는 자주 붙어 나오는 글자쌍을 하나의 토큰으로 합쳐 나가는 토큰화 알고리즘인 BPE(Byte Pair Encoding) 계열을 쓰고(어휘 사전이 만들어지는 과정은 <a href="/post/ai-everything-deep-01-transformer" node="[object Object]" target="_blank" rel="noopener noreferrer">심화 01편</a>에서 다룬다), 자사 모델용 토큰 계산 라이브러리 <code>tiktoken</code>으로 이를 공개해 두었다. Anthropic은 자체 토크나이저를 비공개로 두고 count_tokens API만 제공한다. Google은 자사 오픈소스 토큰화 라이브러리인 SentencePiece 계열을 부분 공개한다. 같은 문장이라도 모델마다 토큰 수가 다르기 때문에, "이 프롬프트는 3,000 토큰"이라는 말은 모델을 명시하지 않으면 의미가 없다.</p>
+<p>한국어 사용자에게 특히 중요한 사실이 하나 있다. <strong>한국어는 영어보다 토큰을 더 먹는다.</strong> 대부분의 토크나이저가 영어 코퍼스로 최적화되어 있어서, 같은 의미를 담아도 한국어가 1.5~3배의 토큰을 쓰는 경우가 흔하다. 그래서 영어권 어림셈인 "글자 수 ÷ 4 = 토큰"을 한국어에 그대로 쓰면 크게 과소평가하게 되고, 같은 200k 컨텍스트 창이라도 한국어 문서는 훨씬 적게 들어가며, 비용도 그만큼 더 든다. 긴 참조 문서는 원문이 영어면 굳이 번역해 넣지 않는 게 유리할 때가 있다.</p>
+<hr>
+<h2 id="heading-4">5. 컨텍스트 창 (context window)</h2>
+<p><strong>컨텍스트 창</strong>(context window)은 모델이 한 번의 호출에서 한꺼번에 볼 수 있는 토큰 범위다. "RAM"이라는 비유가 자주 쓰이는데, 입문용 지도로는 좋지만 정확하지는 않다.</p>
+<table><thead><tr><th>RAM</th><th>컨텍스트 창</th></tr></thead><tbody><tr><td>임의 접근 가능</td><td>매 호출마다 전체를 다시 읽는다</td></tr><tr><td>쓴 만큼만 비용</td><td>들어 있는 만큼 매 턴 비용이 발생</td></tr><tr><td>위치가 성능에 무관</td><td>위치가 성능을 바꾼다 (Lost in the Middle)</td></tr></tbody></table>
+<p>세 번째가 결정적이다. <a href="https://arxiv.org/abs/2307.03172" node="[object Object]" target="_blank" rel="noopener noreferrer">Lost in the Middle</a> 연구는 관련 정보가 컨텍스트의 중간에 있을 때 성능이 눈에 띄게 떨어진다고 보고했다. 앞이나 끝에 있을 때보다 나쁘다. 긴 회의록과 비슷하다. 중요한 결정이 맨 앞이나 맨 끝에 있으면 기억나지만, 중간 어딘가에 묻혀 있으면 참석자도 놓친다.</p>
+<p>그래서 <strong>컨텍스트 창은 무한한 창고가 아니라 제한된 책상이다.</strong> 책상 위에 자료가 없으면 AI는 추측하고, 반대로 전부 올려놓으면 중요한 문서를 찾지 못한다. 이 문제를 다루는 기술이 컨텍스트 엔지니어링이고, <a href="/post/ai-everything-04-context-engineering" node="[object Object]" target="_blank" rel="noopener noreferrer">04편</a>의 주제다.</p>
+<hr>
+<h2 id="heading-5">6. 토큰 비용 구조</h2>
+<p><strong>토큰 비용</strong>은 input token과 output token 각각에 단가가 매겨져 사용량만큼 청구되는 구조다. 화면에 표시되는 토큰 수는 그 소모량을 뜻한다. 다만 청구 구조를 정확히 이해하려면 세 가지 보정이 필요하다.</p>
+<p>첫째, input token도 과금된다. 그것도 압도적으로. 코딩 에이전트는 output보다 <strong>input이 훨씬 많다.</strong> 매 턴마다 시스템 프롬프트, CLAUDE.md, 도구 스키마, 대화 기록, 읽은 파일 내용이 전부 다시 들어가기 때문이다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>턴 1:  input 20k  + output 500
+턴 2:  input 25k  + output 800    ← 턴1의 내용이 다시 들어감
+턴 3:  input 31k  + output 400    ← 턴1+2가 다시 들어감
+...
+턴 20: input 150k + output 600
+</code></pre></div>
+<p>이 누적 구조 때문에 긴 세션은 뒤로 갈수록 비싸진다. 이게 <a href="/post/ai-everything-09-memory-longrunning" node="[object Object]" target="_blank" rel="noopener noreferrer">09편</a>의 compaction과 세션 리셋이 필요한 이유다.</p>
+<p>둘째, prompt caching이 이 그림을 바꾼다. 반복되는 앞부분(시스템 프롬프트, CLAUDE.md, 도구 정의)을 캐시하면 cache read는 일반 input보다 훨씬 싸다. 대신 cache write는 조금 더 비싸다. 그래서 화면의 토큰 수와 실제 청구액은 선형 비례하지 않는다. 하네스 설계에서 "변하지 않는 것을 앞에, 변하는 것을 뒤에" 두는 이유이기도 하다. 앞부분이 고정되어야 캐시가 살아난다.</p>
+<p>셋째, reasoning 토큰도 출력에 포함된다. 모델이 답하기 전에 하는 사고도 출력 토큰이고, 화면에 안 보여도 과금된다.</p>
+<hr>
+<h2 id="heading-6">7. 정리</h2>
+<p>AI ⊃ ML ⊃ 딥러닝 ⊃ LLM이고, 정확한 공식은 <code>Agent = Model + Harness</code>다. "토큰 가중치"라는 것은 없다. 고정된 학습 결과인 모델 파라미터와, 추론 중 계산되는 중간값인 어텐션 가중치가 섞인 표현이다. 모델은 매 스텝 어휘 전체의 확률분포를 만들고 샘플링으로 토큰 하나를 고르기 때문에 답이 매번 조금씩 다르다(각 단계의 내부는 <a href="/post/ai-everything-deep-01-transformer" node="[object Object]" target="_blank" rel="noopener noreferrer">심화 01편</a>에서 해부한다). 출력은 문장일 수도 <code>tool_use</code> 같은 구조화된 객체일 수도 있고, 후자가 에이전트를 에이전트답게 만든다. 토큰화는 제공자 서버에서 일어나며 하네스는 문자열을 보낸다. 토크나이저는 모델마다 다르고 한국어는 영어보다 토큰을 더 먹는다. 컨텍스트 창은 RAM보다 책상에 가깝고 위치가 성능을 바꾼다. 비용은 input이 지배하고 prompt caching이 그림을 바꾼다.</p>
+<hr>
+<h2 id="heading-7">더 읽을거리</h2>
+<ul>
+<li>Nelson F. Liu et al., <em>Lost in the Middle: How Language Models Use Long Contexts</em> – <a href="https://arxiv.org/abs/2307.03172" node="[object Object]" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2307.03172</a></li>
+<li>Anthropic, <em>Effective context engineering for AI agents</em> – <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents</a></li>
+<li>김동학, 《하네스 엔지니어링 백과사전》 제2장 – <a href="https://wikidocs.net/346794" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/346794</a></li>
+</ul>
+<hr>
+<p>다음 편: <a href="/post/ai-everything-02-what-is-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">02. 하네스란 무엇인가 – 배선에서 AI까지</a> · 심화: <a href="/post/ai-everything-deep-01-transformer" node="[object Object]" target="_blank" rel="noopener noreferrer">심화 01. 트랜스포머 해부</a></p></article><div class="post-tags"><span class="tag">#LLM</span><span class="tag">#토큰</span><span class="tag">#토크나이저</span><span class="tag">#컨텍스트창</span><span class="tag">#확률분포</span><span class="tag">#어텐션</span></div></div><aside class="post-rail"><div class="post-rail-inner"><nav class="rail-block toc"><div class="rail-head">ON THIS PAGE</div><ul class="toc-list"><li class="toc-item level-2 "><a href="#heading-0">1. AI · ML · 딥러닝 · LLM의 포함 관계</a></li><li class="toc-item level-2 "><a href="#heading-1">2. 모델 파라미터와 어텐션 가중치</a></li><li class="toc-item level-2 "><a href="#heading-2">3. input token → LLM → output token</a></li><li class="toc-item level-2 "><a href="#heading-3">4. 토큰화가 일어나는 위치</a></li><li class="toc-item level-2 "><a href="#heading-4">5. 컨텍스트 창 (context window)</a></li><li class="toc-item level-2 "><a href="#heading-5">6. 토큰 비용 구조</a></li><li class="toc-item level-2 "><a href="#heading-6">7. 정리</a></li><li class="toc-item level-2 "><a href="#heading-7">더 읽을거리</a></li></ul></nav><div class="rail-block keywords"><div class="rail-head">KEYWORDS</div><div class="rail-tags"><span class="rail-tag">#LLM</span><span class="rail-tag">#토큰</span><span class="rail-tag">#토크나이저</span><span class="rail-tag">#컨텍스트창</span><span class="rail-tag">#확률분포</span><span class="rail-tag">#어텐션</span></div></div></div></aside></div></div></main></div></div>
+  
+
+</body></html>

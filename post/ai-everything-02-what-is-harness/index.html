@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <title>AI의 모든 것 (02) – 하네스란 무엇인가: 배선에서 AI까지 | flowizy's DevLog</title>
+    <meta name="description" content="배선 하네스에서 AI 하네스까지 – 최소 5요소, 제품급 12요소, 메모리·스킬·프로토콜.">
+    <meta property="og:title" content="AI의 모든 것 (02) – 하네스란 무엇인가: 배선에서 AI까지 | flowizy's DevLog">
+    <meta property="og:description" content="배선 하네스에서 AI 하네스까지 – 최소 5요소, 제품급 12요소, 메모리·스킬·프로토콜.">
+    <meta property="og:url" content="https://fl0wizy.github.io/post/ai-everything-02-what-is-harness">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://fl0wizy.github.io/post/ai-everything-02-what-is-harness">
+    
+    
+    
+    
+    
+    
+    
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="xBpPKxzhz-8Y708fYBi6IG1Du6zn0v_yKr4Hm-4PG5g">
+    <meta name="theme-color" content="#0d0d0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?')
+            .replace(/^\/+/, '/');
+
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.replace(/\/$/, '') + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-DWKahj0y.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-B8gBuBl2.css">
+  </head>
+  <body>
+    <div id="root"><div class="layout"><aside class="sidebar"><div class="sidebar-logo"><div class="logo-container"><div class="logo-image-wrapper"><img alt="flowizy" class="logo-profile-image" src="/images/profile.jpg"></div><div class="logo-text"><h1>flowizy's DevLog</h1><p>SECURITY RESEARCHER</p></div></div></div><nav class="sidebar-nav"><a class="nav-item " href="/profile" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path></svg><span>PROFILE</span></a><a class="nav-item " href="/" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>BLOG</span></a></nav><div class="sidebar-categories"><div class="categories-header"><span>CONTENT CATEGORIES</span></div><div class="categories-list"><div class="category-item-wrapper"><button class="category-item selected level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><span class="category-name">전체</span><span class="post-count ">21</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span><span class="category-name">보안(Security)</span><span class="post-count subtle">7</span></button><div class="category-children"><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #6f9fd8;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="category-name">Web Security</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span><span class="category-name">Web3 / Blockchain</span><span class="post-count subtle">7</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #74c195;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span><span class="category-name">Reversing</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #e6a572;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></span><span class="category-name">Pwn</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #db8fb4;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span class="category-name">Crypto</span><span class="post-count subtle">0</span></button></div></div></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a3c76d;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span><span class="category-name">AI</span><span class="post-count subtle">14</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #6fbecf;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span><span class="category-name">개발(Development)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #d4c277;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg></span><span class="category-name">여행(Travel)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #9ca3af;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="category-name">일상(Daily)</span><span class="post-count subtle">0</span></button></div></div></div></aside><main class="main-content"><div class="post-page" style="--cat: #a3c76d;"><div class="post-layout"><header class="post-head"><a class="back-link" href="/" data-discover="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>BACK TO LIST</a><div class="post-category-line"><span class="post-category-badge">AI</span></div><h1 class="post-title">AI의 모든 것 (02) – 하네스란 무엇인가: 배선에서 AI까지</h1><div class="post-meta"><span class="post-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-08-02 / 09:20</span><span class="post-relative-time">약 4일 전</span><span class="post-reading-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>약 12분</span></div></header><div class="post-container"><article class="post-content"><p>이 글에서는 "하네스"라는 말이 자동차 배선에서 소프트웨어 테스트를 거쳐 AI로 이어진 계보, 모델과 하네스가 한 턴에서 각각 어디에 있는지, 하네스의 최소 구성요소 5개와 제품급 구성요소 12개, 하네스가 모델 바깥에 두는 외부 구성요소(메모리·스킬·프로토콜)를 정리한다.</p>
+<hr>
+<h2 id="heading-0">1. 하네스(harness)의 어원</h2>
+<p><strong>하네스</strong>(harness)는 원래 "묶고 지탱하고 연결하는 장치"를 뜻하는 말이다. 등산 안전벨트도 하네스, 말에 씌우는 마구도 하네스, 자동차 안의 전선 묶음(wiring harness)도 하네스다. 핵심은 하나다. <strong>복잡하고 위험할 수 있는 요소를 제멋대로 흩어지지 않게 묶고, 필요한 방향으로 힘과 신호가 흐르게 만드는 구조.</strong></p>
+<p>자동차가 좋은 예다. 전조등, 브레이크등, 배터리, 센서, 에어백, 오디오, 내비게이션, ECU가 각자 따로 전선을 늘어뜨리고 있다면 정비가 어렵고, 고장이 잦고, 열과 진동에 취약하고, 사고 시 위험하다. 그래서 자동차 산업은 전선을 묶고 보호하고 경로를 정하는 wiring harness를 쓴다. AI 하네스가 하는 일도 정확히 대응된다. 전선이 흐트러지지 않게 묶듯 컨텍스트와 도구를 조직하고, 과전류와 마모를 막듯 위험한 도구 호출과 잘못된 행동을 막고, 정비사가 고장 지점을 찾게 하듯 로그와 trace로 실패 지점을 찾게 하고, 부품 간 연결 규칙을 표준화하듯 모델·도구·평가·승인 흐름을 표준화한다. 그렇게 차량 전체의 신뢰성을 높이듯 에이전트 업무 전체의 신뢰성을 높인다.</p>
+<p>하네스는 AI를 가두는 족쇄가 아니라, AI가 제대로 힘을 발휘하게 해 주는 연결 구조다. 안전벨트를 찬다고 운전이 느려지지 않는다. 오히려 더 빠른 속도에서도 안전하게 이동할 수 있다.</p>
+<hr>
+<h2 id="heading-1">2. 소프트웨어의 test harness</h2>
+<p><strong>test harness</strong>는 테스트 실행에 필요한 stub과 driver로 구성된 테스트 환경이다. 소프트웨어 분야에 오래전부터 있던 말이고, 이 정의는 테스트 용어 표준을 정의하는 기구인 ISTQB(국제 소프트웨어 테스팅 자격위원회)의 것이다.</p>
+<p>은행 송금 프로그램 테스트가 좋은 예다. 실제 계좌에서 돈을 움직이며 매번 테스트할 수는 없다. 그래서 가짜 계좌, 가짜 DB, 가짜 응답, 자동 검사기를 만든다. <strong>실제 세계를 그대로 쓰기에는 위험하거나 비싸거나 느리기 때문에, 통제 가능한 환경을 만든다.</strong> 이게 test harness의 정신이다.</p>
+<p>AI 하네스는 이 유산을 그대로 이어받는다. 실제 고객에게 이메일을 보내기 전에 가짜 메일함에서 테스트하고, 실제 결제를 실행하기 전에 sandbox 결제 환경에서 테스트하고, 실제 서버를 삭제하기 전에 dry-run을 돌린다. 이건 개발자 습관이 아니라 AI 시대의 필수 안전장치다. AI는 비결정적이기 때문이다(<a href="/post/ai-everything-01-llm-and-token" node="[object Object]" target="_blank" rel="noopener noreferrer">01편</a>의 샘플링 참조). "이번에는 괜찮아 보인다"가 아니라 "대표 사례 100개에서 93개를 통과했다"가 필요하다.</p>
+<hr>
+<h2 id="heading-2">3. 계보: workflow → agent → harness</h2>
+<p><strong>워크플로</strong>(workflow)와 <strong>에이전트</strong>(agent)는 실행 경로를 코드가 미리 정해 두느냐 LLM이 그때그때 정하느냐로 갈린다. Anthropic의 「Building Effective Agents」는 두 가지를 이렇게 구분한다.</p>
+<table><thead><tr><th></th><th>Workflow</th><th>Agent</th></tr></thead><tbody><tr><td>정의</td><td>LLM과 도구가 미리 정해진 코드 경로를 따라 움직인다</td><td>LLM이 스스로 진행 방식과 도구 사용을 동적으로 결정한다</td></tr><tr><td>비유</td><td>자동 세탁기 프로그램</td><td>세탁물을 보고 세탁 방식까지 판단하는 전문가</td></tr><tr><td>어울리는 일</td><td>정해진 양식의 이메일 분류, 문서 변환</td><td>조사 범위가 매번 다르고 도구를 몇 번 쓸지 모르는 일</td></tr></tbody></table>
+<p><strong>길이 보이면 워크플로, 길을 찾아야 하면 에이전트</strong>로 요약할 수 있다. 하네스 엔지니어링은 둘 중 하나를 고집하는 일이 아니다. 반복 가능한 부분은 워크플로로 고정하고, 판단이 필요한 부분은 에이전트에게 맡기는 균형 잡기다.</p>
+<p>그리고 이 흐름을 연구가 뒷받침한다.</p>
+<ul>
+<li><a href="https://arxiv.org/abs/2210.03629" node="[object Object]" target="_blank" rel="noopener noreferrer">ReAct</a> (2022) – Reasoning + Acting. LLM이 추론과 행동을 번갈아 수행할 수 있음을 보인 논문이자 그 패턴의 이름이다. 모델이 생각만 하는 게 아니라 외부 환경과 상호작용한다</li>
+<li><a href="https://arxiv.org/abs/2302.04761" node="[object Object]" target="_blank" rel="noopener noreferrer">Toolformer</a> (2023) – Meta의 논문으로, 모델이 계산기·검색·번역·캘린더를 언제 어떻게 호출할지 스스로 학습할 수 있음을 보였다</li>
+</ul>
+<p>AI에게 손과 발이 생겼다는 뜻이다. 예전 AI는 머릿속으로만 답했다. 지금은 계산기를 두드리고, 책장을 찾고, 파일을 열고, 프로그램을 실행한다. 손과 발이 생기면 할 수 있는 일이 많아지지만, 동시에 안전교육도 필요해진다.</p>
+<hr>
+<h2 id="heading-3">4. Agent = Model + Harness</h2>
+<p><strong>Agent = Model + Harness</strong>는 에이전트를 모델과 그 바깥의 실행 구조로 나누는 등식이다. 이 공식의 출처는 두 곳이다.</p>
+<p>소프트웨어 설계·리팩터링 저술가 Martin Fowler의 사이트에 실린 글(저자는 AI 코딩 어시스턴트 분야 저술가 Birgitta Böckeler)은 하네스를 두 축으로 나눈다.</p>
+<ul>
+<li><strong>Guides (feedforward)</strong>: 행동 전에 작동한다. 좋은 방향으로 미리 이끄는 장치다. 요리 전에 레시피와 재료를 준비하는 일에 해당한다.</li>
+<li><strong>Sensors (feedback)</strong>: 행동 후에 작동한다. 결과를 관찰하고 다시 고치게 하는 장치다. 국을 떠서 맛보고 간을 맞추는 일에 해당한다.</li>
+</ul>
+<p>둘 중 하나만으로는 부족하다. feedforward만 있으면 규칙은 많지만 실제로 지켜졌는지 모르는 상태가 되고, feedback만 있으면 매번 틀린 뒤에야 고치는 상태가 된다. <strong>좋은 하네스는 처음부터 덜 틀리게 만들고, 틀렸을 때는 스스로 고칠 수 있게 만든다.</strong></p>
+<p>LLM 애플리케이션 개발 프레임워크를 만드는 회사이자 그 오픈소스 프로젝트 이름인 LangChain은 더 과감하게 정의한다. <strong>모델이 아니라면, 그것은 하네스다.</strong> 시스템 프롬프트, 도구, MCP(Model Context Protocol, Anthropic이 2024년 공개한 AI에 도구와 데이터를 연결하는 개방 표준), 파일시스템, 샌드박스, 오케스트레이션 로직, hook/middleware가 전부 하네스다. 과감해 보이지만 이 정의는 책임의 위치를 바꿔준다는 점에서 유용하다.</p>
+<p>AI가 실패했을 때 가장 흔한 반응은 모델부터 의심하는 것이다. 하네스 관점은 그 의심을 고칠 수 있는 대상으로 바꿔준다.</p>
+<ul>
+<li>모델이 회사 정책을 반영하지 못했다면: 정책 문서가 컨텍스트에 있었는가, 최신이었는가</li>
+<li>도구를 잘못 사용했다면: 도구 설명이 명확했는가, 너무 많이 노출한 건 아닌가</li>
+<li>이전 작업을 잊었다면: progress 파일이나 상태 기록이 있었는가</li>
+<li>테스트 없이 완료라고 했다면: 검증 루프가 하네스에 있었는가</li>
+<li>위험한 행동을 시도했다면: 권한·승인·샌드박스가 설계되어 있었는가</li>
+<li>답변이 매번 달랐다면: 출력 형식·평가 기준·예시가 고정되어 있었는가</li>
+</ul>
+<p>"모델이 멍청하다"는 고칠 수 없다. "도구 설명이 모호하다"는 오늘 고칠 수 있다.</p>
+<p>에이전트 한 턴에서 모델과 하네스가 각각 어디에 있는지를 그림으로 보면 다음과 같다.</p>
+<p><img alt="AI 에이전트 실행 구조" src="/images/ai/AI-Harness.excalidraw.svg"></p>
+<p>이 SVG에는 다이어그램 편집 도구인 excalidraw의 장면 데이터가 내장되어 있어서, excalidraw.com에서 파일 열기로 불러오면 그대로 수정할 수 있다.</p>
+<p>같은 흐름을 텍스트로 보면 이렇다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>User → 하네스   ① 프롬프트 (자연어)
+하네스 내부      CLAUDE.md 로드 · @파일 확장 · Skill 메타데이터 · 도구 스키마 조립 · Hook 실행
+                 ← LLM 호출 전에도 움직인다
+하네스 → LLM    ② 조립된 요청 (JSON 문자열) – 미들웨어가 있으면 로깅·라우팅·캐싱 후 전달
+LLM 서버        ★ 여기서 문자열 → 토큰
+LLM → 하네스    ③ output token = tool_use
+하네스          ④ 권한 게이트 (allow / ask / deny)
+하네스 → 도구   ⑤ 실제 실행 (MCP / 로컬 도구)
+도구 → 하네스   ⑥ 결과
+하네스 → LLM    ⑦ 관찰 메시지로 포장해 재요청
+LLM → 하네스    ⑧ 최종 답변
+하네스 → User   ⑨ 결과 보고
+</code></pre></div>
+<p>각 단계가 실제로 어떻게 도는지는 <a href="/post/ai-everything-03-agent-loop" node="[object Object]" target="_blank" rel="noopener noreferrer">03편</a>에서 자세히 다룬다.</p>
+<hr>
+<h2 id="heading-4">5. CPU와 운영체제 비유</h2>
+<p><strong>원시 LLM은 운영체제 없는 CPU와 같다.</strong> 계산은 할 수 있지만, 혼자서는 사용자의 일을 안정적으로 끝내지 못한다. 하네스는 그 CPU를 실제 업무용 컴퓨터로 바꾸는 운영체제다.</p>
+<table><thead><tr><th>컴퓨터 구조</th><th>LLM 에이전트 구조</th><th>쉬운 설명</th></tr></thead><tbody><tr><td>CPU</td><td>LLM, 모델 가중치</td><td>계산하고 추론하는 엔진. 강력하지만 혼자서는 일을 끝내지 못한다</td></tr><tr><td>RAM</td><td>컨텍스트 창</td><td>지금 책상 위에 펼쳐 둔 자료. 빠르지만 공간이 제한된다</td></tr><tr><td>하드디스크</td><td>벡터DB, 문서, 파일, 장기 저장소</td><td>오래 보관하는 창고. 필요할 때 검색해 꺼내 와야 한다</td></tr><tr><td>장치 드라이버</td><td>도구 통합, MCP, API, 파일 I/O</td><td>모델이 외부 세계를 만지는 통로</td></tr><tr><td>운영체제</td><td>에이전트 하네스</td><td>메모리·도구·권한·오류복구·검증·중단조건을 관리</td></tr><tr><td>애플리케이션</td><td>에이전트 행동 또는 제품</td><td>사용자가 실제로 경험하는 결과</td></tr></tbody></table>
+<p>물론 이건 입문용 지도이지 완벽한 기술 설명이 아니다. 컨텍스트 창은 실제 RAM처럼 임의 접근이 자유롭지 않고, 벡터DB도 하드디스크처럼 단순 저장소가 아니다. 그래도 큰 그림은 분명하다. OS가 좋아질수록 같은 CPU도 훨씬 쓸모 있는 컴퓨터가 된다.</p>
+<p>같은 그림을 한 문장으로 줄이면 이렇다. 뛰어난 요리사도 냉장고에 라벨이 없고 칼이 무디고 주문서가 뒤섞인 주방에서는 실수한다. <strong>모델은 요리사고, 하네스는 주방이다.</strong></p>
+<hr>
+<h2 id="heading-5">6. 최소 하네스 5요소</h2>
+<p><strong>최소 하네스</strong>는 어떤 구성을 하네스라고 부르기 위해 갖춰야 하는 최소 구성요소다. 아주 작은 개인 프로젝트라도 이 다섯 가지가 있으면 하네스라고 부를 수 있다.</p>
+<ol>
+<li><strong>목표 문서</strong>: 무엇을 해야 하는지, 무엇을 하지 말아야 하는지</li>
+<li><strong>컨텍스트 지도</strong>: 필요한 문서와 데이터가 어디에 있는지</li>
+<li><strong>도구 목록</strong>: 사용할 수 있는 도구와 금지된 도구</li>
+<li><strong>검증 방법</strong>: 결과가 맞는지 확인하는 테스트나 체크리스트</li>
+<li><strong>기록 방식</strong>: 무엇을 했고 무엇이 남았는지 다음 세션에 넘기기</li>
+</ol>
+<hr>
+<h2 id="heading-6">7. 제품급 하네스 12요소</h2>
+<p><strong>제품급 하네스</strong>는 실제 제품이나 조직 업무에 투입되는 규모의 하네스다. 이 단계가 되면 부품이 늘어난다.</p>
+<ol>
+<li><strong>목표·성공기준</strong>: 무엇을 끝으로 볼지 정한다 (주문서)</li>
+<li><strong>오케스트레이션 루프</strong>: 모델 호출·도구 실행·결과 반영을 반복한다 (업무 흐름표)</li>
+<li><strong>도구 레이어</strong>: 검색·파일 읽기·API 호출·브라우저 조작 (손과 발)</li>
+<li><strong>메모리</strong>: 세션 안팎의 정보를 보관한다 (업무 노트)</li>
+<li><strong>컨텍스트 관리</strong>: 지금 봐야 할 자료만 선별한다 (책상 정리)</li>
+<li><strong>프롬프트 구성</strong>: 시스템 지시·도구 설명·메모리·요청을 조립한다 (회의 안건지)</li>
+<li><strong>출력 파싱</strong>: 답변인지 도구 호출인지 구분한다 (접수 담당자)</li>
+<li><strong>상태·체크포인트</strong>: 중단 후 재개, 되돌리기, 디버깅 (저장 버튼)</li>
+<li><strong>오류 처리</strong>: 재시도·복구·사람 개입 요청 (고객센터 매뉴얼)</li>
+<li><strong>가드레일·권한</strong>: 위험한 행동을 막고 승인 절차를 둔다 (출입카드)</li>
+<li><strong>검증 루프</strong>: 테스트·리뷰·스크린샷·LLM 평가자 (검사관)</li>
+<li><strong>관측성·분업</strong>: 로그·비용·지연시간·subagent 협업 (CCTV와 조직도)</li>
+</ol>
+<p>많을수록 좋다는 뜻이 아니다. 어린이 자전거에는 보조바퀴와 헬멧이면 충분하지만, 고속도로를 달리는 자동차에는 브레이크·에어백·ABS·블랙박스·정비기록이 필요하다. 고객 데이터, 결제, 배포, 법률 문서처럼 <strong>위험도가 높을수록</strong> 12가지가 필요해진다.</p>
+<hr>
+<h2 id="heading-7">8. 모델 외부 구성요소 – 메모리·스킬·프로토콜</h2>
+<p><strong>모델 외부 구성요소</strong>는 모델 안에 넣지 않고 하네스가 바깥에 보관하는 요소들, 즉 메모리·스킬·프로토콜 세 축과 그것들을 중재하는 장치를 가리킨다. 에이전트를 "모델에 도구 몇 개를 붙인 것"으로 생각하기 쉽지만, 하네스 관점의 구조는 오히려 반대에 가깝다. <strong>모델 자체는 가능한 한 얇게 두고, 모델이 매번 스스로 들고 있을 필요가 없는 기억·절차·규칙을 모델 바깥에 둔다.</strong> 하네스는 이 바깥 요소들을 실행 시점에 조합한다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>              ┌─ 메모리    (무엇을 기억할 것인가)
+하네스 ───────┼─ 스킬      (어떻게 처리할 것인가)
+(조합자)      └─ 프로토콜  (어떻게 상호작용할 것인가)
+                   │
+              중재 장치
+              (샌드박스 · 관측성 · 압축 · 평가 · 승인루프 · 서브에이전트 오케스트레이션)
+                   │
+                 모델
+</code></pre></div>
+<p>첫 번째 축은 메모리, 즉 계속 들고 있을 필요가 없는 상태다.</p>
+<ul>
+<li><strong>Working Context</strong>: 지금 작업에 필요한 상태. 책상 위에 펼쳐 둔 자료</li>
+<li><strong>Semantic Knowledge</strong>: 의미 있는 지식과 개념. 자주 참고하는 업무 지식 창고</li>
+<li><strong>Episodic Experience</strong>: 과거의 경험과 사건. 이전 회의록과 업무 이력</li>
+<li><strong>Personalized Memory</strong>: 개인화된 기억. 단골 가게가 기억하는 취향</li>
+</ul>
+<p>넷 다 "기억"이지만 같은 방식으로 다루면 안 된다. 자세한 것은 <a href="/post/ai-everything-09-memory-longrunning" node="[object Object]" target="_blank" rel="noopener noreferrer">09편</a>에서 본다.</p>
+<p>두 번째 축은 스킬, 즉 반복 가능한 절차 지식이다.</p>
+<ul>
+<li><strong>Operational Procedures</strong>: 운영 절차. 매장의 표준 업무 순서</li>
+<li><strong>Decision Heuristics</strong>: 판단 기준. 경험 많은 직원의 판단 요령</li>
+<li><strong>Normative Constraints</strong>: 규범적 제약. 반드시 지켜야 하는 회사 규칙</li>
+</ul>
+<p>프롬프트와 스킬은 다르다. 프롬프트는 그때그때 주는 지시이고, 스킬은 반복되는 업무 방식을 <strong>재사용 가능한 형태로 보관</strong>한 것이다.</p>
+<p>세 번째 축은 프로토콜, 즉 상호작용의 약속이다.</p>
+<ul>
+<li><strong>Agent-to-User</strong>: 에이전트와 사용자 사이. 직원이 고객에게 설명하고 확인받는 방식</li>
+<li><strong>Agent-to-Agent</strong>: 에이전트와 에이전트 사이. 팀원끼리 일을 나누고 인수인계하는 방식</li>
+<li><strong>Agent-to-Tools</strong>: 에이전트와 도구 사이. 장비 사용 시 지켜야 하는 규칙</li>
+</ul>
+<p>그리고 중재 장치가 바깥 요소와 만나는 방식을 통제한다.</p>
+<ul>
+<li><strong>Sandboxing</strong>: 안전한 실행 공간. 실제 매장이 아닌 연습장</li>
+<li><strong>Observability</strong>: 상태와 흐름 관찰. CCTV와 업무 기록</li>
+<li><strong>Compression</strong>: 긴 정보를 압축. 긴 회의록을 요약한 인수인계 메모</li>
+<li><strong>Evaluation</strong>: 결과 평가. 품질 검사표</li>
+<li><strong>Approval Loops</strong>: 승인 절차. 결재선</li>
+<li><strong>Sub-Agent Orchestration</strong>: 하위 에이전트 조율. 팀장과 역할 분담</li>
+</ul>
+<p>그래서 새 기능은 어디에 두는가. 에이전트에 새 능력을 넣고 싶을 때 곧바로 프롬프트에 덧붙이거나 도구를 하나 더 붙이면 하네스가 금방 복잡해진다. 기능의 성격부터 보면 위치가 정해진다. 안정적으로 보관해야 할 상태면 메모리에, 반복해서 쓰는 절차나 판단 요령이면 스킬에, 사용자·에이전트·도구와의 상호작용 규칙이면 프로토콜에, 흐름을 통제하고 되돌려야 하는 장치면 중재 장치에 둔다. <strong>하네스 설계의 핵심은 '모델에게 무엇을 더 시킬까'보다 '무엇을 모델 밖으로 꺼내 구조화할까'를 결정하는 데 있다.</strong></p>
+<hr>
+<h2 id="heading-8">9. 프롬프트와 하네스의 차이</h2>
+<p><strong>프롬프트</strong>는 모델에게 말로 하는 부탁이고, <strong>하네스</strong>는 그 부탁을 실제로 실행하거나 차단하는 구조다. 프롬프트는 중요하다. 하지만 "절대 실수하지 마"라고 말한다고 실수가 사라지지 않고, "보안을 지켜"라고 말한다고 비밀 정보 유출이 막히지 않고, "테스트해"라고 말한다고 실제 테스트가 실행되지 않는다.</p>
+<p>"조심해서 운전해"는 필요하지만 충분하지 않다. 차선, 신호등, 브레이크, 안전벨트, 운전면허, 보험, 정비 시스템이 함께 있어야 한다. 프롬프트는 운전자에게 하는 말이고, 하네스는 도로·신호·차량·보험·정비 체계다. 말은 참고될 뿐 어길 수 있지만, 하네스는 실행하거나 막는다. 말은 이번 답에만 적용되지만, 하네스는 다음에도 반복 가능하다. 이 <strong>부탁과 집행</strong>의 구분은 <a href="/post/ai-everything-10-safety-governance" node="[object Object]" target="_blank" rel="noopener noreferrer">10편</a>에서 훅과 권한으로 이어진다.</p>
+<hr>
+<h2 id="heading-9">10. 하네스 엔지니어링의 정의</h2>
+<p><strong>하네스 엔지니어링</strong>은 에이전트가 일하는 환경 전체 – 컨텍스트·도구·권한·상태·오류복구·검증·기록 – 을 설계하는 일이다. 세 층위를 구분하면 이렇다.</p>
+<ul>
+<li><strong>프롬프트 엔지니어링</strong>: 어떻게 말할 것인가. 업무 지시서 쓰기</li>
+<li><strong>컨텍스트 엔지니어링</strong>: 무엇을 보여 줄 것인가. 책상 위 자료 정리</li>
+<li><strong>하네스 엔지니어링</strong>: 어떤 환경에서 일하게 할 것인가. 사무실·도구·승인·검사 체계 만들기</li>
+</ul>
+<p>하네스 엔지니어링은 앞의 둘을 포함하고, 거기에 도구 실행·권한·상태·오류복구·검증·기록까지 더한다. 대부분의 사용자는 기존 하네스를 자기 환경에 맞게 튜닝하는 단계에 있고, 이것도 완전한 하네스 엔지니어링이다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>기본 하네스 그대로 → 설정 튜닝 → Skill/Hook 작성 → Plugin 배포 → SDK로 자체 하네스 구축
+     (대부분 여기)                                              (제품 개발팀)
+</code></pre></div>
+<p>설계 전에 물어야 할 질문이 하나 더 있다. "어떤 하네스를 붙일까"가 아니라 <strong>"이 환경은 하네스를 걸기 쉬운가(harnessability)"</strong> 다. 타입·스키마·입력 형식이 분명하면 계산형 센서가 빠르게 오류를 잡는다. 모듈 경계와 책임이 뚜렷하면 에이전트가 고쳐야 할 범위를 좁힐 수 있다. 테스트와 린터가 이미 있으면 결과를 말이 아니라 신호로 확인할 수 있다. 문서와 예시가 최신이면 에이전트가 팀의 암묵지를 읽을 수 있다. 로그와 오류 메시지가 친절하면 실패 후 스스로 고칠 단서를 얻는다.</p>
+<p>반대로 낡은 규칙, 얽힌 의존성, 없는 테스트, 오래된 문서는 하네스를 만들기 어렵게 한다. 이런 환경일수록 하네스가 더 필요하지만, 동시에 만들기도 더 어렵다. 좋은 하네스 엔지니어링은 에이전트 설정만 다듬는 일이 아니라 업무 환경 자체를 정리하는 일이기도 하다.</p>
+<hr>
+<h2 id="heading-10">11. 정리</h2>
+<p>하네스는 원래 묶고 지탱하고 연결하는 장치였고, 자동차 배선에서 소프트웨어 테스트를 거쳐 AI로 이어졌다. Agent = Model + Harness, 모델이 아니면 전부 하네스다. 하네스는 Guides(사전 제어)와 Sensors(사후 검증) 두 축을 가지며 하나만으로는 부족하다. 원시 LLM은 OS 없는 CPU이고 하네스가 그 OS다. 최소 5요소는 목표 문서, 컨텍스트 지도, 도구 목록, 검증 방법, 기록 방식이고, 제품급 12요소는 위험도가 높을수록 필요해진다. 많을수록 좋은 게 아니다. 설계의 핵심 질문은 무엇을 모델 밖으로 꺼내 구조화할까이고, 그 답이 메모리·스킬·프로토콜과 중재 장치다. 프롬프트는 말이고 하네스는 구조다. 말은 중요하지만 구조가 있어야 반복 가능해진다.</p>
+<hr>
+<h2 id="heading-11">더 읽을거리</h2>
+<ul>
+<li>LangChain, <em>The Anatomy of an Agent Harness</em> – <a href="https://www.langchain.com/blog/the-anatomy-of-an-agent-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.langchain.com/blog/the-anatomy-of-an-agent-harness</a></li>
+<li>Birgitta Böckeler, <em>Harness engineering for coding agent users</em> – <a href="https://martinfowler.com/articles/harness-engineering.html" node="[object Object]" target="_blank" rel="noopener noreferrer">https://martinfowler.com/articles/harness-engineering.html</a></li>
+<li>Anthropic, <em>Building Effective AI Agents</em> – <a href="https://www.anthropic.com/engineering/building-effective-agents" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/building-effective-agents</a></li>
+<li>ISTQB Glossary, <em>test harness</em> – <a href="https://glossary.istqb.org/en_US/term/test-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">https://glossary.istqb.org/en_US/term/test-harness</a></li>
+<li>김동학, 《하네스 엔지니어링 백과사전》 제1장 – <a href="https://wikidocs.net/346793" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/346793</a></li>
+</ul>
+<hr>
+<p>다음 편: <a href="/post/ai-everything-03-agent-loop" node="[object Object]" target="_blank" rel="noopener noreferrer">03. 에이전트 루프의 해부</a>
+이전 편: <a href="/post/ai-everything-01-llm-and-token" node="[object Object]" target="_blank" rel="noopener noreferrer">01. LLM과 토큰</a></p></article><div class="post-tags"><span class="tag">#하네스</span><span class="tag">#Harness</span><span class="tag">#Agent</span><span class="tag">#하네스엔지니어링</span><span class="tag">#Guides</span><span class="tag">#Sensors</span></div></div><aside class="post-rail"><div class="post-rail-inner"><nav class="rail-block toc"><div class="rail-head">ON THIS PAGE</div><ul class="toc-list"><li class="toc-item level-2 "><a href="#heading-0">1. 하네스(harness)의 어원</a></li><li class="toc-item level-2 "><a href="#heading-1">2. 소프트웨어의 test harness</a></li><li class="toc-item level-2 "><a href="#heading-2">3. 계보: workflow → agent → harness</a></li><li class="toc-item level-2 "><a href="#heading-3">4. Agent = Model + Harness</a></li><li class="toc-item level-2 "><a href="#heading-4">5. CPU와 운영체제 비유</a></li><li class="toc-item level-2 "><a href="#heading-5">6. 최소 하네스 5요소</a></li><li class="toc-item level-2 "><a href="#heading-6">7. 제품급 하네스 12요소</a></li><li class="toc-item level-2 "><a href="#heading-7">8. 모델 외부 구성요소 – 메모리·스킬·프로토콜</a></li><li class="toc-item level-2 "><a href="#heading-8">9. 프롬프트와 하네스의 차이</a></li><li class="toc-item level-2 "><a href="#heading-9">10. 하네스 엔지니어링의 정의</a></li><li class="toc-item level-2 "><a href="#heading-10">11. 정리</a></li><li class="toc-item level-2 "><a href="#heading-11">더 읽을거리</a></li></ul></nav><div class="rail-block keywords"><div class="rail-head">KEYWORDS</div><div class="rail-tags"><span class="rail-tag">#하네스</span><span class="rail-tag">#Harness</span><span class="rail-tag">#Agent</span><span class="rail-tag">#하네스엔지니어링</span><span class="rail-tag">#Guides</span><span class="rail-tag">#Sensors</span></div></div></div></aside></div></div></main></div></div>
+  
+
+</body></html>

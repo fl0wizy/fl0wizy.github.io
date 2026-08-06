@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <title>AI의 모든 것 (08) – 평가 하네스: '체감상 좋아졌다'는 지표가 아니다 | flowizy's DevLog</title>
+    <meta name="description" content="'체감상 좋아졌다'는 지표가 아니다 – 루브릭, LLM-as-judge, 환경 상태 기반 평가, 회귀 평가.">
+    <meta property="og:title" content="AI의 모든 것 (08) – 평가 하네스: '체감상 좋아졌다'는 지표가 아니다 | flowizy's DevLog">
+    <meta property="og:description" content="'체감상 좋아졌다'는 지표가 아니다 – 루브릭, LLM-as-judge, 환경 상태 기반 평가, 회귀 평가.">
+    <meta property="og:url" content="https://fl0wizy.github.io/post/ai-everything-08-eval-harness">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://fl0wizy.github.io/post/ai-everything-08-eval-harness">
+    
+    
+    
+    
+    
+    
+    
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="xBpPKxzhz-8Y708fYBi6IG1Du6zn0v_yKr4Hm-4PG5g">
+    <meta name="theme-color" content="#0d0d0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?')
+            .replace(/^\/+/, '/');
+
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.replace(/\/$/, '') + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-DWKahj0y.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-B8gBuBl2.css">
+  </head>
+  <body>
+    <div id="root"><div class="layout"><aside class="sidebar"><div class="sidebar-logo"><div class="logo-container"><div class="logo-image-wrapper"><img alt="flowizy" class="logo-profile-image" src="/images/profile.jpg"></div><div class="logo-text"><h1>flowizy's DevLog</h1><p>SECURITY RESEARCHER</p></div></div></div><nav class="sidebar-nav"><a class="nav-item " href="/profile" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path></svg><span>PROFILE</span></a><a class="nav-item " href="/" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>BLOG</span></a></nav><div class="sidebar-categories"><div class="categories-header"><span>CONTENT CATEGORIES</span></div><div class="categories-list"><div class="category-item-wrapper"><button class="category-item selected level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><span class="category-name">전체</span><span class="post-count ">21</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span><span class="category-name">보안(Security)</span><span class="post-count subtle">7</span></button><div class="category-children"><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #6f9fd8;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="category-name">Web Security</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span><span class="category-name">Web3 / Blockchain</span><span class="post-count subtle">7</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #74c195;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span><span class="category-name">Reversing</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #e6a572;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></span><span class="category-name">Pwn</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #db8fb4;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span class="category-name">Crypto</span><span class="post-count subtle">0</span></button></div></div></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a3c76d;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span><span class="category-name">AI</span><span class="post-count subtle">14</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #6fbecf;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span><span class="category-name">개발(Development)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #d4c277;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg></span><span class="category-name">여행(Travel)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #9ca3af;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="category-name">일상(Daily)</span><span class="post-count subtle">0</span></button></div></div></div></aside><main class="main-content"><div class="post-page" style="--cat: #a3c76d;"><div class="post-layout"><header class="post-head"><a class="back-link" href="/" data-discover="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>BACK TO LIST</a><div class="post-category-line"><span class="post-category-badge">AI</span></div><h1 class="post-title">AI의 모든 것 (08) – 평가 하네스: '체감상 좋아졌다'는 지표가 아니다</h1><div class="post-meta"><span class="post-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-08-02 / 10:20</span><span class="post-relative-time">약 4일 전</span><span class="post-reading-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>약 9분</span></div></header><div class="post-container"><article class="post-content"><p>이 글에서는 eval이 왜 선택이 아니라 필수인지, 계산형 검사와 추론형 검사를 어디에 쓰는지, "했다는 말"과 "실제로 됐다"를 구분하는 환경 상태 기반 평가, 그리고 Generator-Evaluator 3-agent 구조까지 한 번에 훑는다.</p>
+<hr>
+<h2 id="heading-0">1. Eval의 정의</h2>
+<p><strong>Eval</strong>은 AI 시스템의 품질을 측정하는 테스트다. AI용 시험지에 해당하지만, 정답 하나를 고르는 객관식 시험지는 아니다. OpenAI evals 문서는 모델 출력이 지정한 기준을 만족하는지 테스트하는 것으로 정의하고, task description 작성, test input 실행, 결과 분석, 반복 개선의 흐름을 제시한다. Anthropic evals 글은 evaluation harness를 지시와 도구를 제공하고, 작업을 실행하고, 단계를 기록하고, 결과를 채점하고, 집계하는 인프라로 설명한다.</p>
+<p>챗봇과 에이전트의 평가는 다르다. 챗봇은 <strong>답변</strong>을 평가한다("이 답이 정확한가"). 에이전트는 <strong>행동의 결과</strong>를 평가한다("예약이 실제로 DB에 생성됐는가").</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">jsonc</span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code class="language-jsonc">// 챗봇 테스트 케이스
+{ "input": "노트북이 켜지지 않아요", "expected_category": "Hardware" }
+
+// 에이전트 task
+{
+  "task": "고객의 환불 요청을 처리하라",
+  "environment": "가짜 주문 DB와 정책 문서",
+  "success": "환불 가능 여부를 정확히 판단하고 초안만 작성한다"
+}
+</code></pre></div>
+<p>eval이 필수인 이유는 비결정성 때문이다. <a href="/post/ai-everything-01-llm-and-token" node="[object Object]" target="_blank" rel="noopener noreferrer">01편</a>에서 봤듯 LLM은 샘플링으로 토큰을 고른다. 같은 요청에도 표현이나 접근이 달라진다. 그래서 "이번에는 괜찮아 보인다"가 아니라 <strong>대표 사례 100개에서 93개를 통과했다</strong> 같은 수치가 필요하다. 운전면허 시험과 같다. 한 번 우연히 주차에 성공했다고 운전 실력이 검증된 것은 아니다.</p>
+<hr>
+<h2 id="heading-1">2. Trial, Grader, Assertion</h2>
+<p>기본 용어 세 개는 다음과 같다. <strong>Trial</strong>은 같은 테스트를 한 번 실행한 결과다. LLM은 비결정적이라 여러 번 실행해야 할 수 있다. <strong>Grader</strong>는 점수를 매기는 함수 또는 모델이고, <strong>Assertion</strong>은 반드시 만족해야 하는 조건이다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>Assertion 1: 이메일을 실제로 전송하지 않았는가?
+Assertion 2: 환불 정책 문서를 인용했는가?
+Assertion 3: 고객 개인정보를 노출하지 않았는가?
+</code></pre></div>
+<p>다중 trial이 필요한 이유는 한 번의 성공이나 실패로 판단하면 위험하기 때문이다. 중요한 하네스는 같은 테스트를 여러 번 실행해 <strong>평균 점수, 최악 점수, 실패 패턴</strong>을 본다.</p>
+<hr>
+<h2 id="heading-2">3. 평가 방식 3단계</h2>
+<p>첫 번째는 정답 기반 평가다. 분류·추출·형식 변환처럼 정답이 분명한 작업에 적합하다. "모니터가 안 켜져요"의 기대 출력은 Hardware, "앱이 계속 튕겨요"는 Software, "영수증 주세요"는 Billing이라는 식이다.</p>
+<p>두 번째는 루브릭 기반 평가다. "좋은 보고서인가?", "친절한 답변인가?"에는 정답이 없다. 이를 <strong>루브릭(채점 기준표)</strong> 으로 바꾸면 평가할 수 있다.</p>
+<table><thead><tr><th>기준</th><th>0점</th><th>1점</th><th>2점</th></tr></thead><tbody><tr><td>정확성</td><td>틀림</td><td>일부 맞음</td><td>정확함</td></tr><tr><td>친절함</td><td>무례함</td><td>보통</td><td>공감과 안내가 있음</td></tr><tr><td>근거</td><td>없음</td><td>애매함</td><td>문서 근거 있음</td></tr><tr><td>안전성</td><td>개인정보 노출</td><td>약간 위험</td><td>안전함</td></tr></tbody></table>
+<p>루브릭은 개발자가 아닌 사람에게 특히 강력하다. "좋은 답변"이라는 감을 구체적 기준으로 바꾸기 때문이다. 디자인 품질처럼 주관적인 것도 마찬가지다. 사용자가 무엇을 해야 하는지 바로 알 수 있는가(명확성), 버튼·색·간격·문구가 일관되는가(일관성), 글자 크기와 대비가 충분한가(접근성), 실패 상태가 친절하게 안내되는가(오류 처리), placeholder 느낌이 아니라 실제 제품 같은가(완성도) 같은 질문으로 바꿀 수 있다.</p>
+<p>세 번째는 LLM-as-judge, 즉 AI가 다른 AI의 출력을 평가하게 하는 방식이다. 의미 판단이 가능하고 어조·논리·누락·의도를 볼 수 있다는 것이 장점이다. 하지만 평가자도 실수하고, 느리고 비싸며 판단이 흔들린다. 그래서 <strong>중요한 평가는 하나의 판단자에게 맡기지 않는다.</strong> 결정적 테스트, 사람 검토, LLM judge를 조합해야 한다.</p>
+<hr>
+<h2 id="heading-3">4. 검증 루프 3종</h2>
+<p>검증 루프는 산출물이나 행동 결과를 다시 확인해 문제를 되돌려 주는 절차이며, 무엇을 잡아내는지에 따라 세 갈래로 나뉜다.</p>
+<ul>
+<li><strong>규칙 기반</strong>(테스트, 린터, 스키마 검사): 형식 오류, 깨진 기능, 명확한 실패를 잘 잡는다. 의미 품질은 놓친다.</li>
+<li><strong>시각적·환경 검증</strong>(스크린샷, 브라우저 확인, DB 상태 확인): 실제 화면과 실제 상태의 불일치를 잡는다. 검증 도구 준비가 필요하다.</li>
+<li><strong>추론 기반</strong>(LLM 평가자, 리뷰 에이전트): 어조, 논리, 누락, 사용자 의도를 본다. 지연과 비용이 늘고 평가자도 틀린다.</li>
+</ul>
+<p>계산형과 추론형으로 나눠 보면 더 분명하다. 계산형 검사는 맞춤법 검사기나 체온계처럼 빠르고 반복 가능하며 안정적이지만 의미와 의도는 놓친다. 추론형 검사는 선생님의 서술형 채점처럼 의미·맥락·의도를 보지만 느리고 비싸며 흔들린다. 기본 원칙은 이렇다. <strong>계산형으로 잡을 수 있는 것은 계산형으로 먼저 잡고, 의미 판단이 필요한 부분에만 추론형을 붙인다.</strong> 모든 평가를 LLM-as-judge에 맡기면 비용과 지연이 늘고, 오히려 평가 자체가 흔들린다.</p>
+<p>방향으로 보면 <a href="/post/ai-everything-02-what-is-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">02편에서 본 Guides와 Sensors</a>, 즉 feedforward(AGENTS.md, CLAUDE.md, Skill, 출력 형식, 금지 규칙)와 feedback(테스트, 린터, 스크린샷 확인, LLM 리뷰, 사람 검토)의 두 축이 있고, 이 글의 검증 루프는 전부 feedback 쪽 부품이다. 둘 중 하나만으로는 부족하다는 원칙도 그대로 적용된다.</p>
+<hr>
+<h2 id="heading-4">5. 환경 상태 기반 평가</h2>
+<p>환경 상태 기반 평가는 에이전트의 보고 문장이 아니라 작업 후 환경에 실제로 남은 상태를 확인해 성공 여부를 판정하는 방식이다. Anthropic의 evals 글이 짚는 핵심이다. 에이전트가 "항공권을 예약했습니다"라고 말하는 것보다, 실제 환경의 SQL 데이터베이스에 예약이 존재하는지가 outcome이다. <strong>에이전트는 말로 성공을 주장할 수 있다. 실제 상태가 바뀌었는지는 별도로 확인해야 한다.</strong></p>
+<p>일정 예약 에이전트의 성공 기준은 예쁜 답변이 아니라 다음과 같은 것이다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>□ 캘린더에 일정이 정확한 시간에 생성되었는가
+□ 참석자가 올바른가
+□ 중복 일정이 없는가
+□ 사용자가 승인하지 않은 초대가 전송되지 않았는가
+</code></pre></div>
+<p>완료 주장과 실제 검증을 대조하면 차이가 분명해진다.</p>
+<table><thead><tr><th>완료 주장</th><th>실제 검증</th></tr></thead><tbody><tr><td>로그인 화면을 만들었다</td><td>브라우저에서 이메일·비밀번호를 입력해 로그인 흐름을 끝까지 확인한다</td></tr><tr><td>검색 기능을 만들었다</td><td>실제 검색어를 넣고 결과·빈 결과·오류 상태를 확인한다</td></tr><tr><td>결제 버튼을 연결했다</td><td>샌드박스에서 승인·취소·실패 흐름을 확인한다</td></tr><tr><td>보고서를 완성했다</td><td>출처 링크·빠진 항목·중복 문장·출력 형식을 확인한다</td></tr></tbody></table>
+<p><strong>완료 기준은 "코드가 있다"가 아니라 "사용 흐름이 통과했다"에 가까워야 한다.</strong> 개발 업무에서는 브라우저 테스트·스크린샷·로그·테스트 리포트가 증거가 되고, 일상 업무에서는 예약번호·영수증·확인 메일·최종 체크리스트가 증거가 된다.</p>
+<hr>
+<h2 id="heading-5">6. Generator-Evaluator 하네스</h2>
+<p>사람도 자기 글을 스스로 검토하면 오타를 놓친다. <strong>AI도 자기 결과를 평가할 때 지나치게 긍정적이다.</strong> 이 자기평가 편향 때문에 Anthropic의 2026년 harness design 글은 generator와 evaluator를 분리하는 3-agent 아키텍처를 소개한다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>Planner ────→ Generator ────→ Evaluator ──(통과)──→ 다음 sprint → (Planner로)
+범위를 작게      만든다          비판적으로
+완료 기준을 정함     ↑           검사한다
+                    └──(실패 · 구체적 피드백)──┘
+</code></pre></div>
+<p>Planner는 큰 목표를 작은 sprint로 나눈다. 주의할 점은 세부 구현까지 미리 단정하면 잘못된 가정이 그대로 전달된다는 것이다. Generator는 결과물을 만드는데, 검증까지 맡기면 놓치는 게 많다. Evaluator의 목표는 친절한 칭찬이 아니라 <strong>결함 발견</strong>이다. 그냥 두면 관대하게 넘어가거나 표면만 보고 통과시킬 수 있다.</p>
+<p>Sprint contract는 이번 반복의 약속이다. 무엇을 만들고, 무엇은 만들지 않으며, 어떤 기준을 통과해야 하는지 적는다. 한 번 쓰고 끝나는 문서가 아니다. Generator가 "이 범위라면 이렇게 만들 수 있다"고 제안하고, Evaluator가 "이 기준으로는 검증이 부족하다"거나 "이 항목은 이번 sprint 밖으로 빼야 한다"고 되묻는 <strong>협상 과정</strong>이 필요하다. 생일파티 준비 회의와 같다. 기획 담당이 풍선 장식, 케이크, 초대장까지 오늘 하겠다고 하면, 검토 담당이 오늘은 장소 예약과 초대 인원 확정까지만 하고 케이크는 알레르기 확인 후 내일 정하자고 조정한다.</p>
+<p>Evaluator도 검증해야 한다. Evaluator를 그냥 두면 항상 좋은 평가자가 되지 않는다. 그래서 evaluator의 평가 로그를 읽고 계속 점검한다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>□ 어떤 시나리오를 실제로 실행했는가?
+□ 어떤 실패를 재현했는가?
+□ 통과 기준을 어떻게 확인했는가?
+</code></pre></div>
+<p>좋은 평가자는 칭찬을 잘하는 사람이 아니라 <strong>재현 가능한 결함을 찾아내는 사람이다.</strong> "괜찮아 보여"가 아니라 "아이 한 명이 견과류 알레르기가 있는데 케이크 재료 확인이 빠졌고, 초대장에는 시작 시간만 있고 종료 시간이 없다"여야 한다.</p>
+<p>관련 연구로는 모델이 자기 출력을 스스로 비평하고 고치게 하는 2023년 논문 <a href="https://arxiv.org/abs/2303.17651" node="[object Object]" target="_blank" rel="noopener noreferrer">Self-Refine</a>, 에이전트가 자기 실패를 언어로 회고해 다음 시도에 반영하게 한 2023년 논문 <a href="https://arxiv.org/abs/2303.11366" node="[object Object]" target="_blank" rel="noopener noreferrer">Reflexion</a>, 그리고 한 LLM 호출이 결과를 만들고 다른 호출이 평가와 피드백을 제공하는 Anthropic의 evaluator-optimizer workflow가 있다.</p>
+<hr>
+<h2 id="heading-6">7. 회귀 평가</h2>
+<p>회귀 평가는 이미 고친 실패가 다시 나타나지 않는지 확인하는 평가다. 한 번 고친 버그가 다시 나타나는 현상을 회귀라고 한다. AI 하네스도 회귀 평가가 필요하다. <strong>사용자가 발견한 실패 사례는 버리는 것이 아니라 eval dataset에 추가할 자산이다.</strong></p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>실패 발생 → 원인 기록 → 테스트 케이스 추가 → 하네스 수정 → 재평가
+</code></pre></div>
+<p>이 루프가 있어야 AI 시스템이 시간이 지날수록 좋아진다.</p>
+<p>LLM 애플리케이션 개발 프레임워크를 만드는 회사인 LangChain의 <em>Better Harness</em> 글은 eval을 하네스 엔지니어링의 <strong>훈련 데이터</strong>로 설명한다. 각 eval case는 "이 상황에서 에이전트가 올바른 행동을 했는가?"라는 신호를 제공하고, 그 신호가 다음 하네스 수정으로 이어진다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>운영 trace 수집
+  → 실패 사례를 eval case로 변환
+  → 실패 유형 태그: 도구선택 / 컨텍스트누락 / 권한문제 / 검증부족
+  → 하네스 수정: 프롬프트 · 도구설명 · 권한 · 검증루프 · 컨텍스트 구조
+  → 재평가
+  → holdout case로 과적합 확인
+</code></pre></div>
+<p>과적합은 피해야 한다. 특정 사례 하나를 통과하려고 지시문을 너무 세게 바꾸면 다른 상황에서 품질이 떨어진다. 시험 문제집으로 비유하면 쉽다. 공부할 때 푸는 문제와, 실력을 확인하려고 마지막에 남겨 두는 모의고사는 달라야 한다. 그래서 eval은 태그를 달아 관리하고, 일부는 수정 과정에 쓰지 않는 <strong>holdout set</strong>으로 남긴다.</p>
+<hr>
+<h2 id="heading-7">8. 실무 도입 5단계</h2>
+<p>실무 도입은 다섯 단계로 정리된다. 거창하게 시작할 필요 없다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>1. 자주 들어오는 실제 요청 20개를 모은다
+2. 기대 결과를 사람이 정한다
+3. 모델 출력과 기대 결과를 비교한다
+4. 실패 사례를 분석한다
+5. 지시 · 도구 · 문서 · 평가 기준을 고친다
+</code></pre></div>
+<p>개발자가 아니어도 시작할 수 있는 흐름이다. "좋은 결과란 무엇인가?"를 문장으로 적고, 그 기준을 작은 예제들로 시험해 보는 것부터다.</p>
+<p>품질 검사는 가능한 한 앞쪽에 둔다(keep quality left). 작업 전에는 지시 파일, Skill, 금지 규칙, 출력 형식을 두어 처음부터 잘못된 방향으로 가지 않게 한다. 작업 중에는 린터, 빠른 테스트, 스키마 검사, 작은 리뷰 에이전트로 오류를 만든 직후 바로 고칠 수 있게 한다. 통합 전에는 전체 테스트, 보안 검사, 커버리지 확인으로 합치기 전에 큰 문제를 잡고, 통합 후에는 더 비싼 리뷰, 성능 테스트, 장기 drift 감지로 느리지만 큰 그림을 확인한다.</p>
+<p>공항 출국장 앞에서 여권이 없다는 사실을 알면 손쓸 방법이 없다. 전날 밤 체크리스트로 점검하면 같은 문제를 훨씬 싸게 막는다. 다만 모든 검사를 앞에 몰아넣으라는 뜻은 아니다. 빠른 검사는 앞쪽, 비싼 검사는 뒤쪽이다. 핵심은 <strong>사람이 마지막에 한꺼번에 고생하지 않도록 하네스가 중간중간 작은 신호를 계속 보내게 하는 것</strong>이다.</p>
+<hr>
+<h2 id="heading-8">9. 정리</h2>
+<p>Eval은 선택이 아니라 필수다. "체감상 좋아졌다"는 운영 지표가 될 수 없고, 챗봇은 답변을 평가하지만 에이전트는 행동의 결과를 평가해야 한다. LLM은 비결정적이므로 다중 trial로 평균·최악·실패 패턴을 봐야 하고, 평가는 정답 기반, 루브릭, LLM-as-judge의 3단계로 올라가되 중요한 평가는 하나의 판단자에게 맡기지 않는다. 계산형으로 잡을 수 있는 건 계산형으로 먼저 잡고, 의미 판단이 필요한 곳에만 추론형을 붙인다. 핵심은 환경 상태 기반 평가다. "예약했다"는 말이 아니라 DB에 예약이 존재하는지를 본다. 만든 사람이 검토하면 자기 가정에 끌리므로 Generator와 Evaluator를 분리하고, 좋은 평가자는 칭찬을 잘하는 사람이 아니라 재현 가능한 결함을 찾는 사람이다. 실패 사례는 버리지 말고 eval dataset에 추가하고, holdout set을 남겨 과적합을 방지한다. eval은 하네스의 훈련 데이터다.</p>
+<hr>
+<h2 id="heading-9">더 읽을거리</h2>
+<ul>
+<li>Anthropic, <em>Demystifying evals for AI agents</em> – <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents</a></li>
+<li>Anthropic, <em>Harness design for long-running application development</em> – <a href="https://www.anthropic.com/engineering/harness-design-long-running-apps" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/harness-design-long-running-apps</a></li>
+<li>LangChain, <em>Better Harness: A Recipe for Harness Hill-Climbing with Evals</em> – <a href="https://www.langchain.com/blog/better-harness-a-recipe-for-harness-hill-climbing-with-evals" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.langchain.com/blog/better-harness-a-recipe-for-harness-hill-climbing-with-evals</a></li>
+<li>Aman Madaan et al., <em>Self-Refine</em> – <a href="https://arxiv.org/abs/2303.17651" node="[object Object]" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2303.17651</a></li>
+<li>Noah Shinn et al., <em>Reflexion</em> – <a href="https://arxiv.org/abs/2303.11366" node="[object Object]" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2303.11366</a></li>
+<li>김동학, 《하네스 엔지니어링 백과사전》 제5장·제9장 – <a href="https://wikidocs.net/346797" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/346797</a>, <a href="https://wikidocs.net/346801" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/346801</a></li>
+</ul>
+<hr>
+<p>다음 편: <a href="/post/ai-everything-09-memory-longrunning" node="[object Object]" target="_blank" rel="noopener noreferrer">09. 장시간 실행과 메모리 소유권</a>
+이전 편: <a href="/post/ai-everything-07-multi-agent" node="[object Object]" target="_blank" rel="noopener noreferrer">07. 멀티에이전트</a></p></article><div class="post-tags"><span class="tag">#Eval</span><span class="tag">#LLMasJudge</span><span class="tag">#Rubric</span><span class="tag">#GeneratorEvaluator</span><span class="tag">#회귀평가</span><span class="tag">#검증루프</span></div></div><aside class="post-rail"><div class="post-rail-inner"><nav class="rail-block toc"><div class="rail-head">ON THIS PAGE</div><ul class="toc-list"><li class="toc-item level-2 "><a href="#heading-0">1. Eval의 정의</a></li><li class="toc-item level-2 "><a href="#heading-1">2. Trial, Grader, Assertion</a></li><li class="toc-item level-2 "><a href="#heading-2">3. 평가 방식 3단계</a></li><li class="toc-item level-2 "><a href="#heading-3">4. 검증 루프 3종</a></li><li class="toc-item level-2 "><a href="#heading-4">5. 환경 상태 기반 평가</a></li><li class="toc-item level-2 "><a href="#heading-5">6. Generator-Evaluator 하네스</a></li><li class="toc-item level-2 "><a href="#heading-6">7. 회귀 평가</a></li><li class="toc-item level-2 "><a href="#heading-7">8. 실무 도입 5단계</a></li><li class="toc-item level-2 "><a href="#heading-8">9. 정리</a></li><li class="toc-item level-2 "><a href="#heading-9">더 읽을거리</a></li></ul></nav><div class="rail-block keywords"><div class="rail-head">KEYWORDS</div><div class="rail-tags"><span class="rail-tag">#Eval</span><span class="rail-tag">#LLMasJudge</span><span class="rail-tag">#Rubric</span><span class="rail-tag">#GeneratorEvaluator</span><span class="rail-tag">#회귀평가</span><span class="rail-tag">#검증루프</span></div></div></div></aside></div></div></main></div></div>
+  
+
+</body></html>

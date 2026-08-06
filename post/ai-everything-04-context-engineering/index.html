@@ -1,0 +1,181 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <title>AI의 모든 것 (04) – 컨텍스트 엔지니어링: 책상 위에 무엇을 올릴 것인가 | flowizy's DevLog</title>
+    <meta name="description" content="컨텍스트는 희소 자원이다 – Lost in the Middle, CLAUDE.md를 지도로 쓰는 법, 압축 4전략.">
+    <meta property="og:title" content="AI의 모든 것 (04) – 컨텍스트 엔지니어링: 책상 위에 무엇을 올릴 것인가 | flowizy's DevLog">
+    <meta property="og:description" content="컨텍스트는 희소 자원이다 – Lost in the Middle, CLAUDE.md를 지도로 쓰는 법, 압축 4전략.">
+    <meta property="og:url" content="https://fl0wizy.github.io/post/ai-everything-04-context-engineering">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://fl0wizy.github.io/post/ai-everything-04-context-engineering">
+    
+    
+    
+    
+    
+    
+    
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="xBpPKxzhz-8Y708fYBi6IG1Du6zn0v_yKr4Hm-4PG5g">
+    <meta name="theme-color" content="#0d0d0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?')
+            .replace(/^\/+/, '/');
+
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.replace(/\/$/, '') + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-DWKahj0y.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-B8gBuBl2.css">
+  </head>
+  <body>
+    <div id="root"><div class="layout"><aside class="sidebar"><div class="sidebar-logo"><div class="logo-container"><div class="logo-image-wrapper"><img alt="flowizy" class="logo-profile-image" src="/images/profile.jpg"></div><div class="logo-text"><h1>flowizy's DevLog</h1><p>SECURITY RESEARCHER</p></div></div></div><nav class="sidebar-nav"><a class="nav-item " href="/profile" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path></svg><span>PROFILE</span></a><a class="nav-item " href="/" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>BLOG</span></a></nav><div class="sidebar-categories"><div class="categories-header"><span>CONTENT CATEGORIES</span></div><div class="categories-list"><div class="category-item-wrapper"><button class="category-item selected level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><span class="category-name">전체</span><span class="post-count ">21</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span><span class="category-name">보안(Security)</span><span class="post-count subtle">7</span></button><div class="category-children"><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #6f9fd8;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="category-name">Web Security</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span><span class="category-name">Web3 / Blockchain</span><span class="post-count subtle">7</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #74c195;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span><span class="category-name">Reversing</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #e6a572;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></span><span class="category-name">Pwn</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #db8fb4;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span class="category-name">Crypto</span><span class="post-count subtle">0</span></button></div></div></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a3c76d;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span><span class="category-name">AI</span><span class="post-count subtle">14</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #6fbecf;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span><span class="category-name">개발(Development)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #d4c277;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg></span><span class="category-name">여행(Travel)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #9ca3af;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="category-name">일상(Daily)</span><span class="post-count subtle">0</span></button></div></div></div></aside><main class="main-content"><div class="post-page" style="--cat: #a3c76d;"><div class="post-layout"><header class="post-head"><a class="back-link" href="/" data-discover="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>BACK TO LIST</a><div class="post-category-line"><span class="post-category-badge">AI</span></div><h1 class="post-title">AI의 모든 것 (04) – 컨텍스트 엔지니어링: 책상 위에 무엇을 올릴 것인가</h1><div class="post-meta"><span class="post-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-08-02 / 09:40</span><span class="post-relative-time">약 4일 전</span><span class="post-reading-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>약 8분</span></div></header><div class="post-container"><article class="post-content"><p>이번 글에서는 프롬프트 / 컨텍스트 / 하네스 엔지니어링의 3층 구분, 컨텍스트가 희소 자원인 이유, CLAUDE.md·AGENTS.md를 지도로 쓰는 방법, 컨텍스트 관리 4대 전략을 한 번에 훑어본다.</p>
+<hr>
+<h2 id="heading-0">1. 세 가지 엔지니어링의 층위</h2>
+<p>용어부터 정리한다. 프롬프트 엔지니어링은 어떻게 말할 것인가의 문제로, 업무 지시서 쓰기에 해당한다. 컨텍스트 엔지니어링은 무엇을 보여 줄 것인가의 문제로, 책상 위 자료 정리에 해당한다. 하네스 엔지니어링은 어떤 환경에서 일하게 할 것인가의 문제로, 사무실·도구·승인·검사 체계를 만드는 일이다. 하네스 엔지니어링은 앞의 둘을 포함하고, 이 편은 가운데 층을 다룬다.</p>
+<hr>
+<h2 id="heading-1">2. 좋은 프롬프트의 구조</h2>
+<p>좋은 프롬프트는 긴 문장이 아니라 <strong>역할·목표·자료·제약·출력형식·검증기준이 명확한 문장</strong>이다.</p>
+<p>나쁜 프롬프트는 이렇다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>하네스 엔지니어링 설명해줘.
+</code></pre></div>
+<p>좋은 프롬프트는 이렇다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>일반 사용자 대상 교육 자료를 만든다.
+하네스 엔지니어링을 자동차 배선 하네스와 사무실 업무 매뉴얼에 비유해 설명하라.
+반드시 1) 정의, 2) 왜 필요한가, 3) 구성요소, 4) 실무 예시, 5) 주의점을 포함하라.
+전문 용어는 처음 등장할 때 한 문장으로 풀이하라.
+</code></pre></div>
+<p>시스템 지시는 헌법처럼 짧고 강해야 한다. 모든 작업에 적용되는 원칙만 담고(안정성), 모델이 매번 기억할 수 있을 정도로 간결하게 쓰고(짧음), 충돌 시 무엇이 우선인지 분명히 하고(우선순위), 하면 안 되는 행동을 명확히 하고(금지 범위), 완료 전 확인을 요구한다(검증 습관). 세부 업무를 전부 넣으면 오히려 지시가 무거워진다. 사내 규정집이 500쪽인데 아무도 업데이트하지 않으면, 직원은 결국 주변 사람에게 물어본다.</p>
+<hr>
+<h2 id="heading-2">3. 컨텍스트의 희소성</h2>
+<p>컨텍스트의 희소성은 모델이 한 번의 추론에서 참조할 수 있는 토큰 양이 고정되어 있다는 사실에서 나온다. Anthropic의 컨텍스트 엔지니어링 글은 컨텍스트를 "LLM 추론 시점에 포함되는 토큰 집합"으로 보고, 이 제한된 자원의 유용성을 최적화해야 한다고 설명한다. 책상 위에 필요한 자료가 없으면 AI는 추측하고, 책상 위에 모든 자료를 올려놓으면 중요한 문서를 찾지 못한다.</p>
+<p>실증적 근거가 2023년 논문 Lost in the Middle이다. <a href="https://arxiv.org/abs/2307.03172" node="[object Object]" target="_blank" rel="noopener noreferrer">Nelson F. Liu et al.</a>의 연구는 관련 정보의 위치가 바뀌면 성능이 크게 떨어질 수 있다고 보고했다. 특히 시작이나 끝에 있을 때보다 <strong>중간에 있을 때</strong> 성능이 저하된다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>컨텍스트 위치별 검색 성능 (개념도)
+
+정확도
+  높음 │ ●                                    ●
+       │   ●                              ●
+       │      ●                       ●
+       │          ●              ●
+  낮음 │              ● ● ● ● ●
+       └────────────────────────────────────────
+        앞          ← 중간 →              끝
+</code></pre></div>
+<p><a href="/post/ai-everything-01-llm-and-token" node="[object Object]" target="_blank" rel="noopener noreferrer">01편</a>에서 쓴 회의록 비유가 그대로 통한다. 중요한 결정이 중간 어딘가에 묻히면 참석자도 놓친다.</p>
+<p>여기에 context rot가 겹친다. 시간이 지나며 오래된 대화, 긴 로그, 불필요한 도구 결과가 쌓여 모델 판단을 흐리게 만드는 현상이다. 어지러워진 책상과 같고, 해결책은 더 넣기가 아니라 <strong>요약, 파일 저장, 필요한 순간 검색</strong>이다.</p>
+<hr>
+<h2 id="heading-3">4. 컨텍스트에 올라가는 6가지 재료</h2>
+<p>모델의 책상 위에는 보통 여섯 가지가 올라간다. 중요한 건 모두 많이 넣는 게 아니라 <strong>지금 작업에 맞는 순서와 양으로 조립</strong>하는 것이다.</p>
+<ul>
+<li><strong>시스템 지시</strong>: 어떤 원칙으로 일해야 하는가. 잘못 설계하면 규칙이 너무 길거나 충돌한다.</li>
+<li><strong>사용자 요청</strong>: 지금 무엇을 해야 하는가. 목표가 모호하면 결과가 흔들린다.</li>
+<li><strong>검색 / RAG</strong>(Retrieval-Augmented Generation): 어떤 문서를 찾아와야 하는가. 관련 없는 문서가 섞이거나 중요한 문서를 놓칠 수 있다.</li>
+<li><strong>장기 메모리</strong>: 무엇을 다음에도 기억해야 하는가. 잘못된 기억은 반복 오류를 만든다.</li>
+<li><strong>사용 가능한 도구</strong>: 어떤 행동을 할 수 있는가. 도구가 많거나 설명이 모호하면 잘못 호출한다.</li>
+<li><strong>출력 형식</strong>: 어떤 모양으로 결과를 내야 하는가. 답변은 맞아도 검토하거나 재사용하기 어려워진다.</li>
+</ul>
+<p>도구 설명도 컨텍스트의 일부다. 도구 30개를 붙이면 그 30개의 이름·설명·파라미터가 매 턴 컨텍스트를 차지한다. 이게 <a href="/post/ai-everything-05-tools-and-mcp" node="[object Object]" target="_blank" rel="noopener noreferrer">05편의 "도구 폭발 문제"</a>로 이어진다.</p>
+<p>종류별로 위험도 다르다. 지시(시스템 지시, AGENTS.md, CLAUDE.md)는 너무 길면 무시되고, 문서(제품 설명서, 정책 문서)는 오래되면 잘못된 기준이 된다. 검색 결과는 출처마다 신뢰도가 다르고, 메모리는 잘못 저장되면 반복 오류를 만들고, 도구 결과(API 응답, 테스트 결과)는 불완전하거나 지연될 수 있다. 그래서 잘 설계된 하네스는 재료 간 우선순위를 명시한다. 정책 문서가 사용자 말보다, 테스트 결과가 모델의 자기 확신보다 우선한다는 식이다. 이 계층 구조는 <a href="/post/ai-everything-03-agent-loop" node="[object Object]" target="_blank" rel="noopener noreferrer">03편의 메시지 계층</a>에서 정리했다.</p>
+<hr>
+<h2 id="heading-4">5. AGENTS.md와 CLAUDE.md</h2>
+<p>AGENTS.md와 CLAUDE.md는 저장소 안에 두어 에이전트가 매 세션 읽게 하는 프로젝트 지시 파일이다. 두 파일의 정신은 같다. <strong>"이 프로젝트에서는 이렇게 일해라"라고 말하는 README</strong>다. AGENTS.md는 OpenAI의 코딩 에이전트인 Codex를 비롯한 여러 코딩 에이전트가 쓰는 공개 포맷(<a href="https://agents.md/" node="[object Object]" target="_blank" rel="noopener noreferrer">https://agents.md/</a>)이고, CLAUDE.md는 Claude Code가 쓴다. 프로젝트별 지시를 담고 전역 지시에 프로젝트 override를 얹는 구조라는 점은 같다. 둘 다 프로젝트의 모든 지식을 담는 백과사전이 아니라, 어디를 읽어야 하는지 알려 주는 지도에 가까울 때 잘 작동한다.</p>
+<p>초보자용 템플릿의 예시는 다음과 같다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">markdown</span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code class="language-markdown"># AGENTS.md 또는 CLAUDE.md
+
+## 프로젝트 목표
+이 프로젝트는 고객 문의를 빠르고 정확하게 분류하는 AI 도우미를 만든다.
+
+## 작업 전 읽을 문서
+- docs/product.md
+- docs/policy.md
+- docs/faq.md
+
+## 반드시 지킬 규칙
+- 문서에 없는 내용은 추측하지 않는다.
+- 고객 개인정보를 답변에 노출하지 않는다.
+- 변경 후 checklist.md를 확인한다.
+
+## 완료 기준
+- 결과 요약 작성
+- 불확실한 항목 표시
+- 다음 작업 제안
+</code></pre></div>
+<p>OpenAI의 하네스 엔지니어링 글은 <strong>짧은 AGENTS.md가 맵 역할을 하고, 더 깊은 지식은 구조화된 docs/ 디렉터리에 둔다</strong>고 설명한다. 이 패턴은 개발 업무가 아니어도 유용하다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>marketing-ai-harness/
+├── AGENTS.md              ← "어디를 읽어라"만 적는다 (60줄 이하 권장)
+└── docs/
+    ├── brand-voice.md
+    ├── campaign-history.md
+    ├── customer-personas.md
+    ├── legal-review-rules.md
+    └── examples/
+        ├── good-copy.md
+        └── bad-copy.md
+</code></pre></div>
+<p>지시 파일은 계층으로 나눌 수 있다. 사용자 수준(<code>~/.claude/</code>)은 개인 작업 선호와 반복 습관으로, 늘 들고 다니는 개인 수첩에 해당한다. 프로젝트 수준(<code>./CLAUDE.md</code>)은 이 저장소와 팀의 공통 규칙으로, 집 현관에 붙은 가족 규칙표다. 하위 폴더(<code>./src/CLAUDE.md</code>)는 특정 모듈·영역의 세부 규칙으로, 주방·서재·창고마다 붙은 작은 안내문이다. 경로별 규칙(<code>.claude/rules/*.md</code>)은 파일 패턴별 지침으로, 파일마다 붙은 포스트잇에 해당한다.</p>
+<p>경로별 규칙 예시는 이렇다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><span class="code-lang">markdown</span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code class="language-markdown">---
+paths:
+  - "**/*.test.*"
+---
+테스트 파일을 수정할 때는 기존 테스트 스타일을 따른다.
+정상 사례와 실패 사례를 함께 확인한다.
+테스트를 추가했다면 실행 방법도 함께 남긴다.
+</code></pre></div>
+<p>주의할 점이 하나 있다. <strong>CLAUDE.md는 보안 장치가 아니다.</strong> 공식 문서도 CLAUDE.md와 memory를 "컨텍스트"로 다룬다고 설명한다. 즉 Claude가 읽고 참고하는 내용이지, 운영체제 수준에서 절대 어길 수 없는 장치가 아니다. 가스레인지 옆에 "불조심"이라고 써두는 것이 CLAUDE.md라면, 일정 시간이 지나면 자동으로 가스를 차단하는 장치가 Hook이다. 그래서 반드시 막아야 하는 행동은 <code>permissions</code>나 Hook으로 옮기는 게 맞다. 이 이야기는 <a href="/post/ai-everything-10-safety-governance" node="[object Object]" target="_blank" rel="noopener noreferrer">10편</a>에서 이어진다.</p>
+<hr>
+<h2 id="heading-5">6. RAG와 file search</h2>
+<p>RAG는 AI가 답변하기 전에 관련 문서를 찾아 읽게 하는 방식이고, file search는 그 검색 대상을 파일 저장소로 삼은 형태다. 두 방식 모두 AI에게 사서 역할을 준다. 훌륭한 사서는 모든 책을 머릿속에 외우지 않는다. 대신 필요한 책을 빨리 찾고, 적절한 페이지를 펼친다.</p>
+<p>긴 자료를 다룰 때의 실무 원칙이 하나 있다. AI에게 긴 자료를 줄 때는 "전부 읽고 알아서 해"보다 <strong>먼저 목차를 보고, 필요한 섹션만 읽고, 읽은 섹션명을 답변에 남기라</strong>고 하는 편이 훨씬 낫다.</p>
+<hr>
+<h2 id="heading-6">7. 컨텍스트 관리 4대 전략</h2>
+<p>전략은 네 가지다. 압축(compaction)은 오래된 대화를 요약해 공간을 확보하는 것으로, 회의록 요약본 만들기에 해당한다. 관찰 마스킹은 과거 도구 결과 전문은 숨기고 호출 기록만 남기는 것으로, 영수증 원본 대신 지출 요약표를 보는 것과 같다. JIT 검색은 전체 파일을 넣지 않고 필요할 때 grep/head/search로 읽는 것으로, 창고 전체가 아니라 필요한 상자만 꺼내는 방식이다. 구조화 메모는 <code>progress.md</code>, <code>feature_list.json</code>처럼 정리된 파일로 남기는 것으로, 인수인계 문서 작성에 해당한다.</p>
+<p>여기에 progressive disclosure, 즉 필요한 만큼만 펼치기가 있다. 반복 업무를 폴더 단위로 패키징하는 기능인 Claude Skills의 핵심 설계 원리이기도 하다. 처음부터 모든 매뉴얼을 컨텍스트에 넣는 게 아니라, <strong>이름과 설명만 먼저 보여주고 필요할 때 본문과 추가 파일을 단계적으로 읽게</strong> 한다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>세션 시작
+  → Skill 이름 + description만 컨텍스트에 (수십 토큰)
+  → 관련 요청이 오면 SKILL.md 본문 로드 (수백~수천 토큰)
+  → 더 필요하면 references/ 파일 로드 (필요할 때만)
+</code></pre></div>
+<p>이 구조 덕분에 Skill을 50개 설치해도 컨텍스트가 터지지 않는다. CLAUDE.md는 매 세션 항상 들어가지만 Skill 본문은 쓸 때만 들어간다. 그래서 긴 참고 문서와 절차는 CLAUDE.md보다 Skill에 넣는 편이 컨텍스트를 아낀다.</p>
+<p>마지막으로 <strong>압축은 손실이다.</strong> 요약 과정에서 중요한 디테일이 빠질 수 있다. 그래서 하네스는 compaction에만 의존하면 안 된다. 사람이 회의록만 믿고 원본 계약서를 버리지 않는 것처럼, AI도 progress file, feature list, git history 같은 원천 기록을 함께 가져야 한다. 핵심 원칙은 대화창을 끝없이 늘리지 말고, 중요한 상태를 문서로 남기고 새로 시작한다는 것이다. 회의가 길어질수록 회의록이 필요해지는 것과 같다. 이것이 <a href="/post/ai-everything-09-memory-longrunning" node="[object Object]" target="_blank" rel="noopener noreferrer">09편 장시간 실행 하네스</a>의 출발점이다.</p>
+<hr>
+<h2 id="heading-7">8. 실무 체크리스트</h2>
+<p>컨텍스트 문제를 의심할 신호는 다음과 같다.</p>
+<table><thead><tr><th>증상</th><th>의심할 지점</th><th>처방</th></tr></thead><tbody><tr><td>프로젝트 규칙을 자꾸 어긴다</td><td>CLAUDE.md가 너무 길다 / 충돌한다</td><td>60줄 이하로 줄이고 docs/로 분리</td></tr><tr><td>같은 설명을 매 세션 반복한다</td><td>지시 파일이 없다</td><td>CLAUDE.md 작성</td></tr><tr><td>긴 세션에서 앞의 결정을 잊는다</td><td>압축으로 사라졌다</td><td>MEMORY.md / progress.md에 남기기</td></tr><tr><td>관련 없는 문서를 인용한다</td><td>RAG 검색 품질 문제</td><td>검색 범위 좁히기, 출처 표시 요구</td></tr><tr><td>도구를 잘못 고른다</td><td>도구가 너무 많다</td><td>단계별 최소 노출 (<a href="/post/ai-everything-05-tools-and-mcp" node="[object Object]" target="_blank" rel="noopener noreferrer">05편</a>)</td></tr><tr><td>답변이 매번 다르다</td><td>출력 형식·예시가 없다</td><td>스키마·템플릿·예시 고정</td></tr><tr><td>비용이 갑자기 늘었다</td><td>컨텍스트 누적</td><td>압축 + 파일로 빼기 + 캐시 활용</td></tr></tbody></table>
+<hr>
+<h2 id="heading-8">9. 정리</h2>
+<p>프롬프트(어떻게 말할까)는 컨텍스트(무엇을 보여줄까)에, 컨텍스트는 하네스(어떤 환경에서 일하게 할까)에 포함된다. <strong>컨텍스트 창은 무한한 창고가 아니라 제한된 책상이다.</strong> 많이 넣으면 중요한 게 묻히고, Lost in the Middle이 보여주듯 정보의 위치가 성능을 바꾸니 중요한 건 앞이나 뒤에 둔다. 재료는 시스템 지시 / 사용자 요청 / RAG / 장기 메모리 / 도구 / 출력 형식의 여섯 가지다. AGENTS.md·CLAUDE.md는 백과사전이 아니라 지도여야 하고(60줄 이하 + docs/), 보안 장치가 아니므로 반드시 막을 건 permissions·Hook으로 옮긴다. 관리 전략은 압축 / 관찰 마스킹 / JIT 검색 / 구조화 메모의 넷이고, progressive disclosure로 목차 먼저 본문은 필요할 때 연다. 그리고 압축은 손실이므로 중요한 결정은 반드시 파일로도 남긴다.</p>
+<hr>
+<h2 id="heading-9">더 읽을거리</h2>
+<ul>
+<li>Anthropic, <em>Effective context engineering for AI agents</em> – <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents</a></li>
+<li>Nelson F. Liu et al., <em>Lost in the Middle</em> – <a href="https://arxiv.org/abs/2307.03172" node="[object Object]" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2307.03172</a></li>
+<li>Minki Kang et al., <em>ACON: Optimizing Context Compression for Long-horizon LLM Agents</em> – <a href="https://arxiv.org/abs/2510.00615" node="[object Object]" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2510.00615</a></li>
+<li>AGENTS.md open format – <a href="https://agents.md/" node="[object Object]" target="_blank" rel="noopener noreferrer">https://agents.md/</a></li>
+<li>김동학, 《하네스 엔지니어링 백과사전》 제3장 – <a href="https://wikidocs.net/346795" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/346795</a></li>
+</ul>
+<hr>
+<p>다음 편: <a href="/post/ai-everything-05-tools-and-mcp" node="[object Object]" target="_blank" rel="noopener noreferrer">05. 도구 엔지니어링과 MCP</a>
+이전 편: <a href="/post/ai-everything-03-agent-loop" node="[object Object]" target="_blank" rel="noopener noreferrer">03. 에이전트 루프의 해부</a></p></article><div class="post-tags"><span class="tag">#컨텍스트엔지니어링</span><span class="tag">#CLAUDE.md</span><span class="tag">#AGENTS.md</span><span class="tag">#RAG</span><span class="tag">#Compaction</span><span class="tag">#LostInTheMiddle</span></div></div><aside class="post-rail"><div class="post-rail-inner"><nav class="rail-block toc"><div class="rail-head">ON THIS PAGE</div><ul class="toc-list"><li class="toc-item level-2 "><a href="#heading-0">1. 세 가지 엔지니어링의 층위</a></li><li class="toc-item level-2 "><a href="#heading-1">2. 좋은 프롬프트의 구조</a></li><li class="toc-item level-2 "><a href="#heading-2">3. 컨텍스트의 희소성</a></li><li class="toc-item level-2 "><a href="#heading-3">4. 컨텍스트에 올라가는 6가지 재료</a></li><li class="toc-item level-2 "><a href="#heading-4">5. AGENTS.md와 CLAUDE.md</a></li><li class="toc-item level-2 "><a href="#heading-5">6. RAG와 file search</a></li><li class="toc-item level-2 "><a href="#heading-6">7. 컨텍스트 관리 4대 전략</a></li><li class="toc-item level-2 "><a href="#heading-7">8. 실무 체크리스트</a></li><li class="toc-item level-2 "><a href="#heading-8">9. 정리</a></li><li class="toc-item level-2 "><a href="#heading-9">더 읽을거리</a></li></ul></nav><div class="rail-block keywords"><div class="rail-head">KEYWORDS</div><div class="rail-tags"><span class="rail-tag">#컨텍스트엔지니어링</span><span class="rail-tag">#CLAUDE.md</span><span class="rail-tag">#AGENTS.md</span><span class="rail-tag">#RAG</span><span class="rail-tag">#Compaction</span><span class="rail-tag">#LostInTheMiddle</span></div></div></div></aside></div></div></main></div></div>
+  
+
+</body></html>

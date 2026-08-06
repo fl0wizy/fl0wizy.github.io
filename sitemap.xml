@@ -2,86 +2,150 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://fl0wizy.github.io/</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/profile</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/all</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/security</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/web-security</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/web3-blockchain</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/research-article</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/study-dev-security</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/wargame-ctf</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/reversing</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/pwn</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/crypto</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/category/ai</loc>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/development</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/travel</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/category/daily</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-01-llm-and-token</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-02-what-is-harness</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-03-agent-loop</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-04-context-engineering</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-05-tools-and-mcp</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-06-harness-products</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-07-multi-agent</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-08-eval-harness</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-09-memory-longrunning</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-10-safety-governance</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-11-patterns-decisions</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-12-cases-ecosystem</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-13-glossary-references</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/ai-everything-deep-01-transformer</loc>
+    <lastmod>2026-08-06</lastmod>
+  </url>
+  <url>
+    <loc>https://fl0wizy.github.io/post/can-ai-save-web3</loc>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/post/ethereum-ux-roadmap-analysis</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/post/future-of-web3-audit</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/post/solidity-concepts-1</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/post/solidity-concepts-2</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/post/solidity-concepts-3</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://fl0wizy.github.io/post/solidity-concepts-4</loc>
-    <lastmod>2026-04-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
 </urlset>

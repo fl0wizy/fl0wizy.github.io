@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <title>AI의 모든 것 (심화 01) – 트랜스포머 해부: 어텐션에서 다음 토큰까지 | flowizy's DevLog</title>
+    <meta name="description" content="어텐션 참조도 계산(QKV·√d·softmax), 어휘 크기가 결정되는 곳, temperature·top-p 샘플링, 자기회귀 생성까지.">
+    <meta property="og:title" content="AI의 모든 것 (심화 01) – 트랜스포머 해부: 어텐션에서 다음 토큰까지 | flowizy's DevLog">
+    <meta property="og:description" content="어텐션 참조도 계산(QKV·√d·softmax), 어휘 크기가 결정되는 곳, temperature·top-p 샘플링, 자기회귀 생성까지.">
+    <meta property="og:url" content="https://fl0wizy.github.io/post/ai-everything-deep-01-transformer">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://fl0wizy.github.io/post/ai-everything-deep-01-transformer">
+    
+    
+    
+    
+    
+    
+    
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="xBpPKxzhz-8Y708fYBi6IG1Du6zn0v_yKr4Hm-4PG5g">
+    <meta name="theme-color" content="#0d0d0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?')
+            .replace(/^\/+/, '/');
+
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.replace(/\/$/, '') + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-DWKahj0y.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-B8gBuBl2.css">
+  </head>
+  <body>
+    <div id="root"><div class="layout"><aside class="sidebar"><div class="sidebar-logo"><div class="logo-container"><div class="logo-image-wrapper"><img alt="flowizy" class="logo-profile-image" src="/images/profile.jpg"></div><div class="logo-text"><h1>flowizy's DevLog</h1><p>SECURITY RESEARCHER</p></div></div></div><nav class="sidebar-nav"><a class="nav-item " href="/profile" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path></svg><span>PROFILE</span></a><a class="nav-item " href="/" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>BLOG</span></a></nav><div class="sidebar-categories"><div class="categories-header"><span>CONTENT CATEGORIES</span></div><div class="categories-list"><div class="category-item-wrapper"><button class="category-item selected level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><span class="category-name">전체</span><span class="post-count ">21</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span><span class="category-name">보안(Security)</span><span class="post-count subtle">7</span></button><div class="category-children"><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #6f9fd8;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="category-name">Web Security</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span><span class="category-name">Web3 / Blockchain</span><span class="post-count subtle">7</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #74c195;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span><span class="category-name">Reversing</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #e6a572;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></span><span class="category-name">Pwn</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #db8fb4;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span class="category-name">Crypto</span><span class="post-count subtle">0</span></button></div></div></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a3c76d;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span><span class="category-name">AI</span><span class="post-count subtle">14</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #6fbecf;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span><span class="category-name">개발(Development)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #d4c277;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg></span><span class="category-name">여행(Travel)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #9ca3af;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="category-name">일상(Daily)</span><span class="post-count subtle">0</span></button></div></div></div></aside><main class="main-content"><div class="post-page" style="--cat: #a3c76d;"><div class="post-layout"><header class="post-head"><a class="back-link" href="/" data-discover="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>BACK TO LIST</a><div class="post-category-line"><span class="post-category-badge">AI</span></div><h1 class="post-title">AI의 모든 것 (심화 01) – 트랜스포머 해부: 어텐션에서 다음 토큰까지</h1><div class="post-meta"><span class="post-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-08-04 / 10:00</span><span class="post-relative-time">약 2일 전</span><span class="post-reading-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>약 7분</span></div></header><div class="post-container"><article class="post-content"><p>이 글은 <a href="/post/ai-everything-01-llm-and-token" node="[object Object]" target="_blank" rel="noopener noreferrer">01편</a>에서 한 줄씩으로 압축했던 7단계 파이프라인 중 추론의 본체인 ③~⑦을 한 단계씩 해부한다. 01편이 지도라면 이 글은 확대경이다. 시리즈의 본 흐름과는 독립적이므로, 지금은 건너뛰고 <a href="/post/ai-everything-02-what-is-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">02편</a>으로 넘어가도 이어 읽는 데 지장이 없다.</p>
+<p>먼저 전체 그림을 다시 놓고 시작한다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>입력 텍스트 "이 파일 고쳐줘"
+ → ① 토큰화        [이, 파일, 고, 쳐, 줘]
+ → ② 임베딩        각 토큰 → 벡터
+ → ③ Transformer   어텐션이 토큰 간 참조도 계산
+ → ④ logits        어휘 전체(예: 10만 개) 각각의 점수
+ → ⑤ softmax       확률분포로 변환
+ → ⑥ 샘플링        temperature · top-p
+ → ⑦ 다음 토큰 1개 확정 → (②로 돌아가 반복)
+</code></pre></div>
+<hr>
+<h2 id="heading-0">1. ③ 어텐션 – 참조도 계산</h2>
+<p><strong>어텐션</strong>(attention)은 각 토큰이 자신의 표현을 갱신할 때 문장 안의 다른 토큰들을 얼마나 참고할지 정하는 메커니즘이다. 모든 토큰이 서로를 쳐다보면서, 의미적으로 관련 깊은 토큰에는 큰 가중치를, 상관없는 토큰에는 작은 가중치를 준 다음, 그 비율대로 정보를 섞어 자기 표현을 새로 만든다. "그 파일을 그것으로 고쳐줘"에서 "그것" 토큰이 앞의 "파일"을 강하게 참조하도록 연결되는 것이 전형적인 예다. 여기서 <strong>참조도</strong>란 이 "얼마나 참고하는가"의 비율값, 곧 어텐션 가중치를 우리말로 푼 표현이다.</p>
+<p>계산은 세 종류의 벡터로 이루어진다. 각 토큰의 벡터에 학습된 세 개의 변환 행렬 <code>W_Q</code>, <code>W_K</code>, <code>W_V</code>를 곱해 <strong>Query</strong>(질문), <strong>Key</strong>(열쇠), <strong>Value</strong>(값) 벡터를 뽑는다. 그다음 순서는 이렇다.</p>
+<ol>
+<li>현재 토큰의 Query와 각 토큰의 Key를 내적해 원점수를 얻는다. 이 값은 -3.2, 18.4 같은 아무 실수다.</li>
+<li>원점수를 벡터 차원 d의 제곱근 √d로 나눠 크기를 맞춘다.</li>
+<li>softmax에 통과시켜 합이 1인 비율로 만든다. 이 비율이 참조도다.</li>
+<li>참조도의 비율대로 각 토큰의 Value를 가중합해 현재 토큰의 새 표현을 만든다.</li>
+</ol>
+<p><img alt="어텐션 참조도 계산 단계" src="/images/ai/attention-weights.svg"></p>
+<p>그림의 숫자는 설명용 예시다. "그것"이 "파일"에 0.82를 주면, 새 표현에는 "파일"의 정보가 82% 비중으로 섞여 들어간다. 이 계산이 여러 어텐션 헤드에서 병렬로, 여러 층에서 반복되며 문맥이 점점 깊게 반영된다.</p>
+<p>2번에서 √d로 나누는 이유는 내적의 성질 때문이다. 내적은 d개 성분을 곱해서 전부 더하는 연산이라, 차원 d가 클수록 결과값의 분산이 d에 비례해 커진다(표준편차는 √d에 비례). 큰 값이 그대로 softmax에 들어가면 분포가 극단적으로 뾰족해져 기울기가 거의 0이 되는 포화 상태에 빠지고, 학습이 멈춘다. √d로 나눠 점수 크기를 차원과 무관하게 유지하는 이 기법이 원 논문 <a href="https://arxiv.org/abs/1706.03762" node="[object Object]" target="_blank" rel="noopener noreferrer">Attention Is All You Need</a>의 Scaled Dot-Product Attention이다.</p>
+<p>그럼 "그것"과 "파일"을 강하게 엮을 수 있는 능력은 어디서 오는가. 참조도 값 자체(0.82 같은)는 매 추론마다 새로 계산되는 중간값이지만, 그 값을 만들어내는 규칙인 <code>W_Q</code>, <code>W_K</code>, <code>W_V</code>는 학습으로 고정된 모델 파라미터다. 학습 데이터에서 대명사가 앞의 명사를 가리키는 패턴이 무수히 등장했고, 다음 토큰 예측이 틀릴 때마다 오차가 역전파되어 이 행렬들이 조금씩 조정됐다. "그것으로 고쳐줘" 다음에 올 말을 잘 맞히려면 "그것"이 "파일"을 참조해야 유리하므로, 학습이 그 방향으로 행렬을 밀어붙인 것이다. 즉 연관성은 사람이 규칙으로 넣어준 게 아니라, 방대한 예시에서 "이렇게 엮어야 예측이 맞더라"를 통계적으로 압축해 파라미터에 새긴 결과다. <a href="/post/ai-everything-01-llm-and-token" node="[object Object]" target="_blank" rel="noopener noreferrer">01편 2장</a>에서 말한 "모델 파라미터는 고정, 어텐션 가중치는 중간값"의 구분이 정확히 이 구도다.</p>
+<hr>
+<h2 id="heading-1">2. ④ logits – 어휘 전체의 점수와 어휘 크기</h2>
+<p><strong>logits</strong>는 어휘의 모든 토큰 각각에 대해 "다음에 올 것 같은 정도"를 매긴 날 점수다. 위 그림의 어휘 10만 개는 예시 숫자이고, 실제 값은 모델마다 다르다. 이 숫자를 결정하는 것은 <strong>토크나이저의 어휘 사전(vocabulary) 크기</strong>다.</p>
+<p>어휘 사전은 모델 학습 전에 미리 만들어진다. BPE 같은 알고리즘이 대량의 텍스트에서 자주 붙어 나오는 글자쌍을 반복적으로 합치면서, 설계자가 목표로 정한 사전 크기(5만, 10만, 20만 등)에 도달할 때까지 토큰을 만든다. 즉 어휘 크기는 "이 모델이 구분할 수 있는 서로 다른 토큰 종류의 총수"이고, 설계자가 정하는 하이퍼파라미터다. 이 숫자가 그대로 logits 벡터의 길이이자 임베딩 테이블의 행 수가 된다. 어휘가 클수록 토큰 하나가 담는 정보가 많아 시퀀스가 짧아지지만, 매 스텝의 logits 계산과 임베딩 테이블이 그만큼 커지는 트레이드오프가 있다.</p>
+<p>언어가 다르면 자주 붙는 글자쌍도 다르다는 문제는 두 겹으로 처리된다. 토크나이저 층에서는 여러 언어를 섞은 코퍼스로 사전을 만들고, 바이트 단위 BPE(byte-level BPE)를 써서 어떤 문자든 최소한 바이트로는 쪼갤 수 있게 한다. 사전에 없는 글자라도 처리 불능이 되지는 않는다는 안전장치다. 다만 바이트로 쪼개든 글자쌍으로 묶든, 최종적으로 모델에 들어가는 것은 토큰 ID이고, 토큰 ID가 임베딩 벡터로 바뀐 뒤의 계산은 완전히 동일하다. 그리고 언어별 문법·의미 관계는 토크나이저가 아니라 모델이 학습한다. 토크나이저는 쪼개기만 담당하고, 엮는 관계는 ③의 파라미터가 각 언어의 데이터에서 익히는 분업 구조다.</p>
+<hr>
+<h2 id="heading-2">3. ⑤ softmax – 확률분포로 바꾸는 이유</h2>
+<p>logits는 아무 실수라서 크기 비교는 되지만 그 자체로 "각 토큰이 다음에 올 확률"로 쓸 수 없다. <strong>softmax</strong>는 이 점수들을 전부 0~1 사이로 바꾸고 총합이 정확히 1이 되게 만들어, 진짜 확률분포로 해석할 수 있게 한다.</p>
+<p>확률로 바꾸는 이유는 세 가지다. 첫째, ⑥의 샘플링이 확률을 전제로 동작한다. temperature도 top-p도 전부 "확률"이 있어야 정의된다. 둘째, 모델의 본질이 "다음 말 하나를 고르는 것"이 아니라 "어휘 전체에 대한 확률분포를 만드는 것"이고, softmax가 그 분포를 실제로 만들어내는 단계다. 셋째, 학습할 때도 이 확률분포와 정답 토큰을 비교해 오차를 계산하므로, 확률 형태여야 학습과 추론이 일관되게 맞물린다.</p>
+<hr>
+<h2 id="heading-3">4. ⑥ 샘플링 – temperature와 top-p</h2>
+<p><strong>샘플링</strong>은 확률분포에서 실제로 토큰 하나를 뽑는 규칙이다. 고르는 방식은 크게 둘이다. 항상 최고 확률 토큰을 고르면(greedy) 결과가 결정적이지만 매번 똑같고, 확률에 비례해 뽑으면 자연스럽고 다양한 문장이 나온다. LLM이 같은 질문에 다른 답을 하는 이유가 바로 이 확률적 샘플링이다.</p>
+<p><strong>temperature</strong>는 물리의 온도를 비유로 가져온 값으로, 분포를 얼마나 뾰족하게 또는 평평하게 만들지 조절한다. softmax 직전에 logits를 이 값으로 나누는데, 낮으면 분포가 뾰족해져 최고 확률 토큰이 거의 항상 뽑히고(보수적·결정적), 높이면 분포가 평평해져 낮은 확률 토큰도 뽑힐 여지가 커진다(다양·창의적). 온도가 높을수록 무질서해진다는 물리 직관이 그대로 쓰인 셈이다.</p>
+<p><strong>top-p</strong>(nucleus sampling)는 다른 축의 조절이다. 확률 높은 토큰부터 누적해 가다가 누적 확률이 p(예: 0.9)에 도달하는 지점까지만 후보로 남기고, 나머지 긴 꼬리는 아예 버린다. 후보 개수가 매번 유동적으로 바뀌는 게 특징이고, 말도 안 되게 확률 낮은 토큰이 뽑히는 사고를 막으면서 다양성은 유지한다. 실무에서는 temperature와 top-p를 함께 조합해 다양성의 폭을 잡는다.</p>
+<p>그렇다고 temperature가 0일수록 좋은 것은 아니다. 코드 생성, 사실 추출, 형식이 엄격한 출력, 평가처럼 재현성이 중요한 작업에는 0에 가깝게 두는 게 유리하지만, 브레인스토밍이나 글쓰기처럼 다양성이 필요한 작업에서는 매번 똑같은 답만 나와 오히려 손해다. 또 greedy는 매 스텝 그 순간의 최고 확률만 고르는 근시안적 방식이라 문장 전체로 보면 더 좋은 경로를 놓칠 수 있고, <code>temperature=0</code>이라도 하드웨어 연산 순서 차이 때문에 완전한 결정론은 아니다. temperature는 좋고 나쁨이 아니라 작업 성격에 맞춰 고르는 손잡이다. 참고로 API에서는 호출마다 이 값을 지정할 수 있지만, 웹 챗 앱에서는 제공자가 정한 값이 쓰여 사용자가 건드릴 수 없다.</p>
+<hr>
+<h2 id="heading-4">5. ⑦ 다음 토큰 확정 – 앞 문맥과의 관계</h2>
+<p>토큰 A 다음에 B가 온다고 예측했을 때, B는 A 하나만 보고 나온 것이 아니다. 모델이 계산하는 것은 조건부 확률 P(다음 토큰 | 앞의 모든 토큰), 즉 "지금까지의 전체 문맥이 주어졌을 때 다음 토큰이 무엇일 확률"이다. A와 B의 관계는 1:1 인과가 아니라 "A로 끝나는 문맥 다음에 B가 이어질 통계적 개연성이 높다"는 조건부 관계다.</p>
+<p>이 개연성의 출처는 둘이다. 첫째, ③의 어텐션이 이미 A와 그 앞 토큰들의 관계를 반영해 A의 표현을 만들어 뒀다. 둘째, 학습 데이터에서 "이런 문맥 뒤엔 이런 토큰이 자주 왔다"는 패턴이 모델 파라미터에 녹아 있다. "대한민국의 수도는" 다음에 "서울"이 오는 것은 그 문맥이 그 토큰을 강하게 예측하도록 학습됐기 때문이지, 두 토큰이 문법적으로 반드시 붙어야 해서가 아니다.</p>
+<p>그리고 B가 확정되면 ②로 돌아가 B가 입력에 붙고, 그다음 토큰 C를 예측한다. 자기가 만든 출력을 다시 입력으로 먹으며 한 토큰씩 문맥을 늘려가는 이 구조를 자기회귀(autoregressive) 생성이라고 부른다. 매 스텝의 샘플링이 조금씩 달라지면 전체 문장도 달라지므로, 같은 A 문맥에서 매번 같은 B가 나온다는 보장도 없다.</p>
+<hr>
+<h2 id="heading-5">6. 정리</h2>
+<p>어텐션은 학습된 <code>W_Q</code>·<code>W_K</code>·<code>W_V</code> 행렬로 Query·Key·Value를 만들고 내적–√d 스케일링–softmax로 참조도를 계산하며, 토큰을 엮는 능력은 그 행렬들에 통계적으로 압축되어 있다. 어휘 크기는 토크나이저 사전을 만들 때 설계자가 정하는 하이퍼파라미터이고, logits를 softmax로 확률분포로 바꾼 뒤 temperature·top-p 규칙으로 샘플링해 다음 토큰을 조건부 확률로 하나씩 확정한다. 이 반복이 자기회귀 생성이고, LLM이 같은 질문에 조금씩 다른 답을 내는 구조적 이유다.</p>
+<hr>
+<h2 id="heading-6">더 읽을거리</h2>
+<ul>
+<li>Ashish Vaswani et al., <em>Attention Is All You Need</em> – <a href="https://arxiv.org/abs/1706.03762" node="[object Object]" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/1706.03762</a></li>
+<li>김동학, 《하네스 엔지니어링 백과사전》 제2장 – <a href="https://wikidocs.net/346794" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/346794</a></li>
+</ul>
+<hr>
+<p>본편: <a href="/post/ai-everything-01-llm-and-token" node="[object Object]" target="_blank" rel="noopener noreferrer">01. LLM과 토큰 – 예측 기계의 해부</a> · 다음 편: <a href="/post/ai-everything-02-what-is-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">02. 하네스란 무엇인가 – 배선에서 AI까지</a></p></article><div class="post-tags"><span class="tag">#어텐션</span><span class="tag">#QKV</span><span class="tag">#softmax</span><span class="tag">#logits</span><span class="tag">#샘플링</span><span class="tag">#temperature</span><span class="tag">#트랜스포머</span></div></div><aside class="post-rail"><div class="post-rail-inner"><nav class="rail-block toc"><div class="rail-head">ON THIS PAGE</div><ul class="toc-list"><li class="toc-item level-2 "><a href="#heading-0">1. ③ 어텐션 – 참조도 계산</a></li><li class="toc-item level-2 "><a href="#heading-1">2. ④ logits – 어휘 전체의 점수와 어휘 크기</a></li><li class="toc-item level-2 "><a href="#heading-2">3. ⑤ softmax – 확률분포로 바꾸는 이유</a></li><li class="toc-item level-2 "><a href="#heading-3">4. ⑥ 샘플링 – temperature와 top-p</a></li><li class="toc-item level-2 "><a href="#heading-4">5. ⑦ 다음 토큰 확정 – 앞 문맥과의 관계</a></li><li class="toc-item level-2 "><a href="#heading-5">6. 정리</a></li><li class="toc-item level-2 "><a href="#heading-6">더 읽을거리</a></li></ul></nav><div class="rail-block keywords"><div class="rail-head">KEYWORDS</div><div class="rail-tags"><span class="rail-tag">#어텐션</span><span class="rail-tag">#QKV</span><span class="rail-tag">#softmax</span><span class="rail-tag">#logits</span><span class="rail-tag">#샘플링</span><span class="rail-tag">#temperature</span><span class="rail-tag">#트랜스포머</span></div></div></div></aside></div></div></main></div></div>
+  
+
+</body></html>

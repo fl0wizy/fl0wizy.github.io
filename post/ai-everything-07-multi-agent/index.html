@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <title>AI의 모든 것 (07) – 멀티에이전트: 모델이 섞일 필요는 없다 | flowizy's DevLog</title>
+    <meta name="description" content="모델이 섞일 필요 없다 – Subagent vs Agent Teams, 문맥 경계로 나누기, 쓰지 말아야 할 때.">
+    <meta property="og:title" content="AI의 모든 것 (07) – 멀티에이전트: 모델이 섞일 필요는 없다 | flowizy's DevLog">
+    <meta property="og:description" content="모델이 섞일 필요 없다 – Subagent vs Agent Teams, 문맥 경계로 나누기, 쓰지 말아야 할 때.">
+    <meta property="og:url" content="https://fl0wizy.github.io/post/ai-everything-07-multi-agent">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://fl0wizy.github.io/post/ai-everything-07-multi-agent">
+    
+    
+    
+    
+    
+    
+    
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="google-site-verification" content="xBpPKxzhz-8Y708fYBi6IG1Du6zn0v_yKr4Hm-4PG5g">
+    <meta name="theme-color" content="#0d0d0f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?')
+            .replace(/^\/+/, '/');
+
+          window.history.replaceState(
+            null,
+            '',
+            l.pathname.replace(/\/$/, '') + decoded + l.hash
+          );
+        }
+      }(window.location));
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-DWKahj0y.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-B8gBuBl2.css">
+  </head>
+  <body>
+    <div id="root"><div class="layout"><aside class="sidebar"><div class="sidebar-logo"><div class="logo-container"><div class="logo-image-wrapper"><img alt="flowizy" class="logo-profile-image" src="/images/profile.jpg"></div><div class="logo-text"><h1>flowizy's DevLog</h1><p>SECURITY RESEARCHER</p></div></div></div><nav class="sidebar-nav"><a class="nav-item " href="/profile" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path></svg><span>PROFILE</span></a><a class="nav-item " href="/" data-discover="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span>BLOG</span></a></nav><div class="sidebar-categories"><div class="categories-header"><span>CONTENT CATEGORIES</span></div><div class="categories-list"><div class="category-item-wrapper"><button class="category-item selected level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><span class="category-name">전체</span><span class="post-count ">21</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span><span class="category-name">보안(Security)</span><span class="post-count subtle">7</span></button><div class="category-children"><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #6f9fd8;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></span><span class="category-name">Web Security</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #a79bea;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span><span class="category-name">Web3 / Blockchain</span><span class="post-count subtle">7</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #74c195;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></span><span class="category-name">Reversing</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #e6a572;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></span><span class="category-name">Pwn</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-1" style="padding-left: 28px; --cat: #db8fb4;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span class="category-name">Crypto</span><span class="post-count subtle">0</span></button></div></div></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #a3c76d;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8V4H8"></path><rect width="16" height="12" x="4" y="8" rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path d="M15 13v2"></path><path d="M9 13v2"></path></svg></span><span class="category-name">AI</span><span class="post-count subtle">14</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #6fbecf;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span><span class="category-name">개발(Development)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #d4c277;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg></span><span class="category-name">여행(Travel)</span><span class="post-count subtle">0</span></button></div><div class="category-item-wrapper"><button class="category-item  level-0" style="padding-left: 12px; --cat: #9ca3af;"><span class="category-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span class="category-name">일상(Daily)</span><span class="post-count subtle">0</span></button></div></div></div></aside><main class="main-content"><div class="post-page" style="--cat: #a3c76d;"><div class="post-layout"><header class="post-head"><a class="back-link" href="/" data-discover="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>BACK TO LIST</a><div class="post-category-line"><span class="post-category-badge">AI</span></div><h1 class="post-title">AI의 모든 것 (07) – 멀티에이전트: 모델이 섞일 필요는 없다</h1><div class="post-meta"><span class="post-date"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2026-08-02 / 10:10</span><span class="post-relative-time">약 4일 전</span><span class="post-reading-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>약 9분</span></div></header><div class="post-container"><article class="post-content"><p>이 글에서는 멀티에이전트의 조건, Subagent와 Agent Teams의 차이, 역할 이름이 아니라 문맥 경계로 나누는 이유, 그리고 멀티에이전트를 쓰지 말아야 할 때까지 한 번에 훑어본다.</p>
+<hr>
+<h2 id="heading-0">1. 멀티에이전트의 정의</h2>
+<p>멀티에이전트는 각자 독립된 컨텍스트 창과 실행 루프를 가진 에이전트 여럿이 하나의 목표를 나누어 처리하는 구조다. 이때 <strong>모델 다양성은 조건이 아니다.</strong> 하나의 세션에서 10개 서브에이전트를 오케스트레이션하면서 그 10개가 모두 Claude의 상위 모델 등급인 Opus와만 통신해도 멀티에이전트다. 멀티에이전트를 정의하는 것은 모델 다양성이 아니라 네 가지다.</p>
+<ul>
+<li><strong>독립된 컨텍스트 창</strong>: 각 에이전트가 자기 책상을 가진다</li>
+<li><strong>고유한 시스템 프롬프트/역할</strong>: "너는 숙소 조사 담당이다"</li>
+<li><strong>분리된 도구 권한</strong>: 조사 담당에게 배포 권한을 주지 않는다</li>
+<li><strong>조율 구조</strong>: 누가 나누고 누가 합치는가</li>
+</ul>
+<p>Anthropic의 멀티에이전트 리서치 시스템도 lead agent와 subagent들이 같은 모델 계열을 쓴다. Claude Code의 서브에이전트도 기본은 같은 모델이다.</p>
+<p>반대 방향도 마찬가지다. Skill 50개, MCP 서버 10개, Hook 20개가 붙어 있어도 <strong>컨텍스트 창이 하나면 단일 에이전트다.</strong> 확장된 단일 에이전트일 뿐이다. 세는 단위는 에이전트라는 말이 아니라 독립된 컨텍스트 창과 자기 루프다.</p>
+<p>모델 계층화(model tiering)는 별개의 기법이다. 강한 모델은 판단에, 싸고 빠른 모델은 단순 정리에 쓰는 것은 비용·지연 최적화 기법이지 멀티에이전트의 조건이 아니다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>멀티에이전트   ← 컨텍스트를 나누는 문제
+모델 계층화    ← 비용을 최적화하는 문제
+     이 둘은 함께 쓸 수 있지만, 서로의 조건은 아니다
+</code></pre></div>
+<hr>
+<h2 id="heading-1">2. Subagent와 Agent Teams의 차이</h2>
+<p>같은 "여러 에이전트"라도 두 종류로 갈린다. 이걸 구분하지 못하면 잘못된 구조를 고른다.</p>
+<p>가족 여행 준비에 빗대면 이렇다. 토요일에 가족 여행을 가는데 해야 할 일이 많다. 그런데 두 종류의 일이 섞여 있다. 첫 번째는 따로 조사해도 되는 일이다. 숙소 후보 세 곳 찾기, 기차 시간표 비교, 근처 맛집 정리 같은 것은 한 사람이 따로 조사해서 결과만 가져오면 되고, 중간에 계속 회의할 필요가 없다. 이게 Subagent다. 두 번째는 계속 맞춰야 하는 일이다. 숙소가 바뀌면 교통편도 바뀌고, 교통비가 늘면 예산도 바뀌고, 부모님이 계단 많은 숙소를 힘들어하면 숙소 후보를 다시 봐야 한다. 이게 Agent Teams다. 그리고 간단한 당일치기 일정 하나만 짜는 거라면 나누는 비용이 더 클 수 있으니 단일 에이전트가 낫다.</p>
+<table><thead><tr><th>구분</th><th>Subagent</th><th>Agent Teams</th></tr></thead><tbody><tr><td>기본 성격</td><td>fire-and-forget</td><td>collaborative</td></tr><tr><td>작업 방식</td><td>맡긴 일을 끝내고 보고한다</td><td>서로 상태를 공유하며 조율한다</td></tr><tr><td>에이전트 간 대화</td><td>없다</td><td>있다</td></tr><tr><td>공유 메모리</td><td>없다</td><td>공유 작업 목록과 상태가 있다</td></tr><tr><td>지속 상태</td><td>거의 없다. 끝나면 사라진다</td><td>시간이 지나며 문맥이 쌓인다</td></tr><tr><td>부모의 역할</td><td>위임하고 요약을 받는다</td><td>팀 운영과 결과 종합</td></tr><tr><td>한 줄 요약</td><td>"조사해 오세요"</td><td>"같이 회의하면서 진행합시다"</td></tr></tbody></table>
+<hr>
+<h2 id="heading-2">3. Subagent</h2>
+<p>Subagent는 부모 에이전트가 독립된 컨텍스트에 위임해 하나의 좁은 작업을 끝내고 결과만 돌려주게 하는 하위 에이전트다. 격리를 통해 병렬성을 얻는 구조다. Subagent 하나에는 보통 네 가지가 들어간다. 이 에이전트가 어떤 전문가인지 정하는 <strong>고유한 시스템 프롬프트</strong>("너는 숙소 조사 담당이야"), 사용할 수 있는 도구를 제한하는 허용 도구 목록(숙소 담당에게는 지도와 예약 사이트만), 부모 대화의 잡음 없이 필요한 정보만 담는 깨끗한 독립 문맥, 그리고 "숙소 후보 3개 비교"처럼 범위를 좁힌 하나의 작업이다.</p>
+<p>핵심 가치는 부모의 머릿속을 깨끗하게 유지하는 것이다. 긴 조사 로그, 코드 검색 결과, 여러 후보 비교표를 모두 부모 문맥에 넣지 않아도 된다. 하위 에이전트가 조사하고, 부모에게는 압축된 결과만 돌아온다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>부모 에이전트 (여행 총괄)
+ ├─ "숙소 후보 3곳 조사" → 숙소 담당 (독립 컨텍스트) ─┐
+ ├─ "기차 시간표 비교"   → 교통 담당 (독립 컨텍스트) ─┼─→ 각자 "표 한 장"만 반환
+ └─ "맛집 정리"          → 맛집 담당 (독립 컨텍스트) ─┘
+                              ↓
+                      부모의 최종 판단
+</code></pre></div>
+<p>Subagent가 잘 맞는 일은 다음과 같다.</p>
+<ul>
+<li>서로 독립적인 자료 조사</li>
+<li>코드베이스의 특정 영역 탐색</li>
+<li>여러 문서의 초벌 요약</li>
+<li>보안·성능·문체처럼 관점이 뚜렷한 리뷰</li>
+<li>부모가 최종 요약만 받으면 되는 조회 작업</li>
+</ul>
+<p>약점도 분명하다. <strong>중간에 발견한 내용이 다른 하위 에이전트의 판단을 즉시 바꿔야 하는 작업에는 약하다.</strong> 숙소 담당이 "이 숙소는 싸지만 역에서 너무 멀다"를 발견했다고 하자. 이 정보가 교통 담당의 판단을 바로 바꿔야 한다면, 숙소 담당이 결과를 끝까지 들고 있다가 마지막에 보고하는 구조에서는 교통 담당이 이미 잘못된 기준으로 시간을 계산했을 수 있다.</p>
+<hr>
+<h2 id="heading-3">4. Agent Teams</h2>
+<p>Agent Teams는 여러 에이전트가 공유 작업 목록과 상호 대화로 중간 상태를 맞추며 함께 진행하는 구조다. 격리가 아니라 소통을 통해 조율한다. Agent Teams에는 세 가지 움직이는 부분이 있다. 일을 나누고 순서를 잡고 결과를 종합하는 <strong>팀 리드</strong>(여행 준비 총괄), 각자 자기 문맥 창을 가지고 병렬 작업하는 팀원 에이전트(숙소·교통·예산 담당), 그리고 대기/진행중/완료 상태와 의존성을 추적하는 공유 작업 목록(냉장고에 붙인 공동 체크리스트)이다.</p>
+<p>핵심은 결과를 모으는 게 아니라 중간 상태를 함께 맞추는 것이다. 프론트엔드 담당이 "API 응답 구조가 바뀌어야 합니다"라고 말하면, 백엔드 담당이 팀 리드를 기다리지 않고 바로 조정할 수 있다. 테스트 담당도 그 변경을 보고 대기 상태를 바꾼다. 가족 단체 채팅방과 비슷하다. 숙소 담당이 "예약 가능한 방이 하나뿐"이라고 올리면, 예산 담당은 바로 비용을 다시 계산하고 교통 담당은 이동 시간을 다시 본다.</p>
+<p>Agent Teams가 잘 맞는 일은 여러 역할의 결과가 계속 서로 영향을 주는 작업, 중간 발견이 다른 작업 방향을 바꾸는 작업, 작업 사이에 대기·차단·선행 조건이 많은 작업, 한 번에 끝나는 조사가 아니라 오래 이어지는 프로젝트다.</p>
+<hr>
+<h2 id="heading-4">5. 분할 기준 – 역할이 아니라 문맥 경계</h2>
+<p>문맥 경계는 두 작업이 같은 정보를 필요로 하는지를 기준으로 그은 분할선이며, 멀티에이전트를 나누는 기준이 된다. 멀티에이전트 설계에서 가장 흔한 실수는 일을 역할 이름으로 나누는 것이다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>X 계획 담당 → 구현 담당 → 테스트 담당
+   보기에는 깔끔하지만, 정보가 전달될 때마다 손실된다
+</code></pre></div>
+<p>전달 게임(telephone game)과 같다. 처음 문장은 분명했지만 여러 사람을 거치면 다른 문장이 된다. 좋은 기준은 역할이 아니라 <strong>문맥 경계</strong>다. 두 작업이 깊게 같은 정보를 필요로 하면 한 에이전트가 이어서 맡고, 서로 독립적인 정보만 필요로 하면 나눈다. 중간 발견이 다른 작업을 바꿔야 하면 Agent Teams 같은 소통 구조를, 결과만 합치면 되면 Subagent 같은 격리 구조를 쓴다.</p>
+<p>코딩에서 특히 중요하다. 어떤 기능을 구현한 에이전트가 그 기능의 테스트까지 작성하는 편이 자연스러울 때가 많다. 이미 구현 의도와 예외 처리를 알고 있기 때문이다. 김치찌개를 끓이는 사람과 간을 보는 사람을 무조건 분리하면 이상하다. 끓인 사람이 어떤 재료를 넣었는지 아니까 기본 간은 그 사람이 먼저 본다. 대신 <strong>손님상에 내기 전에는 다른 사람이 한 번 맛을 보면 좋다.</strong></p>
+<p>이게 <a href="/post/ai-everything-08-eval-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">08편의 Generator-Evaluator</a> 구조로 이어진다. 모든 단계를 역할로 쪼개는 게 아니라, 최종 검증만 독립시키는 것이다.</p>
+<hr>
+<h2 id="heading-5">6. 5가지 오케스트레이션 패턴</h2>
+<p>Subagent든 Agent Teams든, 실제 흐름은 다음 패턴들의 조합이다.</p>
+<ul>
+<li><strong>프롬프트 체이닝</strong>: 앞 단계 결과를 다음 단계 입력으로. 순서가 중요하고 단계가 서로 의존할 때</li>
+<li><strong>라우팅</strong>: 요청을 보고 적절한 전문가·모델로 보낸다. 쉬운 일과 어려운 일을 나눌 때</li>
+<li><strong>병렬화</strong>: 독립 작업을 동시에 실행. 여러 조사, 여러 후보 생성, 여러 문서 요약</li>
+<li><strong>오케스트레이터-워커</strong>: 중앙 에이전트가 나누고 종합. Subagent와 Agent Teams 모두에서 자주 쓴다</li>
+<li><strong>평가자-개선자</strong>: 하나가 만들고 다른 하나가 평가해 되돌린다. 품질이 중요하고 한 번에 끝내기 어려울 때</li>
+</ul>
+<p>이 패턴들은 배타적이지 않다. 부모가 요청을 라우팅하고, 세 개의 Subagent를 병렬 실행한 뒤, 평가자 에이전트가 결과를 검토하는 식으로 조합한다.</p>
+<p>좋은 분업의 예를 들면 Planner는 목표를 작은 단계로 나누고, Researcher는 자료를 찾고 요약하고, Builder는 결과물을 만들고, Evaluator는 결과를 비판적으로 검증하고, Reporter는 사람에게 이해 가능한 보고서를 쓴다.</p>
+<hr>
+<h2 id="heading-6">7. 멀티에이전트를 쓰지 말아야 할 때</h2>
+<p>멀티에이전트는 멋져 보이지만 항상 정답은 아니다. 작업이 단순해서 좋은 프롬프트 하나로 충분하다면 나누는 비용이 이득보다 크다. 에이전트들이 계속 서로의 문맥을 물어봐야 한다면 조율 비용이 폭증한다. 작업 의존성 관리 비용이 실제 실행 이득보다 크면 관리가 본업이 된다. 여러 에이전트가 같은 파일을 동시에 고쳐야 하면 충돌하거나, 더 위험하게는 <strong>충돌 없이 합쳐졌지만 설계 가정이 어긋난다.</strong> 그리고 결과가 느려지고 비용만 느는지 측정할 방법이 없다면 개선인지 악화인지조차 모른다.</p>
+<p>집수리로 비유하면 전기 담당자와 배관 담당자가 동시에 같은 벽을 뜯는데 서로 말하지 않으면 위험하다. 한쪽은 콘센트 위치를 바꾸고, 다른 쪽은 그 자리에 배관을 지나가게 만들 수 있다. 각자 열심히 일했지만 합치면 문제가 된다. 그래서 코딩에서 Subagent는 동시에 코드를 쓰는 작업자보다 <strong>읽고 조사하고 위험을 알려주는 역할</strong>로 쓰는 편이 안전하다.</p>
+<p>실패 모드는 크게 세 가지다.</p>
+<p>첫째, 작업 설명이 흐리면 에이전트들이 서로 같은 일을 한다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>X "조사해 줘"
+O "공식 문서 기준으로 보안 위험 5개를 표로 정리하고, 코드 수정은 하지 마"
+</code></pre></div>
+<p>모든 에이전트에게 목적, 기대 출력 형식, 사용할 도구와 자료, 다루지 말아야 할 범위가 분명해야 한다.</p>
+<p>둘째, 검증 에이전트가 실제로 검증하지 않고 "괜찮다"고 말한다.</p>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>X "잘 봐줘"
+O "전체 테스트를 실행하고, 이 세 가지 케이스가 통과하기 전에는 완료라고 말하지 마"
+</code></pre></div>
+<p><strong>검증은 감상이 아니라 절차여야 한다.</strong></p>
+<p>셋째, 토큰 비용이 예상보다 빠르게 커진다. 에이전트가 늘어나면 각자 문맥을 들고 움직인다. 세 명이 10분씩 따로 조사하면 30분이지만, 다섯 명이 모여 한 시간 동안 계속 회의하면 5시간이 쓰인다. "사람이 많으니 빠르겠지"는 항상 맞지 않다. 그래서 모델 계층화(중요한 판단은 강한 모델, 반복 조회는 빠르고 저렴한 모델)와 예산 한도·중단 조건을 하네스에 포함해야 한다.</p>
+<hr>
+<h2 id="heading-7">8. 실전 판단 절차</h2>
+<div class="code-window"><div class="code-window-bar"><span class="code-dots"><i></i><i></i><i></i></span><button type="button" class="code-copy " aria-label="코드 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copy</span></button></div><pre><code>1. 먼저 하나의 에이전트로 해결해 본다
+2. 어디서 실패하는지 확인한다
+3. 문맥이 너무 커지면 → Subagent로 격리한다
+4. 독립 조사가 많으면 → Subagent를 병렬로 쓴다
+5. 중간 상태를 계속 맞춰야 하면 → Agent Teams를 고려한다
+6. 같은 파일을 동시에 수정해야 한다면 → 병렬 쓰기를 피한다
+7. 비용·속도·품질이 실제로 좋아졌는지 측정한다
+</code></pre></div>
+<p>이 순서는 하네스 엔지니어링의 기본 태도와 같다. <strong>복잡한 구조를 먼저 만들지 않는다.</strong> 작게 시작하고, 실제로 깨지는 지점을 보고, 그 지점에만 구조를 더한다. 에이전트 구축 패턴을 정리한 Anthropic의 「Building Effective Agents」도 같은 방향을 권한다. 먼저 단일 LLM 호출·검색·예시만으로 충분한지 확인하고, 필요할 때 workflow와 agent 구조를 붙인다.</p>
+<hr>
+<h2 id="heading-8">9. 하네스의 모델 한계 가정</h2>
+<p>하네스의 모델 한계 가정이란, 하네스의 모든 구조가 "모델이 이건 혼자 못한다"는 전제 위에 세워져 있다는 성질이다. Anthropic의 managed agents 글은 중요한 경고를 한다. <strong>하네스는 모델이 못한다고 가정한 것들을 인코딩한다.</strong> 그래서 모델이 발전하면 그 가정이 낡을 수 있다. 멀티에이전트도 마찬가지다. 오늘 컨텍스트가 부족해서 나눈 구조가, 컨텍스트가 늘어난 다음 모델에서는 불필요한 복잡성이 될 수 있다. 이게 <a href="/post/ai-everything-11-patterns-decisions" node="[object Object]" target="_blank" rel="noopener noreferrer">11편의 "비계(scaffolding)" 원칙</a>이다.</p>
+<hr>
+<h2 id="heading-9">10. 정리</h2>
+<p>멀티에이전트의 조건은 모델 다양성이 아니라 독립 컨텍스트 창, 역할, 도구 권한, 조율 구조다. 서브에이전트 10개가 전부 같은 모델을 써도 멀티에이전트이며, 모델 계층화는 비용 최적화 기법일 뿐이며, Skill·MCP·Hook이 아무리 많아도 컨텍스트 창이 하나면 단일 에이전트다. Subagent는 fire-and-forget(심부름)이고 Agent Teams는 collaborative(회의)다. 나눌 때는 역할 이름이 아니라 문맥 경계로 나눈다. 전달 게임에서 정보가 손실되기 때문이다. 같은 파일을 동시에 고치는 병렬 쓰기는 피해야 하는데, 충돌보다 충돌 없이 합쳐졌지만 가정이 어긋난 쪽이 더 위험하다. 결국 멀티에이전트는 속도가 아니라 품질과 문맥 관리를 위한 도구이고, 비용은 오히려 늘어난다.</p>
+<hr>
+<h2 id="heading-10">더 읽을거리</h2>
+<ul>
+<li>Anthropic, <em>How we built our multi-agent research system</em> – <a href="https://www.anthropic.com/engineering/built-multi-agent-research-system" node="[object Object]" target="_blank" rel="noopener noreferrer">https://www.anthropic.com/engineering/built-multi-agent-research-system</a></li>
+<li>Claude Code Docs, <em>Create custom subagents</em> – <a href="https://code.claude.com/docs/en/sub-agents" node="[object Object]" target="_blank" rel="noopener noreferrer">https://code.claude.com/docs/en/sub-agents</a></li>
+<li>Claude Code Docs, <em>Orchestrate teams of Claude Code sessions</em> – <a href="https://code.claude.com/docs/en/agent-teams" node="[object Object]" target="_blank" rel="noopener noreferrer">https://code.claude.com/docs/en/agent-teams</a></li>
+<li>OpenAI Agents SDK, <em>Handoffs</em> – <a href="https://openai.github.io/openai-agents-python/handoffs/" node="[object Object]" target="_blank" rel="noopener noreferrer">https://openai.github.io/openai-agents-python/handoffs/</a></li>
+<li>김동학, 《하네스 엔지니어링 백과사전》 부록 E – <a href="https://wikidocs.net/350445" node="[object Object]" target="_blank" rel="noopener noreferrer">https://wikidocs.net/350445</a></li>
+</ul>
+<hr>
+<p>다음 편: <a href="/post/ai-everything-08-eval-harness" node="[object Object]" target="_blank" rel="noopener noreferrer">08. 평가 하네스</a>
+이전 편: <a href="/post/ai-everything-06-harness-products" node="[object Object]" target="_blank" rel="noopener noreferrer">06. Claude Code · Codex · Antigravity</a></p></article><div class="post-tags"><span class="tag">#멀티에이전트</span><span class="tag">#Subagent</span><span class="tag">#AgentTeams</span><span class="tag">#Orchestrator</span><span class="tag">#오케스트레이션</span><span class="tag">#Handoff</span></div></div><aside class="post-rail"><div class="post-rail-inner"><nav class="rail-block toc"><div class="rail-head">ON THIS PAGE</div><ul class="toc-list"><li class="toc-item level-2 "><a href="#heading-0">1. 멀티에이전트의 정의</a></li><li class="toc-item level-2 "><a href="#heading-1">2. Subagent와 Agent Teams의 차이</a></li><li class="toc-item level-2 "><a href="#heading-2">3. Subagent</a></li><li class="toc-item level-2 "><a href="#heading-3">4. Agent Teams</a></li><li class="toc-item level-2 "><a href="#heading-4">5. 분할 기준 – 역할이 아니라 문맥 경계</a></li><li class="toc-item level-2 "><a href="#heading-5">6. 5가지 오케스트레이션 패턴</a></li><li class="toc-item level-2 "><a href="#heading-6">7. 멀티에이전트를 쓰지 말아야 할 때</a></li><li class="toc-item level-2 "><a href="#heading-7">8. 실전 판단 절차</a></li><li class="toc-item level-2 "><a href="#heading-8">9. 하네스의 모델 한계 가정</a></li><li class="toc-item level-2 "><a href="#heading-9">10. 정리</a></li><li class="toc-item level-2 "><a href="#heading-10">더 읽을거리</a></li></ul></nav><div class="rail-block keywords"><div class="rail-head">KEYWORDS</div><div class="rail-tags"><span class="rail-tag">#멀티에이전트</span><span class="rail-tag">#Subagent</span><span class="rail-tag">#AgentTeams</span><span class="rail-tag">#Orchestrator</span><span class="rail-tag">#오케스트레이션</span><span class="rail-tag">#Handoff</span></div></div></div></aside></div></div></main></div></div>
+  
+
+</body></html>
