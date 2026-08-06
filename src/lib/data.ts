@@ -200,7 +200,7 @@ export const profileData: ProfileData = {
       title: 'Security Team Lead, Layer-A 4기',
       company: 'Layer-A (아주대학교 블록체인 학회)',
       period: '2025 하반기',
-      description: 'Web3 보안 스터디팀(6명) 커리큘럼 설계·운영. Ethernaut · Damn Vulnerable DeFi · onlypwner 전 과정 풀이와 주간 보안 사고 Case Study를 주도했습니다.',
+      description: 'Web3 보안 스터디팀 커리큘럼 설계·운영. Ethernaut · Damn Vulnerable DeFi · onlypwner 전 과정 풀이와 주간 보안 사고 Case Study를 주도했습니다.',
       tags: ['Web3 Security', 'Audit', '스터디 운영'],
     },
     {
@@ -279,7 +279,7 @@ export const profileData: ProfileData = {
       institution: 'Ajou University',
       subInfo: '아주대학교 사이버보안학과',
       period: '2022-03 ~ 2027-08 (졸업 예정)',
-      description: '시스템 보안 및 탈중앙화를 중점적으로 공부하고 있습니다. 정보보안 동아리 Whois · 블록체인 학회 Layer-A 활동.',
+      description: '시스템 보안 및 탈중앙화를 중심으로 그들이 통신하는 네트워크 level까지 공부하고 있습니다. 정보보안 동아리 Whois · 블록체인 학회 Layer-A 활동.',
       tags: ['시스템 보안', '운영체제', '네트워크'],
       current: true,                        // 현재 재학 중 (파란색 강조)
     },
