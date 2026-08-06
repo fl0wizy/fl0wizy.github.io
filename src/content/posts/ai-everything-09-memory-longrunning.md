@@ -26,7 +26,7 @@ Anthropic의 *Effective harnesses for long-running agents*는 **각 새 세션�
 
 ## 2. Compaction과 context reset
 
-Compaction은 긴 대화를 요약해 컨텍스트를 줄이는 기술이다. 대화를 계속 이어 갈 수 있다는 장점이 있지만, **요약 과정에서 중요한 디테일이 빠진다**는 대가를 치른다. 사람이 회의록만 믿고 원본 계약서를 버리지 않는 것처럼, AI도 progress file, feature list, git history 같은 원천 기록을 함께 가져야 한다.
+Compaction은 긴 대화를 요약해 컨텍스트를 줄이는 기술이다. 대화를 계속 이어 갈 수 있다는 장점이 있지만, **요약 과정에서 중요한 디테일이 빠진다**는 대가를 치른다. [04편](/post/ai-everything-04-context-engineering)에서 말한 원칙 그대로, 요약본과 별개로 progress file, feature list, git history 같은 원천 기록을 함께 가져야 한다.
 
 반대 방향의 선택지가 context reset, 즉 새 세션을 시작하는 일이다. 위험해 보이지만 잘 설계하면 오히려 강력하다. 새 세션은 오래된 잡음을 제거하고, 구조화된 인계 문서만 읽고 출발한다. reset하기 좋은 시점은 한 기능 단위가 끝났을 때, 대화가 너무 길어졌을 때, 모델이 반복해서 혼란스러워할 때, 새로운 역할의 에이전트가 필요할 때다.
 
