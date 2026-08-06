@@ -181,7 +181,7 @@ export const profileData: ProfileData = {
   profileImage: '/images/chaegeon.jpg', // 프로필 이미지 경로
   contacts: [
     { type: 'discord', label: 'DISCORD', value: '_flowizy' },
-    { type: 'telegram', label: 'TELEGRAM', value: '@chaaccak', link: 'https://t.me/chaaccak' },
+    { type: 'telegram', label: 'TELEGRAM', value: '@chaegunn', link: 'https://t.me/chaegunn' },
     { type: 'linkedin', label: 'LINKEDIN', value: 'Chaegeon Oh', link: 'https://www.linkedin.com/in/%EC%B1%84%EA%B1%B4-%EC%98%A4-159157342/' },
     { type: 'github', label: 'GITHUB', value: 'fl0wizy', link: 'https://github.com/fl0wizy' },
     { type: 'email', label: 'PERSONAL EMAIL', value: 'dhcorjs063@gmail.com', link: 'mailto:dhcorjs063@gmail.com' },
