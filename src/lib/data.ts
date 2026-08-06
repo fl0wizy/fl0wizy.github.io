@@ -286,7 +286,7 @@ export const profileData: ProfileData = {
     {
       title: 'Hspace Internship',  // 프로그램명
       institution: 'Hspace',                   // 기관명
-      subInfo: '교육 인턴',                 // 부가 정보 (선택사항)
+      subInfo: '인턴',                 // 부가 정보 (선택사항)
       period: '2025-07 ~ 2025-08',           // 기간
       description: 'Web과 Web3, 인프라에 대한 전반적인 지식을 습득했습니다.',
       tags: ['Web Security', 'Web3', 'Secureum', 'DEFCON'],
@@ -300,7 +300,7 @@ export const profileData: ProfileData = {
       tags: ['Web Security', 'Web3', 'Audit', 'Bug Bounty'],
     },
     {
-      title: 'Upside Academy',  // 프로그램명
+      title: 'Upside Academy 4th',  // 프로그램명
       institution: 'Theory x 두나무',                   // 기관명
       subInfo: 'A.K.A flowizy',                 // 부가 정보 (선택사항)
       period: '2026-02 ~ 2026-06',           // 기간
