@@ -17,6 +17,7 @@ const categoryLabels: Record<string, string> = {
   'reversing': 'Reversing',
   'pwn': 'Pwn',
   'crypto': 'Crypto',
+  'hardware': 'Hardware',
   'development': '개발(Development)',
   'travel': '여행(Travel)',
 };

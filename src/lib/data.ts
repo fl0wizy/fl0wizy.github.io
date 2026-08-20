@@ -118,6 +118,7 @@ export const categories: Category[] = [
       { id: 'reversing', name: 'Reversing', icon: 'cpu' },
       { id: 'pwn', name: 'Pwn', icon: 'terminal' },
       { id: 'crypto', name: 'Crypto', icon: 'lock' },
+      { id: 'hardware', name: 'Hardware', icon: 'circuit' },
     ],
   },
   { id: 'ai', name: 'AI', icon: 'bot' },
@@ -140,6 +141,7 @@ export const categoryColors: Record<string, string> = {
   reversing: '#74c195', // 초록
   pwn: '#e6a572', // 주황
   crypto: '#db8fb4', // 핑크
+  hardware: '#bfa07a', // 브론즈 — 기판/납땜 톤
   ai: '#a3c76d', // 라임 그린 (소프트)
   development: '#6fbecf', // 시안
   travel: '#d4c277', // 앰버
@@ -158,6 +160,7 @@ export const categoryLabels: Record<string, string> = {
   reversing: 'Reversing',
   pwn: 'Pwn',
   crypto: 'Crypto',
+  hardware: 'Hardware',
   ai: 'AI',
   development: '개발(DEVELOPMENT)',
   travel: '여행(TRAVEL)',
