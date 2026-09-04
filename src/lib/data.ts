@@ -1,14 +1,14 @@
 import { blogPosts } from './posts';
 export { blogPosts };
 
-// ===== 타입 정의 =====
+// ===== Type definitions =====
 
 export interface BlogPost {
   id: string;
   title: string;
   description: string;
   content: string;
-  date: string; // YYYY-MM-DD HH:MM 형식
+  date: string; // YYYY-MM-DD HH:MM format
   category: string;
   tags?: string[];
   published: boolean;
@@ -19,8 +19,9 @@ export interface Category {
   name: string;
   icon?: string;
   children?: Category[];
-  // 네비게이션 항목으로는 두지 않지만 이 카테고리가 흡수하는 post category id들.
-  // 글 옆 배지로만 쓰이는 세부 분류(research/study/CTF 등)를 여기에 모은다.
+  // Post category ids this category absorbs without appearing as nav entries.
+  // Fine-grained kinds (research/study/CTF) that only show as a badge next to a
+  // post are collected here.
   mergedIds?: string[];
 }
 
@@ -95,14 +96,14 @@ export interface ProfileData {
   skills: Skill[];
 }
 
-// ===== 카테고리 구조 =====
-// 이 구조를 수정하여 사이드바의 카테고리 메뉴를 변경할 수 있습니다.
+// ===== Category structure =====
+// Edit this structure to change the sidebar category menu.
 
 export const categories: Category[] = [
-  { id: 'all', name: '전체', icon: 'grid' },
+  { id: 'all', name: 'All', icon: 'grid' },
   {
     id: 'security',
-    name: '보안(Security)',
+    name: 'Security',
     icon: 'shield',
     children: [
       { id: 'web-security', name: 'Web Security', icon: 'globe' },
@@ -110,9 +111,9 @@ export const categories: Category[] = [
         id: 'web3-blockchain',
         name: 'Web3 / Blockchain',
         icon: 'zap',
-        // 사이드바는 얕게 유지한다. research/study/CTF는 고르는 대상이 아니라
-        // 글의 성격 표시일 뿐이므로 배지(categoryLabels)로만 노출하고,
-        // 목록에서는 이 노드 하나로 모아 본다.
+        // Keep the sidebar shallow. research/study/CTF are not things a reader
+        // picks -- they only describe the nature of a post -- so they surface as
+        // badges (categoryLabels) and collapse into this single node in the list.
         mergedIds: ['research-article', 'study-dev-security', 'wargame-ctf'],
       },
       { id: 'reversing', name: 'Reversing', icon: 'cpu' },
@@ -122,36 +123,36 @@ export const categories: Category[] = [
     ],
   },
   { id: 'ai', name: 'AI', icon: 'bot' },
-  { id: 'development', name: '개발(Development)', icon: 'code' },
-  { id: 'travel', name: '여행(Travel)', icon: 'map' },
-  { id: 'daily', name: '일상(Daily)', icon: 'user' },
+  { id: 'development', name: 'Development', icon: 'code' },
+  { id: 'travel', name: 'Travel', icon: 'map' },
+  { id: 'daily', name: 'Daily', icon: 'user' },
 ];
 
-// ===== 카테고리별 시그니처 색상 =====
-// 카드 뱃지·사이드바 활성·글 페이지 강조선이 이 색을 따라갑니다.
-// 채도를 낮춘 부드러운 톤 (다크 배경에서 너무 쨍하지 않게)
+// ===== Per-category signature colors =====
+// Card badges, the active sidebar row and the post-page accent rule all follow these.
+// Desaturated, soft tones so they do not glare against the dark background.
 export const categoryColors: Record<string, string> = {
   all: '#a79bea',
-  security: '#a79bea', // 상위(보안) — 브랜드 보라(소프트)
-  'web-security': '#6f9fd8', // 파랑
-  'web3-blockchain': '#a79bea', // 보라
-  'research-article': '#5fc2b2', // 청록
-  'study-dev-security': '#8b8ee0', // 인디고
-  'wargame-ctf': '#db8585', // 빨강
-  reversing: '#74c195', // 초록
-  pwn: '#e6a572', // 주황
-  crypto: '#db8fb4', // 핑크
-  hardware: '#bfa07a', // 브론즈 — 기판/납땜 톤
-  ai: '#a3c76d', // 라임 그린 (소프트)
-  development: '#6fbecf', // 시안
-  travel: '#d4c277', // 앰버
-  daily: '#9ca3af', // 그레이
+  security: '#a79bea', // parent (security) - brand purple (soft)
+  'web-security': '#6f9fd8', // blue
+  'web3-blockchain': '#a79bea', // purple
+  'research-article': '#5fc2b2', // teal
+  'study-dev-security': '#8b8ee0', // indigo
+  'wargame-ctf': '#db8585', // red
+  reversing: '#74c195', // green
+  pwn: '#e6a572', // orange
+  crypto: '#db8fb4', // pink
+  hardware: '#bfa07a', // bronze - PCB / solder tone
+  ai: '#a3c76d', // lime green (soft)
+  development: '#6fbecf', // cyan
+  travel: '#d4c277', // amber
+  daily: '#9ca3af', // gray
 };
 
-// ===== 카테고리 ID → 표시 라벨 =====
+// ===== Category id -> display label =====
 export const categoryLabels: Record<string, string> = {
-  daily: '일상(DAILY)',
-  security: '보안(SECURITY)',
+  daily: 'DAILY',
+  security: 'SECURITY',
   'web-security': 'Web Security',
   'web3-blockchain': 'Web3/Blockchain',
   'research-article': 'Research/Article',
@@ -162,8 +163,8 @@ export const categoryLabels: Record<string, string> = {
   crypto: 'Crypto',
   hardware: 'Hardware',
   ai: 'AI',
-  development: '개발(DEVELOPMENT)',
-  travel: '여행(TRAVEL)',
+  development: 'DEVELOPMENT',
+  travel: 'TRAVEL',
 };
 
 export function getCategoryColor(id: string): string {
@@ -174,14 +175,14 @@ export function getCategoryLabel(id: string): string {
   return categoryLabels[id] ?? id;
 }
 
-// ===== 프로필 데이터 =====
-// 이 객체를 수정하여 프로필 페이지의 정보를 변경할 수 있습니다.
+// ===== Profile data =====
+// Edit this object to change the information on the profile page.
 
 export const profileData: ProfileData = {
   name: 'flowizy',
   title: 'SECURITY RESEARCHER',
-  bio: '취약점은 코드 한 줄이 아니라 자산 흐름과 참여자 권한 구조에서 발생한다는 관점으로, 참여자별 위협 모델을 먼저 세우고 invariant가 깨지는 지점을 추적합니다. DA 레이어(EigenDA·Celestia·Avail) 대상 PoC·CVSS 포함 취약점 보고서 9건, DeFi·RWA 프로토콜 감사 경험이 있습니다.',
-  profileImage: '/images/chaegeon.jpg', // 프로필 이미지 경로
+  bio: 'I treat a vulnerability as a property of asset flows and participant privilege structures rather than of any single line of code: I build a per-actor threat model first, then trace the point where an invariant breaks. I have authored 9 formal vulnerability reports with PoCs and CVSS scores against data availability layers (EigenDA, Celestia, Avail), and I audit DeFi and RWA protocols.',
+  profileImage: '/images/chaegeon.jpg', // profile image path
   contacts: [
     { type: 'discord', label: 'DISCORD', value: '_flowizy' },
     { type: 'telegram', label: 'TELEGRAM', value: '@chaegunn', link: 'https://t.me/chaegunn' },
@@ -193,85 +194,85 @@ export const profileData: ProfileData = {
   experiences: [
     {
       title: 'President of Layer-A',
-      company: 'Layer-A (아주대학교 블록체인 학회)',
+      company: 'Layer-A (Blockchain Society, Ajou University)',
       period: '2026-08 ~ 2027-01',
-      description: '블록체인 학회 Layer-A 학회장으로 활동 중입니다.',
-      tags: ['블록체인', '학회 운영', '리더십'],
+      description: 'Currently serving as president of Layer-A, the blockchain society at Ajou University.',
+      tags: ['Blockchain', 'Society Operations', 'Leadership'],
       current: true,
     },
     {
-      title: 'Security Team Lead, Layer-A 4기',
-      company: 'Layer-A (아주대학교 블록체인 학회)',
-      period: '2025 하반기',
-      description: 'Web3 보안 스터디팀 커리큘럼 설계·운영. Ethernaut · Damn Vulnerable DeFi · onlypwner 전 과정 풀이와 주간 보안 사고 Case Study를 주도했습니다.',
-      tags: ['Web3 Security', 'Audit', '스터디 운영'],
+      title: 'Security Team Lead, Layer-A 4th Cohort',
+      company: 'Layer-A (Blockchain Society, Ajou University)',
+      period: 'H2 2025',
+      description: 'Designed and ran the curriculum for the Web3 security study team. Led the group through the full Ethernaut, Damn Vulnerable DeFi and onlypwner sets alongside a weekly security incident case study.',
+      tags: ['Web3 Security', 'Audit', 'Study Group Operations'],
     },
     {
-      title: 'The 10th President of the Student Council',  // 직책
-      company: 'Ajou University-department of cyber security',           // 회사명
-      period: '2025-02 ~ 2025-12',                 // 기간
-      description: '2025년도 아주대학교 사이버보안학과 제10대 학생회장으로 역임.',  // 설명
-      tags: ['학생회', '자치활동', '책임감'],  // 관련 기술 태그
+      title: 'The 10th President of the Student Council',  // position
+      company: 'Ajou University - Department of Cyber Security',           // organization
+      period: '2025-02 ~ 2025-12',                 // period
+      description: 'Served as the 10th president of the student council of the Department of Cyber Security, Ajou University, for the 2025 term.',  // description
+      tags: ['Student Council', 'Student Governance', 'Ownership'],  // related tags
     },
   ],
   awards: [
     {
-      title: '2025-1 아주대학교 파란학기 프로젝트 (입상)',
+      title: '2025-1 Ajou University Paran Semester Project (Awarded)',
       organizer: 'Ajou University',
       period: '2025-03 ~ 2025-06',
-      description: '온체인 데이터를 분석하고 시각화하는 프로젝트를 수행해 파란학기 프로젝트에서 입상했습니다.',
-      tags: ['데이터 분석', '시각화', '프로젝트'],
+      description: 'Built a project that analyzes and visualizes on-chain data, which placed in the Paran Semester project showcase.',
+      tags: ['Data Analysis', 'Visualization', 'Project'],
     },
     {
-      title: '이화체인 x BNB 아이디어해커톤 (최우수상)',
-      organizer: '이화체인 x BNB',
+      title: 'EwhaChain x BNB Idea Hackathon (Grand Prize)',
+      organizer: 'EwhaChain x BNB',
       period: '2025-08',
-      description: '블록체인 아이디어를 기획하고 발표해 해커톤에서 최우수상을 수상했습니다.',
-      tags: ['해커톤', '아이디어', '블록체인'],
+      description: 'Planned and pitched a blockchain product idea and took the grand prize at the hackathon.',
+      tags: ['Hackathon', 'Ideation', 'Blockchain'],
     },
     {
-      title: 'Monad blitz 3rd (4등)',
+      title: 'Monad Blitz 3rd (4th place)',
       organizer: 'Monad',
       period: '2025-11',
-      description: 'Monad blitz 3rd에 참가해 프로젝트 완성도와 아이디어를 인정받아 4등을 기록했습니다.',
-      tags: ['Monad', '경진대회', '프로토타이핑'],
+      description: 'Competed in Monad Blitz 3rd and placed 4th, recognized for the completeness of the build and the idea behind it.',
+      tags: ['Monad', 'Competition', 'Prototyping'],
     },
     {
-      title: 'Hypersonic CTF 2026 (1위)',
+      title: 'Hypersonic CTF 2026 (1st place)',
       organizer: 'Hypersonic',
-      period: '2026 상반기',
-      description: 'Hypersonic CTF 2026에서 1위를 기록했습니다.',
-      tags: ['CTF', 'Web3', '보안'],
+      period: 'H1 2026',
+      description: 'Finished 1st at Hypersonic CTF 2026.',
+      tags: ['CTF', 'Web3', 'Security'],
     },
   ],
   projects: [
     {
-      title: 'BonDA – DA 생태계 위협 모델링 & 모니터링',
+      title: 'BonDA - Threat Modeling & Monitoring for the DA Ecosystem',
       type: 'Threat Modeling & Vulnerability Research',
       year: '2026-05 ~ 2026-06',
-      description: 'EthereumDA(PeerDAS)·EigenDA·Celestia·Avail 4개 DA 레이어(총 $35.98B TVS · 73개 L2)를 STRIDE 위협 모델링하고 실시간 모니터링 대시보드를 구축했습니다. Ethereum 풀노드(EL/CL) 직접 운영으로 데이터를 자체 수집했고, PoC·CVSS 3.1 포함 정식 취약점 보고서 9건을 작성했습니다. 예: EigenDA Operator DoS – gRPC 플러드 PoC로 CPU 최대 ~800% 포화 실측.',
+      description: 'STRIDE threat modeling across four data availability layers - EthereumDA (PeerDAS), EigenDA, Celestia and Avail - covering $35.98B in total value secured across 73 L2s, together with a real-time monitoring dashboard. Collected the data myself by operating full Ethereum nodes (EL/CL), and wrote 9 formal vulnerability reports with PoCs and CVSS 3.1 scores. Example: EigenDA operator DoS - a gRPC flood PoC measured driving CPU to roughly 800% saturation.',
       tags: ['STRIDE', 'DA Layer', 'PoC', 'CVSS'],
       link: 'https://bonda.me',
     },
     {
-      title: 'hack-tree – 보안 지식 학습 플랫폼',
+      title: 'hack-tree - Security Knowledge Learning Platform',
       type: 'Full-stack & DevSecOps',
-      year: '2026-07 ~ 진행 중',
-      description: '웹해킹·포너블·CS 292개 보안 노드를 트리/공격체인 그래프로 탐색하는 초대제 플랫폼을 단독 설계·구축·운영 중입니다. 초대제 인증·RBAC 자체 구현(IDOR 방지·argon2·rate-limit, pytest 114개 검증), GitHub Actions→GHCR→SSH CI/CD(자동 롤백), Terraform + cloud-init으로 GCP 인프라 코드화까지 전 과정을 다룹니다.',
+      year: '2026-07 ~ ongoing',
+      description: 'Sole designer, builder and operator of an invite-only platform that navigates 292 security nodes across web hacking, pwnable and CS as a tree and attack-chain graph. Implemented invite-based authentication and RBAC from scratch (IDOR prevention, argon2, rate limiting, verified by 114 pytest cases), a GitHub Actions -> GHCR -> SSH CI/CD pipeline with automatic rollback, and GCP infrastructure as code with Terraform and cloud-init.',
       tags: ['Next.js', 'FastAPI', 'Terraform', 'CI/CD', 'DevSecOps'],
     },
     {
-      title: 'Blockchain Audit Project',              // 프로젝트명
-      type: 'DeFi Security & Audit',             // 프로젝트 유형
-      year: '2025-07 ~ 진행 중',                         // 연도
-      description: 'Flare FAsset(크로스체인 자산 시스템) 5주 감사를 시작으로 Trader Joe·Ekubo(DEX), Rootstock(사이드체인), Centrifuge v3.1(RWA)까지 참여자별 Attack Vector 도출 중심의 감사 방법론을 확장해 왔습니다.',
+      title: 'Blockchain Audit Project',              // project name
+      type: 'DeFi Security & Audit',             // project type
+      year: '2025-07 ~ ongoing',                         // year
+      description: 'Beginning with a five-week audit of Flare FAsset (a cross-chain asset system), extended an audit methodology centered on deriving attack vectors per participant across Trader Joe and Ekubo (DEX), Rootstock (sidechain) and Centrifuge v3.1 (RWA).',
       tags: ['EVM', 'Solidity', 'Audit', 'RWA'],
     },
     {
-      title: 'Visualize on-chain data',              // 프로젝트명
-      type: 'Data Analytics & Visualization',             // 프로젝트 유형
-      year: '2025-03 ~ 2025-06',                         // 연도
-      description: '다중 체인 약 2억 건의 온체인 데이터를 DB에 적재하고 노드 그래프·treemap·heatmap으로 가시화한 프로젝트입니다.',
+      title: 'Visualize on-chain data',              // project name
+      type: 'Data Analytics & Visualization',             // project type
+      year: '2025-03 ~ 2025-06',                         // year
+      description: 'Loaded roughly 200 million on-chain records from multiple chains into a database and made them legible as node graphs, treemaps and heatmaps.',
       tags: ['Java', 'SpringBoot', 'Vue.js'],
       link: 'https://github.com/paran-timestamper/blockchain-analytics',
     },
@@ -280,95 +281,95 @@ export const profileData: ProfileData = {
     {
       title: 'Department of Cyber Security',
       institution: 'Ajou University',
-      subInfo: '아주대학교 사이버보안학과',
-      period: '2022-03 ~ 2027-08 (졸업 예정)',
-      description: '시스템 보안 및 탈중앙화를 중심으로 그들이 통신하는 네트워크 level까지 공부하고 있습니다. 정보보안 동아리 Whois · 블록체인 학회 Layer-A 활동.',
-      tags: ['시스템 보안', '운영체제', '네트워크'],
-      current: true,                        // 현재 재학 중 (파란색 강조)
+      subInfo: 'B.S. in Cyber Security',
+      period: '2022-03 ~ 2027-08 (expected)',
+      description: 'Studying systems security and decentralization, down to the network layer over which those systems communicate. Active in the Whois information security club and the Layer-A blockchain society.',
+      tags: ['Systems Security', 'Operating Systems', 'Networking'],
+      current: true,                        // currently enrolled (highlighted in blue)
     },
     {
-      title: 'Hspace Internship',  // 프로그램명
-      institution: 'Hspace',                   // 기관명
-      subInfo: '인턴',                 // 부가 정보 (선택사항)
-      period: '2025-07 ~ 2025-08',           // 기간
-      description: 'Web과 Web3, 인프라에 대한 전반적인 지식을 습득하고, 보안 커뮤니티 운영 활동을 수행하였습니다.',
+      title: 'Hspace Internship',  // program name
+      institution: 'Hspace',                   // institution
+      subInfo: 'Intern',                 // additional info (optional)
+      period: '2025-07 ~ 2025-08',           // period
+      description: 'Built broad working knowledge across web, Web3 and infrastructure, and helped run security community programs.',
       tags: ['Web Security', 'Web3', 'Secureum', 'DEFCON'],
     },
     {
-      title: 'HuntingMaster (KISA) Web/Web3 Track Trainee',  // 프로그램명
-      institution: 'KISA',                   // 기관명
-      subInfo: '우수 수료생 · Audit4ce 팀장',                 // 부가 정보 (선택사항)
-      period: '2025-07 ~ 2025-10',           // 기간
-      description: '웹해킹 이론과 DeFi(MEV·생태계 구조)를 학습하고, 팀 Audit4ce의 팀장으로 Web3 Audit 프로젝트(Flare FAsset · Trader Joe)를 이끌었습니다.',
+      title: 'HuntingMaster (KISA) Web/Web3 Track Trainee',  // program name
+      institution: 'KISA',                   // institution
+      subInfo: 'Distinguished graduate - Team lead, Audit4ce',                 // additional info (optional)
+      period: '2025-07 ~ 2025-10',           // period
+      description: 'Studied web hacking theory and DeFi (MEV, ecosystem structure), and led team Audit4ce as team lead on Web3 audit projects (Flare FAsset, Trader Joe).',
       tags: ['Web Security', 'Web3', 'Audit', 'Bug Bounty'],
     },
     {
-      title: 'Upside Academy 4th',  // 프로그램명
-      institution: 'Theory x 두나무',                   // 기관명
-      subInfo: 'A.K.A flowizy',                 // 부가 정보 (선택사항)
-      period: '2026-02 ~ 2026-06',           // 기간
-      description: 'Value Chain·EVM·DeFi·암호학·Cloud/Infra·LLM Security·ERC-4337 등 공격·방어 전반을 이수하고, 최종 프로젝트 BonDA를 수행했습니다.',
+      title: 'Upside Academy 4th',  // program name
+      institution: 'Theori x Dunamu',                   // institution
+      subInfo: 'A.K.A flowizy',                 // additional info (optional)
+      period: '2026-02 ~ 2026-06',           // period
+      description: 'Completed offensive and defensive coursework spanning value chain, EVM, DeFi, cryptography, cloud/infrastructure, LLM security and ERC-4337, and delivered BonDA as the capstone project.',
       tags: ['Solidity', 'Foundry', 'Web3', 'Audit', 'Threat Modeling'],
     },
   ],
   certifications: [
     {
       title: 'JLPT N2',
-      issuer: '일본국제교육지원협회 (일본어능력시험)',
+      issuer: 'Japan Educational Exchanges and Services (Japanese-Language Proficiency Test)',
       date: '2024-07',
     },
     {
-      title: '정보처리기능사',
-      issuer: '한국산업인력공단',
+      title: 'Craftsman Information Processing',
+      issuer: 'Human Resources Development Service of Korea (HRD Korea)',
       date: '2022-12',
     },
     {
-      title: '운전면허 2종 보통',
-      issuer: '경찰청',
+      title: "Driver's License (Class 2, Ordinary)",
+      issuer: 'Korean National Police Agency',
       date: '2021-02',
     },
   ],
   skills: [
     {
-      name: 'Web3 security',                     // 스킬명
-      category: 'Smart Contracts',          // 카테고리
-      level: 'intermediate',                      // 수준: beginner, intermediate, advanced, expert
-      description: 'EVM·Foundry 기반 감사와 STRIDE 위협 모델링, DeFi invariant 분석(DEX/Lending/PerpDEX/Staking)을 수행합니다.',
+      name: 'Web3 security',                     // skill name
+      category: 'Smart Contracts',          // category
+      level: 'intermediate',                      // level: beginner, intermediate, advanced, expert
+      description: 'Audits on EVM with Foundry, STRIDE threat modeling, and DeFi invariant analysis across DEX, lending, perp DEX and staking.',
       tags: ['Solidity', 'EVM', 'Foundry', 'STRIDE'],
     },
     {
       name: 'Web Security',
       category: 'Network Security',
       level: 'intermediate',
-      description: 'SQLi·XSS·SSRF·인가 우회 등 웹해킹 워게임 다수 풀이 경험이 있습니다.',
+      description: 'Extensive wargame experience across SQLi, XSS, SSRF and authorization bypass.',
       tags: ['Burp Suite', 'XSS', 'SQLi', 'SSRF', 'JWT'],
     },
     {
       name: 'Pwnable',
       category: 'System Hacking',
       level: 'intermediate',
-      description: '스택/힙 익스플로잇, ROP, Format String, Tcache 등 보호기법 우회 중심의 시스템 해킹을 다룹니다.',
+      description: 'Stack and heap exploitation, ROP, format string and tcache - system hacking centered on bypassing mitigations.',
       tags: ['ROP', 'Heap', 'Tcache', 'Format String'],
     },
     {
       name: 'Dev / Infra',
       category: 'DevSecOps',
       level: 'intermediate',
-      description: 'Python·Go·TypeScript로 개발하고, Docker·GCP·Terraform·CI/CD로 인프라를 코드화해 운영합니다.',
+      description: 'Develops in Python, Go and TypeScript, and codifies and operates infrastructure with Docker, GCP, Terraform and CI/CD.',
       tags: ['Python', 'Go', 'TypeScript', 'Docker', 'Terraform'],
     },
   ],
 };
 
-// ===== 유틸리티 함수 =====
+// ===== Utility functions =====
 
 /**
- * 카테고리별 포스트 개수를 계산합니다.
+ * Counts the posts in a category.
  */
-// 카테고리 트리에서 해당 노드와 그 하위 노드 id를 전부 모은다.
-// 부모 카테고리(security, web3-blockchain)에는 글이 직접 달리지 않으므로,
-// 부모를 눌렀을 때 자손에 달린 글까지 보이게 하려면 이 목록이 필요하다.
-// 트리에 없는 id면 null.
+// Collect the node and every descendant id from the category tree.
+// Parent categories (security, web3-blockchain) never carry posts directly, so this
+// list is what makes a parent click surface the posts hanging off its descendants.
+// Returns null for an id that is not in the tree.
 function collectSubtreeIds(categoryId: string, list: Category[] = categories): string[] | null {
   for (const category of list) {
     if (category.id === categoryId) {
@@ -406,7 +407,7 @@ export function getPostCountByCategory(categoryId: string): number {
 }
 
 /**
- * 특정 카테고리의 포스트를 가져옵니다.
+ * Returns the posts in a given category.
  */
 export function getPostsByCategory(categoryId: string): BlogPost[] {
   if (categoryId === 'all') {
@@ -416,14 +417,14 @@ export function getPostsByCategory(categoryId: string): BlogPost[] {
 }
 
 /**
- * ID로 포스트를 찾습니다.
+ * Finds a post by id.
  */
 export function getPostById(id: string): BlogPost | undefined {
   return blogPosts.find(post => post.id === id);
 }
 
 /**
- * 날짜 문자열을 "약 N시간 전" 형식으로 변환합니다.
+ * Converts a date string into an "about N hr ago" form.
  */
 export function getRelativeTime(dateString: string): string {
   const date = new Date(dateString.replace(' ', 'T'));
@@ -436,17 +437,17 @@ export function getRelativeTime(dateString: string): string {
   const diffMonths = Math.floor(diffDays / 30);
   const diffYears = Math.floor(diffDays / 365);
 
-  if (diffMins < 1) return '방금 전';
-  if (diffMins < 60) return `약 ${diffMins}분 전`;
-  if (diffHours < 24) return `약 ${diffHours}시간 전`;
-  if (diffDays < 7) return `약 ${diffDays}일 전`;
-  if (diffWeeks < 4) return `약 ${diffWeeks}주 전`;
-  if (diffMonths < 12) return `약 ${diffMonths}개월 전`;
-  return `약 ${diffYears}년 전`;
+  if (diffMins < 1) return 'just now';
+  if (diffMins < 60) return `about ${diffMins} min ago`;
+  if (diffHours < 24) return `about ${diffHours} hr ago`;
+  if (diffDays < 7) return `about ${diffDays} d ago`;
+  if (diffWeeks < 4) return `about ${diffWeeks} wk ago`;
+  if (diffMonths < 12) return `about ${diffMonths} mo ago`;
+  return `about ${diffYears} yr ago`;
 }
 
 /**
- * 날짜 문자열을 "YYYY-MM-DD / HH:MM" 형식으로 변환합니다.
+ * Converts a date string into "YYYY-MM-DD / HH:MM".
  */
 export function formatDate(dateString: string): string {
   const [datePart, timePart] = dateString.split(' ');
@@ -454,12 +455,12 @@ export function formatDate(dateString: string): string {
 }
 
 /**
- * 본문 길이로 예상 읽기 시간(분)을 계산합니다.
- * 한글 ~500자/분, 영어 ~200단어/분 기준의 근사치.
+ * Estimates reading time in minutes from the body length.
+ * Approximated at ~500 Korean characters/min and ~200 English words/min.
  */
 export function getReadingTime(content: string): number {
   const text = content
-    .replace(/```[\s\S]*?```/g, ' ') // 코드 블록 제외
+    .replace(/```[\s\S]*?```/g, ' ') // skip code blocks
     .replace(/`[^`]*`/g, ' ')
     .replace(/[#>*_~\-|]/g, ' ');
   const korean = (text.match(/[가-힣]/g) || []).length;
@@ -475,10 +476,11 @@ export interface TocHeading {
 }
 
 /**
- * 마크다운 본문에서 대제목(h2, `##`)만 순서대로 추출해 목차를 만듭니다.
- * h1(글 제목)과 h3(소제목)은 목차가 너무 빽빽해지므로 제외합니다.
- * 부여하는 id(`heading-N`)는 Post 렌더 시 h2에 매기는 id와 동일 순번이라
- * 목차 클릭/스크롤 추적이 정확히 매칭됩니다. (펜스 코드 블록 내부 `#`은 제외)
+ * Builds the table of contents by extracting only top-level headings (h2, `##`)
+ * from the markdown body, in order. h1 (the post title) and h3 (sub-headings) are
+ * excluded because they make the TOC too dense. The ids assigned here (`heading-N`)
+ * use the same numbering as the ids Post attaches to h2 at render time, so TOC
+ * clicks and scroll tracking line up exactly. (`#` inside fenced code is skipped.)
  */
 export function extractHeadings(content: string): TocHeading[] {
   const lines = content.split('\n');
@@ -493,7 +495,7 @@ export function extractHeadings(content: string): TocHeading[] {
     if (inFence) continue;
     const m = line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
     if (!m) continue;
-    if (m[1].length !== 2) continue; // 대제목(##)만
+    if (m[1].length !== 2) continue; // top-level headings (##) only
     const text = m[2]
       .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
       .replace(/[*_`]/g, '')

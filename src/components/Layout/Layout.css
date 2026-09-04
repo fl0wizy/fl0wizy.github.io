@@ -14,7 +14,7 @@
   position: relative;
 }
 
-/* 중앙 밝은 그라데이션 오버레이 */
+/* bright center gradient overlay */
 .main-content::before {
   content: '';
   position: fixed;

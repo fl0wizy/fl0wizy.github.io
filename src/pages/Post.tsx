@@ -15,7 +15,7 @@ import {
 } from '../lib/data';
 import './Post.css';
 
-// 시계 아이콘 (읽기 시간)
+// Clock icon (reading time)
 const ClockIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <circle cx="12" cy="12" r="10" />
@@ -36,7 +36,7 @@ const CheckIcon = () => (
   </svg>
 );
 
-// 코드 블록을 맥OS 터미널 창(빨노초 신호등 + 복사 버튼)으로 감싼다.
+// Wrap code blocks in a macOS terminal window (traffic lights + copy button).
 function CodeBlock({ children, lang }: { children: ReactNode; lang?: string }) {
   const preRef = useRef<HTMLPreElement>(null);
   const [copied, setCopied] = useState(false);
@@ -48,7 +48,7 @@ function CodeBlock({ children, lang }: { children: ReactNode; lang?: string }) {
       await navigator.clipboard.writeText(text);
       ok = true;
     } catch {
-      /* 보안 컨텍스트가 아니거나 권한 없음 → 폴백 */
+      /* not a secure context, or permission denied -> fall back */
     }
     if (!ok) {
       try {
@@ -61,7 +61,7 @@ function CodeBlock({ children, lang }: { children: ReactNode; lang?: string }) {
         document.execCommand('copy');
         document.body.removeChild(ta);
       } catch {
-        /* 무시 */
+        /* ignore */
       }
     }
     setCopied(true);
@@ -81,7 +81,7 @@ function CodeBlock({ children, lang }: { children: ReactNode; lang?: string }) {
           type="button"
           className={`code-copy ${copied ? 'copied' : ''}`}
           onClick={handleCopy}
-          aria-label="코드 복사"
+          aria-label="Copy code"
         >
           {copied ? <CheckIcon /> : <CopyIcon />}
           <span>{copied ? 'Copied' : 'Copy'}</span>
@@ -92,7 +92,7 @@ function CodeBlock({ children, lang }: { children: ReactNode; lang?: string }) {
   );
 }
 
-// pre 안의 code className(language-xxx)에서 언어명을 뽑는다.
+// Pull the language name out of the code className (language-xxx) inside pre.
 function extractLang(children: ReactNode): string | undefined {
   if (
     children &&
@@ -115,11 +115,11 @@ export default function Post() {
   const headings = useMemo(() => (post ? extractHeadings(post.content) : []), [post]);
   const [activeId, setActiveId] = useState('');
 
-  // 렌더된 헤딩에 문서 순서대로 id를 부여하고, 스크롤에 따라 목차를 강조 (scrollspy)
+  // Assign ids to rendered headings in document order and highlight the TOC on scroll (scrollspy)
   useEffect(() => {
     if (headings.length === 0) return;
 
-    // 대제목(h2)을 문서 순서대로 모아 extractHeadings와 동일 순번의 id를 매긴다.
+    // Collect top-level headings (h2) in document order and number their ids to match extractHeadings.
     const els = Array.from(
       document.querySelectorAll<HTMLElement>('.post-content h2'),
     );
@@ -148,10 +148,10 @@ export default function Post() {
     return (
       <div className="post-page">
         <div className="post-not-found">
-          <h1>포스트를 찾을 수 없습니다</h1>
-          <p>요청하신 포스트가 존재하지 않거나 삭제되었습니다.</p>
+          <h1>Post not found</h1>
+          <p>The post you requested does not exist or has been removed.</p>
           <button onClick={() => navigate('/')} className="back-button">
-            블로그로 돌아가기
+            Back to blog
           </button>
         </div>
       </div>
@@ -162,7 +162,7 @@ export default function Post() {
   const categoryColor = getCategoryColor(post.category);
   const readingTime = getReadingTime(post.content);
 
-  // 헤딩 id는 렌더 후 useEffect에서 문서 순서대로 부여한다(StrictMode 이중 렌더에 안전).
+  // Heading ids are assigned after render in useEffect, in document order (safe under StrictMode double render).
   const components: Components = {
     a: ({ ...props }) => <a {...props} target="_blank" rel="noopener noreferrer" />,
     pre: ({ children }) => <CodeBlock lang={extractLang(children)}>{children}</CodeBlock>,
@@ -181,7 +181,7 @@ export default function Post() {
     <div className="post-page" style={{ '--cat': categoryColor } as CSSProperties}>
       <div className="post-layout">
         <header className="post-head">
-          {/* 뒤로가기 */}
+          {/* back link */}
           <Link to="/" className="back-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="19" y1="12" x2="5" y2="12" />
@@ -190,15 +190,15 @@ export default function Post() {
             BACK TO LIST
           </Link>
 
-          {/* 카테고리 뱃지 */}
+          {/* category badge */}
           <div className="post-category-line">
             <span className="post-category-badge">{categoryLabel}</span>
           </div>
 
-          {/* 제목 */}
+          {/* title */}
           <h1 className="post-title">{post.title}</h1>
 
-          {/* 날짜 + 읽기 시간 */}
+          {/* date + reading time */}
           <div className="post-meta">
             <span className="post-date">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -212,7 +212,7 @@ export default function Post() {
             <span className="post-relative-time">{getRelativeTime(post.date)}</span>
             <span className="post-reading-time">
               <ClockIcon />
-              약 {readingTime}분
+              {readingTime} min read
             </span>
           </div>
         </header>
@@ -233,7 +233,7 @@ export default function Post() {
           )}
         </div>
 
-        {/* 우측 레일: 목차 + 키워드 */}
+        {/* right rail: table of contents + keywords */}
         {(headings.length > 0 || (post.tags && post.tags.length > 0)) && (
           <aside className="post-rail">
             <div className="post-rail-inner">

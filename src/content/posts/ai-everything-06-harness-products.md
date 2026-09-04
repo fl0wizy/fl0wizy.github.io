@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-06-harness-products"
-title: "AI의 모든 것 (06) – Claude Code · Codex · Antigravity: 모델과 하네스를 헷갈리지 말 것"
-description: "Gemini는 모델이지 하네스가 아니다 – Claude Code 5층 구조, Codex 부품 지도, Antigravity 전환."
+title: "Everything About AI (06) – Claude Code · Codex · Antigravity: Don't Confuse the Model With the Harness"
+description: "Gemini is a model, not a harness – the five layers of Claude Code, a parts map of Codex, and the Antigravity shift."
 date: "2026-08-02 10:00"
 category: "ai"
 tags: ["ClaudeCode", "Codex", "Antigravity", "Gemini", "AGENTS.md", "Hooks", "Plugin"]

@@ -13,7 +13,7 @@
   padding-left: 2rem;
 }
 
-/* 얇은 회색 선 */
+/* thin gray rule */
 .skills-section .timeline::before {
   content: '';
   position: absolute;
@@ -38,7 +38,7 @@
   padding-bottom: 0;
 }
 
-/* 타임라인 점 - 채워진 원 + 초록 글로우 */
+/* timeline dot - filled circle + green glow */
 .skills-section .timeline-item::before {
   content: '';
   position: absolute;

@@ -4,9 +4,9 @@
   animation: fadeIn 0.4s ease-out;
 }
 
-/* 본문 + 우측 레일 2단 레이아웃
-   헤더(제목·날짜·읽기시간·구분선)는 두 컬럼에 걸치고,
-   그 아래 행에서 본문(좌)과 목차(우)가 같은 높이에서 시작한다. */
+/* Two-column layout: body + right rail.
+   The header (title, date, reading time, divider) spans both columns, and on the
+   row below it the body (left) and the TOC (right) start at the same height. */
 .post-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 220px;
@@ -90,14 +90,14 @@
   transform: translateX(-3px);
 }
 
-/* Category Line - 별도 줄 */
+/* Category Line - its own row */
 .post-category-line {
   display: flex;
   align-items: center;
   margin-bottom: 0.8rem;
 }
 
-/* Category Badge - 실선 버전 (카테고리 시그니처 색) */
+/* Category Badge - solid-outline variant (category signature color) */
 .post-category-badge {
   display: inline-flex;
   align-items: center;
@@ -168,7 +168,7 @@
   margin-left: auto;
 }
 
-/* Post Content Styles — 고대비·큰 본문 (읽기 최적화) */
+/* Post Content Styles - high contrast, large body text (optimized for reading) */
 .post-content {
   color: var(--text-reading);
   line-height: 1.8;
@@ -195,7 +195,7 @@
   color: var(--text-title);
 }
 
-/* 첫 헤딩은 위 여백 줄임 */
+/* trim the top margin on the first heading */
 .post-content > :first-child {
   margin-top: 0;
 }
@@ -252,7 +252,7 @@
   border: none;
 }
 
-/* ===== 맥OS 터미널 창 스타일 코드 블록 ===== */
+/* ===== macOS terminal-window style code blocks ===== */
 .post-content .code-window {
   margin: 1.6rem 0;
   border: 1px solid var(--border-color);
@@ -328,7 +328,7 @@
   height: 13px;
 }
 
-/* 창 내부 pre는 테두리/배경 제거 (창이 대신 제공) */
+/* pre inside the window drops its border/background (the window supplies them) */
 .post-content .code-window pre {
   margin: 0;
   border: none;
@@ -427,7 +427,7 @@
   color: var(--cat, var(--accent-purple-light));
 }
 
-/* ===== 우측 레일: 목차 + 키워드 ===== */
+/* ===== right rail: table of contents + keywords ===== */
 .post-rail {
   grid-area: rail;
   position: sticky;
@@ -447,7 +447,7 @@
   margin-bottom: 0.8rem;
 }
 
-/* 목차 */
+/* table of contents */
 .toc-list {
   list-style: none;
   margin: 0;
@@ -468,7 +468,7 @@
   transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
-/* 대제목(h2)만 표시 — 들여쓰기 없이 평평하게 */
+/* show only top-level headings (h2) - flat, no indentation */
 .toc-item.level-2 a {
   padding-left: 0.75rem;
 }
@@ -483,7 +483,7 @@
   font-weight: 500;
 }
 
-/* 키워드 */
+/* keywords */
 .rail-tags {
   display: flex;
   flex-wrap: wrap;
@@ -505,7 +505,7 @@
   border-color: color-mix(in srgb, var(--cat, var(--accent-purple)) 45%, transparent);
 }
 
-/* 레일 숨김 (좁은 화면) */
+/* hide the rail on narrow screens */
 @media (max-width: 1100px) {
   .post-layout {
     grid-template-columns: minmax(0, 1fr);

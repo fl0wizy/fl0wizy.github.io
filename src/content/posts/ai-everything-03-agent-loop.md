@@ -1,10 +1,10 @@
 ---
 id: "ai-everything-03-agent-loop"
-title: "AI의 모든 것 (03) – 에이전트 루프의 해부: 마법이 아니라 반복문이다"
-description: "에이전트는 마법이 아니라 반복문이다 – 루프 7단계, 메시지 계층, ReAct vs Plan-and-Execute."
+title: "Everything About AI (03) – Anatomy of the Agent Loop: Not Magic, a Loop"
+description: "An agent is not magic, it is a loop – the 7 stages, the message hierarchy, and ReAct vs Plan-and-Execute."
 date: "2026-08-02 09:30"
 category: "ai"
-tags: ["AgentLoop", "ReAct", "PlanAndExecute", "ToolCalling", "Handoff", "메시지계층"]
+tags: ["AgentLoop", "ReAct", "PlanAndExecute", "ToolCalling", "Handoff", "MessageHierarchy"]
 published: true
 ---
 

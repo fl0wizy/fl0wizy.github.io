@@ -13,7 +13,7 @@
   padding-left: 2rem;
 }
 
-/* 얇은 회색 선 */
+/* thin gray rule */
 .education-section .timeline::before {
   content: '';
   position: absolute;
@@ -38,7 +38,7 @@
   padding-bottom: 0;
 }
 
-/* 타임라인 점 - 채워진 원 + 파랑 글로우 */
+/* timeline dot - filled circle + blue glow */
 .education-section .timeline-item::before {
   content: '';
   position: absolute;
@@ -131,7 +131,7 @@
   white-space: nowrap;
 }
 
-/* 현재 진행중도 파란색 유지 */
+/* keep blue for the in-progress entry too */
 .education-period.current {
   background: rgba(59, 130, 246, 0.1);
   border-color: rgba(59, 130, 246, 0.2);

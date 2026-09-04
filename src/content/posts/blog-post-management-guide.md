@@ -1,10 +1,10 @@
 ---
 id: "blog-post-management-guide"
-title: "블로그 게시글 작성 및 관리 완벽 가이드"
-description: "새 게시글 작성, 카테고리 설정, 날짜 형식, 태그 추가 등 블로그 콘텐츠 관리에 필요한 모든 것을 다룹니다."
+title: "A Complete Guide to Writing and Managing Blog Posts"
+description: "Everything needed to manage blog content: writing a new post, setting categories, the date format and adding tags."
 date: "2026-01-29 09:00"
 category: "daily"
-tags: ["블로그", "가이드", "게시글관리"]
+tags: ["Blog", "Guide", "PostManagement"]
 published: false
 ---
 # 블로그 게시글 작성 및 관리 완벽 가이드

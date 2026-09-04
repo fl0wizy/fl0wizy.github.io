@@ -2,10 +2,10 @@ import { profileData } from '../../lib/data';
 import './SkillsSection.css';
 
 const levelLabels = {
-  beginner: '입문',
-  intermediate: '중급',
-  advanced: '고급',
-  expert: '전문가',
+  beginner: 'Beginner',
+  intermediate: 'Intermediate',
+  advanced: 'Advanced',
+  expert: 'Expert',
 };
 
 const levelColors = {

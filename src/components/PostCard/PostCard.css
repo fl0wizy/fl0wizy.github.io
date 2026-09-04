@@ -18,7 +18,7 @@
 .post-card:nth-child(4) { animation-delay: 0.25s; }
 .post-card:nth-child(5) { animation-delay: 0.3s; }
 
-/* 호버 효과 */
+/* Hover effect */
 .post-card:hover {
   border-color: rgba(80, 80, 110, 0.3);
   transform: translateY(-2px);
@@ -52,7 +52,7 @@
   opacity: 0.7;
 }
 
-/* Category Badge - 실선 버전 */
+/* Category Badge - solid-outline variant */
 .post-category-badge {
   display: inline-block;
   padding: 0.2rem 0.6rem;

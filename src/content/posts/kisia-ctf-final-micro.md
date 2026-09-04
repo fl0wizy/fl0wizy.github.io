@@ -1,10 +1,10 @@
 ---
 id: "kisia-ctf-final-micro"
-title: "[KISIA-CTF final] micro: ADC 지문과 RTC 게이트를 넘어 eFuse에 닿기"
-description: "팀별로 나눠준 ESP32-C3 보드 하나. 쓰기는 WiFi에만, 읽기는 USB에만 있고 둘을 잇는 다리는 RTC 메모리뿐이었다. 아날로그 지문을 무력화하고 리셋의 종류를 구분해 임의 메모리 읽기까지 도달한 기록."
+title: "[KISIA-CTF final] micro: Past the ADC Fingerprint and the RTC Gate to Reach the eFuse"
+description: "One ESP32-C3 board per team. Writes only over WiFi, reads only over USB, and the only bridge between them was RTC memory. A record of defeating the analog fingerprint, telling reset causes apart, and reaching an arbitrary memory read."
 date: "2026-08-20 18:00"
 category: "hardware"
-tags: ["KISIA CTF", "ESP32-C3", "하드웨어", "eFuse", "Secure Boot", "펌웨어 역분석", "Writeup"]
+tags: ["KISIA CTF", "ESP32-C3", "Hardware", "eFuse", "Secure Boot", "Firmware Reverse Engineering", "Writeup"]
 published: true
 ---
 

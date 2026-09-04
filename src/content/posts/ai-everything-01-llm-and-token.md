@@ -1,10 +1,10 @@
 ---
 id: "ai-everything-01-llm-and-token"
-title: "AI의 모든 것 (01) – LLM과 토큰: 예측 기계의 해부"
-description: "AI⊃ML⊃딥러닝⊃LLM 지도, '토큰 가중치' 오해 해체, 토큰화가 일어나는 위치와 비용 구조까지."
+title: "Everything About AI (01) – LLMs and Tokens: Anatomy of a Prediction Machine"
+description: "The AI ⊃ ML ⊃ deep learning ⊃ LLM map, dismantling the 'token weight' misconception, and where tokenization happens and what it costs."
 date: "2026-08-02 09:10"
 category: "ai"
-tags: ["LLM", "토큰", "토크나이저", "컨텍스트창", "확률분포", "어텐션"]
+tags: ["LLM", "Token", "Tokenizer", "ContextWindow", "ProbabilityDistribution", "Attention"]
 published: true
 ---
 

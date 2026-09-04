@@ -1,10 +1,10 @@
 ---
 id: "ai-everything-11-patterns-decisions"
-title: "AI의 모든 것 (11) – 12가지 패턴 · 7가지 설계 결정 · 3가지 역발상"
-description: "12가지 패턴, 7가지 설계 결정, 3가지 역발상 – 그리고 비계는 언젠가 걷어내야 한다."
+title: "Everything About AI (11) – 12 Patterns · 7 Design Decisions · 3 Counterintuitive Takes"
+description: "Twelve patterns, seven design decisions and three counterintuitive takes – and the scaffolding has to come down eventually."
 date: "2026-08-02 10:50"
 category: "ai"
-tags: ["디자인패턴", "하네스두께", "비계", "Scaffolding", "설계결정", "Vercel"]
+tags: ["DesignPatterns", "HarnessThickness", "Scaffolding", "DesignDecisions", "Vercel"]
 published: true
 ---
 

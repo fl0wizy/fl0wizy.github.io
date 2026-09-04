@@ -5,7 +5,7 @@ import { categories, getPostCountByCategory, getCategoryColor } from '../../lib/
 import type { Category } from '../../lib/data';
 import './Sidebar.css';
 
-// 아이콘 컴포넌트
+// Icon components
 const Icons = {
   grid: () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -124,8 +124,9 @@ interface CategoryItemProps {
   onSelect: (id: string) => void;
 }
 
-// 하위 카테고리는 항상 펼쳐 둔다. 항목 수가 적어 접을 이유가 없고,
-// 접기 토글이 카테고리 선택 클릭과 겹쳐서 고르려다 닫히는 문제가 있었다.
+// Child categories stay expanded. There are few enough of them that collapsing
+// buys nothing, and the collapse toggle overlapped the select click -- picking a
+// category would close it instead.
 function CategoryItem({ category, level, selectedCategory, onSelect }: CategoryItemProps) {
   const hasChildren = category.children && category.children.length > 0;
   const isSelected = selectedCategory === category.id;
@@ -177,7 +178,7 @@ export default function Sidebar({ onCategorySelect }: SidebarProps) {
 
   return (
     <aside className="sidebar">
-      {/* Logo Section - 클릭 효과 없음 */}
+      {/* Logo Section - no click affordance */}
       <div className="sidebar-logo">
         <div className="logo-container">
           <div className="logo-image-wrapper">

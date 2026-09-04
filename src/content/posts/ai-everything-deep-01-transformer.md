@@ -1,10 +1,10 @@
 ---
 id: "ai-everything-deep-01-transformer"
-title: "AI의 모든 것 (심화 01) – 트랜스포머 해부: 어텐션에서 다음 토큰까지"
-description: "어텐션 참조도 계산(QKV·√d·softmax), 어휘 크기가 결정되는 곳, temperature·top-p 샘플링, 자기회귀 생성까지."
+title: "Everything About AI (Deep Dive 01) – Anatomy of the Transformer: From Attention to the Next Token"
+description: "Computing attention scores (QKV, √d, softmax), where vocabulary size is decided, temperature and top-p sampling, and autoregressive generation."
 date: "2026-08-04 10:00"
 category: "ai"
-tags: ["어텐션", "QKV", "softmax", "logits", "샘플링", "temperature", "트랜스포머"]
+tags: ["Attention", "QKV", "softmax", "logits", "Sampling", "temperature", "Transformer"]
 published: true
 ---
 

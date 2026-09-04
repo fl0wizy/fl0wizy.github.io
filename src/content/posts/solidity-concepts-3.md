@@ -1,7 +1,7 @@
 ---
 id: "solidity-concepts-3"
-title: "Solidity 개념 정리 3: 함수, 가시성, 메모리 모델, 예외 처리"
-description: "함수 정의, modifier, 함수 가시성, calldata-memory-storage, receive/fallback, ABI encode/decode, require/assert/revert까지 실행 관점에서 정리합니다."
+title: "Solidity Concepts 3: Functions, Visibility, the Memory Model, Exception Handling"
+description: "Function definitions, modifiers, function visibility, calldata/memory/storage, receive and fallback, ABI encode/decode, and require/assert/revert - from an execution standpoint."
 date: "2026-04-04 19:30"
 category: "study-dev-security"
 tags: ["Solidity", "Function", "Calldata", "Fallback", "Exception"]

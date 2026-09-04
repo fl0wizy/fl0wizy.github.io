@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 
-/* 확대 애니메이션 */
+/* zoom animation */
 .hero-header:hover .hero-background {
   transform: scale(1.03);
 }
@@ -26,7 +26,7 @@
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Stars effect - 배경 이미지 위에 별 효과 */
+/* Stars effect - starfield over the background image */
 .stars {
   position: absolute;
   inset: 0;

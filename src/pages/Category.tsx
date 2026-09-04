@@ -4,11 +4,11 @@ import PostCard from '../components/PostCard';
 import { getPostsByCategory } from '../lib/data';
 import './Category.css';
 
-// 카테고리 라벨
+// Category labels
 const categoryLabels: Record<string, string> = {
-  'all': '전체',
-  'daily': '일상(Daily)',
-  'security': '보안(Security)',
+  'all': 'All',
+  'daily': 'Daily',
+  'security': 'Security',
   'web-security': 'Web Security',
   'web3-blockchain': 'Web3 / Blockchain',
   'research-article': 'Research/Article',
@@ -18,8 +18,8 @@ const categoryLabels: Record<string, string> = {
   'pwn': 'Pwn',
   'crypto': 'Crypto',
   'hardware': 'Hardware',
-  'development': '개발(Development)',
-  'travel': '여행(Travel)',
+  'development': 'Development',
+  'travel': 'Travel',
 };
 
 export default function Category() {
@@ -43,7 +43,7 @@ export default function Category() {
             ))
           ) : (
             <div className="no-posts">
-              <p>아직 이 카테고리에 게시글이 없습니다.</p>
+              <p>No posts in this category yet.</p>
             </div>
           )}
         </div>

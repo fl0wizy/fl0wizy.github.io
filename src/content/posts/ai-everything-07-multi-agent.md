@@ -1,10 +1,10 @@
 ---
 id: "ai-everything-07-multi-agent"
-title: "AI의 모든 것 (07) – 멀티에이전트: 모델이 섞일 필요는 없다"
-description: "모델이 섞일 필요 없다 – Subagent vs Agent Teams, 문맥 경계로 나누기, 쓰지 말아야 할 때."
+title: "Everything About AI (07) – Multi-Agent: The Models Don't Have to Be Mixed"
+description: "Models need not be mixed – Subagents vs Agent Teams, splitting on context boundaries, and when to use neither."
 date: "2026-08-02 10:10"
 category: "ai"
-tags: ["멀티에이전트", "Subagent", "AgentTeams", "Orchestrator", "오케스트레이션", "Handoff"]
+tags: ["MultiAgent", "Subagent", "AgentTeams", "Orchestrator", "Orchestration", "Handoff"]
 published: true
 ---
 

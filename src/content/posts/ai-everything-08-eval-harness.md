@@ -1,10 +1,10 @@
 ---
 id: "ai-everything-08-eval-harness"
-title: "AI의 모든 것 (08) – 평가 하네스: '체감상 좋아졌다'는 지표가 아니다"
-description: "'체감상 좋아졌다'는 지표가 아니다 – 루브릭, LLM-as-judge, 환경 상태 기반 평가, 회귀 평가."
+title: "Everything About AI (08) – The Eval Harness: 'It Feels Better' Is Not a Metric"
+description: "'It feels better' is not a metric – rubrics, LLM-as-judge, environment-state evaluation and regression evals."
 date: "2026-08-02 10:20"
 category: "ai"
-tags: ["Eval", "LLMasJudge", "Rubric", "GeneratorEvaluator", "회귀평가", "검증루프"]
+tags: ["Eval", "LLMasJudge", "Rubric", "GeneratorEvaluator", "RegressionEval", "VerificationLoop"]
 published: true
 ---
 

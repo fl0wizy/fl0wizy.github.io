@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { profileData } from '../../lib/data';
 import './ProfileCard.css';
 
-// 아이콘 컴포넌트들
+// Icon components
 const Icons = {
   discord: () => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -50,7 +50,7 @@ const Icons = {
   ),
 };
 
-// 연락처 타입별 색상
+// Per-contact-type accent colors
 const contactColors: Record<string, string> = {
   discord: '#5865F2',
   telegram: '#26A5E4',
@@ -138,7 +138,7 @@ export default function ProfileCard() {
                 <button 
                   className={`copy-button ${copiedIndex === index ? 'copied' : ''}`}
                   onClick={() => handleCopy(contact.value, index)}
-                  title="복사"
+                  title="Copy"
                 >
                   {copiedIndex === index ? <Icons.check /> : <Icons.copy />}
                 </button>

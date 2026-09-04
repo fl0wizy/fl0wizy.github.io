@@ -22,7 +22,7 @@ export default function Blog() {
             ))
           ) : (
             <div className="no-posts">
-              <p>아직 게시글이 없습니다.</p>
+              <p>No posts yet.</p>
             </div>
           )}
         </div>

@@ -13,7 +13,7 @@
   padding-left: 2rem;
 }
 
-/* 얇은 회색 선 */
+/* thin gray rule */
 .experience-section .timeline::before {
   content: '';
   position: absolute;
@@ -38,7 +38,7 @@
   padding-bottom: 0;
 }
 
-/* 타임라인 점 - 채워진 원 + 글로우 */
+/* timeline dot - filled circle + glow */
 .experience-section .timeline-item::before {
   content: '';
   position: absolute;
@@ -142,7 +142,7 @@
   transition: all var(--transition-fast);
 }
 
-/* 현재 진행중도 보라색 유지 */
+/* keep purple for the in-progress entry too */
 .experience-period.current {
   background: rgba(149, 128, 255, 0.12);
   border-color: rgba(149, 128, 255, 0.25);

@@ -16,7 +16,7 @@
   position: relative;
 }
 
-/* 프로필 이미지 글로우 효과 - 약하게 */
+/* profile image glow - subtle */
 .profile-image-wrapper::before {
   content: '';
   position: absolute;

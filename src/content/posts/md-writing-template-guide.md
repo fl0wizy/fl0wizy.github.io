@@ -1,10 +1,10 @@
 ---
 id: "md-writing-template-guide"
-title: "Markdown 포스트 작성 템플릿"
-description: "이 파일 형식 그대로 복사해서 새 글을 빠르게 작성하는 방법을 정리했습니다."
+title: "Markdown Post Template"
+description: "How to copy this file format as-is and write a new post quickly."
 date: "2026-03-02 01:10"
 category: "daily"
-tags: ["markdown", "템플릿", "작성가이드"]
+tags: ["markdown", "Template", "WritingGuide"]
 published: false
 ---
 # Markdown 포스트 작성 템플릿

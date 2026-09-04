@@ -92,7 +92,8 @@ function parsePostDate(date: string): number {
   return Number.isNaN(parsed) ? 0 : parsed;
 }
 
-// 본문 맨 위의 h1(# 제목)을 제거한다 — 페이지 상단에 제목이 이미 크게 표시되므로 중복.
+// Strip the leading h1 (# title) from the body -- the page header already shows
+// the title in full size, so it would be a duplicate.
 function stripLeadingH1(markdown: string): string {
   const trimmed = markdown.replace(/^\s+/, '');
   if (trimmed.startsWith('# ')) {
