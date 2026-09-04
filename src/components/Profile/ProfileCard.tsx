@@ -30,6 +30,29 @@ const Icons = {
       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
   ),
+  code4rena: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+      <line x1="14" y1="4" x2="10" y2="20" />
+    </svg>
+  ),
+  hackenproof: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <polyline points="9 12 11 14 15 10" />
+    </svg>
+  ),
+  cantina: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="3.5" />
+      <line x1="12" y1="1.5" x2="12" y2="5" />
+      <line x1="12" y1="19" x2="12" y2="22.5" />
+      <line x1="1.5" y1="12" x2="5" y2="12" />
+      <line x1="19" y1="12" x2="22.5" y2="12" />
+    </svg>
+  ),
   externalLink: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
@@ -57,6 +80,9 @@ const contactColors: Record<string, string> = {
   linkedin: '#0A66C2',
   github: '#8b5cf6',
   email: '#a855f7',
+  code4rena: '#f2994a',
+  hackenproof: '#3fb950',
+  cantina: '#2dd4bf',
 };
 
 export default function ProfileCard() {
@@ -73,7 +99,8 @@ export default function ProfileCard() {
     }
   };
 
-  const isLinkType = (type: string) => type === 'github' || type === 'linkedin';
+  const linkTypes = ['github', 'linkedin', 'code4rena', 'hackenproof', 'cantina'];
+  const isLinkType = (type: string) => linkTypes.includes(type);
 
   return (
     <div className="profile-card-container">

@@ -26,7 +26,7 @@ export interface Category {
 }
 
 export interface ContactInfo {
-  type: 'discord' | 'telegram' | 'linkedin' | 'github' | 'email';
+  type: 'discord' | 'telegram' | 'linkedin' | 'github' | 'email' | 'code4rena' | 'hackenproof' | 'cantina';
   label: string;
   value: string;
   link?: string;
@@ -184,6 +184,10 @@ export const profileData: ProfileData = {
   bio: 'I treat a vulnerability as a property of asset flows and participant privilege structures rather than of any single line of code: I build a per-actor threat model first, then trace the point where an invariant breaks. I have authored 9 formal vulnerability reports with PoCs and CVSS scores against data availability layers (EigenDA, Celestia, Avail), and I audit DeFi and RWA protocols.',
   profileImage: '/images/chaegeon.jpg', // profile image path
   contacts: [
+    // Security research profiles first: these are the third-party verifiable record.
+    { type: 'code4rena', label: 'CODE4RENA', value: '@fl0wizy', link: 'https://code4rena.com/@fl0wizy' },
+    { type: 'hackenproof', label: 'HACKENPROOF', value: 'fl0wizy', link: 'https://hackenproof.com/hackers/fl0wizy' },
+    { type: 'cantina', label: 'CANTINA', value: 'fl0wizy', link: 'https://cantina.xyz/u/fl0wizy' },
     { type: 'discord', label: 'DISCORD', value: '_flowizy' },
     { type: 'telegram', label: 'TELEGRAM', value: '@chaegunn', link: 'https://t.me/chaegunn' },
     { type: 'linkedin', label: 'LINKEDIN', value: 'Chaegeon Oh', link: 'https://www.linkedin.com/in/%EC%B1%84%EA%B1%B4-%EC%98%A4-159157342/' },
