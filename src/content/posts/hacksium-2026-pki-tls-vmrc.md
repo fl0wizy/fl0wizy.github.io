@@ -1,7 +1,7 @@
 ---
 id: "hacksium-2026-pki-tls-vmrc"
-title: "[HACKSIUM 2026] 콘솔이 열리지 않은 이유: CA 인증서, TLS 핸드셰이크, VMRC 해부"
-description: "VM 콘솔 하나를 열기까지 세 번 막혔다. 스킴 핸들러, 신뢰 저장소, 그리고 ESXi 직결 경로. 세 실패가 각각 어느 층에서 왜 일어났는지, 인증서를 받자마자 무엇을 확인하고 어디에 어떻게 등록해야 하는지를 실제 관측값으로 정리했다."
+title: "[HACKSIUM 2026] Why the Console Would Not Open: CA Certificates, the TLS Handshake, and VMRC"
+description: "Opening a single VM console failed three times: the URL scheme handler, the trust store, and the direct-to-ESXi path. Which layer each failure lived in and why, plus what to check and where to register a certificate the moment you receive one, from real observed values."
 date: "2026-09-12 20:00"
 category: "security"
 tags: ["HACKSIUM", "PKI", "X.509", "TLS", "VMRC", "vSphere", "vCenter", "VMCA", "Keychain", "Live Fire"]
