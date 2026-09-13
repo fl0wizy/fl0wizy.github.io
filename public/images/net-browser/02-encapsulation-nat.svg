@@ -1,0 +1,104 @@
+<svg viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="b1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+    <marker id="b2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e6a572"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="640" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">캡슐화와 홉별 재작성 – 무엇이 유지되고 무엇이 바뀌는가</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">위: 한 바이트열이 계층마다 헤더에 싸이는 과정 · 아래: 그 헤더들이 경로 위에서 겪는 변화</text>
+
+  <!-- ===== 상단: 캡슐화 ===== -->
+  <text x="60" y="94" fill="#8a8aa0" font-size="11" font-weight="600">캡슐화</text>
+
+  <rect x="60" y="106" width="880" height="46" rx="7" fill="#12121f" stroke="#3a3a52"/>
+  <text x="96" y="134" fill="#8a8aa0" font-size="11">Ethernet</text>
+  <rect x="160" y="112" width="72" height="34" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+  <text x="196" y="133" text-anchor="middle" fill="#c8c8d8" font-size="10">MAC 헤더</text>
+  <rect x="880" y="112" width="50" height="34" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+  <text x="905" y="133" text-anchor="middle" fill="#c8c8d8" font-size="10">FCS</text>
+
+  <rect x="240" y="112" width="632" height="34" rx="6" fill="#12121f" stroke="#3a3a52"/>
+  <text x="270" y="133" fill="#8a8aa0" font-size="11">IP</text>
+  <rect x="296" y="117" width="66" height="24" rx="4" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="329" y="133" text-anchor="middle" fill="#bcd6f0" font-size="10">IP 헤더</text>
+
+  <rect x="370" y="117" width="494" height="24" rx="5" fill="#12121f" stroke="#3a3a52"/>
+  <text x="392" y="133" fill="#8a8aa0" font-size="10">TCP</text>
+  <rect x="420" y="120" width="74" height="18" rx="3" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="457" y="133" text-anchor="middle" fill="#f0c0d8" font-size="9">TCP 헤더</text>
+  <rect x="500" y="120" width="356" height="18" rx="3" fill="#161226" stroke="#8b7cf6"/>
+  <text x="678" y="133" text-anchor="middle" fill="#d8d0f8" font-size="10">HTTP 바이트열 (애플리케이션이 보내려는 것)</text>
+
+  <text x="60" y="176" fill="#6a6a84" font-size="10">전체 프레임이 1500바이트(MTU)를 넘으면 IP 계층이 조각낸다. 조각난 뒤에는 TCP 헤더가 첫 조각에만 있다.</text>
+
+  <!-- ===== 하단: 경로 ===== -->
+  <text x="60" y="222" fill="#8a8aa0" font-size="11" font-weight="600">경로</text>
+
+  <!-- 노드들 -->
+  <g text-anchor="middle">
+    <rect x="60" y="236" width="140" height="56" rx="9" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+    <text x="130" y="260" fill="#e8e8f0" font-size="12" font-weight="600">클라이언트</text>
+    <text x="130" y="278" fill="#8a8aa0" font-size="10">192.168.0.5:51234</text>
+
+    <rect x="260" y="236" width="140" height="56" rx="9" fill="#1f1a12" stroke="#e6a572" stroke-width="1.5"/>
+    <text x="330" y="260" fill="#f0cba8" font-size="12" font-weight="600">NAT 공유기</text>
+    <text x="330" y="278" fill="#8a8aa0" font-size="10">주소·포트 재작성</text>
+
+    <rect x="460" y="236" width="140" height="56" rx="9" fill="#12121f" stroke="#3a3a52"/>
+    <text x="530" y="260" fill="#c8c8d8" font-size="12">ISP 라우터</text>
+    <text x="530" y="278" fill="#8a8aa0" font-size="10">TTL 감소 · 큐잉</text>
+
+    <rect x="660" y="236" width="140" height="56" rx="9" fill="#141a22" stroke="#6f9fd8" stroke-width="1.5"/>
+    <text x="730" y="260" fill="#bcd6f0" font-size="12" font-weight="600">리버스 프록시</text>
+    <text x="730" y="278" fill="#8a8aa0" font-size="10">TCP 종료 · 새 연결</text>
+
+    <rect x="850" y="236" width="100" height="56" rx="9" fill="#101a18" stroke="#34d399" stroke-width="1.5"/>
+    <text x="900" y="260" fill="#a7f3d0" font-size="12" font-weight="600">앱 서버</text>
+    <text x="900" y="278" fill="#8a8aa0" font-size="10">10.0.1.7:8000</text>
+  </g>
+  <g stroke="#5a5a78" stroke-width="1.4" marker-end="url(#b1)">
+    <line x1="200" y1="264" x2="258" y2="264"/>
+    <line x1="400" y1="264" x2="458" y2="264"/>
+    <line x1="600" y1="264" x2="658" y2="264"/>
+    <line x1="800" y1="264" x2="848" y2="264"/>
+  </g>
+
+  <!-- 레인: 무엇이 바뀌는가 -->
+  <g stroke="#1e1e2e" stroke-width="1">
+    <line x1="60" y1="330" x2="950" y2="330"/>
+    <line x1="60" y1="386" x2="950" y2="386"/>
+    <line x1="60" y1="442" x2="950" y2="442"/>
+    <line x1="60" y1="498" x2="950" y2="498"/>
+  </g>
+  <text x="66" y="324" fill="#8a8aa0" font-size="10" font-weight="600">MAC 헤더</text>
+  <text x="66" y="380" fill="#8a8aa0" font-size="10" font-weight="600">IP 헤더</text>
+  <text x="66" y="436" fill="#8a8aa0" font-size="10" font-weight="600">TCP 헤더</text>
+  <text x="66" y="492" fill="#8a8aa0" font-size="10" font-weight="600">HTTP 바이트열</text>
+
+  <g text-anchor="middle" font-size="10">
+    <!-- MAC -->
+    <text x="330" y="352" fill="#e6a572">홉마다 완전 교체</text>
+    <text x="730" y="352" fill="#e6a572">홉마다 완전 교체</text>
+    <!-- IP -->
+    <text x="330" y="408" fill="#e6a572" font-weight="600">출발지 주소 재작성</text>
+    <text x="530" y="408" fill="#8a8aa0">TTL만 감소</text>
+    <text x="730" y="408" fill="#e6a572" font-weight="600">출발지가 프록시 IP로</text>
+    <!-- TCP -->
+    <text x="330" y="464" fill="#e6a572">출발지 포트 재작성</text>
+    <text x="530" y="464" fill="#8a8aa0">그대로 통과</text>
+    <text x="730" y="464" fill="#e6a572" font-weight="600">연결 자체가 끊기고 새로 생성</text>
+    <!-- HTTP -->
+    <text x="430" y="520" fill="#8a8aa0">그대로 통과 (네트워크 계층은 내용을 모른다)</text>
+    <text x="760" y="520" fill="#db8585" font-weight="600">프록시가 읽고 · 고치고 · 다시 씀</text>
+  </g>
+
+  <rect x="60" y="540" width="890" height="76" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="80" y="562" fill="#e8e8f0" font-size="12" font-weight="600">여기서 나오는 결과</text>
+  <text x="80" y="582" fill="#c8c8d8" font-size="11">· 앱 서버가 보는 출발지 IP는 프록시의 것이다. 진짜 클라이언트 IP는 헤더(X-Forwarded-For)로 전달되며, 그것은 위조 가능한 본문이다.</text>
+  <text x="80" y="602" fill="#c8c8d8" font-size="11">· 프록시가 HTTP를 읽고 다시 쓰는 지점이 곧 두 번째 해석기가 생기는 지점이다. 6편의 요청 스머글링이 정확히 이 칸에서 산다.</text>
+</svg>

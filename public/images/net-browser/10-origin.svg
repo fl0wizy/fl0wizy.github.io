@@ -1,0 +1,80 @@
+<svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <rect x="0" y="0" width="1000" height="720" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">출처(origin)와 그 위에 쌓인 방어의 지층</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">동일 출처 정책은 "읽기"를 막고 "보내기"는 막지 않는다. 그 비대칭에서 나머지 전부가 파생된다.</text>
+
+  <!-- origin 정의 -->
+  <rect x="40" y="80" width="440" height="188" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="104" fill="#e8e8f0" font-size="12" font-weight="700">출처 = 스킴 + 호스트 + 포트</text>
+  <text x="60" y="126" font-family="Menlo, monospace" font-size="11.5" fill="#d8d0f8">기준: https://example.com:443/app</text>
+  <g font-family="Menlo, monospace" font-size="11">
+    <text x="60" y="152" fill="#34d399">같음  https://example.com/other</text>
+    <text x="60" y="172" fill="#db8585">다름  http://example.com</text>
+    <text x="330" y="172" fill="#8a8aa0" font-size="10">스킴</text>
+    <text x="60" y="192" fill="#db8585">다름  https://api.example.com</text>
+    <text x="330" y="192" fill="#8a8aa0" font-size="10">호스트</text>
+    <text x="60" y="212" fill="#db8585">다름  https://example.com:8443</text>
+    <text x="330" y="212" fill="#8a8aa0" font-size="10">포트</text>
+  </g>
+  <text x="60" y="240" fill="#e6a572" font-size="10.5">쿠키는 이 기준을 쓰지 않는다 — 도메인과 경로로 판정하며 포트를 무시한다.</text>
+  <text x="60" y="258" fill="#8a8aa0" font-size="10.5">기본 단위가 둘로 갈라져 있다는 점이 이 계층 문제 다수의 출발점이다.</text>
+
+  <!-- SOP 비대칭 -->
+  <rect x="520" y="80" width="440" height="188" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="540" y="104" fill="#e8e8f0" font-size="12" font-weight="700">동일 출처 정책의 비대칭</text>
+
+  <rect x="540" y="118" width="196" height="66" rx="7" fill="#101a18" stroke="#34d399"/>
+  <text x="558" y="138" fill="#a7f3d0" font-size="11" font-weight="600">막는다 — 읽기</text>
+  <text x="558" y="156" fill="#8a8aa0" font-size="10">다른 출처 문서의 DOM 접근</text>
+  <text x="558" y="172" fill="#8a8aa0" font-size="10">응답 본문 읽기 · 쿠키 읽기</text>
+
+  <rect x="752" y="118" width="190" height="66" rx="7" fill="#1f1418" stroke="#db8585"/>
+  <text x="770" y="138" fill="#e8b0b0" font-size="11" font-weight="600">막지 않는다 — 보내기</text>
+  <text x="770" y="156" fill="#8a8aa0" font-size="10">img · form · script 태그로</text>
+  <text x="770" y="172" fill="#8a8aa0" font-size="10">쿠키까지 붙은 요청 전송</text>
+
+  <text x="540" y="208" fill="#c8c8d8" font-size="10.5">응답을 못 읽어도 요청은 이미 서버에 도착해 처리된다.</text>
+  <text x="540" y="228" fill="#e8b0b0" font-size="10.5" font-weight="600">→ CSRF 는 이 비대칭 그 자체이지, 구현 실수가 아니다.</text>
+  <text x="540" y="250" fill="#8a8aa0" font-size="10.5">읽지 않고도 반응 차이만 관측하는 경로(XS-Leaks)도 같은 틈에서 산다.</text>
+
+  <!-- 지층 -->
+  <text x="40" y="300" fill="#8a8aa0" font-size="11" font-weight="600">덧붙여 온 방어들 — 각각 특정 사고에 대한 대응이다</text>
+
+  <g>
+    <rect x="40" y="312" width="920" height="56" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="60" y="334" fill="#bcd6f0" font-size="11.5" font-weight="600">CORS</text>
+    <text x="60" y="352" fill="#8a8aa0" font-size="10.5">정당한 교차 출처 API 호출을 허용하되, 허가 여부를 서버가 응답 헤더로 표명하게 한다.</text>
+    <text x="560" y="334" fill="#e6a572" font-size="10.5" font-weight="600">흔한 실패</text>
+    <text x="560" y="352" fill="#8a8aa0" font-size="10.5">요청의 Origin 을 그대로 반사 + 자격증명 허용 / null 출처 신뢰</text>
+
+    <rect x="40" y="376" width="920" height="56" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="60" y="398" fill="#bcd6f0" font-size="11.5" font-weight="600">CSP</text>
+    <text x="60" y="416" fill="#8a8aa0" font-size="10.5">XSS 가 없어지지 않는다는 전제에서, 실행 가능한 스크립트의 출처를 제한해 피해를 줄인다.</text>
+    <text x="560" y="398" fill="#e6a572" font-size="10.5" font-weight="600">흔한 실패</text>
+    <text x="560" y="416" fill="#8a8aa0" font-size="10.5">허용 목록 안의 JSONP 엔드포인트 · base-uri 누락 · 라이브러리 가젯</text>
+
+    <rect x="40" y="440" width="920" height="56" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="60" y="462" fill="#bcd6f0" font-size="11.5" font-weight="600">쿠키 속성</text>
+    <text x="60" y="480" fill="#8a8aa0" font-size="10.5">Secure · HttpOnly · SameSite · __Host- 접두사. 쿠키가 출처 기준이 아니라는 사실을 뒤늦게 보정한다.</text>
+    <text x="560" y="462" fill="#e6a572" font-size="10.5" font-weight="600">남은 틈</text>
+    <text x="560" y="480" fill="#8a8aa0" font-size="10.5">SameSite=Lax 는 최상위 GET 을 허용한다 · 서브도메인發 쿠키 주입</text>
+
+    <rect x="40" y="504" width="920" height="56" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="60" y="526" fill="#bcd6f0" font-size="11.5" font-weight="600">frame-ancestors</text>
+    <text x="60" y="544" fill="#8a8aa0" font-size="10.5">누가 내 페이지를 iframe 에 넣을 수 있는지 지정한다. X-Frame-Options 의 후신.</text>
+    <text x="560" y="526" fill="#e6a572" font-size="10.5" font-weight="600">대응 대상</text>
+    <text x="560" y="544" fill="#8a8aa0" font-size="10.5">클릭재킹 — 투명 프레임 위로 사용자의 클릭을 유도하는 공격</text>
+
+    <rect x="40" y="568" width="920" height="56" rx="8" fill="#1f1a12" stroke="#e6a572"/>
+    <text x="60" y="590" fill="#f0cba8" font-size="11.5" font-weight="600">COOP · COEP · CORP</text>
+    <text x="60" y="608" fill="#8a8aa0" font-size="10.5">Spectre 이후 도입. 다른 출처 자원을 같은 프로세스·같은 그룹에 두지 않겠다는 선언.</text>
+    <text x="560" y="590" fill="#e6a572" font-size="10.5" font-weight="600">보상</text>
+    <text x="560" y="608" fill="#8a8aa0" font-size="10.5">이 헤더로 격리를 선언한 문서에만 SharedArrayBuffer 같은 기능이 열린다</text>
+  </g>
+
+  <!-- 상태 분할 -->
+  <rect x="40" y="636" width="920" height="66" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="658" fill="#e8e8f0" font-size="11.5" font-weight="700">상태 분할 — 그리고 계획이 한 번 철회된 자리</text>
+  <text x="60" y="678" fill="#c8c8d8" font-size="10.5">캐시·스토리지는 "어느 사이트 안에서 쓰이는가"까지 포함해 분할됐다(캐시 프로빙·XS-Leak 대응). 쿠키 쪽은 CHIPS로 분할이 남았다.</text>
+    <text x="60" y="696" fill="#8a8aa0" font-size="10.5">다만 Chrome의 서드파티 쿠키 폐지는 2024년 7월 철회됐고 2025년에 Privacy Sandbox 상당수가 정리됐다. Safari·Firefox·Brave는 여전히 차단한다.</text>
+</svg>

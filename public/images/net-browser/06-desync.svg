@@ -1,0 +1,95 @@
+<svg viewBox="0 0 1000 730" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="f1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+    <marker id="f2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#db8585"/>
+    </marker>
+  </defs>
+  <style>
+    .mono { font-family: 'SFMono-Regular', Menlo, Consolas, monospace; }
+  </style>
+
+  <rect x="0" y="0" width="1000" height="730" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">요청 스머글링 (CL.TE) – 두 파서가 "메시지의 끝"을 다르게 정할 때</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">같은 바이트열, 같은 규격, 다른 결론. 재사용되는 연결이 그 차이를 다음 사용자에게 배달한다.</text>
+
+  <!-- 원본 요청 -->
+  <text x="40" y="92" fill="#8a8aa0" font-size="11" font-weight="600">공격자가 보낸 바이트열 (하나)</text>
+  <rect x="40" y="102" width="410" height="196" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <g class="mono" font-size="11.5" fill="#c8c8d8">
+    <text x="58" y="126">POST /search HTTP/1.1</text>
+    <text x="58" y="144">Host: example.com</text>
+    <text x="58" y="162" fill="#6f9fd8">Content-Length: 37</text>
+    <text x="58" y="180" fill="#e6a572">Transfer-Encoding: chunked</text>
+    <text x="58" y="204" fill="#6a6a84">(빈 줄 — 여기부터 본문)</text>
+    <text x="58" y="228">0</text>
+    <text x="58" y="246" fill="#6a6a84">(빈 줄 — 청크 종료)</text>
+    <text x="58" y="270" fill="#db8585">GET /admin HTTP/1.1</text>
+    <text x="58" y="288" fill="#db8585">X-Ignore: x</text>
+  </g>
+  <text x="330" y="228" class="mono" font-size="10" fill="#6f9fd8">본문 37바이트 =</text>
+  <text x="330" y="242" class="mono" font-size="10" fill="#6f9fd8">5 + 21 + 11</text>
+  <text x="330" y="270" class="mono" font-size="10" fill="#e6a572">청크로 읽으면</text>
+  <text x="330" y="284" class="mono" font-size="10" fill="#e6a572">본문 = 0바이트</text>
+
+  <!-- 규칙 -->
+  <rect x="480" y="102" width="480" height="196" rx="9" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="498" y="124" fill="#bcd6f0" font-size="11.5" font-weight="700">RFC 9112 §6.3 — 본문 길이를 정하는 규칙</text>
+  <text x="498" y="148" fill="#c8c8d8" font-size="11">"If a message is received with both a Transfer-Encoding and a</text>
+  <text x="498" y="164" fill="#c8c8d8" font-size="11">Content-Length header field, the Transfer-Encoding overrides</text>
+  <text x="498" y="180" fill="#c8c8d8" font-size="11">the Content-Length."</text>
+  <text x="498" y="206" fill="#8a8aa0" font-size="10.5">규격은 이 상태가 "요청 스머글링 시도일 수 있으며 오류로 다뤄져야 한다"고</text>
+  <text x="498" y="222" fill="#8a8aa0" font-size="10.5">덧붙인다. 중계 장비가 전달하기로 했다면 Content-Length를 먼저 제거해야</text>
+  <text x="498" y="238" fill="#8a8aa0" font-size="10.5">하고, 서버는 응답 후 반드시 연결을 닫아야 한다.</text>
+  <text x="498" y="266" fill="#e6a572" font-size="10.5" font-weight="600">여기서 규격을 따르는 쪽은 백엔드다. 어긋난 쪽은 Content-Length를 쓴 프론트엔드다.</text>
+  <text x="498" y="284" fill="#8a8aa0" font-size="10.5">문제는 규칙의 부재가 아니라, 배포된 구현체마다 지키는 정도가 다르다는 것.</text>
+
+  <!-- 두 해석 -->
+  <line x1="245" y1="304" x2="245" y2="330" stroke="#5a5a78" stroke-width="1.4" marker-end="url(#f1)"/>
+  <line x1="245" y1="316" x2="720" y2="316" stroke="#5a5a78" stroke-width="1.4"/>
+  <line x1="720" y1="316" x2="720" y2="330" stroke="#5a5a78" stroke-width="1.4" marker-end="url(#f1)"/>
+
+  <!-- 프론트엔드 -->
+  <rect x="40" y="334" width="440" height="196" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="358" fill="#e8e8f0" font-size="12" font-weight="700">프론트엔드 (CDN · 리버스 프록시)</text>
+  <text x="60" y="378" fill="#6f9fd8" font-size="11">Content-Length 를 따른다 → 규격과 어긋남</text>
+  <text x="60" y="402" fill="#8a8aa0" font-size="10.5">본문이 37바이트라고 판단한다. 즉 GET /admin 줄까지 전부가</text>
+  <text x="60" y="418" fill="#8a8aa0" font-size="10.5">하나의 요청 본문이다.</text>
+  <rect x="60" y="430" width="400" height="56" rx="6" fill="#101a18" stroke="#34d399"/>
+  <text x="76" y="450" class="mono" font-size="10.5" fill="#a7f3d0">POST /search … 본문 37바이트 전체</text>
+  <text x="76" y="468" font-size="10.5" fill="#8a8aa0">요청 하나로 보고 그대로 백엔드에 전달한다.</text>
+  <text x="60" y="508" fill="#8a8aa0" font-size="10.5">프론트엔드 입장에서 이상한 점은 없다. 남는 바이트도 없다.</text>
+
+  <!-- 백엔드 -->
+  <rect x="520" y="334" width="440" height="196" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="540" y="358" fill="#e8e8f0" font-size="12" font-weight="700">백엔드 (앱 서버)</text>
+  <text x="540" y="378" fill="#e6a572" font-size="11">Transfer-Encoding 을 따른다 → 규격대로</text>
+  <text x="540" y="402" fill="#8a8aa0" font-size="10.5">청크 길이 0 을 만나는 순간 본문이 끝났다고 판단한다.</text>
+  <text x="540" y="418" fill="#8a8aa0" font-size="10.5">요청 1의 본문은 0바이트다.</text>
+  <rect x="540" y="430" width="400" height="56" rx="6" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="556" y="450" class="mono" font-size="10.5" fill="#bcd6f0">요청 1 = POST /search … 본문 없음</text>
+  <text x="556" y="468" font-size="10.5" fill="#8a8aa0">나머지 32바이트는 "다음 요청의 앞부분"으로 버퍼에 남는다.</text>
+  <rect x="540" y="496" width="400" height="22" rx="4" fill="#1f1418" stroke="#db8585"/>
+  <text x="556" y="512" class="mono" font-size="10.5" fill="#e8b0b0">GET /admin HTTP/1.1 ⏎ X-Ignore: x   ← 접두사로 대기</text>
+
+  <!-- 결과 -->
+  <line x1="740" y1="536" x2="740" y2="558" stroke="#db8585" stroke-width="1.6" marker-end="url(#f2)"/>
+
+  <rect x="40" y="562" width="920" height="150" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="60" y="586" fill="#e8b0b0" font-size="12.5" font-weight="700">다음 사용자의 요청이 같은 연결로 들어온다</text>
+  <text x="60" y="610" fill="#c8c8d8" font-size="11">백엔드 버퍼에 남아 있던 접두사 뒤에 피해자의 진짜 요청이 이어 붙어, 하나의 요청으로 파싱된다.</text>
+
+  <rect x="60" y="622" width="400" height="74" rx="7" fill="#12121f" stroke="#3a3a52"/>
+  <text x="76" y="642" font-size="10.5" fill="#8a8aa0">피해자가 보낸 것</text>
+  <text x="76" y="662" class="mono" font-size="11" fill="#c8c8d8">GET /profile HTTP/1.1</text>
+  <text x="76" y="680" class="mono" font-size="11" fill="#c8c8d8">Cookie: session=피해자세션</text>
+
+  <line x1="466" y1="658" x2="516" y2="658" stroke="#db8585" stroke-width="1.6" marker-end="url(#f2)"/>
+
+  <rect x="530" y="622" width="430" height="74" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="546" y="642" font-size="10.5" fill="#e8b0b0">백엔드가 실제로 보는 것 — 경로는 /admin, 쿠키는 피해자의 것</text>
+  <text x="546" y="662" class="mono" font-size="11" fill="#e8b0b0">GET /admin HTTP/1.1</text>
+  <text x="546" y="680" class="mono" font-size="11" fill="#e8b0b0">X-Ignore: xGET /profile … Cookie: 피해자세션</text>
+</svg>

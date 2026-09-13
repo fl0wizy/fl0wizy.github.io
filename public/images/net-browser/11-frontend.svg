@@ -1,0 +1,102 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="j1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="700" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">프런트엔드 진화 – "HTML을 누가, 언제 만드는가"의 이동</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">각 단계는 앞 단계의 문제를 풀고, 그 대가로 새 문제를 하나씩 만들었다</text>
+
+  <!-- 축 -->
+  <text x="52" y="92" fill="#8a8aa0" font-size="10.5">서버에서 생성</text>
+  <text x="880" y="92" fill="#8a8aa0" font-size="10.5">브라우저에서 생성</text>
+  <line x1="40" y1="100" x2="960" y2="100" stroke="#2a2a3e" stroke-width="1.2"/>
+
+  <g>
+    <!-- 1 -->
+    <rect x="40" y="116" width="216" height="120" rx="9" fill="#12121f" stroke="#3a3a52"/>
+    <text x="58" y="138" fill="#e8e8f0" font-size="11.5" font-weight="700">① 서버 템플릿</text>
+    <text x="58" y="158" fill="#8a8aa0" font-size="10">요청마다 완성된 HTML 을 내려준다.</text>
+    <text x="58" y="174" fill="#8a8aa0" font-size="10">클릭 한 번 = 전체 페이지 새로고침</text>
+    <text x="58" y="198" fill="#34d399" font-size="10">+ 단순 · 검색엔진 친화 · 첫 화면 빠름</text>
+    <text x="58" y="216" fill="#db8585" font-size="10">- 부분 갱신 불가 · 앱 같은 조작 불가</text>
+
+    <!-- 2 -->
+    <rect x="272" y="116" width="216" height="120" rx="9" fill="#12121f" stroke="#3a3a52"/>
+    <text x="290" y="138" fill="#e8e8f0" font-size="11.5" font-weight="700">② Ajax 부분 갱신</text>
+    <text x="290" y="158" fill="#8a8aa0" font-size="10">데이터만 받아 DOM 일부를 고친다.</text>
+    <text x="290" y="174" fill="#8a8aa0" font-size="10">jQuery 시대의 명령형 DOM 조작</text>
+    <text x="290" y="198" fill="#34d399" font-size="10">+ 새로고침 없는 상호작용</text>
+    <text x="290" y="216" fill="#db8585" font-size="10">- 상태가 DOM 에 흩어져 추적 불가</text>
+
+    <!-- 3 -->
+    <rect x="504" y="116" width="216" height="120" rx="9" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+    <text x="522" y="138" fill="#d8d0f8" font-size="11.5" font-weight="700">③ SPA</text>
+    <text x="522" y="158" fill="#8a8aa0" font-size="10">서버는 빈 껍데기 + JSON 만 준다.</text>
+    <text x="522" y="174" fill="#8a8aa0" font-size="10">상태 → UI 를 선언적으로 기술</text>
+    <text x="522" y="198" fill="#34d399" font-size="10">+ 상태가 한곳에 · 복잡한 UI 가능</text>
+    <text x="522" y="216" fill="#db8585" font-size="10">- 첫 화면까지 번들 전부 · SEO · 라우팅 재구현</text>
+
+    <!-- 4 -->
+    <rect x="736" y="116" width="224" height="120" rx="9" fill="#101a18" stroke="#34d399" stroke-width="1.5"/>
+    <text x="754" y="138" fill="#a7f3d0" font-size="11.5" font-weight="700">④ SSR 복귀 · 서버 컴포넌트</text>
+    <text x="754" y="158" fill="#8a8aa0" font-size="10">서버에서 먼저 그리고, 상호작용이</text>
+    <text x="754" y="174" fill="#8a8aa0" font-size="10">필요한 조각만 클라이언트로 보낸다</text>
+    <text x="754" y="198" fill="#34d399" font-size="10">+ 첫 화면 회복 · 보내는 JS 감소</text>
+    <text x="754" y="216" fill="#db8585" font-size="10">- 서버/클라 경계가 코드 안으로 들어옴</text>
+  </g>
+
+  <g stroke="#5a5a78" stroke-width="1.3" marker-end="url(#j1)">
+    <line x1="256" y1="176" x2="270" y2="176"/>
+    <line x1="488" y1="176" x2="502" y2="176"/>
+    <line x1="720" y1="176" x2="734" y2="176"/>
+  </g>
+
+  <!-- 하이드레이션 -->
+  <rect x="40" y="258" width="920" height="182" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="282" fill="#e8e8f0" font-size="12.5" font-weight="700">SSR 이 되돌아왔을 때 생긴 비용 — 하이드레이션</text>
+  <text x="60" y="302" fill="#c8c8d8" font-size="10.5">서버가 만든 HTML 은 보이기만 할 뿐 아직 눌리지 않는다. 브라우저가 같은 컴포넌트 트리를 한 번 더 만들어 이벤트를 붙여야 한다.</text>
+
+  <g>
+    <rect x="60" y="316" width="270" height="60" rx="7" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="78" y="336" fill="#bcd6f0" font-size="11" font-weight="600">1차 — 서버에서 렌더</text>
+    <text x="78" y="354" fill="#8a8aa0" font-size="10">HTML 문자열 생성 → 전송</text>
+    <text x="78" y="368" fill="#8a8aa0" font-size="10">사용자는 화면을 본다</text>
+
+    <rect x="350" y="316" width="270" height="60" rx="7" fill="#1f1a12" stroke="#e6a572"/>
+    <text x="368" y="336" fill="#f0cba8" font-size="11" font-weight="600">2차 — 브라우저에서 다시 렌더</text>
+    <text x="368" y="354" fill="#8a8aa0" font-size="10">같은 트리를 다시 만들어 DOM 과 맞춘다</text>
+    <text x="368" y="368" fill="#8a8aa0" font-size="10">이 시간 동안 화면은 보이지만 안 눌린다</text>
+
+    <rect x="640" y="316" width="300" height="60" rx="7" fill="#101a18" stroke="#34d399"/>
+    <text x="658" y="336" fill="#a7f3d0" font-size="11" font-weight="600">대응 — 다시 그릴 범위를 줄인다</text>
+    <text x="658" y="354" fill="#8a8aa0" font-size="10">스트리밍 · 부분 하이드레이션 · 아일랜드</text>
+    <text x="658" y="368" fill="#8a8aa0" font-size="10">상호작용이 필요한 조각만 클라이언트로</text>
+  </g>
+
+  <text x="60" y="400" fill="#c8c8d8" font-size="10.5">"보이는 시점"과 "쓸 수 있는 시점"이 갈라진다는 것이 이 구조의 핵심이다. 지표를 하나만 보면 이 간격이 안 보인다.</text>
+  <text x="60" y="422" fill="#8a8aa0" font-size="10.5">서버 컴포넌트는 이 문제를 "애초에 클라이언트로 보내지 않는다"로 접근한다. 대신 어떤 코드가 어느 쪽에서 도는지를 개발자가 계속 의식해야 한다.</text>
+
+  <!-- 신뢰 경계 -->
+  <rect x="40" y="460" width="920" height="222" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="60" y="484" fill="#e8b0b0" font-size="12.5" font-weight="700">렌더링 위치가 바뀌면 신뢰 경계도 함께 움직인다</text>
+
+  <rect x="60" y="498" width="430" height="80" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="78" y="518" fill="#e8b0b0" font-size="11" font-weight="600">클라이언트로 옮겨 갈 때의 착각</text>
+  <text x="78" y="538" fill="#c8c8d8" font-size="10.5">폼 검증 · 권한에 따른 메뉴 숨김 · 가격 계산이</text>
+  <text x="78" y="554" fill="#c8c8d8" font-size="10.5">브라우저에서 돌면, 그것은 검증이 아니라 UI 다.</text>
+  <text x="78" y="572" fill="#8a8aa0" font-size="10.5">공격자는 화면을 거치지 않고 API 를 직접 부른다.</text>
+
+  <rect x="510" y="498" width="430" height="80" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="528" y="518" fill="#e8b0b0" font-size="11" font-weight="600">서버로 되돌아올 때의 착각</text>
+  <text x="528" y="538" fill="#c8c8d8" font-size="10.5">서버 컴포넌트 안의 값은 서버에만 있을 것 같지만,</text>
+  <text x="528" y="554" fill="#c8c8d8" font-size="10.5">클라이언트 컴포넌트로 넘기는 순간 직렬화되어 전송된다.</text>
+  <text x="528" y="572" fill="#8a8aa0" font-size="10.5">API 키·내부 식별자가 이 경로로 새는 유형이 새로 생겼다.</text>
+
+  <text x="60" y="606" fill="#c8c8d8" font-size="10.5">프레임워크가 바뀌어도 변하지 않는 것 — 브라우저에서 도는 코드와 데이터는 전부 사용자가 읽고 고칠 수 있다.</text>
+  <text x="60" y="628" fill="#c8c8d8" font-size="10.5">XSS 의 자리도 옮겨 갔을 뿐 사라지지 않았다. 프레임워크는 기본적으로 문자열을 이스케이프하지만, 그것을 명시적으로 끄는 API 를 함께 제공한다.</text>
+  <text x="60" y="650" fill="#8a8aa0" font-size="10.5">dangerouslySetInnerHTML · v-html · bypassSecurityTrust 계열 — 이름에 경고가 들어 있는 이유가 이것이다.</text>
+  <text x="60" y="670" fill="#8a8aa0" font-size="10.5">클라이언트 상태 객체를 병합·복사하는 코드가 많아지면서 프로토타입 오염이 실제 공격 경로가 된 것도 이 시기의 변화다.</text>
+</svg>

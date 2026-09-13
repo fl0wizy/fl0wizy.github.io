@@ -1,0 +1,120 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="i1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+    <marker id="i2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b7cf6"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="700" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">바이트에서 픽셀까지 – 그리고 자바스크립트 엔진이 끼어드는 자리</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">단계를 쪼갠 이유는 건너뛸 수 있게 하기 위해서다. 무엇을 건너뛰느냐가 곧 성능 차이가 된다.</text>
+
+  <!-- 파이프라인 -->
+  <text x="40" y="90" fill="#8a8aa0" font-size="11" font-weight="600">렌더러 메인 스레드</text>
+  <g text-anchor="middle">
+    <rect x="40" y="102" width="120" height="54" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="100" y="124" fill="#bcd6f0" font-size="11.5" font-weight="600">파싱</text>
+    <text x="100" y="142" fill="#8a8aa0" font-size="10">HTML → DOM</text>
+
+    <rect x="176" y="102" width="120" height="54" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="236" y="124" fill="#bcd6f0" font-size="11.5" font-weight="600">스타일</text>
+    <text x="236" y="142" fill="#8a8aa0" font-size="10">CSSOM · 캐스케이드</text>
+
+    <rect x="312" y="102" width="120" height="54" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="372" y="124" fill="#bcd6f0" font-size="11.5" font-weight="600">레이아웃</text>
+    <text x="372" y="142" fill="#8a8aa0" font-size="10">박스 위치·크기 계산</text>
+
+    <rect x="448" y="102" width="120" height="54" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="508" y="124" fill="#bcd6f0" font-size="11.5" font-weight="600">페인트</text>
+    <text x="508" y="142" fill="#8a8aa0" font-size="10">그리기 명령 목록</text>
+  </g>
+
+  <text x="620" y="90" fill="#8a8aa0" font-size="11" font-weight="600">합성 · GPU</text>
+  <g text-anchor="middle">
+    <rect x="604" y="102" width="110" height="54" rx="8" fill="#12201c" stroke="#34d399"/>
+    <text x="659" y="124" fill="#a7f3d0" font-size="11.5" font-weight="600">합성</text>
+    <text x="659" y="142" fill="#8a8aa0" font-size="10">레이어 배치</text>
+
+    <rect x="730" y="102" width="110" height="54" rx="8" fill="#12201c" stroke="#34d399"/>
+    <text x="785" y="124" fill="#a7f3d0" font-size="11.5" font-weight="600">래스터</text>
+    <text x="785" y="142" fill="#8a8aa0" font-size="10">타일 → 픽셀</text>
+
+    <rect x="856" y="102" width="104" height="54" rx="8" fill="#12201c" stroke="#34d399"/>
+    <text x="908" y="124" fill="#a7f3d0" font-size="11.5" font-weight="600">화면 출력</text>
+    <text x="908" y="142" fill="#8a8aa0" font-size="10">프레임 제출</text>
+  </g>
+
+  <g stroke="#5a5a78" stroke-width="1.3" marker-end="url(#i1)">
+    <line x1="160" y1="129" x2="174" y2="129"/>
+    <line x1="296" y1="129" x2="310" y2="129"/>
+    <line x1="432" y1="129" x2="446" y2="129"/>
+    <line x1="568" y1="129" x2="602" y2="129"/>
+    <line x1="714" y1="129" x2="728" y2="129"/>
+    <line x1="840" y1="129" x2="854" y2="129"/>
+  </g>
+
+  <!-- 건너뛰기 -->
+  <path d="M 100 166 L 100 190 L 659 190 L 659 162" stroke="#e6a572" stroke-width="1.4" fill="none" marker-end="url(#i1)" stroke-dasharray="5 4"/>
+  <text x="380" y="206" text-anchor="middle" fill="#e6a572" font-size="10.5">transform · opacity 애니메이션과 스크롤은 레이아웃·페인트를 건너뛰고 합성만 다시 한다</text>
+  <text x="380" y="224" text-anchor="middle" fill="#8a8aa0" font-size="10.5">같은 움직임을 top/left 로 만들면 매 프레임 레이아웃부터 다시 돈다 — 이것이 두 방식의 성능 차이의 실체다</text>
+
+  <!-- JS 개입 -->
+  <rect x="40" y="244" width="450" height="196" rx="10" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+  <text x="60" y="268" fill="#d8d0f8" font-size="12.5" font-weight="700">자바스크립트가 끼어드는 자리</text>
+  <text x="60" y="290" fill="#c8c8d8" font-size="10.5">스크립트는 문서를 바꿀 수 있으므로, 파서는 스크립트를 만나면 멈춘다.</text>
+  <rect x="60" y="302" width="410" height="40" rx="6" fill="#12121f" stroke="#3a3a52"/>
+  <text x="76" y="320" font-family="Menlo, monospace" font-size="10.5" fill="#c8c8d8">&lt;script src&gt;          파싱 중단 → 내려받기 → 실행 → 재개</text>
+  <text x="76" y="336" font-family="Menlo, monospace" font-size="10.5" fill="#a7f3d0">&lt;script defer&gt;        파싱 계속 → 문서 완성 후 순서대로 실행</text>
+  <text x="60" y="364" fill="#c8c8d8" font-size="10.5">한 프레임 안의 순서 — 태스크 하나 → 마이크로태스크 전부 → 렌더링 기회</text>
+  <rect x="60" y="376" width="410" height="52" rx="6" fill="#12121f" stroke="#3a3a52"/>
+  <text x="76" y="394" font-size="10.5" fill="#8a8aa0">setTimeout(fn, 0) → 다음 태스크. 프레임을 넘길 수 있다.</text>
+  <text x="76" y="410" font-size="10.5" fill="#8a8aa0">Promise.then(fn)  → 현재 태스크 직후. 렌더링 전에 반드시 실행된다.</text>
+  <text x="76" y="424" font-size="10.5" fill="#e6a572">레이아웃 값을 읽으면(offsetHeight 등) 그 자리에서 레이아웃이 강제 실행된다.</text>
+
+  <!-- 엔진 -->
+  <rect x="510" y="244" width="450" height="196" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="530" y="268" fill="#e8e8f0" font-size="12.5" font-weight="700">엔진은 무엇을 하고 무엇을 하지 않는가</text>
+  <rect x="530" y="282" width="196" height="70" rx="7" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="548" y="302" fill="#f0c0d8" font-size="11" font-weight="600">JS 엔진이 제공</text>
+  <text x="548" y="320" fill="#8a8aa0" font-size="10">언어 자체 — 문법, 객체 모델,</text>
+  <text x="548" y="336" fill="#8a8aa0" font-size="10">GC, Promise, 실행</text>
+
+  <rect x="742" y="282" width="200" height="70" rx="7" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="760" y="302" fill="#bcd6f0" font-size="11" font-weight="600">호스트가 제공</text>
+  <text x="760" y="320" fill="#8a8aa0" font-size="10">document · fetch · 타이머 ·</text>
+  <text x="760" y="336" fill="#8a8aa0" font-size="10">스토리지 — 전부 브라우저 쪽</text>
+
+  <text x="530" y="376" fill="#c8c8d8" font-size="10.5">이 분리 때문에 같은 엔진이 브라우저 밖에서도 쓰인다.</text>
+  <text x="530" y="396" fill="#8a8aa0" font-size="10.5">Node.js · Deno · Electron · 엣지 런타임 · DB와 프록시의 확장 스크립트.</text>
+  <text x="530" y="416" fill="#8a8aa0" font-size="10.5">호스트만 갈아 끼우면 되므로 DOM 없는 환경에서도 같은 언어가 돈다.</text>
+
+  <!-- JIT -->
+  <rect x="40" y="460" width="920" height="222" rx="10" fill="#1f1a12" stroke="#e6a572"/>
+  <text x="60" y="484" fill="#f0cba8" font-size="12.5" font-weight="700">인터프리터만으로 부족해진 이유와, 그 답의 형태</text>
+  <text x="60" y="506" fill="#c8c8d8" font-size="10.5">Ajax 이후 웹페이지가 애플리케이션이 되면서(01편) 자바스크립트 실행 시간이 병목이 됐다. 2008년에 경쟁이 몰린다.</text>
+
+  <g>
+    <rect x="60" y="520" width="284" height="66" rx="7" fill="#12121f" stroke="#3a3a52"/>
+    <text x="78" y="540" fill="#c8c8d8" font-size="11" font-weight="600">2008 — V8 (Chrome)</text>
+    <text x="78" y="558" fill="#8a8aa0" font-size="10">9월 2일 Chrome 출시와 같은 날 오픈소스</text>
+    <text x="78" y="574" fill="#8a8aa0" font-size="10">처음부터 기계어 생성을 전제로 설계</text>
+
+    <rect x="358" y="520" width="284" height="66" rx="7" fill="#12121f" stroke="#3a3a52"/>
+    <text x="376" y="540" fill="#c8c8d8" font-size="11" font-weight="600">2008 — TraceMonkey (Firefox)</text>
+    <text x="376" y="558" fill="#8a8aa0" font-size="10">자바스크립트 최초의 JIT 컴파일러</text>
+    <text x="376" y="574" fill="#8a8aa0" font-size="10">2009년 JaegerMonkey가 뒤를 잇는다</text>
+
+    <rect x="656" y="520" width="284" height="66" rx="7" fill="#12121f" stroke="#3a3a52"/>
+    <text x="674" y="540" fill="#c8c8d8" font-size="11" font-weight="600">2008 — SquirrelFish Extreme (Safari)</text>
+    <text x="674" y="558" fill="#8a8aa0" font-size="10">JavaScriptCore 계열</text>
+    <text x="674" y="574" fill="#8a8aa0" font-size="10">같은 해에 세 진영이 동시에 움직였다</text>
+  </g>
+
+  <text x="60" y="612" fill="#f0cba8" font-size="11" font-weight="600">왜 "미리 컴파일"이 아니라 "실행 중 컴파일"인가</text>
+  <text x="60" y="632" fill="#c8c8d8" font-size="10.5">자바스크립트는 동적 타입이라 실행 전에는 어떤 값이 올지 알 수 없다. 그래서 엔진은 일단 인터프리터로 돌리며 관찰하고,</text>
+  <text x="60" y="650" fill="#c8c8d8" font-size="10.5">자주 실행되는 코드만 "여기는 항상 정수가 온다" 같은 관찰된 가정을 붙여 기계어로 컴파일한다. 가정이 깨지면 인터프리터로 되돌린다.</text>
+  <text x="60" y="670" fill="#e6a572" font-size="10.5" font-weight="600">즉 JIT은 최적화이면서 동시에 "가정에 기대는 코드"다. 이 성질이 보안에서 왜 문제가 되는지는 별도 시리즈에서 다룬다.</text>
+</svg>

@@ -1,0 +1,119 @@
+<svg viewBox="0 0 1000 740" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="p1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+  <style>.mono { font-family: 'SFMono-Regular', Menlo, Consolas, monospace; }</style>
+
+  <rect x="0" y="0" width="1000" height="740" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">인덱스와 동시성의 안쪽</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">키를 어떤 순서로 넣는가, 그리고 각자가 보는 시점이 다르다는 것의 결과</text>
+
+  <!-- 페이지 분할 -->
+  <rect x="40" y="76" width="450" height="230" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="100" fill="#e8e8f0" font-size="12" font-weight="700">삽입 순서가 쓰기 비용을 바꾼다</text>
+
+  <text x="60" y="124" fill="#a7f3d0" font-size="10.5" font-weight="600">순차 키 (자동 증가 · 시간 정렬 ID)</text>
+  <g>
+    <rect x="60" y="134" width="90" height="26" rx="4" fill="#12201c" stroke="#34d399"/>
+    <text x="105" y="151" text-anchor="middle" class="mono" font-size="9.5" fill="#a7f3d0">가득 참</text>
+    <rect x="156" y="134" width="90" height="26" rx="4" fill="#12201c" stroke="#34d399"/>
+    <text x="201" y="151" text-anchor="middle" class="mono" font-size="9.5" fill="#a7f3d0">가득 참</text>
+    <rect x="252" y="134" width="90" height="26" rx="4" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="297" y="151" text-anchor="middle" class="mono" font-size="9.5" fill="#bcd6f0">여기에 추가</text>
+  </g>
+  <text x="60" y="178" fill="#8a8aa0" font-size="10">항상 마지막 페이지에만 쓴다. 분할이 거의 없고 페이지가 촘촘히 찬다.</text>
+
+  <text x="60" y="206" fill="#e8b0b0" font-size="10.5" font-weight="600">무작위 키 (랜덤 UUID)</text>
+  <g>
+    <rect x="60" y="216" width="90" height="26" rx="4" fill="#1f1418" stroke="#db8585"/>
+    <text x="105" y="233" text-anchor="middle" class="mono" font-size="9.5" fill="#e8b0b0">절반만 참</text>
+    <rect x="156" y="216" width="90" height="26" rx="4" fill="#1f1418" stroke="#db8585"/>
+    <text x="201" y="233" text-anchor="middle" class="mono" font-size="9.5" fill="#e8b0b0">절반만 참</text>
+    <rect x="252" y="216" width="90" height="26" rx="4" fill="#1f1418" stroke="#db8585"/>
+    <text x="297" y="233" text-anchor="middle" class="mono" font-size="9.5" fill="#e8b0b0">절반만 참</text>
+    <rect x="348" y="216" width="90" height="26" rx="4" fill="#1f1418" stroke="#db8585"/>
+    <text x="393" y="233" text-anchor="middle" class="mono" font-size="9.5" fill="#e8b0b0">절반만 참</text>
+  </g>
+  <text x="60" y="260" fill="#8a8aa0" font-size="10">삽입 위치가 흩어져 중간 페이지가 계속 분할된다.</text>
+  <text x="60" y="278" fill="#8a8aa0" font-size="10">분할 후 페이지는 대략 반만 차므로 인덱스가 커지고 캐시 적중이 떨어진다.</text>
+  <text x="60" y="296" fill="#e6a572" font-size="10">→ 시간 정렬 UUID(v7 계열)가 나온 이유가 이 성질이다.</text>
+
+  <!-- 세컨더리 인덱스 -->
+  <rect x="510" y="76" width="450" height="230" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="530" y="100" fill="#e8e8f0" font-size="12" font-weight="700">기본키 크기가 모든 인덱스에 전파되는 구조</text>
+  <text x="530" y="124" fill="#c8c8d8" font-size="10.5">클러스터드 인덱스를 쓰는 엔진에서는 테이블 자체가 기본키</text>
+  <text x="530" y="140" fill="#c8c8d8" font-size="10.5">순서로 저장되고, 보조 인덱스의 리프는 행 위치 대신</text>
+  <text x="530" y="156" fill="#c8c8d8" font-size="10.5">기본키 값을 담는다.</text>
+  <g>
+    <rect x="530" y="172" width="190" height="44" rx="6" fill="#161226" stroke="#8b7cf6"/>
+    <text x="546" y="190" class="mono" font-size="9.5" fill="#d8d0f8">보조 인덱스 리프</text>
+    <text x="546" y="206" class="mono" font-size="9.5" fill="#8a8aa0">[email] → [기본키]</text>
+    <rect x="740" y="172" width="200" height="44" rx="6" fill="#12201c" stroke="#34d399"/>
+    <text x="756" y="190" class="mono" font-size="9.5" fill="#a7f3d0">클러스터드 인덱스</text>
+    <text x="756" y="206" class="mono" font-size="9.5" fill="#8a8aa0">[기본키] → [행 전체]</text>
+  </g>
+  <line x1="722" y1="194" x2="738" y2="194" stroke="#5a5a78" stroke-width="1.3" marker-end="url(#p1)"/>
+  <text x="530" y="240" fill="#e6a572" font-size="10.5" font-weight="600">결과 두 가지</text>
+  <text x="530" y="258" fill="#8a8aa0" font-size="10">· 기본키가 크면(예: 문자열 UUID) 모든 보조 인덱스가 함께 커진다</text>
+  <text x="530" y="276" fill="#8a8aa0" font-size="10">· 보조 인덱스로 조회하면 조회가 두 번 일어난다(커버링이 아니면)</text>
+  <text x="530" y="294" fill="#8a8aa0" font-size="10">엔진에 따라 구조가 다르다 — 힙 저장 방식에서는 리프가 물리 위치를 담는다</text>
+
+  <!-- MVCC -->
+  <rect x="40" y="322" width="450" height="200" rx="10" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="60" y="346" fill="#bcd6f0" font-size="12" font-weight="700">MVCC — 읽기가 쓰기를 막지 않는 대신</text>
+  <text x="60" y="368" fill="#c8c8d8" font-size="10.5">갱신은 기존 행을 덮어쓰지 않고 새 버전을 만든다. 각 트랜잭션은</text>
+  <text x="60" y="384" fill="#c8c8d8" font-size="10.5">자기 시점에 보이는 버전을 읽는다.</text>
+  <g>
+    <rect x="60" y="398" width="110" height="30" rx="5" fill="#12121f" stroke="#3a3a52"/>
+    <text x="115" y="418" text-anchor="middle" class="mono" font-size="9.5" fill="#8a8aa0">v1 (구버전)</text>
+    <rect x="180" y="398" width="110" height="30" rx="5" fill="#12121f" stroke="#3a3a52"/>
+    <text x="235" y="418" text-anchor="middle" class="mono" font-size="9.5" fill="#8a8aa0">v2</text>
+    <rect x="300" y="398" width="110" height="30" rx="5" fill="#12201c" stroke="#34d399"/>
+    <text x="355" y="418" text-anchor="middle" class="mono" font-size="9.5" fill="#a7f3d0">v3 (최신)</text>
+  </g>
+  <g stroke="#5a5a78" stroke-width="1.2" marker-end="url(#p1)">
+    <line x1="170" y1="413" x2="178" y2="413"/>
+    <line x1="290" y1="413" x2="298" y2="413"/>
+  </g>
+  <text x="60" y="452" fill="#e8b0b0" font-size="10.5" font-weight="600">비용: 오래된 버전을 누군가 보고 있으면 정리할 수 없다</text>
+  <text x="60" y="470" fill="#8a8aa0" font-size="10.5">몇 시간 열려 있는 트랜잭션 하나가 그 사이의 모든 구버전을</text>
+  <text x="60" y="486" fill="#8a8aa0" font-size="10.5">붙잡는다. 테이블이 붓고 조회가 느려진다.</text>
+  <text x="60" y="508" fill="#8a8aa0" font-size="10.5">"트랜잭션을 짧게 유지하라"는 조언의 실제 근거가 이것이다.</text>
+
+  <!-- write skew -->
+  <rect x="510" y="322" width="450" height="200" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="530" y="346" fill="#e8b0b0" font-size="12" font-weight="700">write skew — 각자 옳은데 합치면 틀리다</text>
+  <text x="530" y="368" fill="#c8c8d8" font-size="10.5">규칙: 당직 의사는 최소 한 명 남아야 한다. 현재 두 명이 당직.</text>
+  <rect x="530" y="382" width="200" height="70" rx="6" fill="#1a1012" stroke="#db8585"/>
+  <text x="546" y="400" class="mono" font-size="9.5" fill="#e8b0b0">T1: 당직 수 조회 → 2</text>
+  <text x="546" y="416" class="mono" font-size="9.5" fill="#e8b0b0">"나 말고 한 명 있네"</text>
+  <text x="546" y="434" class="mono" font-size="9.5" fill="#e8b0b0">T1: 내 당직 해제</text>
+
+  <rect x="740" y="382" width="200" height="70" rx="6" fill="#1a1012" stroke="#db8585"/>
+  <text x="756" y="400" class="mono" font-size="9.5" fill="#e8b0b0">T2: 당직 수 조회 → 2</text>
+  <text x="756" y="416" class="mono" font-size="9.5" fill="#e8b0b0">"나 말고 한 명 있네"</text>
+  <text x="756" y="434" class="mono" font-size="9.5" fill="#e8b0b0">T2: 내 당직 해제</text>
+
+  <text x="530" y="472" fill="#db8585" font-size="10.5" font-weight="600">결과: 당직 0명. 두 트랜잭션 모두 규칙을 확인하고 통과했다.</text>
+  <text x="530" y="492" fill="#8a8aa0" font-size="10.5">서로 다른 행을 고쳤으므로 갱신 충돌도 아니다. 스냅샷 격리로는</text>
+  <text x="530" y="508" fill="#8a8aa0" font-size="10.5">막히지 않고, 직렬화 수준이나 명시적 잠금이 필요하다.</text>
+
+  <!-- 타이밍 -->
+  <rect x="40" y="538" width="920" height="182" rx="10" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="60" y="562" fill="#f0c0d8" font-size="12.5" font-weight="700">같은 구조가 정보 채널이 되는 방식 — blind SQL 인젝션의 시간축</text>
+  <text x="60" y="584" fill="#c8c8d8" font-size="10.5">응답 내용이 전혀 돌아오지 않아도, 조건이 참일 때만 느려지게 만들면 한 번의 요청으로 1비트를 얻는다.</text>
+  <rect x="60" y="598" width="430" height="66" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="76" y="618" fill="#e8b0b0" font-size="10.5" font-weight="600">지연 함수가 막혀 있어도</text>
+  <text x="76" y="636" fill="#c8c8d8" font-size="10">조건이 참일 때만 비싼 연산이 실행되게 만들면 된다.</text>
+  <text x="76" y="654" fill="#8a8aa0" font-size="10">인덱스를 타는 경로와 풀스캔하는 경로의 시간 차이로 충분하다.</text>
+
+  <rect x="510" y="598" width="450" height="66" rx="7" fill="#12201c" stroke="#34d399"/>
+  <text x="526" y="618" fill="#a7f3d0" font-size="10.5" font-weight="600">그래서 방어는 "오류를 감추는 것"이 아니다</text>
+  <text x="526" y="636" fill="#c8c8d8" font-size="10">오류 메시지를 숨겨도 시간은 남는다. 준비된 구문으로 구문과</text>
+  <text x="526" y="654" fill="#c8c8d8" font-size="10">데이터를 분리하고, 식별자 자리는 허용 목록으로 고정한다.</text>
+
+  <text x="60" y="690" fill="#8a8aa0" font-size="10.5">13편에서 본 성능 구조가 그대로 공격면이 된다. 인덱스를 이해하는 것과 타이밍 채널을 이해하는 것은 같은 지식의 두 방향이다.</text>
+  <text x="60" y="710" fill="#f0c0d8" font-size="10.5" font-weight="600">15편의 원형으로는 D(부수 효과 관측)와 A(구문·데이터 미분리)가 겹치는 칸이다.</text>
+</svg>

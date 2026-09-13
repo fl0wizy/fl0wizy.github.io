@@ -1,0 +1,44 @@
+<svg viewBox="0 0 1000 760" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <rect x="0" y="0" width="1000" height="760" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">웹 취약점의 다섯 가지 원형</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">개별 기법은 계속 늘어나지만 형태는 늘지 않는다. 새 기법을 만나면 먼저 어느 칸인지부터 정한다.</text>
+
+  <!-- A -->
+  <rect x="40" y="80" width="920" height="118" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="60" y="104" fill="#e8b0b0" font-size="13" font-weight="700">A. 경계 불일치 — 같은 바이트열, 두 해석기, 다른 결론</text>
+  <text x="60" y="126" fill="#c8c8d8" font-size="10.5">어디까지가 하나의 메시지·하나의 값인지에 대해 두 구성요소가 다른 답을 낸다. 강제로 조정할 주체가 없다는 것이 웹의 구조적 조건이다(01편).</text>
+  <text x="60" y="150" fill="#8a8aa0" font-size="10.5">요청 스머글링(CL/TE) · 캐시 포이즈닝과 디셉션 · 리버스 프록시 경로 정규화 우회 · mXSS · 유니코드 정규화 차이 · 파서 디퍼렌셜 전반</text>
+  <text x="60" y="174" fill="#e8b0b0" font-size="10.5" font-weight="600">방어의 형태: 해석기를 하나로 줄이거나(업스트림 HTTP/2), 모호한 입력을 통과시키지 않고 거부한다.</text>
+
+  <!-- B -->
+  <rect x="40" y="210" width="920" height="118" rx="10" fill="#1f1a12" stroke="#e6a572"/>
+  <text x="60" y="234" fill="#f0cba8" font-size="13" font-weight="700">B. 정체성 불일치 — "누구/무엇인가"의 기준이 둘로 갈라짐</text>
+  <text x="60" y="256" fill="#c8c8d8" font-size="10.5">접근을 결정하는 기준과 실제로 동작하는 기준이 다른 것을 가리킨다. 둘이 어긋나는 순간이 공격 창이다.</text>
+  <text x="60" y="280" fill="#8a8aa0" font-size="10.5">CSRF(쿠키는 도메인 기준, SOP는 출처 기준) · DNS rebinding(이름 vs 주소) · X-Forwarded-For 위조(소켓 vs 헤더)</text>
+  <text x="60" y="298" fill="#8a8aa0" font-size="10.5">JWT kid·jku 신뢰(검증 대상이 검증 키를 고름) · 서브도메인 탈취(쿠키·CORS·redirect_uri 허용 목록이 가리키는 이름의 소유권 이전)</text>
+  <text x="60" y="320" fill="#f0cba8" font-size="10.5" font-weight="600">방어의 형태: 판정 기준을 하나로 고정하고, 그 기준을 입력이 바꾸지 못하게 한다.</text>
+
+  <!-- C -->
+  <rect x="40" y="340" width="920" height="110" rx="10" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="60" y="364" fill="#bcd6f0" font-size="13" font-weight="700">C. 권한 확인 누락 — 인증은 한 번, 인가는 매번</text>
+  <text x="60" y="386" fill="#c8c8d8" font-size="10.5">로그인 여부는 미들웨어가 한 곳에서 처리하지만, "이 객체가 이 사용자의 것인가"는 핸들러마다 따로 써야 한다. 한 곳만 빠져도 뚫린다.</text>
+  <text x="60" y="410" fill="#8a8aa0" font-size="10.5">IDOR · BOLA / BFLA · mass assignment · 강제 브라우징 · 클라이언트에서만 하는 검증 · GraphQL 필드 단위 인가 누락</text>
+  <text x="60" y="434" fill="#bcd6f0" font-size="10.5" font-weight="600">방어의 형태: 인가를 데이터 접근 계층으로 내려 기본값을 "거부"로 만든다. 잊을 수 있는 자리를 없앤다.</text>
+
+  <!-- D -->
+  <rect x="40" y="462" width="920" height="118" rx="10" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="60" y="486" fill="#f0c0d8" font-size="13" font-weight="700">D. 부수 효과 관측 — 읽지 못해도 알아낸다</text>
+  <text x="60" y="508" fill="#c8c8d8" font-size="10.5">데이터 자체는 차단돼 있지만 반응의 차이가 남는다. 2020년대 연구의 중심축이 이쪽으로 옮겨 왔다.</text>
+  <text x="60" y="532" fill="#8a8aa0" font-size="10.5">패딩 오라클 · 압축 길이(CRIME) · blind/time-based SQLi · XS-Leaks · 캐시 프로빙 · Spectre · 리다이렉트 동작 차이</text>
+  <text x="60" y="556" fill="#f0c0d8" font-size="10.5" font-weight="600">방어의 형태: 응답을 같게 만들거나(상수 시간·통일된 오류), 관측 자체를 막는다(프로세스 격리·타이머 정밀도 하향).</text>
+
+  <!-- E -->
+  <rect x="40" y="592" width="920" height="110" rx="10" fill="#12201c" stroke="#34d399"/>
+  <text x="60" y="616" fill="#a7f3d0" font-size="13" font-weight="700">E. 자원 비대칭 — 보내는 비용과 처리하는 비용의 차이</text>
+  <text x="60" y="638" fill="#c8c8d8" font-size="10.5">취약한 코드가 없어도 성립한다. 규격이 허용하는 정상 동작들의 조합이 비용의 기울기를 만든다.</text>
+  <text x="60" y="662" fill="#8a8aa0" font-size="10.5">HTTP/2 Rapid Reset · ReDoS · GraphQL 깊이·별칭 남용 · XML 폭탄 · 압축 폭탄 · 무제한 페이지네이션</text>
+  <text x="60" y="686" fill="#a7f3d0" font-size="10.5" font-weight="600">방어의 형태: 처리 비용에 상한을 두고, 비용이 큰 동작에 대해 요청자에게도 비용을 청구한다.</text>
+
+  <rect x="40" y="714" width="920" height="34" rx="8" fill="#12121f" stroke="#3a3a52"/>
+  <text x="500" y="736" text-anchor="middle" fill="#c8c8d8" font-size="11">새 기법을 만났을 때의 질문: 누가 무엇을 다르게 해석했나 · 어떤 두 기준이 갈라졌나 · 어느 확인이 빠졌나 · 무엇이 관측됐나 · 누가 비용을 냈나</text>
+</svg>

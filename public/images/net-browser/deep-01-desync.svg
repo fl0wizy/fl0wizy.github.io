@@ -1,0 +1,103 @@
+<svg viewBox="0 0 1000 750" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="o1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+  <style>.mono { font-family: 'SFMono-Regular', Menlo, Consolas, monospace; }</style>
+
+  <rect x="0" y="0" width="1000" height="750" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">desync 변형 분류 – 누가 무엇을 따르고, 접두사는 어디에 남는가</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">이름은 [프론트엔드가 따르는 것].[백엔드가 따르는 것] 순서다</text>
+
+  <!-- 표 -->
+  <rect x="40" y="76" width="920" height="212" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <g font-size="10.5">
+    <text x="60" y="100" fill="#8a8aa0" font-weight="600">변형</text>
+    <text x="170" y="100" fill="#8a8aa0" font-weight="600">프론트엔드</text>
+    <text x="300" y="100" fill="#8a8aa0" font-weight="600">백엔드</text>
+    <text x="430" y="100" fill="#8a8aa0" font-weight="600">접두사가 남는 곳</text>
+    <text x="640" y="100" fill="#8a8aa0" font-weight="600">성립 조건의 성격</text>
+    <line x1="60" y1="108" x2="940" y2="108" stroke="#2a2a3e"/>
+
+    <text x="60" y="132" fill="#e8e8f0" font-weight="600">CL.TE</text>
+    <text x="170" y="132" fill="#6f9fd8">Content-Length</text>
+    <text x="300" y="132" fill="#e6a572">Transfer-Encoding</text>
+    <text x="430" y="132" fill="#c8c8d8">백엔드 버퍼</text>
+    <text x="640" y="132" fill="#8a8aa0">프론트가 규격에서 벗어남</text>
+
+    <text x="60" y="158" fill="#e8e8f0" font-weight="600">TE.CL</text>
+    <text x="170" y="158" fill="#e6a572">Transfer-Encoding</text>
+    <text x="300" y="158" fill="#6f9fd8">Content-Length</text>
+    <text x="430" y="158" fill="#c8c8d8">백엔드 버퍼</text>
+    <text x="640" y="158" fill="#8a8aa0">백엔드가 규격에서 벗어남</text>
+
+    <text x="60" y="184" fill="#e8e8f0" font-weight="600">TE.TE</text>
+    <text x="170" y="184" fill="#e6a572">TE (인식)</text>
+    <text x="300" y="184" fill="#e6a572">TE (난독화되어 미인식)</text>
+    <text x="430" y="184" fill="#c8c8d8">양쪽 중 한쪽</text>
+    <text x="640" y="184" fill="#8a8aa0">헤더 파싱의 허용 범위 차이</text>
+
+    <text x="60" y="214" fill="#a7f3d0" font-weight="600">CL.0</text>
+    <text x="170" y="214" fill="#6f9fd8">Content-Length</text>
+    <text x="300" y="214" fill="#db8585">본문을 아예 안 읽음</text>
+    <text x="430" y="214" fill="#c8c8d8">백엔드 버퍼</text>
+    <text x="640" y="214" fill="#a7f3d0" font-weight="600">완전히 규격을 지킨 요청으로 성립</text>
+
+    <text x="60" y="240" fill="#e8b0b0" font-weight="600">0.CL</text>
+    <text x="170" y="240" fill="#db8585">본문 없음으로 판단</text>
+    <text x="300" y="240" fill="#6f9fd8">Content-Length</text>
+    <text x="430" y="240" fill="#c8c8d8">교착 — 아래 참조</text>
+    <text x="640" y="240" fill="#8a8aa0">2025년까지 악용 불가로 여겨짐</text>
+
+    <text x="60" y="266" fill="#f0c0d8" font-weight="600">CSD</text>
+    <text x="170" y="266" fill="#8a8aa0">프론트/백 구분 없음</text>
+    <text x="300" y="266" fill="#db8585">본문 무시</text>
+    <text x="430" y="266" fill="#f0c0d8" font-weight="600">피해자 브라우저의 커넥션 풀</text>
+    <text x="640" y="266" fill="#8a8aa0">단일 서버 사이트도 대상이 된다</text>
+  </g>
+
+  <!-- CL.0 -->
+  <rect x="40" y="304" width="450" height="212" rx="10" fill="#12201c" stroke="#34d399"/>
+  <text x="60" y="328" fill="#a7f3d0" font-size="12.5" font-weight="700">CL.0 — 백엔드가 본문을 읽지 않는 경우</text>
+  <text x="60" y="350" fill="#c8c8d8" font-size="10.5">엔드포인트가 Content-Length 를 무시하는 상황은 흔하다.</text>
+  <text x="60" y="372" fill="#8a8aa0" font-size="10.5">· 요청이 서버 오류를 일으켰다</text>
+  <text x="60" y="390" fill="#8a8aa0" font-size="10.5">· 그 경로가 POST 를 받을 것으로 예상되지 않았다</text>
+  <text x="60" y="408" fill="#8a8aa0" font-size="10.5">· 정적 파일이거나 서버 레벨 리다이렉트다</text>
+  <rect x="60" y="422" width="410" height="38" rx="6" fill="#101a18" stroke="#34d399"/>
+  <text x="76" y="440" fill="#a7f3d0" font-size="10.5">프론트는 CL 만큼 전달하고, 백엔드는 0바이트만 소비한다.</text>
+  <text x="76" y="454" fill="#8a8aa0" font-size="10.5">남은 본문이 통째로 다음 요청의 앞부분이 된다.</text>
+  <text x="60" y="482" fill="#a7f3d0" font-size="10.5" font-weight="600">핵심: 요청 자체는 규격을 완전히 지킨 평범한 POST 다.</text>
+  <text x="60" y="502" fill="#8a8aa0" font-size="10.5">그래서 브라우저가 보낼 수 있는 요청만으로도 성립한다.</text>
+
+  <!-- CSD -->
+  <rect x="510" y="304" width="450" height="212" rx="10" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="530" y="328" fill="#f0c0d8" font-size="12.5" font-weight="700">client-side desync — 오염 대상이 브라우저의 연결</text>
+  <text x="530" y="350" fill="#c8c8d8" font-size="10.5">브라우저도 커넥션 풀을 쓴다(03편). 읽히지 않은 바이트가</text>
+  <text x="530" y="366" fill="#c8c8d8" font-size="10.5">그 연결에 남으면, 피해자의 다음 요청 앞에 붙는다.</text>
+  <text x="530" y="390" fill="#f0c0d8" font-size="10.5" font-weight="600">성립 조건</text>
+  <text x="530" y="408" fill="#8a8aa0" font-size="10.5">· 교차 도메인 fetch 를 credentials: 'include' 로 보내</text>
+  <text x="542" y="424" fill="#8a8aa0" font-size="10.5">  쿠키가 붙는 연결 풀을 표적으로 삼는다</text>
+  <text x="530" y="442" fill="#8a8aa0" font-size="10.5">· 대상이 HTTP/2 를 지원하지 않아야 한다 — 브라우저가</text>
+  <text x="542" y="458" fill="#8a8aa0" font-size="10.5">  HTTP/2 를 선호하므로 지원되면 이 경로가 닫힌다</text>
+  <text x="530" y="476" fill="#8a8aa0" font-size="10.5">· 서버가 오류 후에도 연결을 닫지 않아야 한다</text>
+  <text x="530" y="500" fill="#e8b0b0" font-size="10.5" font-weight="600">프론트엔드 프록시가 없는 단일 서버 사이트도 표적이 된다.</text>
+
+  <!-- 0.CL -->
+  <rect x="40" y="532" width="920" height="112" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="60" y="556" fill="#e8b0b0" font-size="12.5" font-weight="700">0.CL 의 교착과, 2025년에 그것이 깨진 방식</text>
+  <text x="60" y="578" fill="#c8c8d8" font-size="10.5">프론트는 본문이 없다고 보고 응답을 기다리는데, 백엔드는 Content-Length 만큼의 본문이 올 때까지 기다린다. 양쪽이 서로를 기다린다.</text>
+  <text x="60" y="600" fill="#c8c8d8" font-size="10.5">교착을 깨는 방법은 <tspan fill="#e6a572" font-weight="600">early-response gadget</tspan> — 본문이 도착하기 전에 백엔드가 응답을 내놓게 만드는 경로를 찾는 것이다.</text>
+  <text x="60" y="622" fill="#8a8aa0" font-size="10.5">예: 일부 서버에서 예약된 파일명 경로는 본문을 기다리지 않고 즉시 오류를 반환한다. 그 응답이 나오면 0.CL 은 악용 가능한 CL.0 으로 전환된다(double-desync).</text>
+
+  <!-- pause -->
+  <rect x="40" y="660" width="450" height="76" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="682" fill="#e8e8f0" font-size="11.5" font-weight="700">pause-based desync</text>
+  <text x="60" y="702" fill="#c8c8d8" font-size="10.5">타임아웃 구현이 잘못된 서버는 부분 요청에 응답하면서도</text>
+  <text x="60" y="718" fill="#8a8aa0" font-size="10.5">연결을 열어 둔다. 멈췄다가 이어 보낸 바이트가 새 요청이 된다.</text>
+
+  <rect x="510" y="660" width="450" height="76" rx="9" fill="#12201c" stroke="#34d399"/>
+  <text x="530" y="682" fill="#a7f3d0" font-size="11.5" font-weight="700">공통 전제는 하나다</text>
+  <text x="530" y="702" fill="#c8c8d8" font-size="10.5">연결이 재사용되고, 그 연결 위에서 "메시지의 끝"에 대한</text>
+  <text x="530" y="718" fill="#c8c8d8" font-size="10.5">판단이 둘로 갈린다. 나머지는 전부 변주다.</text>
+</svg>
