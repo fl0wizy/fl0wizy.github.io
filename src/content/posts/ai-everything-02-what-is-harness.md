@@ -1,7 +1,9 @@
 ---
 id: "ai-everything-02-what-is-harness"
-title: "Everything About AI (02) – What Is a Harness: From Wiring to AI"
-description: "From wiring harnesses to AI harnesses – the minimal 5 components, the 12 production-grade components, and memory, skills and protocols."
+title: "AI의 모든 것 (02) – 하네스란 무엇인가: 배선에서 AI까지"
+titleEn: "Everything About AI (02) – What Is a Harness: From Wiring to AI"
+description: "와이어링 하네스에서 AI 하네스까지 – 최소 5개 구성요소, 프로덕션급 12개 구성요소, 그리고 메모리·스킬·프로토콜."
+descriptionEn: "From wiring harnesses to AI harnesses – the minimal 5 components, the 12 production-grade components, and memory, skills and protocols."
 date: "2026-08-02 09:20"
 category: "ai"
 tags: ["Harness", "Agent", "HarnessEngineering", "Guides", "Sensors"]

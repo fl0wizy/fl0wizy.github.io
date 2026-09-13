@@ -1,14 +1,17 @@
 import { profileData } from '../../lib/data';
+import { useLang, useT } from '../../lib/i18n';
 import './ExperienceSection.css';
 
 export default function ExperienceSection() {
+  const { L } = useLang();
+  const t = useT();
   const { experiences } = profileData;
 
   if (experiences.length === 0) return null;
 
   return (
     <section className="experience-section">
-      <h2 className="section-header">EXPERIENCE</h2>
+      <h2 className="section-header">{t('experience')}</h2>
       <div className="timeline">
         {experiences.map((exp, index) => (
           <div key={index} className="timeline-item">
@@ -20,14 +23,14 @@ export default function ExperienceSection() {
                   </svg>
                 </div>
                 <div className="experience-title-info">
-                  <h3 className="experience-title">{exp.title}</h3>
-                  <p className="experience-company">{exp.company}</p>
+                  <h3 className="experience-title">{L(exp.title)}</h3>
+                  <p className="experience-company">{L(exp.company)}</p>
                 </div>
                 <span className={`experience-period ${exp.current ? 'current' : ''}`}>
-                  {exp.period}
+                  {L(exp.period)}
                 </span>
               </div>
-              <p className="experience-description">{exp.description}</p>
+              <p className="experience-description">{L(exp.description)}</p>
               {exp.tags && exp.tags.length > 0 && (
                 <div className="experience-tags">
                   {exp.tags.map((tag, tagIndex) => (

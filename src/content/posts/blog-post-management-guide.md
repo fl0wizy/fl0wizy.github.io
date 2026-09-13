@@ -1,7 +1,9 @@
 ---
 id: "blog-post-management-guide"
-title: "A Complete Guide to Writing and Managing Blog Posts"
-description: "Everything needed to manage blog content: writing a new post, setting categories, the date format and adding tags."
+title: "블로그 글 작성·관리 완전 가이드"
+titleEn: "A Complete Guide to Writing and Managing Blog Posts"
+description: "새 글 작성, 카테고리 설정, 날짜 형식, 태그 추가까지 블로그 콘텐츠 관리에 필요한 모든 것."
+descriptionEn: "Everything needed to manage blog content: writing a new post, setting categories, the date format and adding tags."
 date: "2026-01-29 09:00"
 category: "daily"
 tags: ["Blog", "Guide", "PostManagement"]

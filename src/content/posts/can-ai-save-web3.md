@@ -1,7 +1,9 @@
 ---
 id: "can-ai-save-web3"
-title: "Can AI Save Web3?"
-description: "A broad analysis of AI's impact on web3, with my own take on it."
+title: "AI는 Web3를 구할 수 있는가?"
+titleEn: "Can AI Save Web3?"
+description: "AI가 web3에 미치는 영향을 폭넓게 분석하고 내 관점을 덧붙였다."
+descriptionEn: "A broad analysis of AI's impact on web3, with my own take on it."
 date: "2026-08-02 00:00"
 category: "research-article"
 tags: ["web3", "AI", "Finance"]

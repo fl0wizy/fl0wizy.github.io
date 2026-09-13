@@ -1,7 +1,9 @@
 ---
 id: "ai-everything-04-context-engineering"
-title: "Everything About AI (04) – Context Engineering: What Goes on the Desk"
-description: "Context is a scarce resource – Lost in the Middle, using CLAUDE.md as a map, and four compaction strategies."
+title: "AI의 모든 것 (04) – 컨텍스트 엔지니어링: 책상 위에 무엇을 올릴 것인가"
+titleEn: "Everything About AI (04) – Context Engineering: What Goes on the Desk"
+description: "컨텍스트는 희소 자원이다 – Lost in the Middle, CLAUDE.md를 지도로 쓰기, 그리고 네 가지 압축 전략."
+descriptionEn: "Context is a scarce resource – Lost in the Middle, using CLAUDE.md as a map, and four compaction strategies."
 date: "2026-08-02 09:40"
 category: "ai"
 tags: ["ContextEngineering", "CLAUDE.md", "AGENTS.md", "RAG", "Compaction", "LostInTheMiddle"]

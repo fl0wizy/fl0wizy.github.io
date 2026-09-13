@@ -1,20 +1,23 @@
 import Header from '../components/Header';
 import PostCard from '../components/PostCard';
 import { blogPosts } from '../lib/data';
+import { useT } from '../lib/i18n';
 import './Blog.css';
 
 export default function Blog() {
+  const t = useT();
   const publishedPosts = blogPosts.filter(post => post.published);
 
   return (
     <div className="blog-page">
-      <Header 
-        title="Searching for vulnerabilities" 
-        highlightWord="vulnerabilities"
+      <Header
+        subtitle={t('heroBadge')}
+        title={t('heroTitle')}
+        highlightWord={t('heroHighlight')}
       />
       
       <section className="archive-section">
-        <h2 className="section-header">ARCHIVE</h2>
+        <h2 className="section-header">{t('archive')}</h2>
         <div className="posts-list">
           {publishedPosts.length > 0 ? (
             publishedPosts.map((post) => (
@@ -22,7 +25,7 @@ export default function Blog() {
             ))
           ) : (
             <div className="no-posts">
-              <p>No posts yet.</p>
+              <p>{t('noPosts')}</p>
             </div>
           )}
         </div>

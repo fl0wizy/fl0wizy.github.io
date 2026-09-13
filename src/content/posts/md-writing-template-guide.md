@@ -1,7 +1,9 @@
 ---
 id: "md-writing-template-guide"
-title: "Markdown Post Template"
-description: "How to copy this file format as-is and write a new post quickly."
+title: "마크다운 글 템플릿"
+titleEn: "Markdown Post Template"
+description: "이 파일 형식을 그대로 복사해 새 글을 빠르게 쓰는 방법."
+descriptionEn: "How to copy this file format as-is and write a new post quickly."
 date: "2026-03-02 01:10"
 category: "daily"
 tags: ["markdown", "Template", "WritingGuide"]

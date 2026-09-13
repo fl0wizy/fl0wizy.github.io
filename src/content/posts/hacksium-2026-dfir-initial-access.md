@@ -1,7 +1,9 @@
 ---
 id: "hacksium-2026-dfir-initial-access"
 title: "[HACKSIUM 2026] 초기 침투는 어디에 흔적을 남기는가: 시나리오형 DFIR 문제 해부"
+titleEn: "[HACKSIUM 2026] Where Initial Access Leaves Its Traces: Anatomy of a Scenario-Based DFIR Challenge"
 description: "침해 단말 하나를 던져주고 초기 침투 경로, C2, 지속성, 내부 정찰을 묻는 시나리오형 포렌식 문제를 풀며 정리한 기록. Prefetch·LNK·Amcache·BAM·$MFT가 각각 무엇을 증명하고 무엇을 증명하지 못하는지, DLL 사이드로딩이 왜 초기 침투의 표준 답이 되었는지, 그리고 내가 세 번 잘못 세운 전제가 무엇이었는지."
+descriptionEn: "A record of working a scenario-based forensics challenge that hands you one compromised host and asks for the initial access path, the C2 domains, persistence and internal reconnaissance. What Prefetch, LNK, Amcache, BAM and $MFT each do and do not prove, why DLL sideloading became the standard answer for initial access, and the three premises I got wrong."
 date: "2026-09-13 12:00"
 category: "web-security"
 tags: ["HACKSIUM", "DFIR", "Forensics", "Initial Access", "MITRE ATT&CK", "DLL Sideloading", "Prefetch", "Amcache", "MFT", "Remcos", "capa", "Windows"]

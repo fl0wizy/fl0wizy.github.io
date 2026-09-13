@@ -1,7 +1,9 @@
 ---
 id: "solidity-concepts-2"
-title: "Solidity Concepts 2: State Variables, the Type System, Mappings and Arrays"
-description: "State variable visibility, constant vs immutable, struct, enum, value and reference types, array slices and mappings - Solidity's data model."
+title: "Solidity 개념 2: 상태 변수, 타입 시스템, 매핑과 배열"
+titleEn: "Solidity Concepts 2: State Variables, the Type System, Mappings and Arrays"
+description: "상태 변수 가시성, constant와 immutable, struct, enum, 값 타입과 참조 타입, 배열 슬라이스와 매핑 – Solidity의 데이터 모델."
+descriptionEn: "State variable visibility, constant vs immutable, struct, enum, value and reference types, array slices and mappings - Solidity's data model."
 date: "2026-04-04 19:20"
 category: "study-dev-security"
 tags: ["Solidity", "Storage", "Struct", "Mapping", "Type System"]

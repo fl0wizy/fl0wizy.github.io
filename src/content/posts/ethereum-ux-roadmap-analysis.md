@@ -1,7 +1,9 @@
 ---
 id: "ethereum-ux-roadmap-analysis"
-title: "A Full Analysis of the Ethereum UX Roadmap: What 32,000 User Reports Say"
-description: "Analyzes the Ethereum UX roadmap from ethux.design across eight categories. Onboarding, transactions, cross-chain, security, mobile, accessibility, protocol and day-to-day operations – the problems 32,000 real user reports point to, and the fixes proposed."
+title: "이더리움 UX 로드맵 전면 분석: 32,000건의 사용자 제보가 말하는 것"
+titleEn: "A Full Analysis of the Ethereum UX Roadmap: What 32,000 User Reports Say"
+description: "ethux.design의 이더리움 UX 로드맵을 여덟 개 범주로 분석한다. 온보딩, 트랜잭션, 크로스체인, 보안, 모바일, 접근성, 프로토콜, 일상 운영 – 32,000건의 실제 사용자 제보가 가리키는 문제와 그에 대해 제안된 해법."
+descriptionEn: "Analyzes the Ethereum UX roadmap from ethux.design across eight categories. Onboarding, transactions, cross-chain, security, mobile, accessibility, protocol and day-to-day operations – the problems 32,000 real user reports point to, and the fixes proposed."
 date: "2026-04-05 01:00"
 category: "research-article"
 tags: ["Ethereum", "UX", "Web3", "EIP", "Account Abstraction", "Research"]

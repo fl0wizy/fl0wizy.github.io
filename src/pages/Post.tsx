@@ -4,6 +4,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { useLang, useT } from '../lib/i18n';
 import {
   getPostById,
   formatDate,
@@ -108,6 +109,8 @@ function extractLang(children: ReactNode): string | undefined {
 }
 
 export default function Post() {
+  const { L } = useLang();
+  const t = useT();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const post = id ? getPostById(id) : undefined;
@@ -148,10 +151,10 @@ export default function Post() {
     return (
       <div className="post-page">
         <div className="post-not-found">
-          <h1>Post not found</h1>
-          <p>The post you requested does not exist or has been removed.</p>
+          <h1>{t('postNotFound')}</h1>
+          <p>{t('postNotFoundDesc')}</p>
           <button onClick={() => navigate('/')} className="back-button">
-            Back to blog
+            {t('backToBlog')}
           </button>
         </div>
       </div>
@@ -187,16 +190,16 @@ export default function Post() {
               <line x1="19" y1="12" x2="5" y2="12" />
               <polyline points="12 19 5 12 12 5" />
             </svg>
-            BACK TO LIST
+            {t('backToList')}
           </Link>
 
           {/* category badge */}
           <div className="post-category-line">
-            <span className="post-category-badge">{categoryLabel}</span>
+            <span className="post-category-badge">{L(categoryLabel)}</span>
           </div>
 
           {/* title */}
-          <h1 className="post-title">{post.title}</h1>
+          <h1 className="post-title">{L(post.title)}</h1>
 
           {/* date + reading time */}
           <div className="post-meta">
@@ -212,7 +215,7 @@ export default function Post() {
             <span className="post-relative-time">{getRelativeTime(post.date)}</span>
             <span className="post-reading-time">
               <ClockIcon />
-              {readingTime} min read
+              {readingTime}{t('readingTime')}
             </span>
           </div>
         </header>

@@ -1,14 +1,17 @@
 import { profileData } from '../../lib/data';
+import { useLang, useT } from '../../lib/i18n';
 import './ProjectsSection.css';
 
 export default function ProjectsSection() {
+  const { L } = useLang();
+  const t = useT();
   const { projects } = profileData;
 
   if (projects.length === 0) return null;
 
   return (
     <section className="projects-section">
-      <h2 className="section-header">PROJECTS</h2>
+      <h2 className="section-header">{t('projects')}</h2>
       <div className="timeline">
         {projects.map((project, index) => (
           <div key={index} className="timeline-item">
@@ -21,12 +24,12 @@ export default function ProjectsSection() {
                   </svg>
                 </div>
                 <div className="project-title-info">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-type">{project.type}</p>
+                  <h3 className="project-title">{L(project.title)}</h3>
+                  <p className="project-type">{L(project.type)}</p>
                 </div>
                 <span className="project-year">{project.year}</span>
               </div>
-              <p className="project-description">{project.description}</p>
+              <p className="project-description">{L(project.description)}</p>
               {project.tags && project.tags.length > 0 && (
                 <div className="project-tags">
                   {project.tags.map((tag, tagIndex) => (

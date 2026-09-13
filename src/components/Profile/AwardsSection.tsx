@@ -1,14 +1,17 @@
 import { profileData } from '../../lib/data';
+import { useLang, useT } from '../../lib/i18n';
 import './AwardsSection.css';
 
 export default function AwardsSection() {
+  const { L } = useLang();
+  const t = useT();
   const { awards } = profileData;
 
   if (awards.length === 0) return null;
 
   return (
     <section className="awards-section">
-      <h2 className="section-header">AWARDS</h2>
+      <h2 className="section-header">{t('awards')}</h2>
       <div className="timeline">
         {awards.map((award, index) => (
           <div key={index} className="timeline-item">
@@ -21,12 +24,12 @@ export default function AwardsSection() {
                   </svg>
                 </div>
                 <div className="award-title-info">
-                  <h3 className="award-title">{award.title}</h3>
-                  <p className="award-organizer">{award.organizer}</p>
+                  <h3 className="award-title">{L(award.title)}</h3>
+                  <p className="award-organizer">{L(award.organizer)}</p>
                 </div>
-                <span className="award-period">{award.period}</span>
+                <span className="award-period">{L(award.period)}</span>
               </div>
-              <p className="award-description">{award.description}</p>
+              <p className="award-description">{L(award.description)}</p>
               {award.tags && award.tags.length > 0 && (
                 <div className="award-tags">
                   {award.tags.map((tag, tagIndex) => (

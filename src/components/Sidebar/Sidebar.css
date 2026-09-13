@@ -24,6 +24,10 @@
   gap: 1rem;
 }
 
+.logo-text {
+  min-width: 0;
+}
+
 .logo-image-wrapper {
   width: 52px;
   height: 52px;
@@ -64,6 +68,55 @@
   letter-spacing: 0.12em;
   margin: 0.15rem 0 0;
   font-weight: 500;
+}
+
+/* Language switch -- site chrome, pinned to the logo row so it keeps its place
+   while the page hero underneath changes. */
+.lang-switch {
+  margin: 0.85rem 0 0 auto;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.15rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.lang-option {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+  line-height: 1;
+}
+
+.lang-option:hover {
+  color: var(--text-primary);
+}
+
+.lang-option.active {
+  color: #fff;
+  background: var(--accent-purple);
+}
+
+.lang-option:focus-visible {
+  outline: 2px solid var(--accent-purple);
+  outline-offset: 2px;
+}
+
+.lang-divider {
+  width: 1px;
+  height: 0.6rem;
+  background: var(--border-color);
 }
 
 /* Navigation */

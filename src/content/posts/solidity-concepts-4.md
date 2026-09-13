@@ -1,7 +1,9 @@
 ---
 id: "solidity-concepts-4"
-title: "Solidity Concepts 4: Events, Hashing, selfdestruct, Style Guide"
-description: "Events and the LOG opcode, Ether and time units, cryptographic functions, changes to selfdestruct, the type() keyword, control structures and the style guide - with a practical focus."
+title: "Solidity 개념 4: 이벤트, 해싱, selfdestruct, 스타일 가이드"
+titleEn: "Solidity Concepts 4: Events, Hashing, selfdestruct, Style Guide"
+description: "이벤트와 LOG opcode, Ether·시간 단위, 암호 함수, selfdestruct의 변화, type() 키워드, 제어 구조, 스타일 가이드 – 실무 중심으로."
+descriptionEn: "Events and the LOG opcode, Ether and time units, cryptographic functions, changes to selfdestruct, the type() keyword, control structures and the style guide - with a practical focus."
 date: "2026-04-04 19:40"
 category: "study-dev-security"
 tags: ["Solidity", "Event", "LOG", "ECDSA", "selfdestruct"]

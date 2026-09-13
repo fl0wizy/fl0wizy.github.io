@@ -1,7 +1,9 @@
 ---
 id: "ai-everything-10-safety-governance"
-title: "Everything About AI (10) – Safety, Governance and Operations: A Request Is Not a Rule"
-description: "A request is not a rule – the request/enforce/isolate three stages, prompt injection, audit logs and garbage collection."
+title: "AI의 모든 것 (10) – 안전·거버넌스·운영: 요청은 규칙이 아니다"
+titleEn: "Everything About AI (10) – Safety, Governance and Operations: A Request Is Not a Rule"
+description: "요청은 규칙이 아니다 – 요청/강제/격리 3단계, 프롬프트 인젝션, 감사 로그, 그리고 가비지 컬렉션."
+descriptionEn: "A request is not a rule – the request/enforce/isolate three stages, prompt injection, audit logs and garbage collection."
 date: "2026-08-02 10:40"
 category: "ai"
 tags: ["Permissions", "PromptInjection", "Sandbox", "AuditLog", "Hooks", "Governance", "OWASP"]

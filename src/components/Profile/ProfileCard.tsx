@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { profileData } from '../../lib/data';
+import { useLang } from '../../lib/i18n';
 import './ProfileCard.css';
 
 // Icon components
@@ -86,6 +87,7 @@ const contactColors: Record<string, string> = {
 };
 
 export default function ProfileCard() {
+  const { L } = useLang();
   const { name, title, bio, profileImage, contacts } = profileData;
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
@@ -123,9 +125,9 @@ export default function ProfileCard() {
         </div>
         <div className="profile-info">
           <h1 className="profile-name">{name}</h1>
-          <p className="profile-title">{title}</p>
+          <p className="profile-title">{L(title)}</p>
           <p className="profile-korean-name">Korean name : Chaegeon Oh</p>
-          <p className="profile-bio">{bio}</p>
+          <p className="profile-bio">{L(bio)}</p>
         </div>
       </div>
 
@@ -146,7 +148,7 @@ export default function ProfileCard() {
                 <IconComponent />
               </div>
               <div className="contact-content">
-                <span className="contact-label">{contact.label}</span>
+                <span className="contact-label">{L(contact.label)}</span>
                 {hasLink ? (
                   <a 
                     href={contact.link} 

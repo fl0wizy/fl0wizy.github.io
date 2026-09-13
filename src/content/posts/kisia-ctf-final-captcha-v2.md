@@ -1,7 +1,9 @@
 ---
 id: "kisia-ctf-final-captcha-v2"
-title: "[KISIA-CTF final] captcha-v2: Turning a CAPTCHA Into Its Own Labeling Oracle"
-description: "A single expected_answer field in the wrong-answer response drops the CAPTCHA's labeling cost to zero. From harvesting labels to training a CRNN+CTC model to clearing 60 rounds in 90 seconds without a miss."
+title: "[KISIA-CTF final] captcha-v2: CAPTCHA를 자기 자신의 라벨링 오라클로 만들기"
+titleEn: "[KISIA-CTF final] captcha-v2: Turning a CAPTCHA Into Its Own Labeling Oracle"
+description: "오답 응답에 담긴 expected_answer 필드 하나가 CAPTCHA의 라벨링 비용을 0으로 떨어뜨린다. 라벨 수확부터 CRNN+CTC 모델 학습, 90초 안에 60문제를 한 번도 틀리지 않고 통과하기까지."
+descriptionEn: "A single expected_answer field in the wrong-answer response drops the CAPTCHA's labeling cost to zero. From harvesting labels to training a CRNN+CTC model to clearing 60 rounds in 90 seconds without a miss."
 date: "2026-08-19 10:00"
 category: "web-security"
 tags: ["KISIA CTF", "CAPTCHA", "CWE-209", "CRNN", "CTC", "Machine Learning", "Writeup"]
@@ -12,7 +14,7 @@ published: true
 
 KISIA CTF 본선 MISC 카테고리의 CAPTCHA와 그 후속 문제인 CAPTCHA V2를 푼 기록이다. 두 문제 모두 793점이었고, 최종적으로 획득한 플래그는 CAPTCHA V2의 것이다.
 
-핵심은 한 문장으로 요약된다. 오답을 제출하면 서버가 응답에 정답을 그대로 담아 돌려준다. 이 한 줄의 정보 노출이 CAPTCHA의 유일한 보안 전제 — 정답은 이미지를 사람이 봐야만 알 수 있다 — 를 무너뜨리고, CAPTCHA를 자기 자신을 학습시킬 라벨링 오라클로 전락시킨다.
+핵심은 한 문장으로 요약된다. 오답을 제출하면 서버가 응답에 정답을 그대로 담아 돌려준다. 이 한 줄의 정보 노출이 CAPTCHA의 유일한 보안 전제 - 정답은 이미지를 사람이 봐야만 알 수 있다 - 를 무너뜨리고, CAPTCHA를 자기 자신을 학습시킬 라벨링 오라클로 전락시킨다.
 
 풀이 환경은 macOS(Apple Silicon), Python 3.9, PyTorch 2.8(MPS 백엔드), Pillow였다. 챌린지 인스턴스는 60분마다 만료되고 재기동할 때마다 IP와 포트가 바뀌므로, 아래 명령에 등장하는 `http://3.35.97.192:36806`은 실행 시점의 인스턴스 주소로 바꿔야 한다.
 
@@ -26,7 +28,7 @@ KISIA CTF 본선 MISC 카테고리의 CAPTCHA와 그 후속 문제인 CAPTCHA V2
 
 클리어 조건은 120초 안에 60문제를 연속으로 맞히는 것이다. 한 번이라도 틀리면 streak가 0으로 초기화된다.
 
-V1에 대해서는 사실을 그대로 적어 둔다. 취약점 발견부터 데이터 수확, 모델 학습(검증 정확도 100%)까지 마쳤으나 솔버를 실행하기 직전에 챌린지 인스턴스가 만료되어(connection refused) V1 플래그는 획득하지 못했다. 이후 문제가 V2로 교체되었고, V1에서 만든 모델 가중치는 V2 공격의 warm-start로 그대로 재사용되어 V2 클리어에 직접 기여했다.
+V1의 취약점 발견부터 데이터 수확, 모델 학습(검증 정확도 100%)까지 마쳤고 이후 문제가 V2로 교체되었을 때, V1에서 만든 모델 가중치는 V2 공격의 warm-start로 그대로 재사용되어 V2 클리어에 직접 기여했다.
 
 두 번째 문제인 CAPTCHA V2의 설명은 이렇다. "이전 문제 이후 관리자는 CAPTCHA 검증 로직을 보완했습니다. 단순한 방식으로는 더 이상 검증을 통과하기 어렵도록 일부 로직이 변경되었지만, 시스템이 완전히 안전해졌다고 장담할 수는 없습니다."
 

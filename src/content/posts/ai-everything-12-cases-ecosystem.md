@@ -1,7 +1,9 @@
 ---
 id: "ai-everything-12-cases-ecosystem"
-title: "Everything About AI (12) – Field Cases and the Ecosystem: The Harness Is Everything"
-description: "From ACI research to OpenAI Codex, Vercel d0 and Magentic-One – cases where the harness made the outcome."
+title: "AI의 모든 것 (12) – 현장 사례와 생태계: 하네스가 전부다"
+titleEn: "Everything About AI (12) – Field Cases and the Ecosystem: The Harness Is Everything"
+description: "ACI 연구부터 OpenAI Codex, Vercel d0, Magentic-One까지 – 하네스가 결과를 만든 사례들."
+descriptionEn: "From ACI research to OpenAI Codex, Vercel d0 and Magentic-One – cases where the harness made the outcome."
 date: "2026-08-02 11:00"
 category: "ai"
 tags: ["ACI", "SWEagent", "Codex", "Vercel", "MagenticOne", "Cursor", "CaseStudy", "HarnessEcosystem"]

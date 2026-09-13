@@ -1,14 +1,17 @@
 import { profileData } from '../../lib/data';
+import { useLang, useT } from '../../lib/i18n';
 import './CertificationsSection.css';
 
 export default function CertificationsSection() {
+  const { L } = useLang();
+  const t = useT();
   const { certifications } = profileData;
 
   if (certifications.length === 0) return null;
 
   return (
     <section className="certifications-section">
-      <h2 className="section-header">CERTIFICATIONS</h2>
+      <h2 className="section-header">{t('certifications')}</h2>
       <div className="cert-grid">
         {certifications.map((cert, index) => (
           <div key={index} className="cert-card">
@@ -20,8 +23,8 @@ export default function CertificationsSection() {
               </svg>
             </div>
             <div className="cert-info">
-              <h3 className="cert-title">{cert.title}</h3>
-              <p className="cert-issuer">{cert.issuer}</p>
+              <h3 className="cert-title">{L(cert.title)}</h3>
+              <p className="cert-issuer">{L(cert.issuer)}</p>
             </div>
             <span className="cert-date">{cert.date}</span>
           </div>

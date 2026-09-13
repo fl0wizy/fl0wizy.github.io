@@ -1,7 +1,9 @@
 ---
 id: "ai-everything-09-memory-longrunning"
-title: "Everything About AI (09) – Long-Running Execution and Memory Ownership: Lose the Memory, Lose the Agent"
-description: "The shift-handover problem and session handoff, the feature list as a verification ledger, and four models of memory ownership plus lock-in."
+title: "AI의 모든 것 (09) – 장기 실행과 메모리 소유권: 기억을 잃으면 에이전트를 잃는다"
+titleEn: "Everything About AI (09) – Long-Running Execution and Memory Ownership: Lose the Memory, Lose the Agent"
+description: "교대 인수인계 문제와 세션 핸드오프, 검증 원장으로서의 기능 목록, 그리고 메모리 소유권 네 가지 모델과 락인."
+descriptionEn: "The shift-handover problem and session handoff, the feature list as a verification ledger, and four models of memory ownership plus lock-in."
 date: "2026-08-02 10:30"
 category: "ai"
 tags: ["LongRunningAgent", "SessionHandoff", "ProgressFile", "Memory", "LockIn", "Compaction"]

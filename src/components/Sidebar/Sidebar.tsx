@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import type { CSSProperties } from 'react';
 import { categories, getPostCountByCategory, getCategoryColor } from '../../lib/data';
+import { useLang, useT } from '../../lib/i18n';
 import type { Category } from '../../lib/data';
 import './Sidebar.css';
 
@@ -128,6 +129,7 @@ interface CategoryItemProps {
 // buys nothing, and the collapse toggle overlapped the select click -- picking a
 // category would close it instead.
 function CategoryItem({ category, level, selectedCategory, onSelect }: CategoryItemProps) {
+  const { L } = useLang();
   const hasChildren = category.children && category.children.length > 0;
   const isSelected = selectedCategory === category.id;
   const postCount = getPostCountByCategory(category.id);
@@ -140,7 +142,7 @@ function CategoryItem({ category, level, selectedCategory, onSelect }: CategoryI
         style={{ paddingLeft: `${level * 16 + 12}px`, '--cat': getCategoryColor(category.id) } as CSSProperties}
       >
         <span className="category-icon">{getIcon(category.icon)}</span>
-        <span className="category-name">{category.name}</span>
+        <span className="category-name">{L(category.name)}</span>
         <span className={`post-count ${category.id === 'all' ? '' : 'subtle'}`}>{postCount}</span>
       </button>
       {hasChildren && (
@@ -165,6 +167,8 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ onCategorySelect }: SidebarProps) {
+  const { lang, setLang } = useLang();
+  const t = useT();
   const location = useLocation();
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -186,8 +190,30 @@ export default function Sidebar({ onCategorySelect }: SidebarProps) {
           </div>
           <div className="logo-text">
             <h1>flowizy's DevLog</h1>
-            <p>SECURITY RESEARCHER</p>
+            <p>{t('role')}</p>
           </div>
+        </div>
+        {/* Language switch lives with the site chrome, not inside the page hero
+            -- it has to stay put while the hero content changes. Its own row so
+            it does not squeeze the wordmark onto two lines. */}
+        <div className="lang-switch" role="group" aria-label={t('langLabel')}>
+          <button
+            type="button"
+            className={`lang-option ${lang === 'ko' ? 'active' : ''}`}
+            aria-pressed={lang === 'ko'}
+            onClick={() => setLang('ko')}
+          >
+            KO
+          </button>
+          <span className="lang-divider" aria-hidden="true" />
+          <button
+            type="button"
+            className={`lang-option ${lang === 'en' ? 'active' : ''}`}
+            aria-pressed={lang === 'en'}
+            onClick={() => setLang('en')}
+          >
+            EN
+          </button>
         </div>
       </div>
 
@@ -195,18 +221,18 @@ export default function Sidebar({ onCategorySelect }: SidebarProps) {
       <nav className="sidebar-nav">
         <Link to="/profile" className={`nav-item ${isProfileActive ? 'active' : ''}`}>
           <Icons.userCircle />
-          <span>PROFILE</span>
+          <span>{t('profile')}</span>
         </Link>
         <Link to="/" className={`nav-item ${isBlogActive ? 'active' : ''}`}>
           <Icons.book />
-          <span>BLOG</span>
+          <span>{t('blog')}</span>
         </Link>
       </nav>
 
       {/* Categories */}
       <div className="sidebar-categories">
         <div className="categories-header">
-          <span>CONTENT CATEGORIES</span>
+          <span>{t('categoriesHeader')}</span>
         </div>
         <div className="categories-list">
           {categories.map((category) => (

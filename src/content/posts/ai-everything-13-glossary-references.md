@@ -1,7 +1,9 @@
 ---
 id: "ai-everything-13-glossary-references"
-title: "Everything About AI (13) – Glossary · One-Page Cheat Sheet · Reference Map"
-description: "The map to come back to when stuck – a one-page cheat sheet, a glossary and the full reference list."
+title: "AI의 모든 것 (13) – 용어집 · 한 장 요약 · 레퍼런스 지도"
+titleEn: "Everything About AI (13) – Glossary · One-Page Cheat Sheet · Reference Map"
+description: "막혔을 때 돌아올 지도 – 한 장 요약, 용어집, 그리고 전체 레퍼런스 목록."
+descriptionEn: "The map to come back to when stuck – a one-page cheat sheet, a glossary and the full reference list."
 date: "2026-08-02 11:10"
 category: "ai"
 tags: ["Glossary", "CheatSheet", "References"]

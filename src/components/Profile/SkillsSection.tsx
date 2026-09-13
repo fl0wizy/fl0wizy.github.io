@@ -1,4 +1,5 @@
 import { profileData } from '../../lib/data';
+import { useLang, useT } from '../../lib/i18n';
 import './SkillsSection.css';
 
 const levelLabels = {
@@ -16,13 +17,15 @@ const levelColors = {
 };
 
 export default function SkillsSection() {
+  const { L } = useLang();
+  const t = useT();
   const { skills } = profileData;
 
   if (skills.length === 0) return null;
 
   return (
     <section className="skills-section">
-      <h2 className="section-header">SKILLS</h2>
+      <h2 className="section-header">{t('skills')}</h2>
       <div className="timeline">
         {skills.map((skill, index) => (
           <div key={index} className="timeline-item">
@@ -34,14 +37,14 @@ export default function SkillsSection() {
                   </svg>
                 </div>
                 <div className="skill-title-info">
-                  <h3 className="skill-title">{skill.name}</h3>
-                  <p className="skill-category">{skill.category}</p>
+                  <h3 className="skill-title">{L(skill.name)}</h3>
+                  <p className="skill-category">{L(skill.category)}</p>
                 </div>
                 <span className={`skill-level level-${levelColors[skill.level]}`}>
                   {levelLabels[skill.level]}
                 </span>
               </div>
-              <p className="skill-description">{skill.description}</p>
+              <p className="skill-description">{L(skill.description)}</p>
               {skill.tags && skill.tags.length > 0 && (
                 <div className="skill-tags">
                   {skill.tags.map((tag, tagIndex) => (

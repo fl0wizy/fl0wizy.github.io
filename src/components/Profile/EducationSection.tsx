@@ -1,14 +1,17 @@
 import { profileData } from '../../lib/data';
+import { useLang, useT } from '../../lib/i18n';
 import './EducationSection.css';
 
 export default function EducationSection() {
+  const { L } = useLang();
+  const t = useT();
   const { education } = profileData;
 
   if (education.length === 0) return null;
 
   return (
     <section className="education-section">
-      <h2 className="section-header">EDUCATION</h2>
+      <h2 className="section-header">{t('education')}</h2>
       <div className="timeline">
         {education.map((edu, index) => (
           <div key={index} className="timeline-item">
@@ -21,17 +24,17 @@ export default function EducationSection() {
                   </svg>
                 </div>
                 <div className="education-title-info">
-                  <h3 className="education-title">{edu.title}</h3>
+                  <h3 className="education-title">{L(edu.title)}</h3>
                   <p className="education-institution">
-                    {edu.institution}
-                    {edu.subInfo && <span className="education-subinfo"> ({edu.subInfo})</span>}
+                    {L(edu.institution)}
+                    {edu.subInfo && <span className="education-subinfo"> ({L(edu.subInfo)})</span>}
                   </p>
                 </div>
                 <span className={`education-period ${edu.current ? 'current' : ''}`}>
-                  {edu.period}
+                  {L(edu.period)}
                 </span>
               </div>
-              <p className="education-description">{edu.description}</p>
+              <p className="education-description">{L(edu.description)}</p>
               {edu.tags && edu.tags.length > 0 && (
                 <div className="education-tags">
                   {edu.tags.map((tag, tagIndex) => (

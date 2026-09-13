@@ -3,7 +3,9 @@ import type { BlogPost } from './data';
 interface PostFrontmatter {
   id?: string;
   title?: string;
+  titleEn?: string;
   description?: string;
+  descriptionEn?: string;
   date?: string;
   category?: string;
   tags?: string[];
@@ -79,7 +81,9 @@ function parseFrontmatter(markdown: string): { frontmatter: PostFrontmatter; con
 
     if (key === 'id') frontmatter.id = parsed;
     else if (key === 'title') frontmatter.title = parsed;
+    else if (key === 'titleEn') frontmatter.titleEn = parsed;
     else if (key === 'description') frontmatter.description = parsed;
+    else if (key === 'descriptionEn') frontmatter.descriptionEn = parsed;
     else if (key === 'date') frontmatter.date = parsed;
     else if (key === 'category') frontmatter.category = parsed;
   }
@@ -117,8 +121,14 @@ export const blogPosts: BlogPost[] = Object.entries(markdownModules)
 
     return {
       id: frontmatter.id || slug,
-      title: frontmatter.title || slug,
-      description: frontmatter.description || '',
+      // A post without an English title falls back to the Korean one, so the
+      // English surface degrades to "untranslated" rather than "empty".
+      title: frontmatter.titleEn
+        ? { ko: frontmatter.title || slug, en: frontmatter.titleEn }
+        : frontmatter.title || slug,
+      description: frontmatter.descriptionEn
+        ? { ko: frontmatter.description || '', en: frontmatter.descriptionEn }
+        : frontmatter.description || '',
       date: frontmatter.date || '1970-01-01 00:00',
       category: frontmatter.category || 'daily',
       tags,
