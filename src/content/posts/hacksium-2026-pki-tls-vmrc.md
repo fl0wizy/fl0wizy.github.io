@@ -3,7 +3,7 @@ id: "hacksium-2026-pki-tls-vmrc"
 title: "[HACKSIUM 2026] Why the Console Would Not Open: CA Certificates, the TLS Handshake, and VMRC"
 description: "Opening a single VM console failed three times: the URL scheme handler, the trust store, and the direct-to-ESXi path. Which layer each failure lived in and why, plus what to check and where to register a certificate the moment you receive one, from real observed values."
 date: "2026-09-12 20:00"
-category: "security"
+category: "web-security"
 tags: ["HACKSIUM", "PKI", "X.509", "TLS", "VMRC", "vSphere", "vCenter", "VMCA", "Keychain", "Live Fire"]
 published: true
 ---
