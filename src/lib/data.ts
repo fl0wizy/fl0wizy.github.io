@@ -248,6 +248,20 @@ export const profileData: ProfileData = {
       description: 'Finished 1st at Hypersonic CTF 2026.',
       tags: ['CTF', 'Web3', 'Security'],
     },
+    {
+      title: 'KISIA CTF 2026 Finals (9th place)',
+      organizer: 'KISIA (Korea Information Security Industry Association)',
+      period: '2026-08',
+      description: 'Advanced through the online qualifier to the finals held on 2026-08-09 and finished 9th. Solved the CAPTCHA / CAPTCHA V2 chain by turning the wrong-answer response into a labeling oracle and training a CRNN+CTC recognizer.',
+      tags: ['CTF', 'Web Security', 'Machine Learning'],
+    },
+    {
+      title: 'HACKSIUM 2026 BUSAN Finals (10th place)',
+      organizer: 'Busan IT Industry Promotion Agency & Southeast Information Security Cluster',
+      period: '2026-09',
+      description: 'Qualified for the two-day live-fire cyber defense finals (2026-09-11 to 09-12) built around a maritime, port and satellite OT scenario, and finished 10th as part of a four-person defense team.',
+      tags: ['Live Fire', 'Blue Team', 'OT Security'],
+    },
   ],
   projects: [
     {
