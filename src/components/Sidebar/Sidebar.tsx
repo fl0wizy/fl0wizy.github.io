@@ -190,7 +190,8 @@ export default function Sidebar({ onCategorySelect }: SidebarProps) {
           </div>
           <div className="logo-text">
             <h1>flowizy's DevLog</h1>
-            <p>{t('role')}</p>
+            {/* Brand lockup -- stays English in both languages */}
+            <p>SECURITY RESEARCHER</p>
           </div>
         </div>
         {/* Language switch lives with the site chrome, not inside the page hero

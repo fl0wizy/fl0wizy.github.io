@@ -14,7 +14,7 @@
 
 /* Logo Section */
 .sidebar-logo {
-  padding: 1.5rem 1.25rem;
+  padding: 1.5rem 1.25rem 0.9rem;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -73,7 +73,7 @@
 /* Language switch -- site chrome, pinned to the logo row so it keeps its place
    while the page hero underneath changes. */
 .lang-switch {
-  margin: 0.85rem 0 0 auto;
+  margin: 0.35rem 0 0 auto;
   width: fit-content;
   display: flex;
   align-items: center;
@@ -89,10 +89,10 @@
   border: 0;
   background: transparent;
   color: var(--text-secondary);
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.06em;
-  padding: 0.2rem 0.4rem;
+  padding: 0.28rem 0.62rem;
   border-radius: 999px;
   cursor: pointer;
   transition: color 0.15s ease, background 0.15s ease;
@@ -115,7 +115,7 @@
 
 .lang-divider {
   width: 1px;
-  height: 0.6rem;
+  height: 0.75rem;
   background: var(--border-color);
 }
 

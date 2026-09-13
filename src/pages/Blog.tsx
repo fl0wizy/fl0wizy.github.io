@@ -10,10 +10,11 @@ export default function Blog() {
 
   return (
     <div className="blog-page">
+      {/* Hero copy is brand, not content -- English in both languages */}
       <Header
-        subtitle={t('heroBadge')}
-        title={t('heroTitle')}
-        highlightWord={t('heroHighlight')}
+        subtitle="SECURITY RESEARCH LOG"
+        title="Searching for vulnerabilities"
+        highlightWord="vulnerabilities"
       />
       
       <section className="archive-section">

@@ -74,18 +74,13 @@ export function useLang(): LangContextValue {
 
 // ===== Site chrome strings =====
 export const ui = {
-  role: { ko: '보안 연구자', en: 'SECURITY RESEARCHER' },
   profile: { ko: '프로필', en: 'PROFILE' },
   blog: { ko: '블로그', en: 'BLOG' },
   categoriesHeader: { ko: '카테고리', en: 'CONTENT CATEGORIES' },
   archive: { ko: '아카이브', en: 'ARCHIVE' },
-  heroBadge: { ko: '보안 연구 기록', en: 'SECURITY RESEARCH LOG' },
-  heroTitle: { ko: '취약점을 찾는 중', en: 'Searching for vulnerabilities' },
-  heroHighlight: { ko: '취약점', en: 'vulnerabilities' },
   noPosts: { ko: '아직 글이 없습니다.', en: 'No posts yet.' },
   noPostsInCategory: { ko: '이 카테고리에는 아직 글이 없습니다.', en: 'No posts in this category yet.' },
   filteredPosts: { ko: '필터링된 글', en: 'FILTERED POSTS' },
-  categoryPrefix: { ko: '카테고리', en: 'Category' },
   backToList: { ko: '목록으로', en: 'Back to list' },
   postNotFound: { ko: '글을 찾을 수 없습니다', en: 'Post not found' },
   postNotFoundDesc: {

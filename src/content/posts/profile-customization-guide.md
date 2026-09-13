@@ -2,7 +2,7 @@
 id: "profile-customization-guide"
 title: "프로필·블로그 커스터마이징 완전 가이드"
 titleEn: "A Complete Guide to Customizing the Profile and Blog"
-description: "프로필 사진, 배경 이미지, 연락처, 경력, 학력까지 개인 정보 전체를 수정하는 방법을 자세히 설명한다."
+description: "프로필 사진, 배경 이미지, 연락처, 경력, 학력까지 개인 정보 전체를 수정하는 방법."
 descriptionEn: "A detailed walkthrough of editing every piece of personal information: profile photo, background image, contacts, experience and education."
 date: "2026-01-29 10:00"
 category: "daily"

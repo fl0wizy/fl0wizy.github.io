@@ -2,23 +2,23 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import PostCard from '../components/PostCard';
 import { getPostsByCategory, getCategoryLabel } from '../lib/data';
-import { useLang, useT } from '../lib/i18n';
+import { L, useT } from '../lib/i18n';
 import './Category.css';
 
 export default function Category() {
-  const { L } = useLang();
   const t = useT();
   const { categoryId } = useParams<{ categoryId: string }>();
   const posts = categoryId ? getPostsByCategory(categoryId) : [];
   // One source of truth for category names: lib/data. This page used to keep
   // its own copy, which drifted out of sync with the sidebar.
-  const categoryLabel = L(getCategoryLabel(categoryId || ''));
+  // The hero is brand copy, so its category name stays English even in Korean.
+  const categoryLabel = L(getCategoryLabel(categoryId || ''), 'en');
 
   return (
     <div className="category-page">
       <Header
-        subtitle={t('heroBadge')}
-        title={`${t('categoryPrefix')}: ${categoryLabel}`}
+        subtitle="SECURITY RESEARCH LOG"
+        title={`Category: ${categoryLabel}`}
         highlightWord={categoryLabel}
       />
 

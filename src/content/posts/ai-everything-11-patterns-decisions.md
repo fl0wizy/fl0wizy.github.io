@@ -2,7 +2,7 @@
 id: "ai-everything-11-patterns-decisions"
 title: "AI의 모든 것 (11) – 12가지 패턴 · 7가지 설계 결정 · 3가지 반직관"
 titleEn: "Everything About AI (11) – 12 Patterns · 7 Design Decisions · 3 Counterintuitive Takes"
-description: "열두 가지 패턴, 일곱 가지 설계 결정, 세 가지 반직관 – 그리고 비계는 언젠가 걷어내야 한다."
+description: "열두 가지 패턴, 일곱 가지 설계 결정, 세 가지 반직관 – 그리고 언젠가 걷어내야 할 비계."
 descriptionEn: "Twelve patterns, seven design decisions and three counterintuitive takes – and the scaffolding has to come down eventually."
 date: "2026-08-02 10:50"
 category: "ai"
