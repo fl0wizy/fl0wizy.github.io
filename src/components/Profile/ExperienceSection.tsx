@@ -30,7 +30,15 @@ export default function ExperienceSection() {
                   {L(exp.period)}
                 </span>
               </div>
-              <p className="experience-description">{L(exp.description)}</p>
+              {Array.isArray(exp.description) ? (
+                <ul className="experience-bullets">
+                  {exp.description.map((line, lineIndex) => (
+                    <li key={lineIndex}>{L(line)}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="experience-description">{L(exp.description)}</p>
+              )}
               {exp.tags && exp.tags.length > 0 && (
                 <div className="experience-tags">
                   {exp.tags.map((tag, tagIndex) => (
