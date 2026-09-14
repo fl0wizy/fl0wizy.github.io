@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import type { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useLang, useT } from '../lib/i18n';
+import type { Lang } from '../lib/i18n';
 import {
   getPostById,
   formatDate,
@@ -15,6 +16,7 @@ import {
   extractHeadings,
   getAdjacentPosts,
 } from '../lib/data';
+import type { BlogPost } from '../lib/data';
 import './Post.css';
 
 // Clock icon (reading time)
@@ -109,14 +111,26 @@ function extractLang(children: ReactNode): string | undefined {
   return undefined;
 }
 
+// The body actually shown: the English one when reading in English and it
+// exists, the Korean original otherwise. Kept out of the component -- a
+// conditional local derived from `post` makes the React Compiler bail out of
+// optimizing this component while the manual useMemo below is in place.
+function visibleBody(post: BlogPost | undefined, lang: Lang): string {
+  if (!post) return '';
+  return lang === 'en' && post.contentEn ? post.contentEn : post.content;
+}
+
 export default function Post() {
-  const { L } = useLang();
+  const { L, lang } = useLang();
   const t = useT();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const post = id ? getPostById(id) : undefined;
 
-  const headings = useMemo(() => (post ? extractHeadings(post.content) : []), [post]);
+  // Table of contents and reading time follow the visible body, not post.content.
+  const untranslated = lang === 'en' && !post?.contentEn;
+
+  const headings = useMemo(() => extractHeadings(visibleBody(post, lang)), [post, lang]);
   const { prev, next } = useMemo(
     () => (id ? getAdjacentPosts(id) : { prev: undefined, next: undefined }),
     [id],
@@ -168,7 +182,7 @@ export default function Post() {
 
   const categoryLabel = getCategoryLabel(post.category);
   const categoryColor = getCategoryColor(post.category);
-  const readingTime = getReadingTime(post.content);
+  const readingTime = getReadingTime(visibleBody(post, lang));
 
   // Heading ids are assigned after render in useEffect, in document order (safe under StrictMode double render).
   const components: Components = {
@@ -226,9 +240,13 @@ export default function Post() {
         </header>
 
         <div className="post-container">
+          {untranslated && (
+            <p className="post-untranslated-notice">{t('untranslatedBody')}</p>
+          )}
+
           <article className="post-content">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
-              {post.content}
+              {visibleBody(post, lang)}
             </ReactMarkdown>
           </article>
 

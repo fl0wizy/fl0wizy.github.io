@@ -2,9 +2,9 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
 // ===== Language =====
-// The site is authored in Korean. English is a second surface for the site
-// chrome, the profile and post titles/descriptions -- post bodies stay in the
-// language they were written in.
+// The site is authored in Korean. English is a full second surface: site
+// chrome, the profile, post titles/descriptions and post bodies. A post whose
+// English body has not been written yet falls back to the Korean original.
 
 export type Lang = 'ko' | 'en';
 
@@ -94,6 +94,10 @@ export const ui = {
   nextPost: { ko: '다음 글', en: 'Next' },
   postNavLabel: { ko: '글 사이 이동', en: 'Post navigation' },
   langLabel: { ko: '언어', en: 'Language' },
+  untranslatedBody: {
+    ko: '이 글은 아직 영어판이 없어 한국어 원문을 보여줍니다.',
+    en: 'No English version of this post yet - showing the Korean original.',
+  },
   // Profile sections
   about: { ko: '소개', en: 'About' },
   contact: { ko: '연락처', en: 'Contact' },

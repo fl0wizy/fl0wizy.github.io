@@ -169,6 +169,18 @@
 }
 
 /* Post Content Styles - high contrast, large body text (optimized for reading) */
+.post-untranslated-notice {
+  margin: 0 0 1.5rem;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--border-color);
+  border-left: 2px solid var(--accent-purple);
+  border-radius: 6px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 .post-content {
   color: var(--text-reading);
   line-height: 1.8;

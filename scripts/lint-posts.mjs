@@ -28,6 +28,7 @@ import remarkGfm from 'remark-gfm';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const POSTS_DIR = path.join(ROOT, 'src/content/posts');
+const EN_DIR = path.join(POSTS_DIR, 'en');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const DATA_TS = path.join(ROOT, 'src/lib/data.ts');
 
@@ -79,13 +80,37 @@ function collect(tree, type) {
 }
 
 const validCategories = readValidCategories();
-const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md')).sort();
+const koFiles = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith('.md')).sort();
+const koSlugs = new Set(koFiles.map((f) => f.replace(/\.md$/, '')));
+const enFiles = fs.existsSync(EN_DIR)
+  ? fs.readdirSync(EN_DIR).filter((f) => f.endsWith('.md')).sort()
+  : [];
+
+// 한국어 원문과 영어판을 같은 파서에 태운다. 영어판은 제목·설명을 원문
+// 프론트매터(titleEn/descriptionEn)에서 가져오므로 프론트매터 검사는 건너뛰고,
+// 대신 짝이 되는 원문이 실제로 있는지(고아 파일)를 본다.
+const targets = [
+  ...koFiles.map((f) => ({ file: f, dir: POSTS_DIR, label: f, isEn: false })),
+  ...enFiles.map((f) => ({ file: f, dir: EN_DIR, label: `en/${f}`, isEn: true })),
+];
 
 let errors = 0;
 let warns = 0;
 
-for (const file of files) {
-  const raw = fs.readFileSync(path.join(POSTS_DIR, file), 'utf8');
+function report(label, problems) {
+  if (!problems.length) return;
+  console.log(`\n${label}`);
+  for (const p of problems) {
+    const tag = p.level === 'error' ? '  ✗' : '  !';
+    console.log(`${tag} L${p.line}  ${p.msg}`);
+    if (p.hint) console.log(`      ↳ ${p.hint}`);
+    if (p.level === 'error') errors++;
+    else warns++;
+  }
+}
+
+for (const { file, dir, label, isEn } of targets) {
+  const raw = fs.readFileSync(path.join(dir, file), 'utf8');
   const { fm, body, offset } = parseFrontmatter(raw);
   const problems = [];
 
@@ -120,7 +145,20 @@ for (const file of files) {
     }
   }
 
-  // --- 3. 프론트매터 ---
+  // --- 3. 프론트매터 (영어판은 원문 프론트매터를 쓰므로 제외) ---
+  if (isEn) {
+    if (!koSlugs.has(file.replace(/\.md$/, ''))) {
+      problems.push({
+        level: 'error',
+        line: 1,
+        msg: `짝이 되는 한국어 원문 없음`,
+        hint: `src/content/posts/${file} 이 있어야 이 영어판이 렌더됩니다.`,
+      });
+    }
+    report(label, problems);
+    continue;
+  }
+
   for (const field of REQUIRED_FIELDS) {
     if (!fm[field]) {
       problems.push({ level: 'error', line: 1, msg: `프론트매터 누락: ${field}` });
@@ -138,20 +176,11 @@ for (const file of files) {
     problems.push({ level: 'warn', line: 1, msg: 'published: false — 배포되지 않습니다' });
   }
 
-  if (problems.length) {
-    console.log(`\n${file}`);
-    for (const p of problems) {
-      const tag = p.level === 'error' ? '  ✗' : '  !';
-      console.log(`${tag} L${p.line}  ${p.msg}`);
-      if (p.hint) console.log(`      ↳ ${p.hint}`);
-      if (p.level === 'error') errors++;
-      else warns++;
-    }
-  }
+  report(label, problems);
 }
 
 console.log(
-  `\n검사 ${files.length}개 글 · 오류 ${errors}건 · 경고 ${warns}건` +
+  `\n검사 ${koFiles.length}개 글 + 영어판 ${enFiles.length}개 · 오류 ${errors}건 · 경고 ${warns}건` +
     (errors === 0 ? '  ✅' : '  ❌')
 );
 process.exit(errors === 0 ? 0 : 1);

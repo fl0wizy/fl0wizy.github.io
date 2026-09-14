@@ -113,6 +113,24 @@ const markdownModules = import.meta.glob('../content/posts/*.md', {
   import: 'default',
 }) as Record<string, string>;
 
+// English bodies live in a sibling directory, one file per slug. The glob above
+// uses a single '*', which does not cross '/', so these never register as posts
+// of their own -- they only supply the English body of the post they are named
+// after.
+const englishModules = import.meta.glob('../content/posts/en/*.md', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+}) as Record<string, string>;
+
+const englishBodies = new Map<string, string>(
+  Object.entries(englishModules).map(([path, markdown]) => {
+    const slug = path.split('/').pop()?.replace(/\.md$/, '') || '';
+    // Frontmatter is optional in an English file; only the body is used.
+    return [slug, stripLeadingH1(parseFrontmatter(markdown).content)];
+  }),
+);
+
 export const blogPosts: BlogPost[] = Object.entries(markdownModules)
   .map(([path, markdown]): BlogPost => {
     const slug = path.split('/').pop()?.replace(/\.md$/, '') || 'untitled-post';
@@ -134,6 +152,7 @@ export const blogPosts: BlogPost[] = Object.entries(markdownModules)
       tags,
       published: frontmatter.published ?? true,
       content: stripLeadingH1(content),
+      contentEn: englishBodies.get(slug),
     };
   })
   .sort((a, b) => parsePostDate(b.date) - parsePostDate(a.date));
