@@ -13,11 +13,11 @@ export default function Profile() {
   return (
     <div className="profile-page">
       <ProfileCard />
+      <EducationSection />
       <ExperienceSection />
       <AwardsSection />
-      <ProjectsSection />
-      <EducationSection />
       <CertificationsSection />
+      <ProjectsSection />
       <SkillsSection />
     </div>
   );

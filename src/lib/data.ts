@@ -226,6 +226,16 @@ export const profileData: ProfileData = {
       tags: ['Web3 Security', 'Audit', 'Study Group Operations'],
     },
     {
+      title: { ko: '인턴', en: 'Intern' },
+      company: 'Hspace',
+      period: '2025-07 ~ 2025-08',
+      description: {
+        ko: '웹·Web3·인프라 전반 실무 경험 / 보안 커뮤니티 프로그램 운영 지원',
+        en: 'Hands-on work across web, Web3 and infrastructure / support for security community programs',
+      },
+      tags: ['Web Security', 'Web3', 'Secureum', 'DEFCON'],
+    },
+    {
       title: { ko: '제10대 학생회장', en: 'The 10th President of the Student Council' },
       company: { ko: '아주대학교 사이버보안학과', en: 'Ajou University - Department of Cyber Security' },
       period: '2025-02 ~ 2025-12',
@@ -364,17 +374,6 @@ export const profileData: ProfileData = {
       },
       tags: ['Systems Security', 'Operating Systems', 'Networking'],
       current: true,
-    },
-    {
-      title: { ko: 'Hspace 인턴십', en: 'Hspace Internship' },
-      institution: 'Hspace',
-      subInfo: { ko: '인턴', en: 'Intern' },
-      period: '2025-07 ~ 2025-08',
-      description: {
-        ko: '웹·Web3·인프라 전반 실무 경험 / 보안 커뮤니티 프로그램 운영 지원',
-        en: 'Hands-on work across web, Web3 and infrastructure / support for security community programs',
-      },
-      tags: ['Web Security', 'Web3', 'Secureum', 'DEFCON'],
     },
     {
       title: { ko: 'HuntingMaster(KISA) 웹/Web3 트랙 교육생', en: 'HuntingMaster (KISA) Web/Web3 Track Trainee' },
