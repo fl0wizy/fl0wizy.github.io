@@ -226,8 +226,8 @@ export const profileData: ProfileData = {
       company: { ko: '아주대학교 사이버보안학과', en: 'Ajou University - Department of Cyber Security' },
       period: '2025-02 ~ 2025-12',
       description: {
-        ko: '2025년도 아주대학교 사이버보안학과 제10대 학생회장 역임',
-        en: '10th president of the student council, Department of Cyber Security, Ajou University (2025 term)',
+        ko: '제26대 소프트웨어융합대학 학생회 한빛 교육복지국(2022), 제9대 사이버보안학과 학생회 Log 집행국(2024)을 거쳐 2025년 제10대 사이버보안학과 학생회장 역임',
+        en: 'Education and welfare bureau of Hanbit (26th College of Software and Convergence Technology council, 2022), executive bureau of Log (9th departmental council, 2024), then 10th president of the Department of Cyber Security council (2025)',
       },
       tags: ['Student Council', 'Student Governance', 'Ownership'],
     },
