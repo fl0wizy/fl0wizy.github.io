@@ -96,8 +96,8 @@ HTTP/1.0은 요청마다 TCP 연결을 새로 열었다. 3편에서 본 대로 �
 
 새로 정리된 기법 중 두 가지가 눈에 띈다.
 
-- **0.CL desync** — 프론트엔드는 본문 길이를 0으로 보고 백엔드는 `Content-Length`를 따르는 조합이다. 이전까지는 양쪽이 서로를 기다리며 교착에 빠져 악용 불가능한 것으로 여겨졌다. 케틀은 **early-response gadget**, 즉 본문이 도착하기 전에 백엔드가 응답을 내놓게 만드는 경로(예: IIS의 예약 파일명 `/con`)를 찾아 교착을 깬다. 이후 double-desync 변형으로 0.CL을 악용 가능한 CL.0으로 전환한다.
-- **`Expect` 헤더 기반** — 리버스 프록시에서 `Expect: 100-continue` 처리의 복잡도가 새 불일치를 만든다. 평범한 형태와 난독화된 형태 모두 주요 CDN에서 0.CL·CL.0 desync를 유발했다.
+- **0.CL desync** – 프론트엔드는 본문 길이를 0으로 보고 백엔드는 `Content-Length`를 따르는 조합이다. 이전까지는 양쪽이 서로를 기다리며 교착에 빠져 악용 불가능한 것으로 여겨졌다. 케틀은 **early-response gadget**, 즉 본문이 도착하기 전에 백엔드가 응답을 내놓게 만드는 경로(예: IIS의 예약 파일명 `/con`)를 찾아 교착을 깬다. 이후 double-desync 변형으로 0.CL을 악용 가능한 CL.0으로 전환한다.
+- **`Expect` 헤더 기반** – 리버스 프록시에서 `Expect: 100-continue` 처리의 복잡도가 새 불일치를 만든다. 평범한 형태와 난독화된 형태 모두 주요 CDN에서 0.CL·CL.0 desync를 유발했다.
 
 규모가 이 연구의 논점을 뒷받침한다. Cloudflare의 H2.0 desync 하나가 약 **2,400만 개** 사이트를 완전 장악에 노출시켰고, Akamai의 난독화된 `Expect` 취약점 하나로 74건 **221,000달러**의 바운티가 지급됐으며, 2주간의 연구 전체에서 **350,000달러** 이상이 나왔다.
 
@@ -109,7 +109,7 @@ HTTP/1.0은 요청마다 TCP 연결을 새로 열었다. 3편에서 본 대로 �
 
 ---
 
-## 5. 캐시와 쿠키 — 같은 계층의 다른 두 문제
+## 5. 캐시와 쿠키 – 같은 계층의 다른 두 문제
 
 ### 캐시
 
@@ -146,7 +146,7 @@ HTTP/1.1에서 취약점이 사는 자리는 하나의 문장으로 정리된다
 
 ### 참고
 
-- [RFC 9112: HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112.html) — 본문 길이 규칙은 §6.3
+- [RFC 9112: HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112.html) – 본문 길이 규칙은 §6.3
 - [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111.html)
-- [HTTP/1.1 must die: the desync endgame (2025)](https://portswigger.net/research/http1-must-die) — 0.CL, Expect 기반 desync
-- [HTTP Desync Attacks: Request Smuggling Reborn (2019)](https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn) — 이 연구 계보의 출발점
+- [HTTP/1.1 must die: the desync endgame (2025)](https://portswigger.net/research/http1-must-die) – 0.CL, Expect 기반 desync
+- [HTTP Desync Attacks: Request Smuggling Reborn (2019)](https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn) – 이 연구 계보의 출발점

@@ -22,9 +22,9 @@ B+트리의 노드(페이지)는 크기가 고정돼 있다. 페이지가 가득
 
 여기서 삽입 순서가 결정적인 차이를 만든다.
 
-**순차 키** — 자동 증가 정수나 시간 순으로 정렬되는 식별자를 쓰면, 새 키는 항상 가장 오른쪽 페이지로 간다. 분할이 거의 일어나지 않고, 분할되더라도 왼쪽 페이지는 가득 찬 채로 남는다. 페이지가 촘촘히 차므로 같은 데이터를 담는 데 필요한 페이지 수가 적다.
+**순차 키** – 자동 증가 정수나 시간 순으로 정렬되는 식별자를 쓰면, 새 키는 항상 가장 오른쪽 페이지로 간다. 분할이 거의 일어나지 않고, 분할되더라도 왼쪽 페이지는 가득 찬 채로 남는다. 페이지가 촘촘히 차므로 같은 데이터를 담는 데 필요한 페이지 수가 적다.
 
-**무작위 키** — 랜덤 UUID를 기본키로 쓰면 삽입 위치가 트리 전체에 흩어진다. 중간 페이지가 계속 분할되고, 분할된 페이지는 대략 절반만 찬 상태가 된다. 결과는 세 가지다.
+**무작위 키** – 랜덤 UUID를 기본키로 쓰면 삽입 위치가 트리 전체에 흩어진다. 중간 페이지가 계속 분할되고, 분할된 페이지는 대략 절반만 찬 상태가 된다. 결과는 세 가지다.
 
 - 인덱스 크기가 커진다. 같은 행 수에 더 많은 페이지를 쓴다.
 - 캐시 적중률이 떨어진다. 페이지가 많으니 메모리에 다 올라가지 않는다.
@@ -134,6 +134,6 @@ MVCC 의 버전 관리    → 긴 트랜잭션 하나가 전체 성능을 끌어
 
 ### 참고
 
-- [PostgreSQL: Transaction Isolation](https://www.postgresql.org/docs/current/transaction-iso.html) — 직렬화 스냅샷 격리와 write skew
-- [MySQL: InnoDB Index Types](https://dev.mysql.com/doc/refman/8.4/en/innodb-index-types.html) — 클러스터드 인덱스 구조
-- [Blind SQL injection](https://portswigger.net/web-security/sql-injection/blind) — 시간 기반 추출
+- [PostgreSQL: Transaction Isolation](https://www.postgresql.org/docs/current/transaction-iso.html) – 직렬화 스냅샷 격리와 write skew
+- [MySQL: InnoDB Index Types](https://dev.mysql.com/doc/refman/8.4/en/innodb-index-types.html) – 클러스터드 인덱스 구조
+- [Blind SQL injection](https://portswigger.net/web-security/sql-injection/blind) – 시간 기반 추출

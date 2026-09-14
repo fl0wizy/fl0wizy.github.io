@@ -67,9 +67,9 @@ published: true
 
 프런트엔드 도구 체인이 복잡해 보이는 이유는 그것이 세 가지 다른 문제를 동시에 풀고 있기 때문이다.
 
-- **모듈 시스템의 파편화** — 자바스크립트에는 오랫동안 표준 모듈 시스템이 없었다. 서버 쪽은 CommonJS, 브라우저 쪽은 AMD, 나중에 표준 ESM이 들어왔다. 서로 다른 형식으로 배포된 라이브러리들을 한 페이지에서 쓰려면 누군가 번역해야 한다.
-- **요청 수 제한** — 6편에서 본 대로 HTTP/1.1에서는 연결당 응답이 순서대로만 나오고 브라우저는 도메인당 여섯 개쯤만 연결을 연다. 파일이 수백 개면 로딩이 치명적으로 느려진다. 그래서 하나로 합쳤다.
-- **전송량 줄이기** — 사용하지 않는 코드 제거, 압축, 코드 분할.
+- **모듈 시스템의 파편화** – 자바스크립트에는 오랫동안 표준 모듈 시스템이 없었다. 서버 쪽은 CommonJS, 브라우저 쪽은 AMD, 나중에 표준 ESM이 들어왔다. 서로 다른 형식으로 배포된 라이브러리들을 한 페이지에서 쓰려면 누군가 번역해야 한다.
+- **요청 수 제한** – 6편에서 본 대로 HTTP/1.1에서는 연결당 응답이 순서대로만 나오고 브라우저는 도메인당 여섯 개쯤만 연결을 연다. 파일이 수백 개면 로딩이 치명적으로 느려진다. 그래서 하나로 합쳤다.
+- **전송량 줄이기** – 사용하지 않는 코드 제거, 압축, 코드 분할.
 
 두 번째 이유는 HTTP/2 이후 상당히 약해졌다. 그런데도 번들링이 사라지지 않은 것은 첫 번째와 세 번째가 남아 있기 때문이다. **문제 하나가 해결돼도 같은 도구가 다른 문제 때문에 계속 필요한** 전형적인 경우다.
 
@@ -126,6 +126,6 @@ published: true
 
 ### 참고
 
-- [React Server Components](https://react.dev/reference/rsc/server-components) — React 공식 문서
-- [Rendering: Server Components](https://nextjs.org/docs/app/getting-started/server-and-client-components) — Next.js 문서
-- [DOM-based vulnerabilities](https://portswigger.net/web-security/dom-based) — 클라이언트 사이드 sink 목록
+- [React Server Components](https://react.dev/reference/rsc/server-components) – React 공식 문서
+- [Rendering: Server Components](https://nextjs.org/docs/app/getting-started/server-and-client-components) – Next.js 문서
+- [DOM-based vulnerabilities](https://portswigger.net/web-security/dom-based) – 클라이언트 사이드 sink 목록

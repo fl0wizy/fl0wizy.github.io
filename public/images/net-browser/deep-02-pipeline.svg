@@ -63,15 +63,15 @@
   <text x="530" y="324" fill="#e8e8f0" font-size="12" font-weight="700">무효화 범위를 좁히는 선언</text>
   <text x="530" y="346" fill="#c8c8d8" font-size="10.5">기본적으로 한 요소의 크기 변화는 형제와 조상에게</text>
   <text x="530" y="362" fill="#c8c8d8" font-size="10.5">전파된다. 그래서 리스트 한 항목이 바뀌면 전체가 흔들린다.</text>
-  <text x="530" y="386" fill="#a7f3d0" font-size="10.5" font-weight="600">contain — 이 안의 변화가 밖에 영향을 주지 않는다고 선언</text>
+  <text x="530" y="386" fill="#a7f3d0" font-size="10.5" font-weight="600">contain – 이 안의 변화가 밖에 영향을 주지 않는다고 선언</text>
   <text x="530" y="406" fill="#8a8aa0" font-size="10.5">브라우저는 그 약속을 믿고 재계산 범위를 그 서브트리로 가둔다</text>
-  <text x="530" y="428" fill="#a7f3d0" font-size="10.5" font-weight="600">content-visibility — 화면 밖 콘텐츠의 렌더링을 건너뛴다</text>
+  <text x="530" y="428" fill="#a7f3d0" font-size="10.5" font-weight="600">content-visibility – 화면 밖 콘텐츠의 렌더링을 건너뛴다</text>
   <text x="530" y="448" fill="#8a8aa0" font-size="10.5">긴 목록에서 효과가 크지만, 렌더 비용의 차이가 관측 가능해진다</text>
-  <text x="530" y="464" fill="#8a8aa0" font-size="10.5">— 아래의 정보 채널과 이어지는 지점이다</text>
+  <text x="530" y="464" fill="#8a8aa0" font-size="10.5">– 아래의 정보 채널과 이어지는 지점이다</text>
 
   <!-- 정보 채널 -->
   <rect x="40" y="486" width="920" height="216" rx="10" fill="#1a1420" stroke="#db8fb4"/>
-  <text x="60" y="510" fill="#f0c0d8" font-size="12.5" font-weight="700">렌더링은 정보 채널이다 — 스크립트를 넣지 못해도 값이 새어 나간다</text>
+  <text x="60" y="510" fill="#f0c0d8" font-size="12.5" font-weight="700">렌더링은 정보 채널이다 – 스크립트를 넣지 못해도 값이 새어 나간다</text>
 
   <rect x="60" y="524" width="430" height="80" rx="7" fill="#1a1012" stroke="#db8585"/>
   <text x="78" y="544" fill="#e8b0b0" font-size="11" font-weight="600">CSS 만으로 값을 한 글자씩 빼내는 경로</text>
@@ -85,7 +85,7 @@
   <text x="528" y="580" fill="#c8c8d8" font-size="10">로그인 여부·검색 결과 유무에 따라 렌더 비용이 다르면</text>
   <text x="528" y="596" fill="#c8c8d8" font-size="10">응답 내용을 읽지 않고도 상태를 구분할 수 있다.</text>
 
-  <text x="60" y="632" fill="#c8c8d8" font-size="10.5">방어가 어려운 이유 — 이 채널들은 버그가 아니라 기능의 부산물이다. 선택자는 매칭돼야 하고, 렌더링은 내용에 따라 비용이 달라진다.</text>
+  <text x="60" y="632" fill="#c8c8d8" font-size="10.5">방어가 어려운 이유 – 이 채널들은 버그가 아니라 기능의 부산물이다. 선택자는 매칭돼야 하고, 렌더링은 내용에 따라 비용이 달라진다.</text>
   <text x="60" y="654" fill="#8a8aa0" font-size="10.5">그래서 방어는 대개 간접적이다. CSP 로 외부 자원 로딩을 제한하고, 민감한 값을 DOM 속성에 두지 않고,</text>
   <text x="60" y="672" fill="#8a8aa0" font-size="10.5">프레이밍을 거부하고(frame-ancestors), 상태별 응답의 렌더 비용 차이를 줄인다.</text>
   <text x="60" y="692" fill="#f0c0d8" font-size="10.5" font-weight="600">읽기를 막는 것과 반응의 차이를 없애는 것은 다른 작업이다. 후자를 따로 하지 않으면 남는다.</text>

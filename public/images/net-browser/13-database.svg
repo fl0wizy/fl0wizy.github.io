@@ -10,7 +10,7 @@
   <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">둘 다 "디스크는 느리다"와 "요청은 동시에 온다"는 두 사실에서 역산된 구조다</text>
 
   <!-- B+tree -->
-  <text x="40" y="90" fill="#8a8aa0" font-size="11" font-weight="600">B+트리 — 왜 이진 트리가 아닌가</text>
+  <text x="40" y="90" fill="#8a8aa0" font-size="11" font-weight="600">B+트리 – 왜 이진 트리가 아닌가</text>
   <g text-anchor="middle">
     <rect x="380" y="102" width="240" height="36" rx="6" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
     <text x="500" y="126" fill="#d8d0f8" font-size="11">루트 · [30 | 60 | 90]</text>
@@ -55,7 +55,7 @@
   <text x="60" y="368" fill="#8a8aa0" font-size="10.5">이진 트리는 비교 횟수는 적지만 노드마다 디스크를 만진다. 최적화 대상이 "비교 횟수"가 아니라 "블록 접근 횟수"라는 점이 형태를 결정했다.</text>
 
   <!-- 격리 수준 -->
-  <text x="40" y="412" fill="#8a8aa0" font-size="11" font-weight="600">트랜잭션 격리 수준 — 무엇을 허용하기로 했는가</text>
+  <text x="40" y="412" fill="#8a8aa0" font-size="11" font-weight="600">트랜잭션 격리 수준 – 무엇을 허용하기로 했는가</text>
   <rect x="40" y="424" width="920" height="150" rx="9" fill="#12121f" stroke="#3a3a52"/>
 
   <g font-size="10.5">
@@ -94,7 +94,7 @@
 
   <!-- lost update -->
   <rect x="40" y="590" width="920" height="118" rx="10" fill="#1f1418" stroke="#db8585"/>
-  <text x="60" y="614" fill="#e8b0b0" font-size="12" font-weight="700">격리 수준을 올려도 애플리케이션 로직으로는 막히지 않는 것 — lost update</text>
+  <text x="60" y="614" fill="#e8b0b0" font-size="12" font-weight="700">격리 수준을 올려도 애플리케이션 로직으로는 막히지 않는 것 – lost update</text>
   <rect x="60" y="626" width="420" height="66" rx="7" fill="#1a1012" stroke="#db8585"/>
   <text x="76" y="646" font-family="Menlo, monospace" font-size="10.5" fill="#e8b0b0">T1: SELECT balance   -- 1000</text>
   <text x="76" y="662" font-family="Menlo, monospace" font-size="10.5" fill="#e8b0b0">T2: SELECT balance   -- 1000</text>

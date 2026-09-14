@@ -54,9 +54,9 @@ X-Forwarded-For: 1.2.3.4, 10.0.0.9, 10.0.0.3
 
 컨테이너는 가상머신이 아니다. 세 가지 커널 기능의 조합이다.
 
-- **네임스페이스** — 무엇을 보는가. 프로세스 목록, 네트워크 인터페이스, 마운트 지점, 호스트명을 분리된 뷰로 준다.
-- **cgroups** — 얼마나 쓰는가. CPU와 메모리 사용량의 상한.
-- **capabilities와 seccomp** — 무엇을 할 수 있는가. 특권 동작과 허용 시스템 콜의 제한.
+- **네임스페이스** – 무엇을 보는가. 프로세스 목록, 네트워크 인터페이스, 마운트 지점, 호스트명을 분리된 뷰로 준다.
+- **cgroups** – 얼마나 쓰는가. CPU와 메모리 사용량의 상한.
+- **capabilities와 seccomp** – 무엇을 할 수 있는가. 특권 동작과 허용 시스템 콜의 제한.
 
 **커널은 호스트와 공유한다.** 이 한 줄이 보안상 결정적이다. 가상머신은 게스트 커널이 따로 있어서 탈출하려면 하이퍼바이저를 깨야 하지만, 컨테이너는 같은 커널을 쓰므로 **커널 취약점 하나가 곧 탈출 경로**다. 컨테이너 탈출 연구가 사실상 커널 익스플로잇 연구와 겹치는 이유다.
 
@@ -90,7 +90,7 @@ X-Forwarded-For: 1.2.3.4, 10.0.0.9, 10.0.0.3
 
 ---
 
-## 5. 관측성 — 만들면서 동시에 위험이 되는 것
+## 5. 관측성 – 만들면서 동시에 위험이 되는 것
 
 로그, 메트릭, 트레이스는 사고 조사에 반드시 필요하다. 동시에 그 자체가 유출 경로다. 인증 헤더, 세션 쿠키, 요청 본문의 개인정보가 로그에 그대로 남는 일이 흔하고, 로그 수집 시스템은 보통 애플리케이션 데이터베이스보다 **더 많은 사람이 접근**한다. 마스킹은 수집 지점에서 해야 하며, 저장된 뒤에 지우는 것은 늦다.
 
@@ -114,5 +114,5 @@ X-Forwarded-For: 1.2.3.4, 10.0.0.9, 10.0.0.3
 ### 참고
 
 - [OWASP Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/)
-- [Kubernetes: Security Concepts](https://kubernetes.io/docs/concepts/security/) — RBAC, 네트워크 정책, 시크릿
-- [Forwarded HTTP Extension (RFC 7239)](https://www.rfc-editor.org/rfc/rfc7239.html) — 표준화된 전달 헤더
+- [Kubernetes: Security Concepts](https://kubernetes.io/docs/concepts/security/) – RBAC, 네트워크 정책, 시크릿
+- [Forwarded HTTP Extension (RFC 7239)](https://www.rfc-editor.org/rfc/rfc7239.html) – 표준화된 전달 헤더

@@ -11,12 +11,12 @@
 
   <!-- ===== HTTP/1.1 ===== -->
   <rect x="40" y="80" width="920" height="164" rx="10" fill="#12121f" stroke="#3a3a52"/>
-  <text x="60" y="104" fill="#e8e8f0" font-size="12.5" font-weight="700">HTTP/1.1 — 애플리케이션 계층에서 막힌다</text>
+  <text x="60" y="104" fill="#e8e8f0" font-size="12.5" font-weight="700">HTTP/1.1 – 애플리케이션 계층에서 막힌다</text>
   <text x="60" y="124" fill="#8a8aa0" font-size="10.5">한 연결에서 응답은 보낸 순서대로만 나올 수 있다. 그래서 브라우저는 도메인당 연결을 6개쯤 열어 병렬성을 흉내 냈다.</text>
 
   <g>
     <rect x="60" y="140" width="300" height="30" rx="5" fill="#141a22" stroke="#6f9fd8"/>
-    <text x="210" y="160" text-anchor="middle" fill="#bcd6f0" font-size="11">응답 A (느린 API — 2초)</text>
+    <text x="210" y="160" text-anchor="middle" fill="#bcd6f0" font-size="11">응답 A (느린 API – 2초)</text>
     <rect x="366" y="140" width="180" height="30" rx="5" fill="#1a1620" stroke="#5a5a78"/>
     <text x="456" y="160" text-anchor="middle" fill="#8a8aa0" font-size="11">응답 B (대기)</text>
     <rect x="552" y="140" width="180" height="30" rx="5" fill="#1a1620" stroke="#5a5a78"/>
@@ -27,7 +27,7 @@
 
   <!-- ===== HTTP/2 ===== -->
   <rect x="40" y="258" width="920" height="184" rx="10" fill="#12121f" stroke="#3a3a52"/>
-  <text x="60" y="282" fill="#e8e8f0" font-size="12.5" font-weight="700">HTTP/2 — 애플리케이션 계층은 풀렸지만 전송 계층에서 다시 막힌다</text>
+  <text x="60" y="282" fill="#e8e8f0" font-size="12.5" font-weight="700">HTTP/2 – 애플리케이션 계층은 풀렸지만 전송 계층에서 다시 막힌다</text>
   <text x="60" y="302" fill="#8a8aa0" font-size="10.5">하나의 연결 위에 독립적인 스트림을 여러 개 얹는다. 프레임에 스트림 ID가 있으므로 응답 순서는 자유롭다.</text>
 
   <g>
@@ -46,21 +46,21 @@
   </g>
   <text x="60" y="372" fill="#8a8aa0" font-size="10.5">세 스트림은 서로를 모르는 독립적인 존재다. 그런데 이 프레임들이 전부 하나의 TCP 연결 위에 실린다.</text>
   <rect x="60" y="384" width="870" height="44" rx="7" fill="#1f1418" stroke="#db8585"/>
-  <text x="78" y="404" fill="#e8b0b0" font-size="11" font-weight="600">TCP는 순서를 보장해야 한다 — B의 패킷이 유실되면, 뒤에 멀쩡히 도착한 C의 데이터도 커널이 애플리케이션에 올려 주지 않는다.</text>
+  <text x="78" y="404" fill="#e8b0b0" font-size="11" font-weight="600">TCP는 순서를 보장해야 한다 – B의 패킷이 유실되면, 뒤에 멀쩡히 도착한 C의 데이터도 커널이 애플리케이션에 올려 주지 않는다.</text>
   <text x="78" y="420" fill="#c8c8d8" font-size="10.5">스트림 A · B · C 전부가 B의 재전송을 기다린다. 막힘이 사라진 게 아니라 한 계층 아래로 옮겨간 것이다.</text>
 
   <!-- ===== HTTP/3 ===== -->
   <rect x="40" y="456" width="920" height="204" rx="10" fill="#12121f" stroke="#34d399"/>
-  <text x="60" y="480" fill="#a7f3d0" font-size="12.5" font-weight="700">HTTP/3 (QUIC) — 전송 계층을 새로 만들어 막힘을 없앤다</text>
+  <text x="60" y="480" fill="#a7f3d0" font-size="12.5" font-weight="700">HTTP/3 (QUIC) – 전송 계층을 새로 만들어 막힘을 없앤다</text>
   <text x="60" y="500" fill="#8a8aa0" font-size="10.5">스트림 개념을 전송 계층 안으로 내린다. 각 스트림이 독립적인 순서·재전송 단위를 가진다.</text>
 
   <g>
     <rect x="60" y="516" width="270" height="28" rx="5" fill="#141a22" stroke="#6f9fd8"/>
-    <text x="195" y="535" text-anchor="middle" fill="#bcd6f0" font-size="10.5">스트림 A — 정상 진행</text>
+    <text x="195" y="535" text-anchor="middle" fill="#bcd6f0" font-size="10.5">스트림 A – 정상 진행</text>
     <rect x="340" y="516" width="270" height="28" rx="5" fill="#1f1418" stroke="#db8585" stroke-dasharray="3 3"/>
-    <text x="475" y="535" text-anchor="middle" fill="#e8b0b0" font-size="10.5">스트림 B — 유실, 이 스트림만 대기</text>
+    <text x="475" y="535" text-anchor="middle" fill="#e8b0b0" font-size="10.5">스트림 B – 유실, 이 스트림만 대기</text>
     <rect x="620" y="516" width="310" height="28" rx="5" fill="#101a18" stroke="#34d399"/>
-    <text x="775" y="535" text-anchor="middle" fill="#a7f3d0" font-size="10.5">스트림 C — 정상 진행</text>
+    <text x="775" y="535" text-anchor="middle" fill="#a7f3d0" font-size="10.5">스트림 C – 정상 진행</text>
   </g>
   <text x="60" y="570" fill="#a7f3d0" font-size="11">A와 C는 B의 재전송을 기다리지 않는다.</text>
 
@@ -70,7 +70,7 @@
   <text x="78" y="638" fill="#c8c8d8" font-size="10.5">프로토콜이라며 버린다. UDP는 이미 어디서나 통과한다.</text>
 
   <rect x="500" y="584" width="430" height="62" rx="7" fill="#1a1620" stroke="#5a5a78"/>
-  <text x="518" y="604" fill="#e8e8f0" font-size="11" font-weight="600">연결 ID — 2편의 NAT 문제에 대한 답</text>
+  <text x="518" y="604" fill="#e8e8f0" font-size="11" font-weight="600">연결 ID – 2편의 NAT 문제에 대한 답</text>
   <text x="518" y="622" fill="#c8c8d8" font-size="10.5">연결을 4-튜플이 아니라 연결 ID로 식별한다. Wi-Fi에서</text>
   <text x="518" y="638" fill="#c8c8d8" font-size="10.5">LTE로 바뀌어 주소가 달라져도 같은 연결이 이어진다.</text>
 </svg>

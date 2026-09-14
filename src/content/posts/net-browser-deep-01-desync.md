@@ -36,7 +36,7 @@ TE.TE는 난독화가 핵심이다. 두 구현이 모두 `Transfer-Encoding`을 
 
 ---
 
-## 2. CL.0 — 규격을 지킨 요청으로 성립한다
+## 2. CL.0 – 규격을 지킨 요청으로 성립한다
 
 CL.0은 성격이 다르다. 백엔드가 `Content-Length`를 무시하는, 즉 본문을 아예 읽지 않는 상황을 노린다. PortSwigger의 연구는 이런 상황이 왜 흔한지를 이렇게 정리한다.
 
@@ -56,7 +56,7 @@ CL.0은 성격이 다르다. 백엔드가 `Content-Length`를 무시하는, 즉 
 
 ---
 
-## 3. client-side desync — 브라우저의 연결을 오염시킨다
+## 3. client-side desync – 브라우저의 연결을 오염시킨다
 
 규격을 지킨 평범한 POST로 성립한다면, **브라우저가 그 요청을 보낼 수 있다.**
 
@@ -110,9 +110,9 @@ CL.0은 성격이 다르다. 백엔드가 `Content-Length`를 무시하는, 즉 
 
 그래서 탐지는 두 단계로 나뉜다.
 
-**1단계 — 타이밍 기반 프로브.** 서버가 본문을 기다리는지 여부를 응답 지연으로 판별한다. 백엔드가 더 올 본문을 기다린다면 응답이 눈에 띄게 늦어진다. 이 방식은 연결에 접두사를 남기지 않으므로 다른 사용자에게 영향이 없다. 취약 가능성만 확인하는 단계다.
+**1단계 – 타이밍 기반 프로브.** 서버가 본문을 기다리는지 여부를 응답 지연으로 판별한다. 백엔드가 더 올 본문을 기다린다면 응답이 눈에 띄게 늦어진다. 이 방식은 연결에 접두사를 남기지 않으므로 다른 사용자에게 영향이 없다. 취약 가능성만 확인하는 단계다.
 
-**2단계 — 확인.** 실제로 요청을 주입해 보는 단계이고, 여기서부터는 영향이 생긴다. 인가된 점검에서만, 가능하면 트래픽이 적은 시간에, 자기 자신의 후속 요청으로 확인하는 방식을 쓴다. Burp Suite의 HTTP Request Smuggler 같은 도구가 이 절차를 구현하고 있다.
+**2단계 – 확인.** 실제로 요청을 주입해 보는 단계이고, 여기서부터는 영향이 생긴다. 인가된 점검에서만, 가능하면 트래픽이 적은 시간에, 자기 자신의 후속 요청으로 확인하는 방식을 쓴다. Burp Suite의 HTTP Request Smuggler 같은 도구가 이 절차를 구현하고 있다.
 
 ---
 
@@ -131,6 +131,6 @@ CL.0은 성격이 다르다. 백엔드가 `Content-Length`를 무시하는, 즉 
 ### 참고
 
 - [HTTP Desync Attacks: Request Smuggling Reborn](https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn) (2019)
-- [Browser-Powered Desync Attacks](https://portswigger.net/research/browser-powered-desync-attacks) (2022) — CL.0, client-side desync
-- [HTTP/1.1 must die: the desync endgame](https://portswigger.net/research/http1-must-die) (2025) — 0.CL, Expect 기반
-- [RFC 9112 §6.3](https://www.rfc-editor.org/rfc/rfc9112.html#name-message-body-length) — 본문 길이 결정 규칙
+- [Browser-Powered Desync Attacks](https://portswigger.net/research/browser-powered-desync-attacks) (2022) – CL.0, client-side desync
+- [HTTP/1.1 must die: the desync endgame](https://portswigger.net/research/http1-must-die) (2025) – 0.CL, Expect 기반
+- [RFC 9112 §6.3](https://www.rfc-editor.org/rfc/rfc9112.html#name-message-body-length) – 본문 길이 결정 규칙

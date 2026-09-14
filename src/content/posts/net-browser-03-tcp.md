@@ -25,7 +25,7 @@ published: true
 | 순서 | 순서번호(sequence number)로 재조립 |
 | 도착 | ACK가 안 오면 재전송 |
 | 중복 없음 | 순서번호로 중복 폐기 |
-| 일정한 지연 | 복구하지 않음 — 오히려 재전송 때문에 더 튄다 |
+| 일정한 지연 | 복구하지 않음 – 오히려 재전송 때문에 더 튄다 |
 
 네 번째 칸이 TCP의 성질을 결정한다. **신뢰성을 지연으로 산다.** 패킷 하나가 유실되면 그 뒤에 도착한 멀쩡한 데이터도 애플리케이션에 전달되지 못하고 대기한다. 순서를 보장해야 하기 때문이다. 이것이 TCP 계층의 head-of-line blocking이고, HTTP/2가 끝내 해결하지 못해 HTTP/3이 TCP를 떠나게 되는 이유다(7편).
 
@@ -46,8 +46,8 @@ published: true
 ```
 ISN = M + F(localip, localport, remoteip, remoteport, secretkey)
 
- M : 단조 증가 타이머 — 같은 4-튜플의 옛 연결과 겹치지 않게
- F : 외부에서 계산 불가능해야 하는 함수 — 예측 방지
+ M : 단조 증가 타이머 – 같은 4-튜플의 옛 연결과 겹치지 않게
+ F : 외부에서 계산 불가능해야 하는 함수 – 예측 방지
 ```
 
 > "F() MUST NOT be computable from the outside, or an attacker could still guess at sequence numbers from the ISN used for some other connection."
@@ -58,9 +58,9 @@ ISN = M + F(localip, localport, remoteip, remoteport, secretkey)
 
 핸드셰이크는 1 RTT를 고정 비용으로 쓰고, 서버 쪽에 상태를 만든다. 둘 다 그대로 공격 대상이 된다.
 
-- **SYN flood** — SYN만 보내고 세 번째 ACK를 보내지 않으면 서버의 half-open 상태 테이블이 찬다. 표준 대응은 SYN cookie로, 상태를 저장하는 대신 ISN 자체에 정보를 인코딩해 세 번째 ACK가 올 때 복원한다. 상태를 없애서 상태 고갈 공격을 무력화하는 방식이다.
-- **RTT 비용** — TCP 1 RTT에 TLS 핸드셰이크까지 얹으면 첫 바이트까지 2-3 RTT가 든다. 이 비용을 줄이려는 압력이 HTTP keep-alive → HTTP/2 멀티플렉싱 → QUIC의 0-RTT로 이어지는 계보 전체를 만든다(5편, 7편).
-- **연결 재사용** — 비싸니까 재사용한다. 리버스 프록시는 백엔드로 가는 커넥션을 풀에 담아 여러 사용자의 요청에 돌려 쓴다. **한 TCP 연결을 여러 사용자가 시분할로 나눠 쓰는 구조**가 여기서 생기고, 6편의 요청 스머글링은 이 구조가 없으면 성립하지 않는다.
+- **SYN flood** – SYN만 보내고 세 번째 ACK를 보내지 않으면 서버의 half-open 상태 테이블이 찬다. 표준 대응은 SYN cookie로, 상태를 저장하는 대신 ISN 자체에 정보를 인코딩해 세 번째 ACK가 올 때 복원한다. 상태를 없애서 상태 고갈 공격을 무력화하는 방식이다.
+- **RTT 비용** – TCP 1 RTT에 TLS 핸드셰이크까지 얹으면 첫 바이트까지 2-3 RTT가 든다. 이 비용을 줄이려는 압력이 HTTP keep-alive → HTTP/2 멀티플렉싱 → QUIC의 0-RTT로 이어지는 계보 전체를 만든다(5편, 7편).
+- **연결 재사용** – 비싸니까 재사용한다. 리버스 프록시는 백엔드로 가는 커넥션을 풀에 담아 여러 사용자의 요청에 돌려 쓴다. **한 TCP 연결을 여러 사용자가 시분할로 나눠 쓰는 구조**가 여기서 생기고, 6편의 요청 스머글링은 이 구조가 없으면 성립하지 않는다.
 
 ---
 
@@ -74,15 +74,15 @@ TCP의 재전송에는 명백한 함정이 있다. 망이 막혀서 패킷이 �
 
 여기서 나온 장치들이 지금도 돌아간다.
 
-- **slow start** — 연결 시작 시 전송량을 작게 잡고 ACK가 돌아올 때마다 지수적으로 늘린다. 망의 용량을 모르는 상태에서 추측 대신 측정을 한다.
-- **congestion window** — 수신자가 알려 주는 윈도우(상대가 받을 수 있는 양)와 별개로, 송신자가 스스로 유지하는 "망이 받아 줄 것 같은 양". 실제 전송량은 둘 중 작은 값이다.
-- **AIMD** — 잘 되면 조금씩 늘리고(additive increase), 유실을 보면 절반으로 줄인다(multiplicative decrease). 여러 송신자가 이 규칙을 각자 따르면 대역폭이 대략 공평하게 나뉜다는 것이 이 규칙의 근거다.
+- **slow start** – 연결 시작 시 전송량을 작게 잡고 ACK가 돌아올 때마다 지수적으로 늘린다. 망의 용량을 모르는 상태에서 추측 대신 측정을 한다.
+- **congestion window** – 수신자가 알려 주는 윈도우(상대가 받을 수 있는 양)와 별개로, 송신자가 스스로 유지하는 "망이 받아 줄 것 같은 양". 실제 전송량은 둘 중 작은 값이다.
+- **AIMD** – 잘 되면 조금씩 늘리고(additive increase), 유실을 보면 절반으로 줄인다(multiplicative decrease). 여러 송신자가 이 규칙을 각자 따르면 대역폭이 대략 공평하게 나뉜다는 것이 이 규칙의 근거다.
 
 현대의 기본 알고리즘은 리눅스의 CUBIC이고, 유실 대신 대역폭과 RTT를 직접 추정하는 BBR도 널리 쓰인다. 하지만 "혼잡 제어는 종단 호스트의 자발적 협조"라는 구조는 그대로다. 규칙을 안 지키는 구현이 대역폭을 더 가져간다는 뜻이기도 하다.
 
 ---
 
-## 4. Nagle과 지연 ACK — 좋은 최적화 두 개가 만나면
+## 4. Nagle과 지연 ACK – 좋은 최적화 두 개가 만나면
 
 작은 패킷을 많이 보내면 헤더 오버헤드가 심하다. Nagle 알고리즘은 "아직 ACK 안 받은 데이터가 있으면, 작은 데이터는 모아 뒀다가 보낸다"로 이를 줄인다. 별도로 지연 ACK는 "ACK만 단독으로 보내지 말고 잠깐(보통 40-200ms) 기다렸다가 보낼 데이터에 얹어 보낸다"로 패킷 수를 줄인다.
 
@@ -108,7 +108,7 @@ send(fd, "GET /a", 6, 0);
 send(fd, " HTTP/1.1", 9, 0);
 send(fd, "\r\n\r\n", 4, 0);
 
-// 받는 쪽 — 이렇게 한 번에 올 수 있고
+// 받는 쪽 – 이렇게 한 번에 올 수 있고
 recv(fd, buf, 4096, 0);   // "GET /a HTTP/1.1\r\n\r\n"  (19바이트)
 
 // 이렇게 쪼개져 올 수도 있다
@@ -120,8 +120,8 @@ recv(fd, buf, 4096, 0);   // "TP/1.1\r\n\r\n"          (10바이트)
 
 따라서 **메시지 경계는 애플리케이션이 직접 만들어야 한다.** 방법은 근본적으로 두 가지뿐이다.
 
-1. **구분자** — 특정 바이트열이 나오면 거기까지가 한 메시지. 장점은 길이를 미리 몰라도 되는 것, 단점은 본문에 그 바이트열이 나오면 깨지는 것.
-2. **길이 접두사** — 앞에 길이를 적고 그만큼 읽는다. 장점은 본문 내용과 무관한 것, 단점은 길이를 미리 알아야 하는 것.
+1. **구분자** – 특정 바이트열이 나오면 거기까지가 한 메시지. 장점은 길이를 미리 몰라도 되는 것, 단점은 본문에 그 바이트열이 나오면 깨지는 것.
+2. **길이 접두사** – 앞에 길이를 적고 그만큼 읽는다. 장점은 본문 내용과 무관한 것, 단점은 길이를 미리 알아야 하는 것.
 
 HTTP/1.1은 **둘 다 쓴다.** 헤더의 끝은 구분자(빈 줄, `CRLF CRLF`)로 정하고, 본문의 끝은 길이(`Content-Length`)나 청크 길이(`Transfer-Encoding: chunked`)로 정한다. 한 프로토콜 안에 경계 결정 방식이 셋이나 공존하는 구조이고, 6편의 요청 스머글링은 이 셋이 서로 다른 답을 낼 때 발생한다. 지금 기억할 것은 이것이 HTTP 설계자의 실수가 아니라 **TCP가 경계를 안 주기 때문에 불가피하게 떠맡은 일**이라는 점이다.
 
@@ -147,6 +147,6 @@ HTTP/1.1은 **둘 다 쓴다.** 헤더의 끝은 구분자(빈 줄, `CRLF CRLF`)
 
 ### 참고
 
-- [RFC 9293: Transmission Control Protocol](https://www.rfc-editor.org/rfc/rfc9293.html) — 핸드셰이크와 ISN 규정
-- [Congestion Avoidance and Control (Jacobson & Karels, 1988)](https://ee.lbl.gov/papers/congavoid.pdf) — 원 논문 PDF
-- [Smashing the state machine: the true potential of web race conditions](https://portswigger.net/research/smashing-the-state-machine) — single-packet attack
+- [RFC 9293: Transmission Control Protocol](https://www.rfc-editor.org/rfc/rfc9293.html) – 핸드셰이크와 ISN 규정
+- [Congestion Avoidance and Control (Jacobson & Karels, 1988)](https://ee.lbl.gov/papers/congavoid.pdf) – 원 논문 PDF
+- [Smashing the state machine: the true potential of web race conditions](https://portswigger.net/research/smashing-the-state-machine) – single-packet attack

@@ -60,10 +60,10 @@ published: true
 
 Ethernet의 최대 전송 단위(MTU)는 1500바이트다. 이 숫자에 계산식은 없다. 1980년 DIX Ethernet 규격을 만들 때 몇 가지 물리적 제약 사이에서 타협한 값이다.
 
-- **공유 매체의 점유 시간** — 당시 Ethernet은 하나의 동축 케이블을 모든 장비가 공유했다. 한 장비가 긴 프레임을 보내는 동안 나머지는 전부 기다린다. 프레임이 클수록 헤더 오버헤드 비율은 좋아지지만 다른 장비의 대기 시간이 길어진다.
-- **babble 보호** — 트랜시버는 한 장비의 송신이 약 1.25ms를 넘으면 고장으로 간주하고 그 장비를 망에서 격리했다. 이 시간 제한이 프레임 크기의 상한을 정한다.
-- **CRC의 검출력** — 프레임 체크 시퀀스(FCS)의 오류 검출 능력은 프레임이 길수록 떨어진다. 너무 크면 오류가 조용히 통과한다.
-- **하드웨어 메모리** — 초기 NIC의 버퍼가 작았다.
+- **공유 매체의 점유 시간** – 당시 Ethernet은 하나의 동축 케이블을 모든 장비가 공유했다. 한 장비가 긴 프레임을 보내는 동안 나머지는 전부 기다린다. 프레임이 클수록 헤더 오버헤드 비율은 좋아지지만 다른 장비의 대기 시간이 길어진다.
+- **babble 보호** – 트랜시버는 한 장비의 송신이 약 1.25ms를 넘으면 고장으로 간주하고 그 장비를 망에서 격리했다. 이 시간 제한이 프레임 크기의 상한을 정한다.
+- **CRC의 검출력** – 프레임 체크 시퀀스(FCS)의 오류 검출 능력은 프레임이 길수록 떨어진다. 너무 크면 오류가 조용히 통과한다.
+- **하드웨어 메모리** – 초기 NIC의 버퍼가 작았다.
 
 1500은 이 네 제약 아래에서 "그 시절 대부분의 데이터 형태를 담기에 충분하면서 남을 너무 기다리게 하지 않는 크기"로 다소 임의적으로 선택됐다. 공유 케이블은 사라졌고 버퍼는 저렴해졌지만 숫자는 남았다. 호환성 때문이다. 점보 프레임(보통 9000바이트)을 지원하는 장비는 많지만, 경로 위 **어느 한 장비라도** 1500만 받으면 전체가 1500으로 떨어지므로, 인터넷을 건너는 트래픽의 기본값은 여전히 1500이다.
 
@@ -71,13 +71,13 @@ Ethernet의 최대 전송 단위(MTU)는 1500바이트다. 이 숫자에 계산�
 
 ---
 
-## 4. NAT — IPv4 고갈이 부순 것
+## 4. NAT – IPv4 고갈이 부순 것
 
 IPv4 주소는 약 43억 개다. 1990년대 중반에 이미 부족이 예견됐고, 근본 해법인 IPv6은 배포가 느렸다. 그사이의 임시 방편이 NAT였다.
 
 NAT의 동작 자체는 단순하다. 사설망의 여러 장비가 하나의 공인 IP를 공유하고, 공유기가 나가는 패킷의 **출발지 주소와 포트를 재작성**한 뒤 그 대응 관계를 표에 적어 둔다. 돌아오는 패킷은 표를 역방향으로 조회해 원래 장비로 되돌린다.
 
-이 단순한 동작이 인터넷의 설계 원칙 하나를 깼다. **종단 간 원칙(end-to-end principle)** — 네트워크 중간은 비트를 나르기만 하고, 의미 있는 처리는 양 끝에서 한다는 원칙이다. NAT는 중간에서 패킷의 내용을 고친다. 결과는 연쇄적이다.
+이 단순한 동작이 인터넷의 설계 원칙 하나를 깼다. **종단 간 원칙(end-to-end principle)** – 네트워크 중간은 비트를 나르기만 하고, 의미 있는 처리는 양 끝에서 한다는 원칙이다. NAT는 중간에서 패킷의 내용을 고친다. 결과는 연쇄적이다.
 
 - **들어오는 연결이 성립하지 않는다.** 표에 항목이 없는 외부 발신 연결은 되돌릴 곳이 없다. P2P 프로토콜이 STUN·TURN·홀 펀칭 같은 장치를 갖게 된 이유이고, 사실상 인터넷이 클라이언트-서버 구조로 굳은 이유이기도 하다.
 - **주소를 본문에 적는 프로토콜이 깨진다.** FTP의 액티브 모드는 데이터 연결에 쓸 IP와 포트를 명령 채널의 **본문**에 적는다. NAT가 헤더만 고치면 본문의 주소는 사설 IP인 채로 남아 연결이 실패한다. 이 때문에 공유기는 FTP 본문을 들여다보고 고치는 ALG(Application Layer Gateway)를 갖게 됐다. 네트워크 장비가 애플리케이션 프로토콜을 파싱하기 시작한 첫 사례 중 하나이고, 곧 취약점이 됐다.
@@ -111,7 +111,7 @@ NAT의 동작 자체는 단순하다. 사설망의 여러 장비가 하나의 �
 
 ### 참고
 
-- [Paul Baran and the Origins of the Internet](https://www.rand.org/pubs/articles/2018/paul-baran-and-the-origins-of-the-internet.html) — RAND
-- [How 1500 bytes became the MTU of the internet](https://blog.benjojo.co.uk/post/why-is-ethernet-mtu-1500) — MTU 결정 과정 추적
-- [RFC 791: Internet Protocol](https://www.rfc-editor.org/rfc/rfc791.html) — best-effort의 원문
-- [RFC 3022: Traditional IP Network Address Translator](https://www.rfc-editor.org/rfc/rfc3022.html) — NAT 규격
+- [Paul Baran and the Origins of the Internet](https://www.rand.org/pubs/articles/2018/paul-baran-and-the-origins-of-the-internet.html) – RAND
+- [How 1500 bytes became the MTU of the internet](https://blog.benjojo.co.uk/post/why-is-ethernet-mtu-1500) – MTU 결정 과정 추적
+- [RFC 791: Internet Protocol](https://www.rfc-editor.org/rfc/rfc791.html) – best-effort의 원문
+- [RFC 3022: Traditional IP Network Address Translator](https://www.rfc-editor.org/rfc/rfc3022.html) – NAT 규격

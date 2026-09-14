@@ -55,15 +55,15 @@ DNS가 중앙 파일을 없앤 방법은 데이터를 복제하는 대신 **책�
 
 레코드 타입 중 실무에서 자주 만나는 것들과, 그 타입이 왜 따로 있어야 했는지는 다음과 같다.
 
-- **A / AAAA** — 이름에서 IPv4 / IPv6 주소로.
-- **CNAME** — 이름에서 다른 이름으로. CDN과 SaaS가 "우리 쪽을 가리키세요"라고 할 때 쓰는 것이 이것이고, 뒤에 나올 서브도메인 탈취가 정확히 이 레코드에서 발생한다.
-- **NS** — 위임 자체를 표현하는 레코드. 이 도메인 아래의 답은 이 네임서버가 가진다는 선언.
-- **MX / TXT** — 메일 라우팅과 임의 문자열. SPF·DKIM·DMARC 같은 메일 인증이 전부 TXT에 얹혀 있다. 원래 용도가 없던 칸이 인증 인프라가 된 사례다.
-- **SVCB / HTTPS** — 비교적 최근에 추가된 타입으로, 접속 전에 필요한 정보(지원 프로토콜, 대체 포트, ECH 설정)를 미리 알려 준다. 5편의 ECH가 동작하려면 이 레코드가 있어야 한다.
+- **A / AAAA** – 이름에서 IPv4 / IPv6 주소로.
+- **CNAME** – 이름에서 다른 이름으로. CDN과 SaaS가 "우리 쪽을 가리키세요"라고 할 때 쓰는 것이 이것이고, 뒤에 나올 서브도메인 탈취가 정확히 이 레코드에서 발생한다.
+- **NS** – 위임 자체를 표현하는 레코드. 이 도메인 아래의 답은 이 네임서버가 가진다는 선언.
+- **MX / TXT** – 메일 라우팅과 임의 문자열. SPF·DKIM·DMARC 같은 메일 인증이 전부 TXT에 얹혀 있다. 원래 용도가 없던 칸이 인증 인프라가 된 사례다.
+- **SVCB / HTTPS** – 비교적 최근에 추가된 타입으로, 접속 전에 필요한 정보(지원 프로토콜, 대체 포트, ECH 설정)를 미리 알려 준다. 5편의 ECH가 동작하려면 이 레코드가 있어야 한다.
 
 ---
 
-## 3. TTL — 무엇과 무엇의 타협인가
+## 3. TTL – 무엇과 무엇의 타협인가
 
 모든 레코드에는 TTL(Time To Live)이 붙는다. 리졸버가 이 답을 몇 초 동안 캐시해도 되는지를 권한 있는 서버가 지정하는 값이다.
 
@@ -119,10 +119,10 @@ t=2   evil.com → 192.168.0.1 (내부망)
 
 방어가 한 곳에 모이지 않고 층마다 나뉘는 것이 이 문제의 특징이다.
 
-- **브라우저** — DNS pinning. 한 번 해석한 주소를 출처 수명 동안 고정한다. 다만 브라우저는 자기 캐시만 통제할 수 있어 완전하지 않다.
-- **리졸버** — 외부 도메인에 대한 응답이 사설 대역(`10/8`, `172.16/12`, `192.168/16`, `169.254/16`)을 가리키면 버린다. 공용 리졸버 다수가 기본 제공하는 기능이다.
-- **서버** — `Host` 헤더를 화이트리스트로 검증한다. 도착한 연결이 어느 주소로 왔는지가 아니라, **어느 이름으로 자기를 부르고 있는지**를 확인하는 것이다.
-- **내부 서비스** — 인증을 네트워크 위치에 의존하지 않는다. "사설망에서 온 요청이니 신뢰한다"는 전제 자체를 없애면 rebinding의 가치가 사라진다.
+- **브라우저** – DNS pinning. 한 번 해석한 주소를 출처 수명 동안 고정한다. 다만 브라우저는 자기 캐시만 통제할 수 있어 완전하지 않다.
+- **리졸버** – 외부 도메인에 대한 응답이 사설 대역(`10/8`, `172.16/12`, `192.168/16`, `169.254/16`)을 가리키면 버린다. 공용 리졸버 다수가 기본 제공하는 기능이다.
+- **서버** – `Host` 헤더를 화이트리스트로 검증한다. 도착한 연결이 어느 주소로 왔는지가 아니라, **어느 이름으로 자기를 부르고 있는지**를 확인하는 것이다.
+- **내부 서비스** – 인증을 네트워크 위치에 의존하지 않는다. "사설망에서 온 요청이니 신뢰한다"는 전제 자체를 없애면 rebinding의 가치가 사라진다.
 
 마지막 항목이 근본 해법이다. rebinding이 위력을 갖는 이유는 내부망에 인증 없는 관리 인터페이스가 흔하기 때문이지, DNS가 특별히 취약해서가 아니다.
 
@@ -136,6 +136,6 @@ t=2   evil.com → 192.168.0.1 (내부망)
 
 ### 참고
 
-- [RFC 1034: Domain Names - Concepts and Facilities](https://www.rfc-editor.org/rfc/rfc1034.html) — HOSTS.TXT 붕괴와 설계 목표
-- [RFC 9460: Service Binding and Parameter Specification via the DNS](https://www.rfc-editor.org/rfc/rfc9460.html) — SVCB / HTTPS 레코드
-- [OWASP: Server Side Request Forgery Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) — 사설 대역 필터링 실무
+- [RFC 1034: Domain Names - Concepts and Facilities](https://www.rfc-editor.org/rfc/rfc1034.html) – HOSTS.TXT 붕괴와 설계 목표
+- [RFC 9460: Service Binding and Parameter Specification via the DNS](https://www.rfc-editor.org/rfc/rfc9460.html) – SVCB / HTTPS 레코드
+- [OWASP: Server Side Request Forgery Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) – 사설 대역 필터링 실무

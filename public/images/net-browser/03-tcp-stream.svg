@@ -35,7 +35,7 @@
   <line x1="130" y1="284" x2="388" y2="296" stroke="#6f9fd8" stroke-width="1.6" marker-end="url(#c1)"/>
   <text x="258" y="278" text-anchor="middle" fill="#bcd6f0" font-size="11">ACK · ack = ISN_s+1</text>
 
-  <text x="258" y="326" text-anchor="middle" fill="#34d399" font-size="11" font-weight="600">ESTABLISHED — 이제서야 첫 바이트를 보낼 수 있다</text>
+  <text x="258" y="326" text-anchor="middle" fill="#34d399" font-size="11" font-weight="600">ESTABLISHED – 이제서야 첫 바이트를 보낼 수 있다</text>
 
   <rect x="60" y="344" width="410" height="76" rx="9" fill="#12121f" stroke="#3a3a52"/>
   <text x="78" y="366" fill="#e8e8f0" font-size="11" font-weight="600">세 번째 왕복이 필요한 이유</text>
@@ -44,18 +44,18 @@
 
   <rect x="60" y="436" width="410" height="168" rx="9" fill="#1f1418" stroke="#db8585"/>
   <text x="78" y="458" fill="#e8b0b0" font-size="11" font-weight="600">비용이 그대로 공격면이 된다</text>
-  <text x="78" y="480" fill="#c8c8d8" font-size="10.5">· SYN flood — 서버는 SYN+ACK를 보낸 뒤 상태를 잡고 기다린다.</text>
+  <text x="78" y="480" fill="#c8c8d8" font-size="10.5">· SYN flood – 서버는 SYN+ACK를 보낸 뒤 상태를 잡고 기다린다.</text>
   <text x="90" y="497" fill="#8a8aa0" font-size="10.5">  세 번째 ACK를 영원히 안 보내면 상태 테이블이 찬다. (대응: SYN cookie)</text>
-  <text x="78" y="519" fill="#c8c8d8" font-size="10.5">· 1 RTT 고정 비용 — TLS까지 얹으면 첫 바이트까지 2~3 RTT.</text>
+  <text x="78" y="519" fill="#c8c8d8" font-size="10.5">· 1 RTT 고정 비용 – TLS까지 얹으면 첫 바이트까지 2~3 RTT.</text>
   <text x="90" y="536" fill="#8a8aa0" font-size="10.5">  이 비용을 줄이려는 압력이 keep-alive → HTTP/2 → QUIC으로 이어진다.</text>
-  <text x="78" y="558" fill="#c8c8d8" font-size="10.5">· 연결 재사용 — 비싸니까 프록시는 커넥션을 풀에 담아 돌려 쓴다.</text>
+  <text x="78" y="558" fill="#c8c8d8" font-size="10.5">· 연결 재사용 – 비싸니까 프록시는 커넥션을 풀에 담아 돌려 쓴다.</text>
   <text x="90" y="575" fill="#8a8aa0" font-size="10.5">  한 연결을 여러 사용자가 나눠 쓰는 구조가 여기서 생긴다.</text>
   <text x="90" y="592" fill="#db8585" font-size="10.5" font-weight="600">  → 6편 요청 스머글링의 전제 조건.</text>
 
   <!-- ===== 우: 스트림 경계 ===== -->
   <text x="530" y="100" fill="#8a8aa0" font-size="11" font-weight="600">② 애플리케이션이 보는 것</text>
 
-  <text x="530" y="130" fill="#c8c8d8" font-size="11">보내는 쪽 — send() 세 번</text>
+  <text x="530" y="130" fill="#c8c8d8" font-size="11">보내는 쪽 – send() 세 번</text>
   <g>
     <rect x="530" y="142" width="100" height="32" rx="5" fill="#161226" stroke="#8b7cf6"/>
     <text x="580" y="163" text-anchor="middle" fill="#d8d0f8" font-size="11">"GET /a"</text>
@@ -68,7 +68,7 @@
   <line x1="695" y1="180" x2="695" y2="212" stroke="#5a5a78" stroke-width="1.4" marker-end="url(#c2)"/>
   <text x="710" y="202" fill="#8a8aa0" font-size="10">커널 송신 버퍼에서 합쳐지고, MTU 기준으로 다시 쪼개진다</text>
 
-  <text x="530" y="234" fill="#c8c8d8" font-size="11">선 위 — 세그먼트 경계는 네트워크 사정이 정한다</text>
+  <text x="530" y="234" fill="#c8c8d8" font-size="11">선 위 – 세그먼트 경계는 네트워크 사정이 정한다</text>
   <g>
     <rect x="530" y="246" width="150" height="30" rx="5" fill="#12121f" stroke="#3a3a52"/>
     <text x="605" y="266" text-anchor="middle" fill="#8a8aa0" font-size="10.5">seg 1</text>
@@ -80,9 +80,9 @@
 
   <line x1="730" y1="282" x2="730" y2="314" stroke="#5a5a78" stroke-width="1.4" marker-end="url(#c2)"/>
 
-  <text x="530" y="336" fill="#c8c8d8" font-size="11">받는 쪽 — recv() 한 번에 이렇게 올 수 있다</text>
+  <text x="530" y="336" fill="#c8c8d8" font-size="11">받는 쪽 – recv() 한 번에 이렇게 올 수 있다</text>
   <rect x="530" y="348" width="400" height="36" rx="6" fill="#141a22" stroke="#6f9fd8" stroke-width="1.5"/>
-  <text x="730" y="371" text-anchor="middle" fill="#bcd6f0" font-size="11.5">"GET /a HTTP/1.1\r\n\r\n" — 경계 없는 바이트열 하나</text>
+  <text x="730" y="371" text-anchor="middle" fill="#bcd6f0" font-size="11.5">"GET /a HTTP/1.1\r\n\r\n" – 경계 없는 바이트열 하나</text>
 
   <rect x="530" y="404" width="400" height="90" rx="9" fill="#12121f" stroke="#3a3a52"/>
   <text x="548" y="426" fill="#e8e8f0" font-size="11" font-weight="600">TCP가 보장하는 것 / 보장하지 않는 것</text>
@@ -92,7 +92,7 @@
 
   <rect x="530" y="510" width="400" height="94" rx="9" fill="#1a1420" stroke="#db8fb4"/>
   <text x="548" y="532" fill="#f0c0d8" font-size="11" font-weight="600">HTTP가 경계를 만드는 두 가지 방법</text>
-  <text x="548" y="554" fill="#c8c8d8" font-size="10.5">① 구분자 — 헤더의 끝은 빈 줄(CRLF CRLF)</text>
-  <text x="548" y="574" fill="#c8c8d8" font-size="10.5">② 길이 — 본문의 끝은 Content-Length 또는 청크 길이</text>
+  <text x="548" y="554" fill="#c8c8d8" font-size="10.5">① 구분자 – 헤더의 끝은 빈 줄(CRLF CRLF)</text>
+  <text x="548" y="574" fill="#c8c8d8" font-size="10.5">② 길이 – 본문의 끝은 Content-Length 또는 청크 길이</text>
   <text x="548" y="594" fill="#db8fb4" font-size="10.5" font-weight="600">두 방법이 공존한다는 사실 자체가 6편의 취약점이 된다.</text>
 </svg>

@@ -58,12 +58,12 @@
   <text x="526" y="228" fill="#8a8aa0" font-size="10">프록시가 들어오는 헤더를 지우지 않으면 클라이언트가 앞부분을 위조한다. 신뢰할 홉 수를 명시해야 한다.</text>
 
   <!-- 격리 -->
-  <text x="40" y="280" fill="#8a8aa0" font-size="11" font-weight="600">② 실행 환경의 격리 — 무엇이 공유되는가</text>
+  <text x="40" y="280" fill="#8a8aa0" font-size="11" font-weight="600">② 실행 환경의 격리 – 무엇이 공유되는가</text>
   <rect x="40" y="292" width="450" height="130" rx="9" fill="#12121f" stroke="#3a3a52"/>
   <text x="60" y="314" fill="#e8e8f0" font-size="11.5" font-weight="700">컨테이너</text>
   <text x="60" y="334" fill="#c8c8d8" font-size="10.5">네임스페이스(무엇을 보는가) + cgroups(얼마나 쓰는가)</text>
   <text x="60" y="350" fill="#c8c8d8" font-size="10.5">+ capabilities(무엇을 할 수 있는가) 의 조합</text>
-  <text x="60" y="374" fill="#e8b0b0" font-size="10.5" font-weight="600">커널은 호스트와 공유한다 — 가상머신과 결정적으로 다른 점</text>
+  <text x="60" y="374" fill="#e8b0b0" font-size="10.5" font-weight="600">커널은 호스트와 공유한다 – 가상머신과 결정적으로 다른 점</text>
   <text x="60" y="392" fill="#8a8aa0" font-size="10.5">따라서 컨테이너 탈출은 대개 커널 취약점 공격이다.</text>
   <text x="60" y="410" fill="#8a8aa0" font-size="10.5">특권 모드 · 호스트 소켓 마운트 · root 실행이 그 문턱을 낮춘다.</text>
 
@@ -76,7 +76,7 @@
   <text x="530" y="410" fill="#8a8aa0" font-size="10.5">· 서비스 계정 토큰이 파드 안에 마운트돼 있다</text>
 
   <!-- 공급망 -->
-  <text x="40" y="458" fill="#8a8aa0" font-size="11" font-weight="600">③ 코드가 서버에 닿는 경로 — 사용자 요청보다 권한이 크다</text>
+  <text x="40" y="458" fill="#8a8aa0" font-size="11" font-weight="600">③ 코드가 서버에 닿는 경로 – 사용자 요청보다 권한이 크다</text>
   <g text-anchor="middle">
     <rect x="40" y="470" width="150" height="50" rx="8" fill="#12121f" stroke="#3a3a52"/>
     <text x="115" y="490" fill="#c8c8d8" font-size="10.5">개발자 커밋</text>
@@ -106,10 +106,10 @@
 
   <rect x="40" y="540" width="920" height="168" rx="10" fill="#1f1418" stroke="#db8585"/>
   <text x="60" y="564" fill="#e8b0b0" font-size="12.5" font-weight="700">이 경로에서 반복되는 실패</text>
-  <text x="60" y="588" fill="#c8c8d8" font-size="10.5">· 외부 기여자의 PR 이 시크릿에 접근 가능한 워크플로를 트리거한다 — 코드 리뷰 전에 코드가 실행되는 구조</text>
-  <text x="60" y="608" fill="#c8c8d8" font-size="10.5">· 서드파티 액션·이미지를 움직이는 태그로 참조한다 — 같은 태그가 내일 다른 내용을 가리킬 수 있다 (해시로 고정해야 한다)</text>
-  <text x="60" y="628" fill="#c8c8d8" font-size="10.5">· 내부 패키지 이름이 공개 레지스트리에서 선점된다 — 의존성 혼동(dependency confusion)</text>
+  <text x="60" y="588" fill="#c8c8d8" font-size="10.5">· 외부 기여자의 PR 이 시크릿에 접근 가능한 워크플로를 트리거한다 – 코드 리뷰 전에 코드가 실행되는 구조</text>
+  <text x="60" y="608" fill="#c8c8d8" font-size="10.5">· 서드파티 액션·이미지를 움직이는 태그로 참조한다 – 같은 태그가 내일 다른 내용을 가리킬 수 있다 (해시로 고정해야 한다)</text>
+  <text x="60" y="628" fill="#c8c8d8" font-size="10.5">· 내부 패키지 이름이 공개 레지스트리에서 선점된다 – 의존성 혼동(dependency confusion)</text>
   <text x="60" y="648" fill="#c8c8d8" font-size="10.5">· IaC 상태 파일이 평문 비밀을 담은 채 접근 통제 없는 버킷에 놓인다</text>
-  <text x="60" y="668" fill="#c8c8d8" font-size="10.5">· 로그에 토큰·세션·개인정보가 그대로 남는다 — 로그 수집기는 대개 더 많은 사람이 접근한다</text>
+  <text x="60" y="668" fill="#c8c8d8" font-size="10.5">· 로그에 토큰·세션·개인정보가 그대로 남는다 – 로그 수집기는 대개 더 많은 사람이 접근한다</text>
   <text x="60" y="692" fill="#e8b0b0" font-size="10.5" font-weight="600">요약: 애플리케이션 취약점은 사용자 권한을 얻고, 파이프라인 취약점은 배포 권한을 얻는다. 후자가 항상 더 크다.</text>
 </svg>

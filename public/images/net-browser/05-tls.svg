@@ -16,7 +16,7 @@
 
   <!-- ===== 좌: 핸드셰이크 ===== -->
   <!-- TLS 1.2 -->
-  <text x="40" y="98" fill="#8a8aa0" font-size="11" font-weight="600">TLS 1.2 — 2 RTT</text>
+  <text x="40" y="98" fill="#8a8aa0" font-size="11" font-weight="600">TLS 1.2 – 2 RTT</text>
   <g>
     <line x1="70" y1="108" x2="70" y2="236" stroke="#2a2a3e"/>
     <line x1="440" y1="108" x2="440" y2="236" stroke="#2a2a3e"/>
@@ -24,22 +24,22 @@
     <text x="440" y="122" text-anchor="middle" fill="#34d399" font-size="10">server</text>
 
     <line x1="70" y1="140" x2="438" y2="140" stroke="#6f9fd8" stroke-width="1.4" marker-end="url(#e1)"/>
-    <text x="254" y="134" text-anchor="middle" fill="#bcd6f0" font-size="10">ClientHello — 지원 목록 나열</text>
+    <text x="254" y="134" text-anchor="middle" fill="#bcd6f0" font-size="10">ClientHello – 지원 목록 나열</text>
     <line x1="440" y1="166" x2="72" y2="166" stroke="#6f9fd8" stroke-width="1.4" marker-end="url(#e1)"/>
     <text x="254" y="160" text-anchor="middle" fill="#bcd6f0" font-size="10">ServerHello + 인증서 + 키 교환 파라미터</text>
     <line x1="70" y1="192" x2="438" y2="192" stroke="#6f9fd8" stroke-width="1.4" marker-end="url(#e1)"/>
     <text x="254" y="186" text-anchor="middle" fill="#bcd6f0" font-size="10">클라이언트 키 교환 + Finished</text>
     <line x1="440" y1="218" x2="72" y2="218" stroke="#6f9fd8" stroke-width="1.4" marker-end="url(#e1)"/>
-    <text x="254" y="212" text-anchor="middle" fill="#bcd6f0" font-size="10">Finished — 여기서야 앱 데이터 가능</text>
+    <text x="254" y="212" text-anchor="middle" fill="#bcd6f0" font-size="10">Finished – 여기서야 앱 데이터 가능</text>
   </g>
 
   <!-- TLS 1.3 -->
-  <text x="40" y="272" fill="#8a8aa0" font-size="11" font-weight="600">TLS 1.3 — 1 RTT</text>
+  <text x="40" y="272" fill="#8a8aa0" font-size="11" font-weight="600">TLS 1.3 – 1 RTT</text>
   <g>
     <line x1="70" y1="282" x2="70" y2="370" stroke="#2a2a3e"/>
     <line x1="440" y1="282" x2="440" y2="370" stroke="#2a2a3e"/>
     <line x1="70" y1="314" x2="438" y2="314" stroke="#34d399" stroke-width="1.4" marker-end="url(#e1)"/>
-    <text x="254" y="308" text-anchor="middle" fill="#a7f3d0" font-size="10">ClientHello + key_share — 쓸 곡선을 미리 추측해 보낸다</text>
+    <text x="254" y="308" text-anchor="middle" fill="#a7f3d0" font-size="10">ClientHello + key_share – 쓸 곡선을 미리 추측해 보낸다</text>
     <line x1="440" y1="346" x2="72" y2="346" stroke="#34d399" stroke-width="1.4" marker-end="url(#e1)"/>
     <text x="254" y="340" text-anchor="middle" fill="#a7f3d0" font-size="10">ServerHello + 인증서(암호화됨) + Finished</text>
   </g>
@@ -47,7 +47,7 @@
 
   <!-- 0-RTT -->
   <rect x="40" y="404" width="430" height="216" rx="10" fill="#1f1418" stroke="#db8585"/>
-  <text x="58" y="428" fill="#e8b0b0" font-size="11.5" font-weight="700">0-RTT — 왕복 0, 대신 두 가지를 포기한다</text>
+  <text x="58" y="428" fill="#e8b0b0" font-size="11.5" font-weight="700">0-RTT – 왕복 0, 대신 두 가지를 포기한다</text>
   <text x="58" y="452" fill="#c8c8d8" font-size="10.5">재접속 시 이전 세션의 PSK로 첫 요청을 즉시 암호화해 보낸다.</text>
   <text x="58" y="476" fill="#e8b0b0" font-size="10.5" font-weight="600">① 전방 비밀성 없음</text>
   <text x="70" y="494" fill="#8a8aa0" font-size="10">RFC 8446: "This data is not forward secret, as it is</text>
@@ -63,13 +63,13 @@
   <g text-anchor="middle">
     <rect x="530" y="110" width="400" height="40" rx="8" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
     <text x="730" y="128" fill="#e8e8f0" font-size="11" font-weight="600">루트 저장소 (OS · 브라우저에 내장)</text>
-    <text x="730" y="143" fill="#8a8aa0" font-size="9.5">수백 개의 루트 CA — 벤더가 목록을 정한다</text>
+    <text x="730" y="143" fill="#8a8aa0" font-size="9.5">수백 개의 루트 CA – 벤더가 목록을 정한다</text>
 
     <rect x="530" y="168" width="400" height="36" rx="8" fill="#12121f" stroke="#3a3a52"/>
-    <text x="730" y="191" fill="#c8c8d8" font-size="11">중간 CA — 루트가 서명한 발급 권한</text>
+    <text x="730" y="191" fill="#c8c8d8" font-size="11">중간 CA – 루트가 서명한 발급 권한</text>
 
     <rect x="530" y="222" width="400" height="36" rx="8" fill="#101a18" stroke="#34d399"/>
-    <text x="730" y="245" fill="#a7f3d0" font-size="11">서버 인증서 — example.com 에 대한 보증</text>
+    <text x="730" y="245" fill="#a7f3d0" font-size="11">서버 인증서 – example.com 에 대한 보증</text>
   </g>
   <g stroke="#5a5a78" stroke-width="1.3" marker-end="url(#e1)">
     <line x1="730" y1="150" x2="730" y2="166"/>
@@ -84,13 +84,13 @@
   <rect x="530" y="358" width="400" height="120" rx="9" fill="#1f1418" stroke="#db8585"/>
   <text x="548" y="380" fill="#e8b0b0" font-size="11" font-weight="700">DigiNotar, 2011</text>
   <text x="548" y="402" fill="#c8c8d8" font-size="10.5">7월 침해 · 최소 531장의 위조 인증서 발급</text>
-  <text x="548" y="420" fill="#c8c8d8" font-size="10.5">8월 28일 — google.com 와일드카드 인증서로</text>
+  <text x="548" y="420" fill="#c8c8d8" font-size="10.5">8월 28일 – google.com 와일드카드 인증서로</text>
   <text x="548" y="436" fill="#c8c8d8" font-size="10.5">이란 사용자 약 30만 명의 Gmail 중간자 공격</text>
-  <text x="548" y="456" fill="#8a8aa0" font-size="10.5">9월 20일 — DigiNotar 파산 선고</text>
+  <text x="548" y="456" fill="#8a8aa0" font-size="10.5">9월 20일 – DigiNotar 파산 선고</text>
   <text x="548" y="472" fill="#8a8aa0" font-size="10">브라우저가 루트 하나를 통째로 제거한 최초 사례군</text>
 
   <rect x="530" y="494" width="400" height="126" rx="9" fill="#101a18" stroke="#34d399"/>
-  <text x="548" y="516" fill="#a7f3d0" font-size="11" font-weight="700">그 대응 — Certificate Transparency</text>
+  <text x="548" y="516" fill="#a7f3d0" font-size="11" font-weight="700">그 대응 – Certificate Transparency</text>
   <text x="548" y="538" fill="#c8c8d8" font-size="10.5">발급된 모든 인증서를 추가 전용(append-only) 공개</text>
   <text x="548" y="554" fill="#c8c8d8" font-size="10.5">로그에 기록하고, 브라우저는 로그 증명(SCT)이 없는</text>
   <text x="548" y="570" fill="#c8c8d8" font-size="10.5">인증서를 거부한다.</text>

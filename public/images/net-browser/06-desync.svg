@@ -23,9 +23,9 @@
     <text x="58" y="144">Host: example.com</text>
     <text x="58" y="162" fill="#6f9fd8">Content-Length: 37</text>
     <text x="58" y="180" fill="#e6a572">Transfer-Encoding: chunked</text>
-    <text x="58" y="204" fill="#6a6a84">(빈 줄 — 여기부터 본문)</text>
+    <text x="58" y="204" fill="#6a6a84">(빈 줄 – 여기부터 본문)</text>
     <text x="58" y="228">0</text>
-    <text x="58" y="246" fill="#6a6a84">(빈 줄 — 청크 종료)</text>
+    <text x="58" y="246" fill="#6a6a84">(빈 줄 – 청크 종료)</text>
     <text x="58" y="270" fill="#db8585">GET /admin HTTP/1.1</text>
     <text x="58" y="288" fill="#db8585">X-Ignore: x</text>
   </g>
@@ -36,7 +36,7 @@
 
   <!-- 규칙 -->
   <rect x="480" y="102" width="480" height="196" rx="9" fill="#141a22" stroke="#6f9fd8"/>
-  <text x="498" y="124" fill="#bcd6f0" font-size="11.5" font-weight="700">RFC 9112 §6.3 — 본문 길이를 정하는 규칙</text>
+  <text x="498" y="124" fill="#bcd6f0" font-size="11.5" font-weight="700">RFC 9112 §6.3 – 본문 길이를 정하는 규칙</text>
   <text x="498" y="148" fill="#c8c8d8" font-size="11">"If a message is received with both a Transfer-Encoding and a</text>
   <text x="498" y="164" fill="#c8c8d8" font-size="11">Content-Length header field, the Transfer-Encoding overrides</text>
   <text x="498" y="180" fill="#c8c8d8" font-size="11">the Content-Length."</text>
@@ -89,7 +89,7 @@
   <line x1="466" y1="658" x2="516" y2="658" stroke="#db8585" stroke-width="1.6" marker-end="url(#f2)"/>
 
   <rect x="530" y="622" width="430" height="74" rx="7" fill="#1a1012" stroke="#db8585"/>
-  <text x="546" y="642" font-size="10.5" fill="#e8b0b0">백엔드가 실제로 보는 것 — 경로는 /admin, 쿠키는 피해자의 것</text>
+  <text x="546" y="642" font-size="10.5" fill="#e8b0b0">백엔드가 실제로 보는 것 – 경로는 /admin, 쿠키는 피해자의 것</text>
   <text x="546" y="662" class="mono" font-size="11" fill="#e8b0b0">GET /admin HTTP/1.1</text>
   <text x="546" y="680" class="mono" font-size="11" fill="#e8b0b0">X-Ignore: xGET /profile … Cookie: 피해자세션</text>
 </svg>

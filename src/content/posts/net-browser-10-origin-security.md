@@ -24,9 +24,9 @@ published: true
 기준: https://example.com/app
 
 https://example.com/other      같은 출처
-http://example.com             다름 — 스킴
-https://api.example.com        다름 — 호스트
-https://example.com:8443       다름 — 포트
+http://example.com             다름 – 스킴
+https://api.example.com        다름 – 호스트
+https://example.com:8443       다름 – 포트
 ```
 
 문제는 **쿠키가 이 기준을 쓰지 않는다**는 것이다. 쿠키는 6편에서 본 대로 HTTP에 나중에 덧붙은 장치이고, 도메인과 경로로 전송 여부를 판정하며 포트를 무시한다. `https://example.com`과 `http://example.com`은 다른 출처지만 기본적으로 같은 쿠키를 공유한다. 브라우저 보안 모델의 기본 단위가 둘로 갈라져 있고, 이 어긋남이 이 편에 등장하는 문제 다수의 출발점이다.
@@ -39,12 +39,12 @@ https://example.com:8443       다름 — 포트
 
 동일 출처 정책(SOP)의 핵심은 비대칭이다.
 
-**막는 것 — 읽기**
+**막는 것 – 읽기**
 - 다른 출처 문서의 DOM 접근
 - 다른 출처로 보낸 요청의 응답 본문 읽기
 - 다른 출처의 쿠키를 스크립트로 읽기
 
-**막지 않는 것 — 보내기와 임베딩**
+**막지 않는 것 – 보내기와 임베딩**
 - `<img src>`, `<script src>`, `<link>`, `<form>`으로 다른 출처에 요청 보내기
 - 그 요청에 **해당 사이트의 쿠키가 붙는 것**
 - 다른 출처 페이지를 `iframe`으로 넣기
@@ -57,7 +57,7 @@ https://example.com:8443       다름 — 포트
 
 ## 3. 사고마다 덧붙은 방어들
 
-### CORS — 읽기 금지를 풀어 주는 장치
+### CORS – 읽기 금지를 풀어 주는 장치
 
 SOP가 응답 읽기를 막으면 정당한 교차 출처 API 호출도 막힌다. CORS는 이를 **서버가 허가를 표명하는 방식**으로 푼다. 브라우저가 `Origin` 헤더로 요청 출처를 알리고, 서버가 `Access-Control-Allow-Origin`으로 허용 여부를 답한다. 부작용이 있을 수 있는 요청(커스텀 헤더, `PUT`/`DELETE` 등)은 먼저 `OPTIONS` 프리플라이트로 허가를 묻는다.
 
@@ -71,7 +71,7 @@ Access-Control-Allow-Credentials: true
 
 이 조합은 사실상 모든 사이트에 인증된 응답을 읽을 권한을 주는 것과 같다. `null` 출처를 신뢰하는 설정도 마찬가지다. 샌드박스된 iframe이나 일부 리다이렉트 상황에서 출처가 `null`이 되므로, 공격자가 그 상태를 만들 수 있다.
 
-### CSP — XSS가 없어지지 않는다는 전제
+### CSP – XSS가 없어지지 않는다는 전제
 
 CSP는 발상이 다르다. XSS를 막는 것이 아니라 **XSS가 성공했을 때 할 수 있는 일을 줄인다.** 실행 가능한 스크립트의 출처를 제한하고, 인라인 스크립트를 기본 차단하며, nonce나 해시가 붙은 것만 허용한다.
 
@@ -83,7 +83,7 @@ CSP는 발상이 다르다. XSS를 막는 것이 아니라 **XSS가 성공했을
 
 `strict-dynamic`과 nonce 기반 정책이 권장되는 이유가 이것이다. 도메인 목록으로 신뢰를 표현하면 그 도메인 전체를 신뢰하게 되지만, nonce는 개별 스크립트 단위로 신뢰를 표현한다.
 
-### 쿠키 속성 — 뒤늦은 보정
+### 쿠키 속성 – 뒤늦은 보정
 
 쿠키가 출처 기준이 아니라는 사실을 하나씩 메워 온 흔적이 속성 목록이다.
 
@@ -96,11 +96,11 @@ CSP는 발상이 다르다. XSS를 막는 것이 아니라 **XSS가 성공했을
 
 `SameSite=Lax`가 대부분의 브라우저에서 기본값이 되면서 CSRF의 기본 난이도가 크게 올라갔다. 다만 `Lax`는 **최상위 내비게이션의 GET 요청에는 쿠키를 붙인다.** 상태를 변경하는 동작이 GET으로 열려 있으면 여전히 성립한다. 기본값이 생겼다고 CSRF 토큰을 걷어 내는 것이 위험한 이유다.
 
-### frame-ancestors — 클릭재킹
+### frame-ancestors – 클릭재킹
 
 투명하게 만든 iframe을 사용자의 클릭 위치에 겹쳐 두면, 사용자는 자기가 누른다고 믿는 것과 다른 것을 누른다. `X-Frame-Options`가 먼저 나왔고, 지금은 CSP의 `frame-ancestors`가 같은 일을 더 정밀하게 한다.
 
-### COOP · COEP · CORP — Spectre 이후
+### COOP · COEP · CORP – Spectre 이후
 
 8편에서 본 대로 같은 프로세스 안의 메모리는 소프트웨어 검사와 무관하게 읽힐 수 있다. 이 전제 아래 추가된 헤더들은 **다른 출처의 자원을 같은 프로세스·같은 브라우징 컨텍스트 그룹에 두지 않겠다는 선언**이다.
 
@@ -137,7 +137,7 @@ CSP는 발상이 다르다. XSS를 막는 것이 아니라 **XSS가 성공했을
 10편  읽기는 막혔지만 보내기는 열려 있고, 기준이 셋으로 갈라져 있다
 ```
 
-이 세 문장이 클라이언트 사이드 취약점 목록 대부분의 좌표다. 개별 항목 — 프로토타입 오염, DOM clobbering, postMessage 출처 미검증, 서비스 워커 남용 — 을 만날 때 어느 문장에 속하는지를 먼저 잡으면 정리가 빠르다.
+이 세 문장이 클라이언트 사이드 취약점 목록 대부분의 좌표다. 개별 항목 – 프로토타입 오염, DOM clobbering, postMessage 출처 미검증, 서비스 워커 남용 – 을 만날 때 어느 문장에 속하는지를 먼저 잡으면 정리가 빠르다.
 
 ---
 
@@ -149,6 +149,6 @@ CSP는 발상이 다르다. XSS를 막는 것이 아니라 **XSS가 성공했을
 
 ### 참고
 
-- [Same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) — MDN
-- [Content Security Policy Level 3](https://www.w3.org/TR/CSP3/) — W3C
-- [Google ends third-party cookie phaseout plans](https://iapp.org/news/a/google-ends-third-party-cookie-phaseout-plans) — IAPP
+- [Same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) – MDN
+- [Content Security Policy Level 3](https://www.w3.org/TR/CSP3/) – W3C
+- [Google ends third-party cookie phaseout plans](https://iapp.org/news/a/google-ends-third-party-cookie-phaseout-plans) – IAPP

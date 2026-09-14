@@ -56,22 +56,22 @@
 
   <!-- 하이드레이션 -->
   <rect x="40" y="258" width="920" height="182" rx="10" fill="#12121f" stroke="#3a3a52"/>
-  <text x="60" y="282" fill="#e8e8f0" font-size="12.5" font-weight="700">SSR 이 되돌아왔을 때 생긴 비용 — 하이드레이션</text>
+  <text x="60" y="282" fill="#e8e8f0" font-size="12.5" font-weight="700">SSR 이 되돌아왔을 때 생긴 비용 – 하이드레이션</text>
   <text x="60" y="302" fill="#c8c8d8" font-size="10.5">서버가 만든 HTML 은 보이기만 할 뿐 아직 눌리지 않는다. 브라우저가 같은 컴포넌트 트리를 한 번 더 만들어 이벤트를 붙여야 한다.</text>
 
   <g>
     <rect x="60" y="316" width="270" height="60" rx="7" fill="#141a22" stroke="#6f9fd8"/>
-    <text x="78" y="336" fill="#bcd6f0" font-size="11" font-weight="600">1차 — 서버에서 렌더</text>
+    <text x="78" y="336" fill="#bcd6f0" font-size="11" font-weight="600">1차 – 서버에서 렌더</text>
     <text x="78" y="354" fill="#8a8aa0" font-size="10">HTML 문자열 생성 → 전송</text>
     <text x="78" y="368" fill="#8a8aa0" font-size="10">사용자는 화면을 본다</text>
 
     <rect x="350" y="316" width="270" height="60" rx="7" fill="#1f1a12" stroke="#e6a572"/>
-    <text x="368" y="336" fill="#f0cba8" font-size="11" font-weight="600">2차 — 브라우저에서 다시 렌더</text>
+    <text x="368" y="336" fill="#f0cba8" font-size="11" font-weight="600">2차 – 브라우저에서 다시 렌더</text>
     <text x="368" y="354" fill="#8a8aa0" font-size="10">같은 트리를 다시 만들어 DOM 과 맞춘다</text>
     <text x="368" y="368" fill="#8a8aa0" font-size="10">이 시간 동안 화면은 보이지만 안 눌린다</text>
 
     <rect x="640" y="316" width="300" height="60" rx="7" fill="#101a18" stroke="#34d399"/>
-    <text x="658" y="336" fill="#a7f3d0" font-size="11" font-weight="600">대응 — 다시 그릴 범위를 줄인다</text>
+    <text x="658" y="336" fill="#a7f3d0" font-size="11" font-weight="600">대응 – 다시 그릴 범위를 줄인다</text>
     <text x="658" y="354" fill="#8a8aa0" font-size="10">스트리밍 · 부분 하이드레이션 · 아일랜드</text>
     <text x="658" y="368" fill="#8a8aa0" font-size="10">상호작용이 필요한 조각만 클라이언트로</text>
   </g>
@@ -95,8 +95,8 @@
   <text x="528" y="554" fill="#c8c8d8" font-size="10.5">클라이언트 컴포넌트로 넘기는 순간 직렬화되어 전송된다.</text>
   <text x="528" y="572" fill="#8a8aa0" font-size="10.5">API 키·내부 식별자가 이 경로로 새는 유형이 새로 생겼다.</text>
 
-  <text x="60" y="606" fill="#c8c8d8" font-size="10.5">프레임워크가 바뀌어도 변하지 않는 것 — 브라우저에서 도는 코드와 데이터는 전부 사용자가 읽고 고칠 수 있다.</text>
+  <text x="60" y="606" fill="#c8c8d8" font-size="10.5">프레임워크가 바뀌어도 변하지 않는 것 – 브라우저에서 도는 코드와 데이터는 전부 사용자가 읽고 고칠 수 있다.</text>
   <text x="60" y="628" fill="#c8c8d8" font-size="10.5">XSS 의 자리도 옮겨 갔을 뿐 사라지지 않았다. 프레임워크는 기본적으로 문자열을 이스케이프하지만, 그것을 명시적으로 끄는 API 를 함께 제공한다.</text>
-  <text x="60" y="650" fill="#8a8aa0" font-size="10.5">dangerouslySetInnerHTML · v-html · bypassSecurityTrust 계열 — 이름에 경고가 들어 있는 이유가 이것이다.</text>
+  <text x="60" y="650" fill="#8a8aa0" font-size="10.5">dangerouslySetInnerHTML · v-html · bypassSecurityTrust 계열 – 이름에 경고가 들어 있는 이유가 이것이다.</text>
   <text x="60" y="670" fill="#8a8aa0" font-size="10.5">클라이언트 상태 객체를 병합·복사하는 코드가 많아지면서 프로토타입 오염이 실제 공격 경로가 된 것도 이 시기의 변화다.</text>
 </svg>

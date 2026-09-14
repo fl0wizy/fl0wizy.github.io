@@ -32,7 +32,7 @@
   <text x="370" y="126" fill="#e8e8f0" font-size="11.5" font-weight="700">스레드 풀</text>
   <g>
     <rect x="370" y="140" width="180" height="34" rx="5" fill="#1a1620" stroke="#5a5a78"/>
-    <text x="460" y="161" text-anchor="middle" fill="#c8c8d8" font-size="10">공유 메모리 — 스레드 N개</text>
+    <text x="460" y="161" text-anchor="middle" fill="#c8c8d8" font-size="10">공유 메모리 – 스레드 N개</text>
   </g>
   <text x="370" y="198" fill="#8a8aa0" font-size="10">메모리를 공유하므로 가볍다.</text>
   <text x="370" y="216" fill="#34d399" font-size="10">+ 프로세스보다 많은 동시 요청</text>
@@ -50,32 +50,32 @@
   <text x="682" y="216" fill="#34d399" font-size="10">+ 연결 수가 많아도 메모리가 거의 안 는다</text>
   <text x="682" y="234" fill="#db8585" font-size="10">- CPU 를 오래 쓰는 코드 하나가 전부를 멈춘다</text>
   <text x="682" y="262" fill="#8a8aa0" font-size="10">동기 라이브러리를 섞어 쓰면 이점이</text>
-  <text x="682" y="278" fill="#8a8aa0" font-size="10">그대로 사라진다 — 가장 흔한 실수.</text>
+  <text x="682" y="278" fill="#8a8aa0" font-size="10">그대로 사라진다 – 가장 흔한 실수.</text>
 
   <!-- 세션 vs 토큰 -->
   <text x="40" y="326" fill="#8a8aa0" font-size="11" font-weight="600">로그인 상태를 어디에 두는가</text>
 
   <rect x="40" y="338" width="450" height="164" rx="10" fill="#101a18" stroke="#34d399"/>
-  <text x="60" y="362" fill="#a7f3d0" font-size="12" font-weight="700">세션 — 서버가 기억한다</text>
+  <text x="60" y="362" fill="#a7f3d0" font-size="12" font-weight="700">세션 – 서버가 기억한다</text>
   <text x="60" y="382" fill="#c8c8d8" font-size="10.5">쿠키에는 식별자만 있고, 실제 정보는 서버 저장소에 있다.</text>
-  <text x="60" y="404" fill="#34d399" font-size="10.5">+ 즉시 무효화 가능 — 저장소에서 지우면 끝</text>
+  <text x="60" y="404" fill="#34d399" font-size="10.5">+ 즉시 무효화 가능 – 저장소에서 지우면 끝</text>
   <text x="60" y="422" fill="#34d399" font-size="10.5">+ 담긴 내용이 클라이언트에 노출되지 않는다</text>
   <text x="60" y="444" fill="#db8585" font-size="10.5">- 서버가 상태를 가진다 → 수평 확장 시 공유 저장소 필요</text>
   <text x="60" y="466" fill="#8a8aa0" font-size="10.5">고정·탈취 대응: 로그인 시 세션 ID 재발급, 충분한 엔트로피,</text>
   <text x="60" y="482" fill="#8a8aa0" font-size="10.5">로그아웃 시 서버 측 폐기(클라 쿠키 삭제만으로는 부족)</text>
 
   <rect x="510" y="338" width="450" height="164" rx="10" fill="#1f1a12" stroke="#e6a572"/>
-  <text x="530" y="362" fill="#f0cba8" font-size="12" font-weight="700">토큰(JWT) — 토큰 자체가 내용을 담는다</text>
+  <text x="530" y="362" fill="#f0cba8" font-size="12" font-weight="700">토큰(JWT) – 토큰 자체가 내용을 담는다</text>
   <text x="530" y="382" fill="#c8c8d8" font-size="10.5">서명된 JSON. 서버는 서명만 검증하면 조회 없이 판단한다.</text>
-  <text x="530" y="404" fill="#34d399" font-size="10.5">+ 무상태 — 서버 여러 대가 저장소 없이 검증 가능</text>
+  <text x="530" y="404" fill="#34d399" font-size="10.5">+ 무상태 – 서버 여러 대가 저장소 없이 검증 가능</text>
   <text x="530" y="426" fill="#db8585" font-size="10.5">- 발급된 토큰을 되돌릴 수 없다 → 짧은 만료 + 갱신 토큰으로 보완</text>
-  <text x="530" y="444" fill="#db8585" font-size="10.5">- 내용이 서명될 뿐 가려지지 않는다 — 누구나 읽을 수 있다</text>
+  <text x="530" y="444" fill="#db8585" font-size="10.5">- 내용이 서명될 뿐 가려지지 않는다 – 누구나 읽을 수 있다</text>
   <text x="530" y="466" fill="#e8b0b0" font-size="10.5" font-weight="600">검증에서 반복되는 실패: alg=none 수용 · RS256→HS256 혼동 ·</text>
   <text x="530" y="482" fill="#e8b0b0" font-size="10.5" font-weight="600">kid/jku 헤더를 신뢰해 키를 외부에서 가져오기 · 만료 미확인</text>
 
   <!-- OAuth -->
   <rect x="40" y="520" width="920" height="162" rx="10" fill="#12121f" stroke="#3a3a52"/>
-  <text x="60" y="544" fill="#e8e8f0" font-size="12.5" font-weight="700">OAuth 2.0 과 OIDC — 자주 섞이는 두 가지</text>
+  <text x="60" y="544" fill="#e8e8f0" font-size="12.5" font-weight="700">OAuth 2.0 과 OIDC – 자주 섞이는 두 가지</text>
   <rect x="60" y="558" width="430" height="52" rx="7" fill="#141a22" stroke="#6f9fd8"/>
   <text x="78" y="578" fill="#bcd6f0" font-size="11" font-weight="600">OAuth 2.0 = 인가(authorization)</text>
   <text x="78" y="596" fill="#8a8aa0" font-size="10.5">"이 앱이 내 자원에 접근해도 된다"는 위임. 사용자가 누구인지는 말하지 않는다.</text>
@@ -84,7 +84,7 @@
   <text x="528" y="578" fill="#f0c0d8" font-size="11" font-weight="600">OIDC = 인증(authentication)</text>
   <text x="528" y="596" fill="#8a8aa0" font-size="10.5">OAuth 위에 ID 토큰을 얹어 "이 사용자가 누구인가"를 표준화한다.</text>
 
-  <text x="60" y="634" fill="#e6a572" font-size="10.5" font-weight="600">OAuth 2.1 (2026년 기준 아직 IETF 드래프트) 이 의무화한 것들 — 전부 실제 사고에서 역산된 항목이다</text>
+  <text x="60" y="634" fill="#e6a572" font-size="10.5" font-weight="600">OAuth 2.1 (2026년 기준 아직 IETF 드래프트) 이 의무화한 것들 – 전부 실제 사고에서 역산된 항목이다</text>
   <text x="60" y="654" fill="#c8c8d8" font-size="10.5">PKCE 필수 · 리다이렉트 URI 정확 일치 · 갱신 토큰 회전 필수 · implicit 그랜트와 비밀번호 그랜트 제거 · 쿼리스트링 베어러 토큰 금지</text>
   <text x="60" y="672" fill="#8a8aa0" font-size="10.5">"선택 사항이던 보안 권고를 필수로 승격한다"는 것이 개정의 실체다. 배포된 구현이 권고를 따르지 않는다는 전제에서 나온 결정.</text>
 </svg>

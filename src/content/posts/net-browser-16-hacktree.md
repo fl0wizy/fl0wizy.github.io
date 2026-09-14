@@ -32,12 +32,12 @@ published: true
 
 기술 스택은 다음과 같다.
 
-- **web** — Next.js 15 / React 19 / TypeScript / Tailwind, 패키지 매니저는 pnpm, 테스트는 vitest
-- **api** — FastAPI / Uvicorn / SQLAlchemy 2 / Alembic / argon2, Python 3.12, 테스트는 pytest
-- **데이터** — SQLite (도커 볼륨), 백업 전용 사이드카 컨테이너
-- **엣지** — Caddy (자동 HTTPS, 리버스 프록시)
-- **배포** — GitHub Actions → GHCR → GCP VM에 SSH, 인프라는 Terraform + cloud-init
-- **셸 스크립트 테스트** — bats로 compose 구성과 배포 스크립트를 검증
+- **web** – Next.js 15 / React 19 / TypeScript / Tailwind, 패키지 매니저는 pnpm, 테스트는 vitest
+- **api** – FastAPI / Uvicorn / SQLAlchemy 2 / Alembic / argon2, Python 3.12, 테스트는 pytest
+- **데이터** – SQLite (도커 볼륨), 백업 전용 사이드카 컨테이너
+- **엣지** – Caddy (자동 HTTPS, 리버스 프록시)
+- **배포** – GitHub Actions → GHCR → GCP VM에 SSH, 인프라는 Terraform + cloud-init
+- **셸 스크립트 테스트** – bats로 compose 구성과 배포 스크립트를 검증
 
 ---
 
@@ -146,5 +146,5 @@ compose 파일을 셋으로 나눴다. 공통 정의, 개발에서 자동으로 
 ### 참고
 
 - [Caddy: Automatic HTTPS](https://caddyserver.com/docs/automatic-https)
-- [Next.js: Rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) — 같은 출처 프록시
-- [SQLite: Backup API](https://www.sqlite.org/backup.html) — 일관된 스냅샷
+- [Next.js: Rewrites](https://nextjs.org/docs/app/api-reference/config/next-config-js/rewrites) – 같은 출처 프록시
+- [SQLite: Backup API](https://www.sqlite.org/backup.html) – 일관된 스냅샷

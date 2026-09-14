@@ -22,8 +22,8 @@ published: true
 
 당시의 두 가지 해법을 제안서는 각각 기각한다.
 
-- **트리 구조** — 정보를 하나의 계층에 밀어 넣는다. 도움말 시스템에서 막다른 곳에 도달하면 "시스템을 나갔다가 다시 들어와야" 다른 가지의 관련 정보에 닿는다.
-- **키워드 시스템** — "두 사람이 같은 키워드를 고르는 일은 없다." 그래서 키워드는 이미 그 분야를 아는 사람에게만 쓸모가 있다.
+- **트리 구조** – 정보를 하나의 계층에 밀어 넣는다. 도움말 시스템에서 막다른 곳에 도달하면 "시스템을 나갔다가 다시 들어와야" 다른 가지의 관련 정보에 닿는다.
+- **키워드 시스템** – "두 사람이 같은 키워드를 고르는 일은 없다." 그래서 키워드는 이미 그 분야를 아는 사람에게만 쓸모가 있다.
 
 대신 제안서는 다섯 가지 속성을 요구한다. 이 다섯 개가 오늘날 웹의 설계 제약 그 자체다.
 
@@ -44,9 +44,9 @@ published: true
 웹이 경쟁 프로토콜과 갈라지는 지점은 기능이 아니라 **분해 방식**이다. 버너스리의 설계는 하나의 시스템을 세 개의 독립 규격으로 쪼갠다.
 
 ```
-URL   — 무엇을 가리키는가        (식별)
-HTTP  — 어떻게 가져오는가        (전송)
-HTML  — 가져온 것을 어떻게 읽는가 (표현)
+URL   – 무엇을 가리키는가        (식별)
+HTTP  – 어떻게 가져오는가        (전송)
+HTML  – 가져온 것을 어떻게 읽는가 (표현)
 ```
 
 세 규격이 서로를 모르기 때문에 각각 독립적으로 교체될 수 있다. 실제로 HTML은 5까지 갔고 HTTP는 와이어 포맷을 세 번 갈아치웠지만 URL은 거의 그대로다. 같은 URL이 HTTP/1.1로도 HTTP/3으로도 가져와지고, 가져온 것이 HTML이 아니라 JSON이어도 동작한다.
@@ -98,9 +98,9 @@ IE가 승리한 뒤 2001년부터 약 5년간 브라우저 기술은 사실상 �
 
 갈라진 상태는 15년간 지속됐고 2019년 5월 양측이 단일 HTML·DOM 규격에 합의하며 봉합된다. 하지만 이 기간이 남긴 결과는 문서 하나가 아니다.
 
-- **Living Standard 개념** — 버전 번호를 붙여 동결하는 대신 계속 갱신되는 규격. HTML5 이후로 "HTML6"이 없는 이유다.
-- **파싱 알고리즘의 명문화** — WHATWG HTML 규격의 가장 큰 기여는 새 태그가 아니라, 잘못된 마크업을 만났을 때 브라우저가 **정확히 어떤 순서로 복구해야 하는지**를 바이트 단위로 규정한 것이다. 그전까지 이것은 각 브라우저의 영업 비밀에 가까웠다.
-- **규격의 다중화** — HTML은 WHATWG, HTTP는 IETF, CSS와 접근성은 W3C가 관리한다. 한 요청이 브라우저에 도착해 화면이 되기까지 최소 세 기구의 규격을 통과한다.
+- **Living Standard 개념** – 버전 번호를 붙여 동결하는 대신 계속 갱신되는 규격. HTML5 이후로 "HTML6"이 없는 이유다.
+- **파싱 알고리즘의 명문화** – WHATWG HTML 규격의 가장 큰 기여는 새 태그가 아니라, 잘못된 마크업을 만났을 때 브라우저가 **정확히 어떤 순서로 복구해야 하는지**를 바이트 단위로 규정한 것이다. 그전까지 이것은 각 브라우저의 영업 비밀에 가까웠다.
+- **규격의 다중화** – HTML은 WHATWG, HTTP는 IETF, CSS와 접근성은 W3C가 관리한다. 한 요청이 브라우저에 도착해 화면이 되기까지 최소 세 기구의 규격을 통과한다.
 
 ---
 
@@ -131,7 +131,7 @@ IE가 승리한 뒤 2001년부터 약 5년간 브라우저 기술은 사실상 �
 
 ### 참고
 
-- [Information Management: A Proposal (1989)](https://www.w3.org/History/1989/proposal.html) — 원문
-- [Software release of WWW into public domain (1993.04.30)](https://cds.cern.ch/record/1164399) — CERN Document Server
-- [WHATWG FAQ](https://www.whatwg.org/faq) — 분기 경위
-- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html) — 2022년 재편의 결과
+- [Information Management: A Proposal (1989)](https://www.w3.org/History/1989/proposal.html) – 원문
+- [Software release of WWW into public domain (1993.04.30)](https://cds.cern.ch/record/1164399) – CERN Document Server
+- [WHATWG FAQ](https://www.whatwg.org/faq) – 분기 경위
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html) – 2022년 재편의 결과
