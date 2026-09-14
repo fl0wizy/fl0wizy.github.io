@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (03) – TCP and the Byte Stream
 description: "3-way 핸드셰이크가 실제로 막는 것, 1986년 인터넷이 40bps로 무너진 사건, 그리고 메시지 경계가 없다는 성질이 현대 웹 공격의 물리적 토대가 되는 경로."
 descriptionEn: "What the three-way handshake actually prevents, the 1986 collapse to 40 bps, and how the absence of message boundaries became the physical foundation of modern web attacks."
 date: "2026-09-14 11:30"
-category: "development"
+category: "web-security"
 tags: ["TCP", "Network", "CongestionControl", "Handshake", "RequestSmuggling", "RaceCondition"]
 published: true
 ---

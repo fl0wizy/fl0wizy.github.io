@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (02) – How a Packet Actually A
 description: "핵전쟁 대비 연구에서 나온 패킷 교환, 1980년의 공유 케이블이 결정한 1500바이트, 그리고 NAT가 부순 종단 간 원칙이 남긴 주소 신뢰 문제."
 descriptionEn: "Packet switching born from nuclear-survivability research, the 1500 bytes decided by a 1980 shared cable, and the address-trust problem left by NAT breaking the end-to-end principle."
 date: "2026-09-14 10:20"
-category: "development"
+category: "web-security"
 tags: ["Network", "IP", "Ethernet", "MTU", "NAT", "PacketSwitching"]
 published: true
 ---

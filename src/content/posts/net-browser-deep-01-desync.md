@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (Deep 01) – Anatomy of Desync"
 description: "CL.TE부터 CL.0과 client-side desync까지 변형을 하나의 축으로 정리하고, 악용 불가로 여겨지던 0.CL의 교착이 2025년에 깨진 방식을 본다."
 descriptionEn: "Organizing the variants from CL.TE to CL.0 and client-side desync on one axis, and how the 0.CL deadlock long considered unexploitable was broken in 2025."
 date: "2026-09-16 09:10"
-category: "development"
+category: "web-security"
 tags: ["RequestSmuggling", "Desync", "HTTP", "Research", "DeepDive"]
 published: true
 ---

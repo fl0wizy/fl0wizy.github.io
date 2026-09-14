@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (05) – TLS and the Structure o
 description: "왕복을 2회에서 0회로 줄여 온 과정과 그 대가, 신뢰받는 CA 한 곳이 무너졌을 때 드러난 구조적 약점, 그리고 HTTPS가 여전히 목적지 이름을 노출하는 이유."
 descriptionEn: "The path from two round trips to zero and what it cost, the structural weakness exposed when one trusted CA fell, and why HTTPS still leaks the destination name."
 date: "2026-09-14 15:00"
-category: "development"
+category: "web-security"
 tags: ["TLS", "PKI", "CertificateTransparency", "0-RTT", "ECH", "Security"]
 published: true
 ---

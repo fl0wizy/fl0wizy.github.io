@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (11) – What Front-End Evolutio
 description: "렌더링 위치가 서버에서 클라이언트로 갔다가 되돌아온 경로, 그때마다 새로 생긴 비용, 그리고 그 이동을 따라 함께 움직인 신뢰 경계."
 descriptionEn: "How rendering moved from server to client and back, the cost created at each step, and how the trust boundary moved along with it."
 date: "2026-09-15 13:10"
-category: "development"
+category: "web-security"
 tags: ["Frontend", "SPA", "SSR", "Hydration", "React", "XSS"]
 published: true
 ---

@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (16) – Turning the Study into 
 description: "앞의 열다섯 편이 하나의 배포된 시스템에서 어떻게 겹치는지, 실제로 막혔던 자리와 그때 내린 결정, 그리고 읽어서 아는 것과 배포해서 아는 것의 차이."
 descriptionEn: "How the previous fifteen parts overlap inside one deployed system, the walls actually hit and the decisions made there, and the gap between knowing by reading and knowing by shipping."
 date: "2026-09-15 19:50"
-category: "development"
+category: "web-security"
 tags: ["hack-tree", "Nextjs", "FastAPI", "Docker", "CICD", "Terraform"]
 published: true
 ---

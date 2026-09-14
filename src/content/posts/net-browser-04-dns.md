@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (04) – Name Resolution and DNS
 description: "한 파일로 관리하던 이름표가 제곱으로 늘어난 배포 비용에 무너진 과정, TTL이라는 타협, 그리고 이름과 주소의 기준이 갈라질 때 브라우저 보안 모델이 뚫리는 경로."
 descriptionEn: "How a single hosts file collapsed under distribution cost growing with the square of hosts, the TTL tradeoff, and how the split between name-based and address-based trust breaks the browser security model."
 date: "2026-09-14 13:40"
-category: "development"
+category: "web-security"
 tags: ["DNS", "Network", "TTL", "DNSRebinding", "DoH", "SubdomainTakeover"]
 published: true
 ---

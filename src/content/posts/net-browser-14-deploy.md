@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (14) – From the Edge to the Ap
 description: "TLS가 끝나는 지점부터 앱까지의 구간에서 헤더가 사실이 되는 방식, 컨테이너가 실제로 격리하는 범위, 그리고 사용자 요청보다 권한이 큰 또 하나의 경로."
 descriptionEn: "How headers become facts between TLS termination and the app, what containers actually isolate, and the second path into production that carries more privilege than any user request."
 date: "2026-09-15 17:10"
-category: "development"
+category: "web-security"
 tags: ["Infrastructure", "ReverseProxy", "Container", "Kubernetes", "CICD", "SupplyChain"]
 published: true
 ---

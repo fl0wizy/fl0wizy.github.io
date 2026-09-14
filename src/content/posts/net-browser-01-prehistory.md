@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (01) – The Prehistory and Shap
 description: "1989년 CERN 제안서가 요구한 다섯 가지 속성, 1993년 두 개의 라이선스 결정, 그리고 표준이 두 갈래로 갈라진 자리에서 파서 불일치가 태어난 경위."
 descriptionEn: "The five properties demanded by the 1989 CERN proposal, the two licensing decisions of 1993, and how parser discrepancies were born where the standard forked in two."
 date: "2026-09-14 09:10"
-category: "development"
+category: "web-security"
 tags: ["Web", "HTTP", "History", "WHATWG", "W3C", "Standards"]
 published: true
 ---

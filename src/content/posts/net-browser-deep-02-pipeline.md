@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (Deep 02) – The Rendering Pipe
 description: "무엇을 바꾸면 어느 단계부터 다시 도는지, 레이어 승격이 무엇을 지불하는지, 그리고 스크립트 없이 값이 새어 나가는 경로들."
 descriptionEn: "Which changes restart which stage, what layer promotion actually pays for, and the paths by which values leak without any script."
 date: "2026-09-16 10:30"
-category: "development"
+category: "web-security"
 tags: ["Rendering", "Performance", "CSS", "XSLeaks", "Browser", "DeepDive"]
 published: true
 ---

@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (10) – Origins and the Browser
 description: "동일 출처 정책이 읽기만 막고 보내기는 막지 않는 비대칭, 그 위에 사고마다 하나씩 덧붙은 방어의 지층, 그리고 서드파티 쿠키 폐지가 철회된 뒤의 현재 위치."
 descriptionEn: "The asymmetry where the same-origin policy blocks reads but not sends, the layers of defense added one incident at a time, and where things stand after third-party cookie deprecation was called off."
 date: "2026-09-15 11:50"
-category: "development"
+category: "web-security"
 tags: ["SameOriginPolicy", "CORS", "CSP", "Cookie", "CSRF", "Browser"]
 published: true
 ---

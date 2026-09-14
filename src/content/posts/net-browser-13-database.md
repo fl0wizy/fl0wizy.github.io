@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (13) – The Data Layer"
 description: "인덱스의 모양이 디스크 블록에서 역산된 이유, 격리 수준이 무엇을 허용하기로 한 합의인지, 그리고 준비된 구문이 막는 범위와 막지 못하는 범위."
 descriptionEn: "Why index shape is derived from disk blocks, what isolation levels actually agree to permit, and exactly where prepared statements stop protecting you."
 date: "2026-09-15 15:50"
-category: "development"
+category: "web-security"
 tags: ["Database", "Index", "Transaction", "ORM", "SQLInjection", "RaceCondition"]
 published: true
 ---

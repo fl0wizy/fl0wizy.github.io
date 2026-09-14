@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (Deep 03) – Inside Indexes and
 description: "키를 넣는 순서가 쓰기 비용을 바꾸는 이유, 기본키 크기가 모든 인덱스로 전파되는 구조, 스냅샷 격리가 막지 못하는 이상 현상, 그리고 그 구조가 정보 채널이 되는 방식."
 descriptionEn: "Why insertion order changes write cost, how primary key size propagates into every index, the anomaly snapshot isolation cannot prevent, and how that structure becomes an information channel."
 date: "2026-09-16 11:50"
-category: "development"
+category: "web-security"
 tags: ["Database", "Index", "MVCC", "Transaction", "BlindSQLi", "DeepDive"]
 published: true
 ---

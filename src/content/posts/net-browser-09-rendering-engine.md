@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (09) – The Rendering Pipeline 
 description: "바이트가 픽셀이 되는 단계를 쪼갠 이유, 자바스크립트가 그 사이를 비집고 들어가는 지점, 그리고 2008년에 세 진영이 동시에 JIT으로 움직인 배경."
 descriptionEn: "Why the byte-to-pixel path is split into stages, where JavaScript wedges into it, and why three engine teams all moved to JIT in 2008."
 date: "2026-09-15 10:30"
-category: "development"
+category: "web-security"
 tags: ["Browser", "Rendering", "JavaScript", "V8", "JIT", "EventLoop"]
 published: true
 ---

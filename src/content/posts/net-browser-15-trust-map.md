@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (15) – The Trust Boundary Map"
 description: "01편부터 14편까지를 다섯 개의 원형으로 압축하고, 웹해킹 트리 전체를 그 좌표 위에 얹는다. 기법은 계속 늘지만 형태는 늘지 않는다."
 descriptionEn: "Compressing parts 01 through 14 into five archetypes and placing the whole web hacking tree on those coordinates. Techniques keep multiplying; shapes do not."
 date: "2026-09-15 18:30"
-category: "development"
+category: "web-security"
 tags: ["Security", "ThreatModel", "WebSecurity", "Taxonomy", "TrustBoundary"]
 published: true
 ---

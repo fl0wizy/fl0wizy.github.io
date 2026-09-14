@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (06) – HTTP/1.1 and the Messag
 description: "본문의 끝을 정하는 규칙이 셋이나 공존하는 이유, 그 규칙들이 엇갈릴 때 연결 재사용이 그 차이를 다음 사용자에게 배달하는 구조, 그리고 2025년에도 수천만 사이트가 여기 걸려 있는 이유."
 descriptionEn: "Why three rules for ending a body coexist, how connection reuse delivers their disagreement to the next user, and why tens of millions of sites were still exposed in 2025."
 date: "2026-09-14 16:20"
-category: "development"
+category: "web-security"
 tags: ["HTTP", "RequestSmuggling", "Desync", "Cache", "Cookie", "RFC9112"]
 published: true
 ---

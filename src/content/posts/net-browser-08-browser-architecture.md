@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (08) – Browser Architecture"
 description: "렌더러는 언제든 뚫린다는 가정에서 출발한 설계, 출처가 아니라 사이트를 격리 단위로 삼은 이유, 그리고 그 결정이 메모리 10퍼센트대를 대가로 산 것."
 descriptionEn: "A design that starts by assuming the renderer will be compromised, why isolation uses sites rather than origins, and what that decision bought for a low-double-digit memory cost."
 date: "2026-09-15 09:10"
-category: "development"
+category: "web-security"
 tags: ["Browser", "Chromium", "SiteIsolation", "Sandbox", "Spectre", "IPC"]
 published: true
 ---

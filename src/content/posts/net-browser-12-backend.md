@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (12) – Backend Structure"
 description: "동시 요청을 나누는 세 가지 방식이 각각 어떤 버그를 부르는지, API 스타일이 풀려던 문제와 그 대가, 그리고 인가 표준이 권고를 필수로 승격해 온 이유."
 descriptionEn: "How three concurrency models each invite different bugs, what API styles were solving and what they cost, and why the authorization standard keeps promoting recommendations to requirements."
 date: "2026-09-15 14:30"
-category: "development"
+category: "web-security"
 tags: ["Backend", "Concurrency", "REST", "GraphQL", "JWT", "OAuth"]
 published: true
 ---

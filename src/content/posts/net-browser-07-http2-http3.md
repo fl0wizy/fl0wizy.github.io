@@ -5,7 +5,7 @@ titleEn: "Growing Up with Networks and Browsers (07) – HTTP/2, HTTP/3, and Fra
 description: "막힘이 애플리케이션에서 전송 계층으로 옮겨간 과정, 압축이 만든 새 취약점, 정당한 기능 하나가 초당 4억 요청의 공격이 된 사건, 그리고 전송 계층을 통째로 다시 지은 이유."
 descriptionEn: "How blocking moved from the application to the transport layer, the vulnerability compression created, how one legitimate feature became a 398M rps attack, and why the transport layer was rebuilt from scratch."
 date: "2026-09-14 17:40"
-category: "development"
+category: "web-security"
 tags: ["HTTP2", "HTTP3", "QUIC", "HPACK", "RapidReset", "HeadOfLineBlocking"]
 published: true
 ---
