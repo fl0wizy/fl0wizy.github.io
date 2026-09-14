@@ -1,6 +1,6 @@
 This instalment opens **behind the API**, which Part 11 named and handed on, through concurrency models and authorization specifications. How requests are divided and where the login state is kept is the skeleton of that structure. **The structure a server picks brings performance characteristics and a vulnerability class as one bundle.**
 
-![Backend structure](/images/net-browser/12-backend.svg)
+![Backend structure](/images/net-browser/en/12-backend.svg)
 
 ---
 

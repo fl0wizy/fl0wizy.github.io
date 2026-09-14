@@ -1,0 +1,102 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="j1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="700" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">Front-end evolution – the movement of "who makes the HTML, and when"</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Each stage solved the previous stage's problem and created a new one in exchange</text>
+
+  <!-- 축 -->
+  <text x="52" y="92" fill="#8a8aa0" font-size="10.5">generated on the server</text>
+  <text x="880" y="92" fill="#8a8aa0" font-size="10.5">generated in the browser</text>
+  <line x1="40" y1="100" x2="960" y2="100" stroke="#2a2a3e" stroke-width="1.2"/>
+
+  <g>
+    <!-- 1 -->
+    <rect x="40" y="116" width="216" height="120" rx="9" fill="#12121f" stroke="#3a3a52"/>
+    <text x="58" y="138" fill="#e8e8f0" font-size="11.5" font-weight="700">① Server templates</text>
+    <text x="58" y="158" fill="#8a8aa0" font-size="10">Sends complete HTML per request.</text>
+    <text x="58" y="174" fill="#8a8aa0" font-size="10">One click = a full page reload</text>
+    <text x="58" y="198" fill="#34d399" font-size="10">+ simple · SEO friendly · fast first paint</text>
+    <text x="58" y="216" fill="#db8585" font-size="10">- no partial updates · no app-like feel</text>
+
+    <!-- 2 -->
+    <rect x="272" y="116" width="216" height="120" rx="9" fill="#12121f" stroke="#3a3a52"/>
+    <text x="290" y="138" fill="#e8e8f0" font-size="11.5" font-weight="700">② Ajax partial updates</text>
+    <text x="290" y="158" fill="#8a8aa0" font-size="10">Receives only data and edits part of the DOM.</text>
+    <text x="290" y="174" fill="#8a8aa0" font-size="10">imperative DOM handling of the jQuery era</text>
+    <text x="290" y="198" fill="#34d399" font-size="10">+ interaction without reloading</text>
+    <text x="290" y="216" fill="#db8585" font-size="10">- state scattered in the DOM, untrackable</text>
+
+    <!-- 3 -->
+    <rect x="504" y="116" width="216" height="120" rx="9" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+    <text x="522" y="138" fill="#d8d0f8" font-size="11.5" font-weight="700">③ SPA</text>
+    <text x="522" y="158" fill="#8a8aa0" font-size="10">The server gives an empty shell + JSON.</text>
+    <text x="522" y="174" fill="#8a8aa0" font-size="10">state → UI described declaratively</text>
+    <text x="522" y="198" fill="#34d399" font-size="10">+ state in one place · complex UI possible</text>
+    <text x="522" y="216" fill="#db8585" font-size="10">- whole bundle first · SEO · routing</text>
+
+    <!-- 4 -->
+    <rect x="736" y="116" width="224" height="120" rx="9" fill="#101a18" stroke="#34d399" stroke-width="1.5"/>
+    <text x="754" y="138" fill="#a7f3d0" font-size="11.5" font-weight="700">④ Return to SSR · server components</text>
+    <text x="754" y="158" fill="#8a8aa0" font-size="10">Draw on the server first, sending only</text>
+    <text x="754" y="174" fill="#8a8aa0" font-size="10">the interactive pieces to the client</text>
+    <text x="754" y="198" fill="#34d399" font-size="10">+ first paint recovered · less JS sent</text>
+    <text x="754" y="216" fill="#db8585" font-size="10">- the server/client boundary enters the code</text>
+  </g>
+
+  <g stroke="#5a5a78" stroke-width="1.3" marker-end="url(#j1)">
+    <line x1="256" y1="176" x2="270" y2="176"/>
+    <line x1="488" y1="176" x2="502" y2="176"/>
+    <line x1="720" y1="176" x2="734" y2="176"/>
+  </g>
+
+  <!-- 하이드레이션 -->
+  <rect x="40" y="258" width="920" height="182" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="282" fill="#e8e8f0" font-size="12.5" font-weight="700">The cost created when SSR came back – hydration</text>
+  <text x="60" y="302" fill="#c8c8d8" font-size="10.5">HTML made by the server only shows; it is not yet clickable. The browser has to build the same component tree again and attach events.</text>
+
+  <g>
+    <rect x="60" y="316" width="270" height="60" rx="7" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="78" y="336" fill="#bcd6f0" font-size="11" font-weight="600">1st – rendered on the server</text>
+    <text x="78" y="354" fill="#8a8aa0" font-size="10">HTML string generated → sent</text>
+    <text x="78" y="368" fill="#8a8aa0" font-size="10">the user sees the screen</text>
+
+    <rect x="350" y="316" width="270" height="60" rx="7" fill="#1f1a12" stroke="#e6a572"/>
+    <text x="368" y="336" fill="#f0cba8" font-size="11" font-weight="600">2nd – rendered again in the browser</text>
+    <text x="368" y="354" fill="#8a8aa0" font-size="10">the same tree is rebuilt and matched to the DOM</text>
+    <text x="368" y="368" fill="#8a8aa0" font-size="10">during this time it shows but does not click</text>
+
+    <rect x="640" y="316" width="300" height="60" rx="7" fill="#101a18" stroke="#34d399"/>
+    <text x="658" y="336" fill="#a7f3d0" font-size="11" font-weight="600">Answer – shrink the range redrawn</text>
+    <text x="658" y="354" fill="#8a8aa0" font-size="10">streaming · partial hydration · islands</text>
+    <text x="658" y="368" fill="#8a8aa0" font-size="10">only interactive pieces go to the client</text>
+  </g>
+
+  <text x="60" y="400" fill="#c8c8d8" font-size="10.5">That "when it is visible" and "when it is usable" split apart is the core of this structure. Looking at a single metric hides the gap.</text>
+  <text x="60" y="422" fill="#8a8aa0" font-size="10.5">Server components approach this as "do not send it to the client at all". In exchange the developer must keep track of which code runs where.</text>
+
+  <!-- 신뢰 경계 -->
+  <rect x="40" y="460" width="920" height="222" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="60" y="484" fill="#e8b0b0" font-size="12.5" font-weight="700">When the place of rendering moves, the trust boundary moves with it</text>
+
+  <rect x="60" y="498" width="430" height="80" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="78" y="518" fill="#e8b0b0" font-size="11" font-weight="600">The illusion when moving to the client</text>
+  <text x="78" y="538" fill="#c8c8d8" font-size="10.5">When form validation, hiding menus by permission and</text>
+  <text x="78" y="554" fill="#c8c8d8" font-size="10.5">price calculation run in the browser, that is UI, not validation.</text>
+  <text x="78" y="572" fill="#8a8aa0" font-size="10.5">The attacker calls the API directly, without the screen.</text>
+
+  <rect x="510" y="498" width="430" height="80" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="528" y="518" fill="#e8b0b0" font-size="11" font-weight="600">The illusion when coming back to the server</text>
+  <text x="528" y="538" fill="#c8c8d8" font-size="10.5">A value in a server component feels server-only, and the moment</text>
+  <text x="528" y="554" fill="#c8c8d8" font-size="10.5">it is passed to a client component it is serialized and sent.</text>
+  <text x="528" y="572" fill="#8a8aa0" font-size="10.5">A new class of API keys and internal IDs leaking by this path appeared.</text>
+
+  <text x="60" y="606" fill="#c8c8d8" font-size="10.5">What does not change whatever the framework – all code and data running in the browser can be read and edited by the user.</text>
+  <text x="60" y="628" fill="#c8c8d8" font-size="10.5">XSS only changed address; it did not disappear. Frameworks escape strings by default, and ship an API that turns that off explicitly.</text>
+  <text x="60" y="650" fill="#8a8aa0" font-size="10.5">dangerouslySetInnerHTML · v-html · the bypassSecurityTrust family – this is why the warning is in the name.</text>
+  <text x="60" y="670" fill="#8a8aa0" font-size="10.5">That prototype pollution became a real attack path as code merging and copying client state objects multiplied is another change of this period.</text>
+</svg>

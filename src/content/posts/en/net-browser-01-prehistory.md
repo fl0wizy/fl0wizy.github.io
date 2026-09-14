@@ -1,6 +1,6 @@
 The web is a system that grew without central control, and in such a system nobody validates input for you and nobody forces interpretation into a single shape. Part I – The Protocol Layers follows what form that deficit takes at each layer, and this instalment looks at when, and through which decisions, it set. **The major branches of web vulnerabilities are not mistakes that crept in later; they are the price a design that grew without central authority agreed to pay from the start.**
 
-![A timeline of the web standards lineage](/images/net-browser/01-web-timeline.svg)
+![A timeline of the web standards lineage](/images/net-browser/en/01-web-timeline.svg)
 
 ---
 

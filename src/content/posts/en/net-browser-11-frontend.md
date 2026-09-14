@@ -1,6 +1,6 @@
 The deficit Part 10 left was that the browser's boundary is drawn only after the document arrives, and that the origin criterion does not ask who made that HTML or where. Part III – the Application enters that making side, and this instalment fills the deficit with how the place of making moved back and forth between server and client. Rather than listing framework names, looking at it through the single question of **who makes the HTML, when, and where** reveals which problem of the previous stage each stage was trying to solve, and what it newly took on in exchange.
 
-![Front-end evolution](/images/net-browser/11-frontend.svg)
+![Front-end evolution](/images/net-browser/en/11-frontend.svg)
 
 ---
 

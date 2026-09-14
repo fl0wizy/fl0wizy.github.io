@@ -1,6 +1,6 @@
 The deficit Part 6 left is the room for interpretation that remains as long as boundaries are written as text. HTTP/2 erased that room by nailing it down as a number in a fixed position in the frame header, and because blocking still remained after that, HTTP/3 replaced the transport layer itself. **Blocking does not disappear; it descends one layer at a time, and every mechanism used to push it down leaves a new discrepancy.**
 
-![The path blocking moved along](/images/net-browser/07-h2-h3.svg)
+![The path blocking moved along](/images/net-browser/en/07-h2-h3.svg)
 
 ---
 

@@ -1,6 +1,6 @@
 This instalment receives, at the single layer of TCP, **the four guarantees IP gave up** that Part 2 named and handed on. TCP recovers three of them, leaves one abandoned, and as the price of that recovery pushes one new property up to the layer above. **A byte stream has no message boundaries.**
 
-![The TCP handshake and the byte stream](/images/net-browser/03-tcp-stream.svg)
+![The TCP handshake and the byte stream](/images/net-browser/en/03-tcp-stream.svg)
 
 ---
 

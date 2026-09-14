@@ -1,0 +1,107 @@
+<svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="l1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="720" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">The data layer – the shape of an index, and the anomalies concurrency creates</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Both are structures back-calculated from two facts: "disks are slow" and "requests arrive at once"</text>
+
+  <!-- B+tree -->
+  <text x="40" y="90" fill="#8a8aa0" font-size="11" font-weight="600">B+ tree – why not a binary tree</text>
+  <g text-anchor="middle">
+    <rect x="380" y="102" width="240" height="36" rx="6" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+    <text x="500" y="126" fill="#d8d0f8" font-size="11">root · [30 | 60 | 90]</text>
+
+    <rect x="120" y="172" width="200" height="34" rx="6" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="220" y="194" fill="#bcd6f0" font-size="10.5">[10 | 20]</text>
+    <rect x="400" y="172" width="200" height="34" rx="6" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="500" y="194" fill="#bcd6f0" font-size="10.5">[40 | 50]</text>
+    <rect x="680" y="172" width="200" height="34" rx="6" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="780" y="194" fill="#bcd6f0" font-size="10.5">[70 | 80]</text>
+
+    <rect x="60" y="240" width="160" height="34" rx="6" fill="#12201c" stroke="#34d399"/>
+    <text x="140" y="262" fill="#a7f3d0" font-size="10">leaf · row location</text>
+    <rect x="236" y="240" width="160" height="34" rx="6" fill="#12201c" stroke="#34d399"/>
+    <text x="316" y="262" fill="#a7f3d0" font-size="10">leaf · row location</text>
+    <rect x="412" y="240" width="160" height="34" rx="6" fill="#12201c" stroke="#34d399"/>
+    <text x="492" y="262" fill="#a7f3d0" font-size="10">leaf · row location</text>
+    <rect x="588" y="240" width="160" height="34" rx="6" fill="#12201c" stroke="#34d399"/>
+    <text x="668" y="262" fill="#a7f3d0" font-size="10">leaf · row location</text>
+    <rect x="764" y="240" width="176" height="34" rx="6" fill="#12201c" stroke="#34d399"/>
+    <text x="852" y="262" fill="#a7f3d0" font-size="10">leaf · row location</text>
+  </g>
+  <g stroke="#5a5a78" stroke-width="1.2" fill="none">
+    <path d="M 440 138 L 220 170"/>
+    <path d="M 500 138 L 500 170"/>
+    <path d="M 560 138 L 780 170"/>
+    <path d="M 180 206 L 140 238"/><path d="M 260 206 L 316 238"/>
+    <path d="M 460 206 L 492 238"/>
+    <path d="M 740 206 L 668 238"/><path d="M 820 206 L 852 238"/>
+  </g>
+  <g stroke="#34d399" stroke-width="1.4" stroke-dasharray="4 3">
+    <line x1="220" y1="257" x2="236" y2="257"/>
+    <line x1="396" y1="257" x2="412" y2="257"/>
+    <line x1="572" y1="257" x2="588" y2="257"/>
+    <line x1="748" y1="257" x2="764" y2="257"/>
+  </g>
+  <text x="500" y="296" text-anchor="middle" fill="#34d399" font-size="10.5">The leaves are linked → range queries (BETWEEN · ORDER BY) become sequential reads</text>
+
+  <rect x="40" y="308" width="920" height="70" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="330" fill="#e8e8f0" font-size="11" font-weight="600">Why one node is so wide</text>
+  <text x="60" y="350" fill="#c8c8d8" font-size="10.5">Disks read in blocks, not bytes. Put hundreds of keys in one block and tree height falls to 3~4, cutting disk accesses by as much.</text>
+  <text x="60" y="368" fill="#8a8aa0" font-size="10.5">A binary tree does fewer comparisons and touches the disk at every node. That the thing optimized is "block accesses" and not "comparisons" decided the shape.</text>
+
+  <!-- 격리 수준 -->
+  <text x="40" y="412" fill="#8a8aa0" font-size="11" font-weight="600">Transaction isolation levels – what was agreed to be permitted</text>
+  <rect x="40" y="424" width="920" height="150" rx="9" fill="#12121f" stroke="#3a3a52"/>
+
+  <g font-size="10.5">
+    <text x="60" y="448" fill="#8a8aa0" font-weight="600">level</text>
+    <text x="280" y="448" fill="#8a8aa0" font-weight="600">dirty read</text>
+    <text x="430" y="448" fill="#8a8aa0" font-weight="600">non-repeatable read</text>
+    <text x="640" y="448" fill="#8a8aa0" font-weight="600">phantom</text>
+    <text x="790" y="448" fill="#8a8aa0" font-weight="600">price</text>
+
+    <line x1="60" y1="456" x2="940" y2="456" stroke="#2a2a3e"/>
+
+    <text x="60" y="478" fill="#c8c8d8">READ UNCOMMITTED</text>
+    <text x="280" y="478" fill="#db8585">allowed</text>
+    <text x="430" y="478" fill="#db8585">allowed</text>
+    <text x="640" y="478" fill="#db8585">allowed</text>
+    <text x="790" y="478" fill="#8a8aa0">effectively unused</text>
+
+    <text x="60" y="502" fill="#c8c8d8">READ COMMITTED</text>
+    <text x="280" y="502" fill="#34d399">blocked</text>
+    <text x="430" y="502" fill="#db8585">allowed</text>
+    <text x="640" y="502" fill="#db8585">allowed</text>
+    <text x="790" y="502" fill="#8a8aa0">the default in many DBs</text>
+
+    <text x="60" y="526" fill="#c8c8d8">REPEATABLE READ</text>
+    <text x="280" y="526" fill="#34d399">blocked</text>
+    <text x="430" y="526" fill="#34d399">blocked</text>
+    <text x="640" y="526" fill="#e6a572">varies by implementation</text>
+    <text x="790" y="526" fill="#8a8aa0">cost of holding snapshots</text>
+
+    <text x="60" y="550" fill="#c8c8d8">SERIALIZABLE</text>
+    <text x="280" y="550" fill="#34d399">blocked</text>
+    <text x="430" y="550" fill="#34d399">blocked</text>
+    <text x="640" y="550" fill="#34d399">blocked</text>
+    <text x="790" y="550" fill="#8a8aa0">needs retry on serialization failure</text>
+  </g>
+
+  <!-- lost update -->
+  <rect x="40" y="590" width="920" height="118" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="60" y="614" fill="#e8b0b0" font-size="12" font-weight="700">What raising the isolation level still does not stop at the application level – lost update</text>
+  <rect x="60" y="626" width="420" height="66" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="76" y="646" font-family="Menlo, monospace" font-size="10.5" fill="#e8b0b0">T1: SELECT balance   -- 1000</text>
+  <text x="76" y="662" font-family="Menlo, monospace" font-size="10.5" fill="#e8b0b0">T2: SELECT balance   -- 1000</text>
+  <text x="76" y="678" font-family="Menlo, monospace" font-size="10.5" fill="#e8b0b0">T1: UPDATE ... 900   T2: UPDATE ... 900  → only 100 comes out</text>
+
+  <rect x="500" y="626" width="440" height="66" rx="7" fill="#12201c" stroke="#34d399"/>
+  <text x="516" y="646" fill="#a7f3d0" font-size="10.5" font-weight="600">Merge read-modify-write into one statement, or take a lock</text>
+  <text x="516" y="664" font-family="Menlo, monospace" font-size="10.5" fill="#a7f3d0">UPDATE t SET balance = balance - 100 WHERE ...</text>
+  <text x="516" y="682" font-family="Menlo, monospace" font-size="10.5" fill="#a7f3d0">SELECT ... FOR UPDATE   -- or optimistic locking with a version column</text>
+</svg>

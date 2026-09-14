@@ -88,7 +88,7 @@ The macOS keychain and the Windows certificate store do not recognize these exte
 
 How do you believe the certificate a server sent? The answer is **following the chain upwards and seeing whether it reaches a root you already decided to trust.**
 
-![A comparison of a public CA chain and a self-signed root](/images/pki-tls-vmrc/chain.svg)
+![A comparison of a public CA chain and a self-signed root](/images/pki-tls-vmrc/en/chain.svg)
 
 In a public CA system the root is already in the OS and the browser. The server sends its own certificate together with the intermediate CA's, and the client checks that the intermediate CA's signature resolves to the root. With the root already on the trust list, the chain closes by itself.
 
@@ -204,7 +204,7 @@ openssl s_client -connect 203.0.113.10:443 -CAfile vmca-root.crt </dev/null 2>/d
 
 Certificate verification is one stage of the handshake, with other negotiations before and after it. Each stage has its own way of failing. Looking at it as of TLS 1.3.
 
-![TLS 1.3 handshake stages and failure points](/images/pki-tls-vmrc/handshake.svg)
+![TLS 1.3 handshake stages and failure points](/images/pki-tls-vmrc/en/handshake.svg)
 
 ### Stage 0: TCP
 
@@ -351,7 +351,7 @@ Which is to say, using VMRC 11.0 or above requires both **vCenter's 443 and ever
 
 The browser web console is different. The web console section of the same document has the client connecting to vCenter's 443 and **vCenter connecting to ESXi's 902**. The only place the client has to reach directly is vCenter.
 
-![A comparison of the browser web console's and VMRC's connection paths](/images/pki-tls-vmrc/console-paths.svg)
+![A comparison of the browser web console's and VMRC's connection paths](/images/pki-tls-vmrc/en/console-paths.svg)
 
 ---
 

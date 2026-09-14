@@ -1,6 +1,6 @@
 What decides the extent of loss after compromise is not the protocol but the browser's process layout. Part II – the Browser begins at that layout. The reason a browser uses several processes weighs towards security rather than stability, and the whole design is back-calculated from one sentence. **The renderer will eventually be compromised.**
 
-![The browser process model](/images/net-browser/08-browser-process.svg)
+![The browser process model](/images/net-browser/en/08-browser-process.svg)
 
 ---
 

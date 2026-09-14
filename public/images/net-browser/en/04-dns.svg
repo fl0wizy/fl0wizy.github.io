@@ -1,0 +1,85 @@
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="d1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6f9fd8"/>
+    </marker>
+    <marker id="d2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#db8585"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="620" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">DNS – a name space split by delegation, and answers that change over time</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Top: the path one name resolution actually walks · Bottom: what happens when the second answer for the same name differs</text>
+
+  <!-- ===== 상단: 재귀 해석 ===== -->
+  <g text-anchor="middle">
+    <rect x="40" y="96" width="128" height="52" rx="9" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+    <text x="104" y="118" fill="#e8e8f0" font-size="12" font-weight="600">Browser</text>
+    <text x="104" y="136" fill="#8a8aa0" font-size="10">stub resolver</text>
+
+    <rect x="222" y="96" width="150" height="52" rx="9" fill="#141a22" stroke="#6f9fd8" stroke-width="1.5"/>
+    <text x="297" y="118" fill="#bcd6f0" font-size="12" font-weight="600">Recursive resolver</text>
+    <text x="297" y="136" fill="#8a8aa0" font-size="10">the only point with a cache</text>
+
+    <rect x="436" y="78" width="120" height="44" rx="9" fill="#12121f" stroke="#3a3a52"/>
+    <text x="496" y="96" fill="#c8c8d8" font-size="11">Root (.)</text>
+    <text x="496" y="112" fill="#8a8aa0" font-size="10">"com is over there"</text>
+
+    <rect x="596" y="78" width="120" height="44" rx="9" fill="#12121f" stroke="#3a3a52"/>
+    <text x="656" y="96" fill="#c8c8d8" font-size="11">TLD (.com)</text>
+    <text x="656" y="112" fill="#8a8aa0" font-size="10">"example is over there"</text>
+
+    <rect x="756" y="78" width="180" height="44" rx="9" fill="#101a18" stroke="#34d399" stroke-width="1.5"/>
+    <text x="846" y="96" fill="#a7f3d0" font-size="11" font-weight="600">Authoritative name server</text>
+    <text x="846" y="112" fill="#8a8aa0" font-size="10">the real answer for example.com</text>
+  </g>
+
+  <line x1="168" y1="122" x2="220" y2="122" stroke="#6f9fd8" stroke-width="1.5" marker-end="url(#d1)"/>
+  <text x="194" y="114" text-anchor="middle" fill="#8a8aa0" font-size="9">recursive query</text>
+
+  <g stroke="#5a5a78" stroke-width="1.3" marker-end="url(#d1)" fill="none">
+    <path d="M 372 112 L 434 100"/>
+    <path d="M 556 100 L 594 100"/>
+    <path d="M 716 100 L 754 100"/>
+  </g>
+  <text x="640" y="66" text-anchor="middle" fill="#8a8aa0" font-size="10">iterative queries – each step gives not "the answer" but "where to ask next" (delegation)</text>
+
+  <path d="M 846 122 L 846 158 L 297 158 L 297 150" stroke="#34d399" stroke-width="1.3" fill="none" marker-end="url(#d1)"/>
+  <text x="580" y="174" text-anchor="middle" fill="#a7f3d0" font-size="10">A record + TTL → the resolver caches it for the TTL</text>
+
+  <rect x="40" y="188" width="896" height="54" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="58" y="210" fill="#e8e8f0" font-size="11" font-weight="600">TTL is a compromise between performance and control</text>
+  <text x="58" y="230" fill="#c8c8d8" font-size="10.5">Long – fewer queries and less root/TLD load. Moving a server leaves stale traffic.</text>
+  <text x="640" y="230" fill="#8a8aa0" font-size="10.5">Short – fast switchover, for the attacker too.</text>
+
+  <!-- ===== 하단: rebinding ===== -->
+  <line x1="40" y1="268" x2="960" y2="268" stroke="#1e1e2e"/>
+  <text x="40" y="294" fill="#e8b0b0" font-size="12" font-weight="700">DNS rebinding – the name stays, only the address changes</text>
+
+  <!-- step 1 -->
+  <rect x="40" y="310" width="440" height="140" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="334" fill="#c8c8d8" font-size="11" font-weight="600">Stage 1 – the victim opens the attacker's page</text>
+  <text x="60" y="358" fill="#8a8aa0" font-size="10.5">query: evil.com → answer: 203.0.113.9 (attacker server), TTL = 1s</text>
+  <text x="60" y="380" fill="#8a8aa0" font-size="10.5">The browser runs JS with origin evil.com.</text>
+  <rect x="60" y="394" width="400" height="42" rx="6" fill="#161226" stroke="#8b7cf6"/>
+  <text x="76" y="412" fill="#d8d0f8" font-size="10.5">origin = https://evil.com</text>
+  <text x="76" y="428" fill="#8a8aa0" font-size="10.5">SOP allows/blocks access on this string.</text>
+
+  <!-- step 2 -->
+  <rect x="520" y="310" width="440" height="140" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="540" y="334" fill="#e8b0b0" font-size="11" font-weight="600">Stage 2 – after the TTL expires, the same name is asked again</text>
+  <text x="540" y="358" fill="#c8c8d8" font-size="10.5">query: evil.com → answer: 192.168.0.1 (victim's internal net)</text>
+  <text x="540" y="380" fill="#c8c8d8" font-size="10.5">The JS is still at origin evil.com, so it passes SOP.</text>
+  <rect x="540" y="394" width="400" height="42" rx="6" fill="#1a1012" stroke="#db8585"/>
+  <text x="556" y="412" fill="#e8b0b0" font-size="10.5">where the socket actually connects = 192.168.0.1</text>
+  <text x="556" y="428" fill="#8a8aa0" font-size="10.5">The browser's trust boundary and the real destination come apart.</text>
+  <line x1="480" y1="380" x2="518" y2="380" stroke="#db8585" stroke-width="1.5" marker-end="url(#d2)"/>
+
+  <rect x="40" y="470" width="920" height="128" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="58" y="494" fill="#e8e8f0" font-size="11.5" font-weight="600">The root reason this attack works</text>
+  <text x="58" y="518" fill="#c8c8d8" font-size="11">The browser's access control goes by <tspan fill="#8b7cf6" font-weight="600">name</tspan>, and the actual communication goes by <tspan fill="#db8585" font-weight="600">address</tspan>.</text>
+  <text x="58" y="538" fill="#c8c8d8" font-size="11">The name-to-address translation can answer differently over time, so what the two criteria point at diverges midway.</text>
+  <text x="58" y="566" fill="#8a8aa0" font-size="10.5">Defences stand per layer – browser: DNS pinning · resolver: filtering private-range answers (DNS rebinding protection)</text>
+  <text x="58" y="584" fill="#8a8aa0" font-size="10.5">· server: Host header whitelist validation (identify itself by name, not address) · internal services: do not base auth on network location</text>
+</svg>

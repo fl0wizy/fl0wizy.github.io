@@ -1,6 +1,6 @@
 The previous fourteen instalments each left one debt per layer, and those debts ended scattered instalment by instalment. Part IV – Map and Record. Gathering the "where vulnerabilities live at this layer" written at the end of each instalment into one place produces **not a list but five shapes**.
 
-![The five archetypes of web vulnerabilities](/images/net-browser/15-map.svg)
+![The five archetypes of web vulnerabilities](/images/net-browser/en/15-map.svg)
 
 ---
 

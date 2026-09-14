@@ -1,6 +1,6 @@
 Part 4 turned a name into an address and handed it on without verifying the identity of whoever stands at the end of that address. The layer that takes on that verification is TLS, and the basis for the verification is not cryptography but a list of parties permitted to issue certificates. **Of the three problems TLS solves, confidentiality and integrity close mathematically, while identity verification alone remains a problem of arrangement: whom shall we believe.**
 
-![The TLS handshake and the chain of trust](/images/net-browser/05-tls.svg)
+![The TLS handshake and the chain of trust](/images/net-browser/en/05-tls.svg)
 
 ---
 

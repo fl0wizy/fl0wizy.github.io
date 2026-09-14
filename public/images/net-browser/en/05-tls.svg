@@ -1,0 +1,99 @@
+<svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="e1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6f9fd8"/>
+    </marker>
+    <marker id="e2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e6a572"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="660" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">TLS – what was given up in the course of cutting round trips</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Left: how the handshake's round trips changed · Right: the chain vouching for identity, and what appeared after it broke once</text>
+
+  <line x1="500" y1="76" x2="500" y2="630" stroke="#1e1e2e"/>
+
+  <!-- ===== 좌: 핸드셰이크 ===== -->
+  <!-- TLS 1.2 -->
+  <text x="40" y="98" fill="#8a8aa0" font-size="11" font-weight="600">TLS 1.2 – 2 RTT</text>
+  <g>
+    <line x1="70" y1="108" x2="70" y2="236" stroke="#2a2a3e"/>
+    <line x1="440" y1="108" x2="440" y2="236" stroke="#2a2a3e"/>
+    <text x="70" y="122" text-anchor="middle" fill="#8b7cf6" font-size="10">client</text>
+    <text x="440" y="122" text-anchor="middle" fill="#34d399" font-size="10">server</text>
+
+    <line x1="70" y1="140" x2="438" y2="140" stroke="#6f9fd8" stroke-width="1.4" marker-end="url(#e1)"/>
+    <text x="254" y="134" text-anchor="middle" fill="#bcd6f0" font-size="10">ClientHello – lists what is supported</text>
+    <line x1="440" y1="166" x2="72" y2="166" stroke="#6f9fd8" stroke-width="1.4" marker-end="url(#e1)"/>
+    <text x="254" y="160" text-anchor="middle" fill="#bcd6f0" font-size="10">ServerHello + certificate + key exchange parameters</text>
+    <line x1="70" y1="192" x2="438" y2="192" stroke="#6f9fd8" stroke-width="1.4" marker-end="url(#e1)"/>
+    <text x="254" y="186" text-anchor="middle" fill="#bcd6f0" font-size="10">client key exchange + Finished</text>
+    <line x1="440" y1="218" x2="72" y2="218" stroke="#6f9fd8" stroke-width="1.4" marker-end="url(#e1)"/>
+    <text x="254" y="212" text-anchor="middle" fill="#bcd6f0" font-size="10">Finished – only now is app data possible</text>
+  </g>
+
+  <!-- TLS 1.3 -->
+  <text x="40" y="272" fill="#8a8aa0" font-size="11" font-weight="600">TLS 1.3 – 1 RTT</text>
+  <g>
+    <line x1="70" y1="282" x2="70" y2="370" stroke="#2a2a3e"/>
+    <line x1="440" y1="282" x2="440" y2="370" stroke="#2a2a3e"/>
+    <line x1="70" y1="314" x2="438" y2="314" stroke="#34d399" stroke-width="1.4" marker-end="url(#e1)"/>
+    <text x="254" y="308" text-anchor="middle" fill="#a7f3d0" font-size="10">ClientHello + key_share – guesses the curve in advance and sends it</text>
+    <line x1="440" y1="346" x2="72" y2="346" stroke="#34d399" stroke-width="1.4" marker-end="url(#e1)"/>
+    <text x="254" y="340" text-anchor="middle" fill="#a7f3d0" font-size="10">ServerHello + certificate (encrypted) + Finished</text>
+  </g>
+  <text x="40" y="388" fill="#6a6a84" font-size="10">A wrong guess costs another RTT via HelloRetryRequest – a statistical bet.</text>
+
+  <!-- 0-RTT -->
+  <rect x="40" y="404" width="430" height="216" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="58" y="428" fill="#e8b0b0" font-size="11.5" font-weight="700">0-RTT – zero round trips, at the cost of two things</text>
+  <text x="58" y="452" fill="#c8c8d8" font-size="10.5">On reconnect the first request is encrypted immediately with the previous session's PSK.</text>
+  <text x="58" y="476" fill="#e8b0b0" font-size="10.5" font-weight="600">① no forward secrecy</text>
+  <text x="70" y="494" fill="#8a8aa0" font-size="10">RFC 8446: "This data is not forward secret, as it is</text>
+  <text x="70" y="510" fill="#8a8aa0" font-size="10">encrypted solely under keys derived using the offered PSK."</text>
+  <text x="58" y="534" fill="#e8b0b0" font-size="10.5" font-weight="600">② no replay protection</text>
+  <text x="70" y="552" fill="#8a8aa0" font-size="10">"There are no guarantees of non-replay between connections."</text>
+  <text x="70" y="568" fill="#8a8aa0" font-size="10">For 1-RTT data the server's Random value prevents replay,</text>
+  <text x="70" y="584" fill="#8a8aa0" font-size="10">but 0-RTT data does not depend on the ServerHello.</text>
+  <text x="58" y="608" fill="#db8585" font-size="10.5" font-weight="600">→ use it only for idempotent requests. A replayed POST executes twice.</text>
+
+  <!-- ===== 우: 신뢰 체인 ===== -->
+  <text x="530" y="98" fill="#8a8aa0" font-size="11" font-weight="600">The chain vouching for identity</text>
+  <g text-anchor="middle">
+    <rect x="530" y="110" width="400" height="40" rx="8" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+    <text x="730" y="128" fill="#e8e8f0" font-size="11" font-weight="600">Root store (built into the OS · browser)</text>
+    <text x="730" y="143" fill="#8a8aa0" font-size="9.5">hundreds of root CAs – the vendor decides the list</text>
+
+    <rect x="530" y="168" width="400" height="36" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="730" y="191" fill="#c8c8d8" font-size="11">Intermediate CA – issuing authority signed by the root</text>
+
+    <rect x="530" y="222" width="400" height="36" rx="8" fill="#101a18" stroke="#34d399"/>
+    <text x="730" y="245" fill="#a7f3d0" font-size="11">Server certificate – the guarantee for example.com</text>
+  </g>
+  <g stroke="#5a5a78" stroke-width="1.3" marker-end="url(#e1)">
+    <line x1="730" y1="150" x2="730" y2="166"/>
+    <line x1="730" y1="204" x2="730" y2="220"/>
+  </g>
+
+  <rect x="530" y="276" width="400" height="66" rx="9" fill="#1f1a12" stroke="#e6a572"/>
+  <text x="548" y="298" fill="#f0cba8" font-size="11" font-weight="600">The weak link in this structure</text>
+  <text x="548" y="318" fill="#c8c8d8" font-size="10.5">Any trusted CA can issue a certificate for <tspan font-weight="600">any</tspan> <tspan font-weight="600">domain</tspan>.</text>
+  <text x="548" y="334" fill="#8a8aa0" font-size="10.5">Total security = the security of the flimsiest single CA.</text>
+
+  <rect x="530" y="358" width="400" height="120" rx="9" fill="#1f1418" stroke="#db8585"/>
+  <text x="548" y="380" fill="#e8b0b0" font-size="11" font-weight="700">DigiNotar, 2011</text>
+  <text x="548" y="402" fill="#c8c8d8" font-size="10.5">breached in July · at least 531 forged certificates issued</text>
+  <text x="548" y="420" fill="#c8c8d8" font-size="10.5">28 August – a google.com wildcard certificate used</text>
+  <text x="548" y="436" fill="#c8c8d8" font-size="10.5">in a Gmail MITM against ~300,000 users in Iran</text>
+  <text x="548" y="456" fill="#8a8aa0" font-size="10.5">20 September – DigiNotar declared bankrupt</text>
+  <text x="548" y="472" fill="#8a8aa0" font-size="10">among the first cases of browsers removing a whole root</text>
+
+  <rect x="530" y="494" width="400" height="126" rx="9" fill="#101a18" stroke="#34d399"/>
+  <text x="548" y="516" fill="#a7f3d0" font-size="11" font-weight="700">The response – Certificate Transparency</text>
+  <text x="548" y="538" fill="#c8c8d8" font-size="10.5">Every issued certificate is recorded into an append-only</text>
+  <text x="548" y="554" fill="#c8c8d8" font-size="10.5">public log, and browsers reject certificates with no</text>
+  <text x="548" y="570" fill="#c8c8d8" font-size="10.5">proof of logging (SCT).</text>
+  <text x="548" y="594" fill="#a7f3d0" font-size="10.5" font-weight="600">The shift: rather than preventing misissuance, make it always visible.</text>
+  <text x="548" y="610" fill="#8a8aa0" font-size="10">A domain owner can watch issuance in their own name directly.</text>
+</svg>

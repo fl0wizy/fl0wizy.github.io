@@ -1,6 +1,6 @@
 The deficit Part 13 handed on is **the boundary of the execution environment**. This instalment opens that boundary along two paths: the path by which a user request reaches the app, and the path by which code reaches the server. **The former is usually reviewed well and the latter often forgotten, while the size of the privilege runs the other way.**
 
-![The deployment path](/images/net-browser/14-deploy.svg)
+![The deployment path](/images/net-browser/en/14-deploy.svg)
 
 ---
 

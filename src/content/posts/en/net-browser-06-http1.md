@@ -1,6 +1,6 @@
 Part 5 set the connection up safely and handed it on without deciding where the bytes flowing inside break into one message. HTTP/1.1 makes those boundaries itself, and the ways of making them were never consolidated into one: three coexist. **The moment two implementations break the same byte sequence differently, that difference does not disappear – it is delivered to the next user.**
 
-![The structure of request smuggling](/images/net-browser/06-desync.svg)
+![The structure of request smuggling](/images/net-browser/en/06-desync.svg)
 
 ---
 

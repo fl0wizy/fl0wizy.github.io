@@ -69,7 +69,7 @@ The most common reaction when AI fails is to suspect the model first. The harnes
 
 Where the model and the harness each sit within one agent turn looks like this as a picture.
 
-![AI agent execution structure](/images/ai/AI-Harness.excalidraw.svg)
+![AI agent execution structure](/images/ai/en/AI-Harness.excalidraw.svg)
 
 This SVG has the scene data of excalidraw, a diagram editing tool, embedded in it, so opening the file at excalidraw.com loads it ready to edit.
 

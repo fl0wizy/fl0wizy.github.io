@@ -1,6 +1,6 @@
 The deficit Part 9 named and handed on is the boundary between origins. This instalment erects that boundary as a unit called the origin, and guards it with headers and cookie attributes laid on top. This layer is not a design deduced from one consistent principle but **strata added one at a time, incident by incident**.
 
-![Origins and the strata of defence](/images/net-browser/10-origin.svg)
+![Origins and the strata of defence](/images/net-browser/en/10-origin.svg)
 
 ---
 

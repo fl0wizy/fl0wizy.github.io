@@ -1,0 +1,95 @@
+<svg viewBox="0 0 1000 730" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="f1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+    <marker id="f2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#db8585"/>
+    </marker>
+  </defs>
+  <style>
+    .mono { font-family: 'SFMono-Regular', Menlo, Consolas, monospace; }
+  </style>
+
+  <rect x="0" y="0" width="1000" height="730" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">Request smuggling (CL.TE) – when two parsers put "the end of the message" in different places</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Same bytes, same spec, different conclusions. A reused connection delivers that difference to the next user.</text>
+
+  <!-- 원본 요청 -->
+  <text x="40" y="92" fill="#8a8aa0" font-size="11" font-weight="600">The byte sequence the attacker sent (one)</text>
+  <rect x="40" y="102" width="410" height="196" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <g class="mono" font-size="11.5" fill="#c8c8d8">
+    <text x="58" y="126">POST /search HTTP/1.1</text>
+    <text x="58" y="144">Host: example.com</text>
+    <text x="58" y="162" fill="#6f9fd8">Content-Length: 37</text>
+    <text x="58" y="180" fill="#e6a572">Transfer-Encoding: chunked</text>
+    <text x="58" y="204" fill="#6a6a84">(blank line – body starts here)</text>
+    <text x="58" y="228">0</text>
+    <text x="58" y="246" fill="#6a6a84">(blank line – chunk end)</text>
+    <text x="58" y="270" fill="#db8585">GET /admin HTTP/1.1</text>
+    <text x="58" y="288" fill="#db8585">X-Ignore: x</text>
+  </g>
+  <text x="330" y="228" class="mono" font-size="10" fill="#6f9fd8">body 37 bytes =</text>
+  <text x="330" y="242" class="mono" font-size="10" fill="#6f9fd8">5 + 21 + 11</text>
+  <text x="330" y="270" class="mono" font-size="10" fill="#e6a572">read as chunks</text>
+  <text x="330" y="284" class="mono" font-size="10" fill="#e6a572">body = 0 bytes</text>
+
+  <!-- 규칙 -->
+  <rect x="480" y="102" width="480" height="196" rx="9" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="498" y="124" fill="#bcd6f0" font-size="11.5" font-weight="700">RFC 9112 §6.3 – the rule deciding body length</text>
+  <text x="498" y="148" fill="#c8c8d8" font-size="11">"If a message is received with both a Transfer-Encoding and a</text>
+  <text x="498" y="164" fill="#c8c8d8" font-size="11">Content-Length header field, the Transfer-Encoding overrides</text>
+  <text x="498" y="180" fill="#c8c8d8" font-size="11">the Content-Length."</text>
+  <text x="498" y="206" fill="#8a8aa0" font-size="10.5">The spec adds that this state "might indicate an attempt to perform request</text>
+  <text x="498" y="222" fill="#8a8aa0" font-size="10.5">smuggling and ought to be handled as an error". A relay that forwards it must</text>
+  <text x="498" y="238" fill="#8a8aa0" font-size="10.5">strip Content-Length first, and the server must close the connection after.</text>
+  <text x="498" y="266" fill="#e6a572" font-size="10.5" font-weight="600">Here the backend follows the spec. The one out of step is the frontend, using Content-Length.</text>
+  <text x="498" y="284" fill="#8a8aa0" font-size="10.5">The problem is not a missing rule but that deployed implementations keep it to varying degrees.</text>
+
+  <!-- 두 해석 -->
+  <line x1="245" y1="304" x2="245" y2="330" stroke="#5a5a78" stroke-width="1.4" marker-end="url(#f1)"/>
+  <line x1="245" y1="316" x2="720" y2="316" stroke="#5a5a78" stroke-width="1.4"/>
+  <line x1="720" y1="316" x2="720" y2="330" stroke="#5a5a78" stroke-width="1.4" marker-end="url(#f1)"/>
+
+  <!-- 프론트엔드 -->
+  <rect x="40" y="334" width="440" height="196" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="358" fill="#e8e8f0" font-size="12" font-weight="700">Frontend (CDN · reverse proxy)</text>
+  <text x="60" y="378" fill="#6f9fd8" font-size="11">follows Content-Length → out of step with the spec</text>
+  <text x="60" y="402" fill="#8a8aa0" font-size="10.5">It judges the body to be 37 bytes. So everything down to the</text>
+  <text x="60" y="418" fill="#8a8aa0" font-size="10.5">GET /admin line is one request body.</text>
+  <rect x="60" y="430" width="400" height="56" rx="6" fill="#101a18" stroke="#34d399"/>
+  <text x="76" y="450" class="mono" font-size="10.5" fill="#a7f3d0">POST /search … the whole 37-byte body</text>
+  <text x="76" y="468" font-size="10.5" fill="#8a8aa0">Seen as one request and forwarded to the backend as-is.</text>
+  <text x="60" y="508" fill="#8a8aa0" font-size="10.5">Nothing looks odd from the frontend's side. No bytes are left over.</text>
+
+  <!-- 백엔드 -->
+  <rect x="520" y="334" width="440" height="196" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="540" y="358" fill="#e8e8f0" font-size="12" font-weight="700">Backend (app server)</text>
+  <text x="540" y="378" fill="#e6a572" font-size="11">follows Transfer-Encoding → per the spec</text>
+  <text x="540" y="402" fill="#8a8aa0" font-size="10.5">The moment it meets chunk length 0 it judges the body ended.</text>
+  <text x="540" y="418" fill="#8a8aa0" font-size="10.5">Request 1's body is 0 bytes.</text>
+  <rect x="540" y="430" width="400" height="56" rx="6" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="556" y="450" class="mono" font-size="10.5" fill="#bcd6f0">Request 1 = POST /search … no body</text>
+  <text x="556" y="468" font-size="10.5" fill="#8a8aa0">The remaining 32 bytes stay in the buffer as "the front of the next request".</text>
+  <rect x="540" y="496" width="400" height="22" rx="4" fill="#1f1418" stroke="#db8585"/>
+  <text x="556" y="512" class="mono" font-size="10.5" fill="#e8b0b0">GET /admin HTTP/1.1 ⏎ X-Ignore: x   ← waiting as a prefix</text>
+
+  <!-- 결과 -->
+  <line x1="740" y1="536" x2="740" y2="558" stroke="#db8585" stroke-width="1.6" marker-end="url(#f2)"/>
+
+  <rect x="40" y="562" width="920" height="150" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="60" y="586" fill="#e8b0b0" font-size="12.5" font-weight="700">The next user's request comes in on the same connection</text>
+  <text x="60" y="610" fill="#c8c8d8" font-size="11">The victim's real request attaches behind the prefix left in the backend buffer, and the two parse as one request.</text>
+
+  <rect x="60" y="622" width="400" height="74" rx="7" fill="#12121f" stroke="#3a3a52"/>
+  <text x="76" y="642" font-size="10.5" fill="#8a8aa0">What the victim sent</text>
+  <text x="76" y="662" class="mono" font-size="11" fill="#c8c8d8">GET /profile HTTP/1.1</text>
+  <text x="76" y="680" class="mono" font-size="11" fill="#c8c8d8">Cookie: session=victim_session</text>
+
+  <line x1="466" y1="658" x2="516" y2="658" stroke="#db8585" stroke-width="1.6" marker-end="url(#f2)"/>
+
+  <rect x="530" y="622" width="430" height="74" rx="7" fill="#1a1012" stroke="#db8585"/>
+  <text x="546" y="642" font-size="10.5" fill="#e8b0b0">What the backend actually sees – path /admin, cookie the victim's</text>
+  <text x="546" y="662" class="mono" font-size="11" fill="#e8b0b0">GET /admin HTTP/1.1</text>
+  <text x="546" y="680" class="mono" font-size="11" fill="#e8b0b0">X-Ignore: xGET /profile … Cookie: victim_session</text>
+</svg>

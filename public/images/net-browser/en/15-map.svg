@@ -1,0 +1,44 @@
+<svg viewBox="0 0 1000 760" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <rect x="0" y="0" width="1000" height="760" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">The five archetypes of web vulnerabilities</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Individual techniques keep multiplying; the shapes do not. Meeting a new one, first decide which cell it is in.</text>
+
+  <!-- A -->
+  <rect x="40" y="80" width="920" height="118" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="60" y="104" fill="#e8b0b0" font-size="13" font-weight="700">A. Boundary discrepancy – same bytes, two interpreters, different conclusions</text>
+  <text x="60" y="126" fill="#c8c8d8" font-size="10.5">Two components give different answers on how far one message or one value extends. Having no party to forcibly reconcile them is the web's structural condition (Part 01).</text>
+  <text x="60" y="150" fill="#8a8aa0" font-size="10.5">request smuggling (CL/TE) · cache poisoning and deception · reverse proxy path normalization bypass · mXSS · Unicode normalization differences · parser differentials generally</text>
+  <text x="60" y="174" fill="#e8b0b0" font-size="10.5" font-weight="600">Shape of the defence: reduce to one interpreter (upstream HTTP/2), or reject ambiguous input rather than passing it on.</text>
+
+  <!-- B -->
+  <rect x="40" y="210" width="920" height="118" rx="10" fill="#1f1a12" stroke="#e6a572"/>
+  <text x="60" y="234" fill="#f0cba8" font-size="13" font-weight="700">B. Identity discrepancy – the criterion for "who/what" splits in two</text>
+  <text x="60" y="256" fill="#c8c8d8" font-size="10.5">The criterion deciding access differs from the criterion that operates. The moment they come apart is the attack window.</text>
+  <text x="60" y="280" fill="#8a8aa0" font-size="10.5">CSRF (cookies by domain, SOP by origin) · DNS rebinding (name vs address) · X-Forwarded-For forgery (socket vs header)</text>
+  <text x="60" y="298" fill="#8a8aa0" font-size="10.5">trusting JWT kid/jku (the thing verified picks the verification key) · subdomain takeover (ownership of a name on cookie, CORS and redirect_uri allow lists moving)</text>
+  <text x="60" y="320" fill="#f0cba8" font-size="10.5" font-weight="600">Shape of the defence: fix the judging criterion as one, and keep input from changing it.</text>
+
+  <!-- C -->
+  <rect x="40" y="340" width="920" height="110" rx="10" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="60" y="364" fill="#bcd6f0" font-size="13" font-weight="700">C. Missing privilege check – authentication once, authorization every time</text>
+  <text x="60" y="386" fill="#c8c8d8" font-size="10.5">Middleware handles whether someone is logged in, in one place, while "does this object belong to this user" has to be written per handler. Missing one is enough.</text>
+  <text x="60" y="410" fill="#8a8aa0" font-size="10.5">IDOR · BOLA / BFLA · mass assignment · forced browsing · validation done only on the client · missing field-level authorization in GraphQL</text>
+  <text x="60" y="434" fill="#bcd6f0" font-size="10.5" font-weight="600">Shape of the defence: push authorization down to the data access layer and make the default "deny". Remove the places it can be forgotten.</text>
+
+  <!-- D -->
+  <rect x="40" y="462" width="920" height="118" rx="10" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="60" y="486" fill="#f0c0d8" font-size="13" font-weight="700">D. Side-effect observation – learning it without reading it</text>
+  <text x="60" y="508" fill="#c8c8d8" font-size="10.5">The data itself is blocked and differences in response remain. The centre of gravity of 2020s research moved this way.</text>
+  <text x="60" y="532" fill="#8a8aa0" font-size="10.5">padding oracle · compressed length (CRIME) · blind/time-based SQLi · XS-Leaks · cache probing · Spectre · differences in redirect behaviour</text>
+  <text x="60" y="556" fill="#f0c0d8" font-size="10.5" font-weight="600">Shape of the defence: make responses identical (constant time, uniform errors), or block the observation (process isolation, lower timer precision).</text>
+
+  <!-- E -->
+  <rect x="40" y="592" width="920" height="110" rx="10" fill="#12201c" stroke="#34d399"/>
+  <text x="60" y="616" fill="#a7f3d0" font-size="13" font-weight="700">E. Resource asymmetry – the gap between the cost of sending and of processing</text>
+  <text x="60" y="638" fill="#c8c8d8" font-size="10.5">It holds with no vulnerable code. A combination of normal behaviours the spec permits creates the gradient of cost.</text>
+  <text x="60" y="662" fill="#8a8aa0" font-size="10.5">HTTP/2 Rapid Reset · ReDoS · abuse of GraphQL depth and aliases · XML bombs · compression bombs · unbounded pagination</text>
+  <text x="60" y="686" fill="#a7f3d0" font-size="10.5" font-weight="600">Shape of the defence: cap processing cost, and charge the requester a cost for expensive operations too.</text>
+
+  <rect x="40" y="714" width="920" height="34" rx="8" fill="#12121f" stroke="#3a3a52"/>
+  <text x="500" y="736" text-anchor="middle" fill="#c8c8d8" font-size="11">Questions on meeting a new technique: who interpreted what differently · which two criteria split · which check was missing · what was observed · who paid the cost</text>
+</svg>

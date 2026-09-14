@@ -1,6 +1,6 @@
 This instalment opens, one layer down, **what happens along the path** that Part 1 named and handed on. What packet switching gave up in guarantees, and the machinery stacked on top to fill that place. **A packet does not prove where it came from.**
 
-![Encapsulation and per-hop rewriting](/images/net-browser/02-encapsulation-nat.svg)
+![Encapsulation and per-hop rewriting](/images/net-browser/en/02-encapsulation-nat.svg)
 
 ---
 

@@ -1,0 +1,98 @@
+<svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="c1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6f9fd8"/>
+    </marker>
+    <marker id="c2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="660" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">TCP – how a connection is set up, and what it does not guarantee</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Left: what the three-way handshake actually prevents · Right: what it means that a byte stream has no message boundaries</text>
+
+  <line x1="500" y1="80" x2="500" y2="620" stroke="#1e1e2e" stroke-width="1"/>
+
+  <!-- ===== 좌: 핸드셰이크 ===== -->
+  <text x="60" y="100" fill="#8a8aa0" font-size="11" font-weight="600">① establishing the connection</text>
+
+  <g text-anchor="middle">
+    <rect x="70" y="112" width="120" height="34" rx="7" fill="#161226" stroke="#8b7cf6"/>
+    <text x="130" y="134" fill="#e8e8f0" font-size="12" font-weight="600">Client</text>
+    <rect x="330" y="112" width="120" height="34" rx="7" fill="#101a18" stroke="#34d399"/>
+    <text x="390" y="134" fill="#e8e8f0" font-size="12" font-weight="600">Server</text>
+  </g>
+  <line x1="130" y1="146" x2="130" y2="420" stroke="#2a2a3e" stroke-width="1.2"/>
+  <line x1="390" y1="146" x2="390" y2="420" stroke="#2a2a3e" stroke-width="1.2"/>
+
+  <line x1="130" y1="184" x2="388" y2="196" stroke="#6f9fd8" stroke-width="1.6" marker-end="url(#c1)"/>
+  <text x="258" y="178" text-anchor="middle" fill="#bcd6f0" font-size="11">SYN · seq = ISN_c</text>
+
+  <line x1="390" y1="234" x2="132" y2="246" stroke="#6f9fd8" stroke-width="1.6" marker-end="url(#c1)"/>
+  <text x="258" y="228" text-anchor="middle" fill="#bcd6f0" font-size="11">SYN+ACK · seq = ISN_s, ack = ISN_c+1</text>
+
+  <line x1="130" y1="284" x2="388" y2="296" stroke="#6f9fd8" stroke-width="1.6" marker-end="url(#c1)"/>
+  <text x="258" y="278" text-anchor="middle" fill="#bcd6f0" font-size="11">ACK · ack = ISN_s+1</text>
+
+  <text x="258" y="326" text-anchor="middle" fill="#34d399" font-size="11" font-weight="600">ESTABLISHED – only now can the first byte be sent</text>
+
+  <rect x="60" y="344" width="410" height="76" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="78" y="366" fill="#e8e8f0" font-size="11" font-weight="600">Why the third leg is needed</text>
+  <text x="78" y="386" fill="#c8c8d8" font-size="10.5">It stops an old SYN wandering the network being mistaken for a new connection.</text>
+  <text x="78" y="404" fill="#c8c8d8" font-size="10.5">A predictable ISN lets an off-path attacker wedge into the connection → randomization required.</text>
+
+  <rect x="60" y="436" width="410" height="168" rx="9" fill="#1f1418" stroke="#db8585"/>
+  <text x="78" y="458" fill="#e8b0b0" font-size="11" font-weight="600">The cost is itself the attack surface</text>
+  <text x="78" y="480" fill="#c8c8d8" font-size="10.5">· SYN flood – the server sends SYN+ACK, then holds state and waits.</text>
+  <text x="90" y="497" fill="#8a8aa0" font-size="10.5">Never send the third ACK and the state table fills. (answer: SYN cookies)</text>
+  <text x="78" y="519" fill="#c8c8d8" font-size="10.5">· 1 RTT fixed cost – with TLS on top it is 2~3 RTT to the first byte.</text>
+  <text x="90" y="536" fill="#8a8aa0" font-size="10.5">Pressure to cut this cost runs keep-alive → HTTP/2 → QUIC.</text>
+  <text x="78" y="558" fill="#c8c8d8" font-size="10.5">· Connection reuse – being expensive, proxies pool and recycle connections.</text>
+  <text x="90" y="575" fill="#8a8aa0" font-size="10.5">The structure of many users sharing one connection arises here.</text>
+  <text x="90" y="592" fill="#db8585" font-size="10.5" font-weight="600">→ the precondition for Part 6's request smuggling.</text>
+
+  <!-- ===== 우: 스트림 경계 ===== -->
+  <text x="530" y="100" fill="#8a8aa0" font-size="11" font-weight="600">② what the application sees</text>
+
+  <text x="530" y="130" fill="#c8c8d8" font-size="11">Sending side – three send() calls</text>
+  <g>
+    <rect x="530" y="142" width="100" height="32" rx="5" fill="#161226" stroke="#8b7cf6"/>
+    <text x="580" y="163" text-anchor="middle" fill="#d8d0f8" font-size="11">"GET /a"</text>
+    <rect x="640" y="142" width="110" height="32" rx="5" fill="#161226" stroke="#8b7cf6"/>
+    <text x="695" y="163" text-anchor="middle" fill="#d8d0f8" font-size="11">" HTTP/1.1"</text>
+    <rect x="760" y="142" width="100" height="32" rx="5" fill="#161226" stroke="#8b7cf6"/>
+    <text x="810" y="163" text-anchor="middle" fill="#d8d0f8" font-size="11">CRLF CRLF</text>
+  </g>
+
+  <line x1="695" y1="180" x2="695" y2="212" stroke="#5a5a78" stroke-width="1.4" marker-end="url(#c2)"/>
+  <text x="710" y="202" fill="#8a8aa0" font-size="10">merged in the kernel send buffer, then re-split by MTU</text>
+
+  <text x="530" y="234" fill="#c8c8d8" font-size="11">On the wire – network conditions decide segment boundaries</text>
+  <g>
+    <rect x="530" y="246" width="150" height="30" rx="5" fill="#12121f" stroke="#3a3a52"/>
+    <text x="605" y="266" text-anchor="middle" fill="#8a8aa0" font-size="10.5">seg 1</text>
+    <rect x="690" y="246" width="90" height="30" rx="5" fill="#12121f" stroke="#3a3a52"/>
+    <text x="735" y="266" text-anchor="middle" fill="#8a8aa0" font-size="10.5">seg 2</text>
+    <rect x="790" y="246" width="140" height="30" rx="5" fill="#12121f" stroke="#3a3a52"/>
+    <text x="860" y="266" text-anchor="middle" fill="#8a8aa0" font-size="10.5">seg 3</text>
+  </g>
+
+  <line x1="730" y1="282" x2="730" y2="314" stroke="#5a5a78" stroke-width="1.4" marker-end="url(#c2)"/>
+
+  <text x="530" y="336" fill="#c8c8d8" font-size="11">Receiving side – one recv() can give this</text>
+  <rect x="530" y="348" width="400" height="36" rx="6" fill="#141a22" stroke="#6f9fd8" stroke-width="1.5"/>
+  <text x="730" y="371" text-anchor="middle" fill="#bcd6f0" font-size="11.5">"GET /a HTTP/1.1\r\n\r\n" – one byte sequence with no boundaries</text>
+
+  <rect x="530" y="404" width="400" height="90" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="548" y="426" fill="#e8e8f0" font-size="11" font-weight="600">What TCP guarantees / does not guarantee</text>
+  <text x="548" y="448" fill="#34d399" font-size="10.5">Guaranteed: order · no loss · dedup · flow control</text>
+  <text x="548" y="468" fill="#db8585" font-size="10.5">Not guaranteed: message boundaries. send count and recv count are unrelated.</text>
+  <text x="548" y="486" fill="#8a8aa0" font-size="10.5">The application has to make the boundaries itself.</text>
+
+  <rect x="530" y="510" width="400" height="94" rx="9" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="548" y="532" fill="#f0c0d8" font-size="11" font-weight="600">The two ways HTTP makes boundaries</text>
+  <text x="548" y="554" fill="#c8c8d8" font-size="10.5">① delimiter – headers end at a blank line (CRLF CRLF)</text>
+  <text x="548" y="574" fill="#c8c8d8" font-size="10.5">② length – the body ends by Content-Length or chunk length</text>
+  <text x="548" y="594" fill="#db8fb4" font-size="10.5" font-weight="600">That the two coexist is itself Part 6's vulnerability.</text>
+</svg>

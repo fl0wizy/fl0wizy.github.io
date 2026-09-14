@@ -1,6 +1,6 @@
 Invalidation scope is the spot Part 9 §1 folded into a line. This follows, stage by stage, which stage one changed value makes run again, and how far that difference leaks outward. **What decides cost is not the amount of computation but the number of stages that run again, and that number can be counted from outside.**
 
-![Pipeline invalidation scope](/images/net-browser/deep-02-pipeline.svg)
+![Pipeline invalidation scope](/images/net-browser/en/deep-02-pipeline.svg)
 
 ---
 

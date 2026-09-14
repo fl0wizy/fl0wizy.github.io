@@ -1,0 +1,103 @@
+<svg viewBox="0 0 1000 750" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="o1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+  <style>.mono { font-family: 'SFMono-Regular', Menlo, Consolas, monospace; }</style>
+
+  <rect x="0" y="0" width="1000" height="750" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">Classifying desync variants – who follows what, and where the prefix stays</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Names run [what the frontend follows].[what the backend follows]</text>
+
+  <!-- 표 -->
+  <rect x="40" y="76" width="920" height="212" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <g font-size="10.5">
+    <text x="60" y="100" fill="#8a8aa0" font-weight="600">variant</text>
+    <text x="170" y="100" fill="#8a8aa0" font-weight="600">frontend</text>
+    <text x="300" y="100" fill="#8a8aa0" font-weight="600">backend</text>
+    <text x="430" y="100" fill="#8a8aa0" font-weight="600">where the prefix stays</text>
+    <text x="640" y="100" fill="#8a8aa0" font-weight="600">character of the condition</text>
+    <line x1="60" y1="108" x2="940" y2="108" stroke="#2a2a3e"/>
+
+    <text x="60" y="132" fill="#e8e8f0" font-weight="600">CL.TE</text>
+    <text x="170" y="132" fill="#6f9fd8">Content-Length</text>
+    <text x="300" y="132" fill="#e6a572">Transfer-Encoding</text>
+    <text x="430" y="132" fill="#c8c8d8">backend buffer</text>
+    <text x="640" y="132" fill="#8a8aa0">frontend departs from the spec</text>
+
+    <text x="60" y="158" fill="#e8e8f0" font-weight="600">TE.CL</text>
+    <text x="170" y="158" fill="#e6a572">Transfer-Encoding</text>
+    <text x="300" y="158" fill="#6f9fd8">Content-Length</text>
+    <text x="430" y="158" fill="#c8c8d8">backend buffer</text>
+    <text x="640" y="158" fill="#8a8aa0">backend departs from the spec</text>
+
+    <text x="60" y="184" fill="#e8e8f0" font-weight="600">TE.TE</text>
+    <text x="170" y="184" fill="#e6a572">TE (recognized)</text>
+    <text x="300" y="184" fill="#e6a572">TE (obfuscated)</text>
+    <text x="430" y="184" fill="#c8c8d8">one of the two sides</text>
+    <text x="640" y="184" fill="#8a8aa0">difference in header parsing tolerance</text>
+
+    <text x="60" y="214" fill="#a7f3d0" font-weight="600">CL.0</text>
+    <text x="170" y="214" fill="#6f9fd8">Content-Length</text>
+    <text x="300" y="214" fill="#db8585">does not read the body at all</text>
+    <text x="430" y="214" fill="#c8c8d8">backend buffer</text>
+    <text x="640" y="214" fill="#a7f3d0" font-weight="600">holds with a fully spec-conforming request</text>
+
+    <text x="60" y="240" fill="#e8b0b0" font-weight="600">0.CL</text>
+    <text x="170" y="240" fill="#db8585">judges there is no body</text>
+    <text x="300" y="240" fill="#6f9fd8">Content-Length</text>
+    <text x="430" y="240" fill="#c8c8d8">deadlock – see below</text>
+    <text x="640" y="240" fill="#8a8aa0">considered unexploitable until 2025</text>
+
+    <text x="60" y="266" fill="#f0c0d8" font-weight="600">CSD</text>
+    <text x="170" y="266" fill="#8a8aa0">no frontend/backend split</text>
+    <text x="300" y="266" fill="#db8585">ignores the body</text>
+    <text x="430" y="266" fill="#f0c0d8" font-weight="600">the victim browser's connection pool</text>
+    <text x="640" y="266" fill="#8a8aa0">single-server sites become targets too</text>
+  </g>
+
+  <!-- CL.0 -->
+  <rect x="40" y="304" width="450" height="212" rx="10" fill="#12201c" stroke="#34d399"/>
+  <text x="60" y="328" fill="#a7f3d0" font-size="12.5" font-weight="700">CL.0 – when the backend does not read the body</text>
+  <text x="60" y="350" fill="#c8c8d8" font-size="10.5">Endpoints ignoring Content-Length are common.</text>
+  <text x="60" y="372" fill="#8a8aa0" font-size="10.5">· the request triggered a server error</text>
+  <text x="60" y="390" fill="#8a8aa0" font-size="10.5">· that path was not expected to receive a POST</text>
+  <text x="60" y="408" fill="#8a8aa0" font-size="10.5">· it is a static file or a server-level redirect</text>
+  <rect x="60" y="422" width="410" height="38" rx="6" fill="#101a18" stroke="#34d399"/>
+  <text x="76" y="440" fill="#a7f3d0" font-size="10.5">The frontend forwards CL bytes and the backend consumes 0.</text>
+  <text x="76" y="454" fill="#8a8aa0" font-size="10.5">The leftover body becomes the front of the next request whole.</text>
+  <text x="60" y="482" fill="#a7f3d0" font-size="10.5" font-weight="600">The core: the request itself is an ordinary, fully conforming POST.</text>
+  <text x="60" y="502" fill="#8a8aa0" font-size="10.5">So it holds with requests a browser itself can send.</text>
+
+  <!-- CSD -->
+  <rect x="510" y="304" width="450" height="212" rx="10" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="530" y="328" fill="#f0c0d8" font-size="12.5" font-weight="700">client-side desync – what gets poisoned is the browser's connection</text>
+  <text x="530" y="350" fill="#c8c8d8" font-size="10.5">Browsers pool connections too (Part 03). Unread bytes left on</text>
+  <text x="530" y="366" fill="#c8c8d8" font-size="10.5">that connection attach in front of the victim's next request.</text>
+  <text x="530" y="390" fill="#f0c0d8" font-size="10.5" font-weight="600">Conditions</text>
+  <text x="530" y="408" fill="#8a8aa0" font-size="10.5">· send a cross-domain fetch with credentials: 'include' to</text>
+  <text x="542" y="424" fill="#8a8aa0" font-size="10.5">target the connection pool that carries cookies</text>
+  <text x="530" y="442" fill="#8a8aa0" font-size="10.5">· the target must not support HTTP/2 – browsers prefer</text>
+  <text x="542" y="458" fill="#8a8aa0" font-size="10.5">HTTP/2, so support closes this path</text>
+  <text x="530" y="476" fill="#8a8aa0" font-size="10.5">· the server must not close the connection after an error</text>
+  <text x="530" y="500" fill="#e8b0b0" font-size="10.5" font-weight="600">Single-server sites with no frontend proxy become targets too.</text>
+
+  <!-- 0.CL -->
+  <rect x="40" y="532" width="920" height="112" rx="10" fill="#1f1418" stroke="#db8585"/>
+  <text x="60" y="556" fill="#e8b0b0" font-size="12.5" font-weight="700">0.CL's deadlock, and how it was broken in 2025</text>
+  <text x="60" y="578" fill="#c8c8d8" font-size="10.5">The frontend sees no body and waits for a response, while the backend waits for Content-Length bytes of body. Both wait for each other.</text>
+  <text x="60" y="600" fill="#c8c8d8" font-size="10.5">The way to break the deadlock is an <tspan fill="#e6a572" font-weight="600">early-response gadget</tspan> – finding a path that makes the backend emit a response before the body arrives.</text>
+  <text x="60" y="622" fill="#8a8aa0" font-size="10.5">E.g. on some servers a reserved-filename path returns an error immediately without waiting for a body. Once that response comes out, 0.CL converts into an exploitable CL.0 (double-desync).</text>
+
+  <!-- pause -->
+  <rect x="40" y="660" width="450" height="76" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="682" fill="#e8e8f0" font-size="11.5" font-weight="700">pause-based desync</text>
+  <text x="60" y="702" fill="#c8c8d8" font-size="10.5">A server with a badly implemented timeout responds to a partial</text>
+  <text x="60" y="718" fill="#8a8aa0" font-size="10.5">request and keeps the connection open. Bytes sent after a pause become a new request.</text>
+
+  <rect x="510" y="660" width="450" height="76" rx="9" fill="#12201c" stroke="#34d399"/>
+  <text x="530" y="682" fill="#a7f3d0" font-size="11.5" font-weight="700">There is one premise in common</text>
+  <text x="530" y="702" fill="#c8c8d8" font-size="10.5">The connection is reused, and on it the judgement about</text>
+  <text x="530" y="718" fill="#c8c8d8" font-size="10.5">"the end of the message" splits in two. The rest is variation.</text>
+</svg>

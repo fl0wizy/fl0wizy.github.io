@@ -1,0 +1,76 @@
+<svg viewBox="0 0 1000 680" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="g1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="680" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">The path head-of-line blocking moved along</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Send three requests A · B · C at once and lose one of their packets – what each version does</text>
+
+  <!-- ===== HTTP/1.1 ===== -->
+  <rect x="40" y="80" width="920" height="164" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="104" fill="#e8e8f0" font-size="12.5" font-weight="700">HTTP/1.1 – blocked at the application layer</text>
+  <text x="60" y="124" fill="#8a8aa0" font-size="10.5">On one connection responses can only come out in the order sent. So browsers opened about six connections per domain to imitate parallelism.</text>
+
+  <g>
+    <rect x="60" y="140" width="300" height="30" rx="5" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="210" y="160" text-anchor="middle" fill="#bcd6f0" font-size="11">response A (slow API – 2s)</text>
+    <rect x="366" y="140" width="180" height="30" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+    <text x="456" y="160" text-anchor="middle" fill="#8a8aa0" font-size="11">response B (waiting)</text>
+    <rect x="552" y="140" width="180" height="30" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+    <text x="642" y="160" text-anchor="middle" fill="#8a8aa0" font-size="11">response C (waiting)</text>
+  </g>
+  <text x="60" y="196" fill="#db8585" font-size="11">B and C cannot be sent until A goes out, even when they are ready.</text>
+  <text x="60" y="220" fill="#8a8aa0" font-size="10.5">Pipelining was in the spec and failed because of this property, and most browsers disabled it by default.</text>
+
+  <!-- ===== HTTP/2 ===== -->
+  <rect x="40" y="258" width="920" height="184" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="282" fill="#e8e8f0" font-size="12.5" font-weight="700">HTTP/2 – the application layer is freed, and it blocks again at the transport layer</text>
+  <text x="60" y="302" fill="#8a8aa0" font-size="10.5">Several independent streams ride on one connection. Frames carry a stream ID, so response order is free.</text>
+
+  <g>
+    <rect x="60" y="318" width="140" height="26" rx="4" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="130" y="336" text-anchor="middle" fill="#bcd6f0" font-size="10.5">A frame</text>
+    <rect x="206" y="318" width="140" height="26" rx="4" fill="#1a1420" stroke="#db8fb4"/>
+    <text x="276" y="336" text-anchor="middle" fill="#f0c0d8" font-size="10.5">B frame</text>
+    <rect x="352" y="318" width="140" height="26" rx="4" fill="#101a18" stroke="#34d399"/>
+    <text x="422" y="336" text-anchor="middle" fill="#a7f3d0" font-size="10.5">C frame</text>
+    <rect x="498" y="318" width="140" height="26" rx="4" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="568" y="336" text-anchor="middle" fill="#bcd6f0" font-size="10.5">A frame</text>
+    <rect x="644" y="318" width="140" height="26" rx="4" fill="#1f1418" stroke="#db8585" stroke-dasharray="3 3"/>
+    <text x="714" y="336" text-anchor="middle" fill="#e8b0b0" font-size="10.5">B frame (lost)</text>
+    <rect x="790" y="318" width="140" height="26" rx="4" fill="#101a18" stroke="#34d399"/>
+    <text x="860" y="336" text-anchor="middle" fill="#a7f3d0" font-size="10.5">C frame</text>
+  </g>
+  <text x="60" y="372" fill="#8a8aa0" font-size="10.5">The three streams are independent and know nothing of each other. And yet all these frames ride on one TCP connection.</text>
+  <rect x="60" y="384" width="870" height="44" rx="7" fill="#1f1418" stroke="#db8585"/>
+  <text x="78" y="404" fill="#e8b0b0" font-size="11" font-weight="600">TCP has to guarantee order – lose B's packet and the kernel will not hand up C's data either, though it arrived perfectly fine.</text>
+  <text x="78" y="420" fill="#c8c8d8" font-size="10.5">Streams A · B · C all wait for B's retransmission. The blocking did not vanish; it moved one layer down.</text>
+
+  <!-- ===== HTTP/3 ===== -->
+  <rect x="40" y="456" width="920" height="204" rx="10" fill="#12121f" stroke="#34d399"/>
+  <text x="60" y="480" fill="#a7f3d0" font-size="12.5" font-weight="700">HTTP/3 (QUIC) – builds a new transport layer and removes the blocking</text>
+  <text x="60" y="500" fill="#8a8aa0" font-size="10.5">The stream concept moves down into the transport layer. Each stream has its own order and retransmission unit.</text>
+
+  <g>
+    <rect x="60" y="516" width="270" height="28" rx="5" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="195" y="535" text-anchor="middle" fill="#bcd6f0" font-size="10.5">stream A – proceeding normally</text>
+    <rect x="340" y="516" width="270" height="28" rx="5" fill="#1f1418" stroke="#db8585" stroke-dasharray="3 3"/>
+    <text x="475" y="535" text-anchor="middle" fill="#e8b0b0" font-size="10.5">stream B – lost, only this stream waits</text>
+    <rect x="620" y="516" width="310" height="28" rx="5" fill="#101a18" stroke="#34d399"/>
+    <text x="775" y="535" text-anchor="middle" fill="#a7f3d0" font-size="10.5">stream C – proceeding normally</text>
+  </g>
+  <text x="60" y="570" fill="#a7f3d0" font-size="11">A and C do not wait for B's retransmission.</text>
+
+  <rect x="60" y="584" width="430" height="62" rx="7" fill="#1a1620" stroke="#5a5a78"/>
+  <text x="78" y="604" fill="#e8e8f0" font-size="11" font-weight="600">Why it was built on UDP</text>
+  <text x="78" y="622" fill="#c8c8d8" font-size="10.5">A brand-new transport protocol gets discarded by firewalls and</text>
+  <text x="78" y="638" fill="#c8c8d8" font-size="10.5">NATs along the path. UDP already passes everywhere.</text>
+
+  <rect x="500" y="584" width="430" height="62" rx="7" fill="#1a1620" stroke="#5a5a78"/>
+  <text x="518" y="604" fill="#e8e8f0" font-size="11" font-weight="600">Connection ID – the answer to Part 2's NAT problem</text>
+  <text x="518" y="622" fill="#c8c8d8" font-size="10.5">A connection is identified by connection ID, not the 4-tuple.</text>
+  <text x="518" y="638" fill="#c8c8d8" font-size="10.5">Switch Wi-Fi to LTE and the same connection continues.</text>
+</svg>

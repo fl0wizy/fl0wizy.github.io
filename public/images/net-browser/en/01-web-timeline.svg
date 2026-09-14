@@ -1,0 +1,128 @@
+<svg viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="560" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">The lineage of web standards – 1989 ~ 2026</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Rival protocols · web and standards bodies · HTTP wire formats</text>
+
+  <!-- lane labels -->
+  <text x="30" y="112" fill="#8a8aa0" font-size="11" font-weight="600">Rivals</text>
+  <text x="30" y="232" fill="#8a8aa0" font-size="11" font-weight="600">Standards</text>
+  <text x="30" y="372" fill="#8a8aa0" font-size="11" font-weight="600">HTTP</text>
+
+  <!-- lane guides -->
+  <g stroke="#1e1e2e" stroke-width="1">
+    <line x1="70" y1="140" x2="960" y2="140"/>
+    <line x1="70" y1="270" x2="960" y2="270"/>
+    <line x1="70" y1="400" x2="960" y2="400"/>
+  </g>
+
+  <!-- ===== 경쟁 레인 ===== -->
+  <g text-anchor="middle">
+    <rect x="88" y="118" width="86" height="44" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="131" y="136" fill="#c8c8d8" font-size="11">Gopher</text>
+    <text x="131" y="152" fill="#8a8aa0" font-size="10">1991 UMN</text>
+
+    <rect x="186" y="118" width="112" height="44" rx="8" fill="#1f1418" stroke="#db8585"/>
+    <text x="242" y="136" fill="#e8b0b0" font-size="11" font-weight="600">Paid licence</text>
+    <text x="242" y="152" fill="#8a8aa0" font-size="10">1993.02 · fee</text>
+
+    <rect x="310" y="118" width="104" height="44" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="362" y="136" fill="#8a8aa0" font-size="11">Share collapse</text>
+    <text x="362" y="152" fill="#8a8aa0" font-size="10">1994~</text>
+  </g>
+  <line x1="174" y1="140" x2="186" y2="140" stroke="#5a5a78" stroke-width="1.2" marker-end="url(#a1)"/>
+  <line x1="298" y1="140" x2="310" y2="140" stroke="#5a5a78" stroke-width="1.2" marker-end="url(#a1)"/>
+
+  <!-- ===== 웹 · 표준 레인 ===== -->
+  <g text-anchor="middle">
+    <rect x="72" y="246" width="104" height="48" rx="8" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+    <text x="124" y="266" fill="#e8e8f0" font-size="11" font-weight="600">CERN proposal</text>
+    <text x="124" y="282" fill="#8a8aa0" font-size="10">1989.03</text>
+
+    <rect x="188" y="246" width="104" height="48" rx="8" fill="#101a18" stroke="#34d399" stroke-width="1.5"/>
+    <text x="240" y="266" fill="#a7f3d0" font-size="11" font-weight="600">Public domain</text>
+    <text x="240" y="282" fill="#8a8aa0" font-size="10">1993.04.30</text>
+
+    <rect x="304" y="246" width="112" height="48" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="360" y="266" fill="#c8c8d8" font-size="11">1st browser war</text>
+    <text x="360" y="282" fill="#8a8aa0" font-size="10">1995 ~ 2001</text>
+
+    <rect x="428" y="246" width="104" height="48" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="480" y="266" fill="#c8c8d8" font-size="11">IE6 stagnation</text>
+    <text x="480" y="282" fill="#8a8aa0" font-size="10">2001 ~ 2006</text>
+
+    <rect x="544" y="246" width="120" height="48" rx="8" fill="#1a1420" stroke="#db8fb4"/>
+    <text x="604" y="266" fill="#f0c0d8" font-size="11" font-weight="600">WHATWG fork</text>
+    <text x="604" y="282" fill="#8a8aa0" font-size="10">2004.06.04</text>
+
+    <rect x="676" y="246" width="112" height="48" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="732" y="266" fill="#c8c8d8" font-size="11">HTML5 · Living</text>
+    <text x="732" y="282" fill="#8a8aa0" font-size="10">2014 ~</text>
+
+    <rect x="800" y="246" width="120" height="48" rx="8" fill="#101a18" stroke="#34d399"/>
+    <text x="860" y="266" fill="#a7f3d0" font-size="11" font-weight="600">W3C·WHATWG deal</text>
+    <text x="860" y="282" fill="#8a8aa0" font-size="10">2019.05</text>
+  </g>
+  <g stroke="#5a5a78" stroke-width="1.2" marker-end="url(#a1)">
+    <line x1="176" y1="270" x2="188" y2="270"/>
+    <line x1="292" y1="270" x2="304" y2="270"/>
+    <line x1="416" y1="270" x2="428" y2="270"/>
+    <line x1="532" y1="270" x2="544" y2="270"/>
+    <line x1="664" y1="270" x2="676" y2="270"/>
+    <line x1="788" y1="270" x2="800" y2="270"/>
+  </g>
+
+  <!-- ===== HTTP 레인 ===== -->
+  <g text-anchor="middle">
+    <rect x="96" y="378" width="88" height="44" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="140" y="396" fill="#c8c8d8" font-size="11">HTTP/0.9</text>
+    <text x="140" y="412" fill="#8a8aa0" font-size="10">1991 · GET only</text>
+
+    <rect x="200" y="378" width="88" height="44" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="244" y="396" fill="#c8c8d8" font-size="11">HTTP/1.0</text>
+    <text x="244" y="412" fill="#8a8aa0" font-size="10">1996 · RFC 1945</text>
+
+    <rect x="304" y="378" width="100" height="44" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="354" y="396" fill="#bcd6f0" font-size="11" font-weight="600">HTTP/1.1</text>
+    <text x="354" y="412" fill="#8a8aa0" font-size="10">1997/1999 · text</text>
+
+    <rect x="560" y="378" width="100" height="44" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="610" y="396" fill="#bcd6f0" font-size="11" font-weight="600">HTTP/2</text>
+    <text x="610" y="412" fill="#8a8aa0" font-size="10">2015 · binary</text>
+
+    <rect x="700" y="378" width="100" height="44" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="750" y="396" fill="#bcd6f0" font-size="11" font-weight="600">HTTP/3</text>
+    <text x="750" y="412" fill="#8a8aa0" font-size="10">2022 · QUIC</text>
+
+    <rect x="820" y="378" width="120" height="44" rx="8" fill="#12121f" stroke="#3a3a52"/>
+    <text x="880" y="396" fill="#c8c8d8" font-size="11">RFC 9110 ~ 9114</text>
+    <text x="880" y="412" fill="#8a8aa0" font-size="10">2022.06 · new specs</text>
+  </g>
+  <g stroke="#5a5a78" stroke-width="1.2" marker-end="url(#a1)">
+    <line x1="184" y1="400" x2="200" y2="400"/>
+    <line x1="288" y1="400" x2="304" y2="400"/>
+    <line x1="404" y1="400" x2="560" y2="400" stroke-dasharray="4 4"/>
+    <line x1="660" y1="400" x2="700" y2="400"/>
+    <line x1="800" y1="400" x2="820" y2="400"/>
+  </g>
+  <text x="482" y="392" text-anchor="middle" fill="#8a8aa0" font-size="10">16 years · no wire format change</text>
+
+  <!-- 축 -->
+  <line x1="70" y1="500" x2="960" y2="500" stroke="#3a3a52" stroke-width="1.2"/>
+  <g text-anchor="middle" fill="#8a8aa0" font-size="10">
+    <text x="124" y="518">1989</text>
+    <text x="240" y="518">1993</text>
+    <text x="360" y="518">1997</text>
+    <text x="480" y="518">2001</text>
+    <text x="604" y="518">2005</text>
+    <text x="732" y="518">2015</text>
+    <text x="860" y="518">2022+</text>
+  </g>
+  <text x="500" y="544" text-anchor="middle" fill="#6a6a84" font-size="10">Sources: CERN Document Server · WHATWG FAQ · RFC 1945/2616/9110~9114</text>
+</svg>

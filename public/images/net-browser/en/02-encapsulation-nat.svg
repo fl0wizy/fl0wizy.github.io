@@ -1,0 +1,104 @@
+<svg viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="b1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+    <marker id="b2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#e6a572"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="640" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">Encapsulation and per-hop rewriting – what is kept and what changes</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">Top: one byte sequence wrapped in headers layer by layer · Bottom: what those headers meet along the path</text>
+
+  <!-- ===== 상단: 캡슐화 ===== -->
+  <text x="60" y="94" fill="#8a8aa0" font-size="11" font-weight="600">Encapsulation</text>
+
+  <rect x="60" y="106" width="880" height="46" rx="7" fill="#12121f" stroke="#3a3a52"/>
+  <text x="96" y="134" fill="#8a8aa0" font-size="11">Ethernet</text>
+  <rect x="160" y="112" width="72" height="34" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+  <text x="196" y="133" text-anchor="middle" fill="#c8c8d8" font-size="10">MAC header</text>
+  <rect x="880" y="112" width="50" height="34" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+  <text x="905" y="133" text-anchor="middle" fill="#c8c8d8" font-size="10">FCS</text>
+
+  <rect x="240" y="112" width="632" height="34" rx="6" fill="#12121f" stroke="#3a3a52"/>
+  <text x="270" y="133" fill="#8a8aa0" font-size="11">IP</text>
+  <rect x="296" y="117" width="66" height="24" rx="4" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="329" y="133" text-anchor="middle" fill="#bcd6f0" font-size="10">IP header</text>
+
+  <rect x="370" y="117" width="494" height="24" rx="5" fill="#12121f" stroke="#3a3a52"/>
+  <text x="392" y="133" fill="#8a8aa0" font-size="10">TCP</text>
+  <rect x="420" y="120" width="74" height="18" rx="3" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="457" y="133" text-anchor="middle" fill="#f0c0d8" font-size="9">TCP header</text>
+  <rect x="500" y="120" width="356" height="18" rx="3" fill="#161226" stroke="#8b7cf6"/>
+  <text x="678" y="133" text-anchor="middle" fill="#d8d0f8" font-size="10">HTTP bytes (what the application wants to send)</text>
+
+  <text x="60" y="176" fill="#6a6a84" font-size="10">If the whole frame exceeds 1500 bytes (MTU) the IP layer fragments it. After that the TCP header is only in the first fragment.</text>
+
+  <!-- ===== 하단: 경로 ===== -->
+  <text x="60" y="222" fill="#8a8aa0" font-size="11" font-weight="600">Path</text>
+
+  <!-- 노드들 -->
+  <g text-anchor="middle">
+    <rect x="60" y="236" width="140" height="56" rx="9" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+    <text x="130" y="260" fill="#e8e8f0" font-size="12" font-weight="600">Client</text>
+    <text x="130" y="278" fill="#8a8aa0" font-size="10">192.168.0.5:51234</text>
+
+    <rect x="260" y="236" width="140" height="56" rx="9" fill="#1f1a12" stroke="#e6a572" stroke-width="1.5"/>
+    <text x="330" y="260" fill="#f0cba8" font-size="12" font-weight="600">NAT router</text>
+    <text x="330" y="278" fill="#8a8aa0" font-size="10">rewrites addr · port</text>
+
+    <rect x="460" y="236" width="140" height="56" rx="9" fill="#12121f" stroke="#3a3a52"/>
+    <text x="530" y="260" fill="#c8c8d8" font-size="12">ISP router</text>
+    <text x="530" y="278" fill="#8a8aa0" font-size="10">TTL decrement · queuing</text>
+
+    <rect x="660" y="236" width="140" height="56" rx="9" fill="#141a22" stroke="#6f9fd8" stroke-width="1.5"/>
+    <text x="730" y="260" fill="#bcd6f0" font-size="12" font-weight="600">Reverse proxy</text>
+    <text x="730" y="278" fill="#8a8aa0" font-size="10">TCP terminate · new conn</text>
+
+    <rect x="850" y="236" width="100" height="56" rx="9" fill="#101a18" stroke="#34d399" stroke-width="1.5"/>
+    <text x="900" y="260" fill="#a7f3d0" font-size="12" font-weight="600">App server</text>
+    <text x="900" y="278" fill="#8a8aa0" font-size="10">10.0.1.7:8000</text>
+  </g>
+  <g stroke="#5a5a78" stroke-width="1.4" marker-end="url(#b1)">
+    <line x1="200" y1="264" x2="258" y2="264"/>
+    <line x1="400" y1="264" x2="458" y2="264"/>
+    <line x1="600" y1="264" x2="658" y2="264"/>
+    <line x1="800" y1="264" x2="848" y2="264"/>
+  </g>
+
+  <!-- 레인: 무엇이 바뀌는가 -->
+  <g stroke="#1e1e2e" stroke-width="1">
+    <line x1="60" y1="330" x2="950" y2="330"/>
+    <line x1="60" y1="386" x2="950" y2="386"/>
+    <line x1="60" y1="442" x2="950" y2="442"/>
+    <line x1="60" y1="498" x2="950" y2="498"/>
+  </g>
+  <text x="66" y="324" fill="#8a8aa0" font-size="10" font-weight="600">MAC header</text>
+  <text x="66" y="380" fill="#8a8aa0" font-size="10" font-weight="600">IP header</text>
+  <text x="66" y="436" fill="#8a8aa0" font-size="10" font-weight="600">TCP header</text>
+  <text x="66" y="492" fill="#8a8aa0" font-size="10" font-weight="600">HTTP bytes</text>
+
+  <g text-anchor="middle" font-size="10">
+    <!-- MAC -->
+    <text x="330" y="352" fill="#e6a572">fully replaced each hop</text>
+    <text x="730" y="352" fill="#e6a572">fully replaced each hop</text>
+    <!-- IP -->
+    <text x="330" y="408" fill="#e6a572" font-weight="600">source address rewritten</text>
+    <text x="530" y="408" fill="#8a8aa0">TTL decremented only</text>
+    <text x="730" y="408" fill="#e6a572" font-weight="600">source becomes proxy IP</text>
+    <!-- TCP -->
+    <text x="330" y="464" fill="#e6a572">source port rewritten</text>
+    <text x="530" y="464" fill="#8a8aa0">passes through</text>
+    <text x="730" y="464" fill="#e6a572" font-weight="600">connection cut and re-created</text>
+    <!-- HTTP -->
+    <text x="430" y="520" fill="#8a8aa0">passes through (the network layer does not know the contents)</text>
+    <text x="760" y="520" fill="#db8585" font-weight="600">proxy reads · edits · rewrites</text>
+  </g>
+
+  <rect x="60" y="540" width="890" height="76" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="80" y="562" fill="#e8e8f0" font-size="12" font-weight="600">What follows from this</text>
+  <text x="80" y="582" fill="#c8c8d8" font-size="11">· The source IP the app server sees is the proxy's. The real client IP comes in a header (X-Forwarded-For), which is a forgeable body.</text>
+  <text x="80" y="602" fill="#c8c8d8" font-size="11">· Where the proxy reads and rewrites HTTP is where a second interpreter appears. Part 6's request smuggling lives in exactly this cell.</text>
+</svg>

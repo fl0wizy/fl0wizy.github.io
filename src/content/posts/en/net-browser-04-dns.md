@@ -1,6 +1,6 @@
 Part 3's TCP could only open a connection once it had an address, and it left unanswered where that address comes from. What this instalment puts in that place is a distributed database split by delegation and caching: DNS. **The correspondence between a name and an address is not a fixed fact but an answer with a lifetime attached.**
 
-![The DNS resolution path and rebinding](/images/net-browser/04-dns.svg)
+![The DNS resolution path and rebinding](/images/net-browser/en/04-dns.svg)
 
 ---
 

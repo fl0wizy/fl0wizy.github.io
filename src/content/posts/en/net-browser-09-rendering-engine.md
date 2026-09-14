@@ -2,7 +2,7 @@ This instalment opens **the inside of the renderer**, which Part 8 named and han
 
 The engine's internal intermediate representations, its optimization logic, and the vulnerability classes that come out of there are not this instalment's scope. Here we look only as far as **where the engine sits, why such a thing was needed, and where it is used now**.
 
-![The rendering pipeline and where the engine sits](/images/net-browser/09-rendering.svg)
+![The rendering pipeline and where the engine sits](/images/net-browser/en/09-rendering.svg)
 
 ---
 

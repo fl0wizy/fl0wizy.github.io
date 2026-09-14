@@ -1,6 +1,6 @@
 This unfolds the variants Part 6 §2 folded into a line. With several names it is easy to memorize them as a list, while in fact there is one axis. **The connection is reused, and on top of it the judgement about "where the message ends" splits in two.**
 
-![Classification of desync variants](/images/net-browser/deep-01-desync.svg)
+![Classification of desync variants](/images/net-browser/en/deep-01-desync.svg)
 
 ---
 

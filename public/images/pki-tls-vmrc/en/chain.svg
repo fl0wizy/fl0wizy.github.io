@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" font-family="'JetBrains Mono','SF Mono',Menlo,monospace" font-size="12">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8a8a98"/></marker>
+    <marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#e0785a"/></marker>
+  </defs>
+  <rect width="760" height="340" fill="#0c0c18"/>
+
+  <text x="24" y="30" fill="#9580ff" font-weight="700">Public CA chain (3 levels)</text>
+
+  <rect x="24" y="48" width="300" height="56" rx="4" fill="#14142a" stroke="#2a2a48"/>
+  <text x="40" y="70" fill="#e8e8f0">Root CA</text>
+  <text x="40" y="90" fill="#8a8a98" font-size="11">preinstalled in OS · browser (System Roots)</text>
+
+  <path d="M174 104 L174 136" stroke="#8a8a98" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <text x="186" y="124" fill="#8a8a98" font-size="11">signs</text>
+
+  <rect x="24" y="138" width="300" height="56" rx="4" fill="#14142a" stroke="#2a2a48"/>
+  <text x="40" y="160" fill="#e8e8f0">Intermediate CA</text>
+  <text x="40" y="180" fill="#8a8a98" font-size="11">sent by the server in the handshake</text>
+
+  <path d="M174 194 L174 226" stroke="#8a8a98" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+  <text x="186" y="214" fill="#8a8a98" font-size="11">signs</text>
+
+  <rect x="24" y="228" width="300" height="56" rx="4" fill="#1a1836" stroke="#9580ff" stroke-width="1.5"/>
+  <text x="40" y="250" fill="#e8e8f0">Leaf (server certificate)</text>
+  <text x="40" y="270" fill="#8a8a98" font-size="11">CN / SAN = example.com</text>
+
+  <text x="24" y="316" fill="#6fcf97" font-size="11">→ root already trusted. Closes with no warning</text>
+
+  <path d="M390 40 L390 300" stroke="#2a2a48" stroke-dasharray="4 4"/>
+
+  <text x="424" y="30" fill="#e0785a" font-weight="700">Self-signed (vCenter VMCA)</text>
+
+  <rect x="424" y="120" width="300" height="76" rx="4" fill="#2a1a16" stroke="#e0785a" stroke-width="1.5"/>
+  <text x="440" y="144" fill="#e8e8f0">Root = Leaf</text>
+  <text x="440" y="164" fill="#8a8a98" font-size="11">subject == issuer</text>
+  <text x="440" y="182" fill="#8a8a98" font-size="11">CN=203.0.113.10, DC=vsphere, DC=local</text>
+
+  <path d="M724 138 C 754 138, 754 172, 724 172" stroke="#e0785a" stroke-width="1.5" fill="none" marker-end="url(#ar2)"/>
+  <text x="626" y="108" fill="#e0785a" font-size="11">signs itself</text>
+
+  <text x="424" y="230" fill="#8a8a98" font-size="11">→ nobody above it</text>
+  <text x="424" y="250" fill="#8a8a98" font-size="11">→ fails unless the receiver trusts it as a root</text>
+  <text x="424" y="290" fill="#e0785a" font-size="11">hence the manual keychain registration</text>
+</svg>

@@ -1,0 +1,80 @@
+<svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <rect x="0" y="0" width="1000" height="720" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">The origin, and the strata of defence piled on it</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">The same-origin policy blocks "reads" and not "sends". Everything else derives from that asymmetry.</text>
+
+  <!-- origin 정의 -->
+  <rect x="40" y="80" width="440" height="188" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="104" fill="#e8e8f0" font-size="12" font-weight="700">origin = scheme + host + port</text>
+  <text x="60" y="126" font-family="Menlo, monospace" font-size="11.5" fill="#d8d0f8">baseline: https://example.com:443/app</text>
+  <g font-family="Menlo, monospace" font-size="11">
+    <text x="60" y="152" fill="#34d399">same   https://example.com/other</text>
+    <text x="60" y="172" fill="#db8585">diff   http://example.com</text>
+    <text x="330" y="172" fill="#8a8aa0" font-size="10">scheme</text>
+    <text x="60" y="192" fill="#db8585">diff   https://api.example.com</text>
+    <text x="330" y="192" fill="#8a8aa0" font-size="10">host</text>
+    <text x="60" y="212" fill="#db8585">diff   https://example.com:8443</text>
+    <text x="330" y="212" fill="#8a8aa0" font-size="10">port</text>
+  </g>
+  <text x="60" y="240" fill="#e6a572" font-size="10.5">Cookies do not use this criterion – they judge by domain and path, ignoring port.</text>
+  <text x="60" y="258" fill="#8a8aa0" font-size="10.5">The basic unit being split in two is the starting point of many problems at this layer.</text>
+
+  <!-- SOP 비대칭 -->
+  <rect x="520" y="80" width="440" height="188" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="540" y="104" fill="#e8e8f0" font-size="12" font-weight="700">The asymmetry of the same-origin policy</text>
+
+  <rect x="540" y="118" width="196" height="66" rx="7" fill="#101a18" stroke="#34d399"/>
+  <text x="558" y="138" fill="#a7f3d0" font-size="11" font-weight="600">Blocked – reads</text>
+  <text x="558" y="156" fill="#8a8aa0" font-size="10">DOM access to another origin's document</text>
+  <text x="558" y="172" fill="#8a8aa0" font-size="10">reading response bodies · reading cookies</text>
+
+  <rect x="752" y="118" width="190" height="66" rx="7" fill="#1f1418" stroke="#db8585"/>
+  <text x="770" y="138" fill="#e8b0b0" font-size="11" font-weight="600">Not blocked – sends</text>
+  <text x="770" y="156" fill="#8a8aa0" font-size="10">requests via img · form · script tags,</text>
+  <text x="770" y="172" fill="#8a8aa0" font-size="10">with the cookies attached</text>
+
+  <text x="540" y="208" fill="#c8c8d8" font-size="10.5">Even unable to read the response, the request already reached the server and was processed.</text>
+  <text x="540" y="228" fill="#e8b0b0" font-size="10.5" font-weight="600">→ CSRF is this asymmetry itself, not an implementation mistake.</text>
+  <text x="540" y="250" fill="#8a8aa0" font-size="10.5">The path of observing only differences in response without reading (XS-Leaks) lives in the same gap.</text>
+
+  <!-- 지층 -->
+  <text x="40" y="300" fill="#8a8aa0" font-size="11" font-weight="600">The defences added since – each a response to a particular incident</text>
+
+  <g>
+    <rect x="40" y="312" width="920" height="56" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="60" y="334" fill="#bcd6f0" font-size="11.5" font-weight="600">CORS</text>
+    <text x="60" y="352" fill="#8a8aa0" font-size="10.5">Allows legitimate cross-origin API calls, with the server expressing permission in a response header.</text>
+    <text x="560" y="334" fill="#e6a572" font-size="10.5" font-weight="600">Common failure</text>
+    <text x="560" y="352" fill="#8a8aa0" font-size="10.5">reflecting the request's Origin + allowing credentials / trusting the null origin</text>
+
+    <rect x="40" y="376" width="920" height="56" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="60" y="398" fill="#bcd6f0" font-size="11.5" font-weight="600">CSP</text>
+    <text x="60" y="416" fill="#8a8aa0" font-size="10.5">On the premise that XSS will not go away, it limits where executable scripts come from to reduce the damage.</text>
+    <text x="560" y="398" fill="#e6a572" font-size="10.5" font-weight="600">Common failure</text>
+    <text x="560" y="416" fill="#8a8aa0" font-size="10.5">a JSONP endpoint inside the allow list · missing base-uri · library gadgets</text>
+
+    <rect x="40" y="440" width="920" height="56" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="60" y="462" fill="#bcd6f0" font-size="11.5" font-weight="600">Cookie attributes</text>
+    <text x="60" y="480" fill="#8a8aa0" font-size="10.5">Secure · HttpOnly · SameSite · the __Host- prefix. A belated correction for cookies not being origin-based.</text>
+    <text x="560" y="462" fill="#e6a572" font-size="10.5" font-weight="600">Remaining gap</text>
+    <text x="560" y="480" fill="#8a8aa0" font-size="10.5">SameSite=Lax still allows top-level GET · cookie injection from a subdomain</text>
+
+    <rect x="40" y="504" width="920" height="56" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="60" y="526" fill="#bcd6f0" font-size="11.5" font-weight="600">frame-ancestors</text>
+    <text x="60" y="544" fill="#8a8aa0" font-size="10.5">Specifies who may put my page in an iframe. The successor to X-Frame-Options.</text>
+    <text x="560" y="526" fill="#e6a572" font-size="10.5" font-weight="600">What it answers</text>
+    <text x="560" y="544" fill="#8a8aa0" font-size="10.5">clickjacking – luring the user's click over a transparent frame</text>
+
+    <rect x="40" y="568" width="920" height="56" rx="8" fill="#1f1a12" stroke="#e6a572"/>
+    <text x="60" y="590" fill="#f0cba8" font-size="11.5" font-weight="600">COOP · COEP · CORP</text>
+    <text x="60" y="608" fill="#8a8aa0" font-size="10.5">Introduced after Spectre. A declaration not to put another origin's resources in the same process or group.</text>
+    <text x="560" y="590" fill="#e6a572" font-size="10.5" font-weight="600">Reward</text>
+    <text x="560" y="608" fill="#8a8aa0" font-size="10.5">features such as SharedArrayBuffer open only to documents declaring isolation with these headers</text>
+  </g>
+
+  <!-- 상태 분할 -->
+  <rect x="40" y="636" width="920" height="66" rx="9" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="658" fill="#e8e8f0" font-size="11.5" font-weight="700">State partitioning – and where a plan was once withdrawn</text>
+  <text x="60" y="678" fill="#c8c8d8" font-size="10.5">Cache and storage were partitioned to include "within which site it is used" (answering cache probing and XS-Leaks). On the cookie side, partitioning remains as CHIPS.</text>
+    <text x="60" y="696" fill="#8a8aa0" font-size="10.5">But Chrome's third-party cookie deprecation was withdrawn in July 2024 and much of Privacy Sandbox was retired in 2025. Safari, Firefox and Brave still block them.</text>
+</svg>

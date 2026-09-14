@@ -1,6 +1,6 @@
 The deficit Part 12 handed on is **the window that opens between a read and a write**, and the authority to close that window lies not with the app but with the layer where the data actually sits. This instalment opens that layer, back-calculating why the machinery responsible for storage and retrieval set into its present shape. **Disks are slow, and requests arrive at the same time.**
 
-![The data layer](/images/net-browser/13-database.svg)
+![The data layer](/images/net-browser/en/13-database.svg)
 
 ---
 

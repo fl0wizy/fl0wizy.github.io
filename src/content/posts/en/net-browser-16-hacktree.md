@@ -1,6 +1,6 @@
 The deficit Part 15 handed on is **a record of having deployed the coordinates**. hack-tree, a knowledge platform, began as "a place to organize security and CS concepts so that I can actually use them," and the process of building it became a matter of walking through each instalment of this series once more. **What was a principle before building turned out, once built, to be a one-line choice every time.**
 
-![hack-tree architecture](/images/net-browser/16-hacktree.svg)
+![hack-tree architecture](/images/net-browser/en/16-hacktree.svg)
 
 ---
 

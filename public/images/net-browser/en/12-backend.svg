@@ -1,0 +1,90 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="k1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="700" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">Backend – how concurrent requests are divided, and where state is kept</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">These two choices decide performance characteristics and vulnerability classes together</text>
+
+  <!-- 동시성 -->
+  <text x="40" y="90" fill="#8a8aa0" font-size="11" font-weight="600">Concurrency models</text>
+
+  <rect x="40" y="102" width="296" height="190" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="58" y="126" fill="#e8e8f0" font-size="11.5" font-weight="700">Processes (prefork)</text>
+  <g>
+    <rect x="58" y="140" width="58" height="34" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+    <text x="87" y="161" text-anchor="middle" fill="#c8c8d8" font-size="10">req</text>
+    <rect x="124" y="140" width="58" height="34" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+    <text x="153" y="161" text-anchor="middle" fill="#c8c8d8" font-size="10">req</text>
+    <rect x="190" y="140" width="58" height="34" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+    <text x="219" y="161" text-anchor="middle" fill="#c8c8d8" font-size="10">req</text>
+  </g>
+  <text x="58" y="198" fill="#8a8aa0" font-size="10">A separate memory space per request.</text>
+  <text x="58" y="216" fill="#34d399" font-size="10">+ one dying leaves the rest alive · strong isolation</text>
+  <text x="58" y="234" fill="#db8585" font-size="10">- memory cost · low concurrency ceiling</text>
+  <text x="58" y="262" fill="#8a8aa0" font-size="10">The trap: keep state in process memory and each</text>
+  <text x="58" y="278" fill="#8a8aa0" font-size="10">request may land on a different process.</text>
+
+  <rect x="352" y="102" width="296" height="190" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="370" y="126" fill="#e8e8f0" font-size="11.5" font-weight="700">Thread pool</text>
+  <g>
+    <rect x="370" y="140" width="180" height="34" rx="5" fill="#1a1620" stroke="#5a5a78"/>
+    <text x="460" y="161" text-anchor="middle" fill="#c8c8d8" font-size="10">shared memory – N threads</text>
+  </g>
+  <text x="370" y="198" fill="#8a8aa0" font-size="10">Sharing memory makes it light.</text>
+  <text x="370" y="216" fill="#34d399" font-size="10">+ more concurrent requests than processes</text>
+  <text x="370" y="234" fill="#db8585" font-size="10">- shared state = a stage for race conditions</text>
+  <text x="370" y="262" fill="#e6a572" font-size="10">Place a global cache, counter or user context</text>
+  <text x="370" y="278" fill="#e6a572" font-size="10">wrongly and data mixes between requests.</text>
+
+  <rect x="664" y="102" width="296" height="190" rx="10" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="682" y="126" fill="#bcd6f0" font-size="11.5" font-weight="700">Event loop (single-threaded async)</text>
+  <g>
+    <rect x="682" y="140" width="260" height="34" rx="5" fill="#12121f" stroke="#3a3a52"/>
+    <text x="812" y="161" text-anchor="middle" fill="#c8c8d8" font-size="10">waiting I/O is handed off, not held</text>
+  </g>
+  <text x="682" y="198" fill="#8a8aa0" font-size="10">Most web requests are waiting, not computing.</text>
+  <text x="682" y="216" fill="#34d399" font-size="10">+ memory barely grows with connection count</text>
+  <text x="682" y="234" fill="#db8585" font-size="10">- one long CPU-bound piece stops everything</text>
+  <text x="682" y="262" fill="#8a8aa0" font-size="10">Mix in a synchronous library and the advantage</text>
+  <text x="682" y="278" fill="#8a8aa0" font-size="10">vanishes entirely – the most common mistake.</text>
+
+  <!-- 세션 vs 토큰 -->
+  <text x="40" y="326" fill="#8a8aa0" font-size="11" font-weight="600">Where the login state is kept</text>
+
+  <rect x="40" y="338" width="450" height="164" rx="10" fill="#101a18" stroke="#34d399"/>
+  <text x="60" y="362" fill="#a7f3d0" font-size="12" font-weight="700">Sessions – the server remembers</text>
+  <text x="60" y="382" fill="#c8c8d8" font-size="10.5">The cookie holds only an identifier; the real data sits in the server store.</text>
+  <text x="60" y="404" fill="#34d399" font-size="10.5">+ immediate invalidation – delete it from the store and it is done</text>
+  <text x="60" y="422" fill="#34d399" font-size="10.5">+ the contents are not exposed to the client</text>
+  <text x="60" y="444" fill="#db8585" font-size="10.5">- the server holds state → horizontal scaling needs a shared store</text>
+  <text x="60" y="466" fill="#8a8aa0" font-size="10.5">Against fixation and theft: reissue the session ID at login, enough entropy,</text>
+  <text x="60" y="482" fill="#8a8aa0" font-size="10.5">discard server-side on logout (deleting the client cookie is not enough)</text>
+
+  <rect x="510" y="338" width="450" height="164" rx="10" fill="#1f1a12" stroke="#e6a572"/>
+  <text x="530" y="362" fill="#f0cba8" font-size="12" font-weight="700">Tokens (JWT) – the token itself carries the content</text>
+  <text x="530" y="382" fill="#c8c8d8" font-size="10.5">Signed JSON. The server verifies the signature and judges without a lookup.</text>
+  <text x="530" y="404" fill="#34d399" font-size="10.5">+ stateless – many servers can verify with no store</text>
+  <text x="530" y="426" fill="#db8585" font-size="10.5">- an issued token cannot be revoked → offset with short expiry + refresh tokens</text>
+  <text x="530" y="444" fill="#db8585" font-size="10.5">- the content is signed, not hidden – anyone can read it</text>
+  <text x="530" y="466" fill="#e8b0b0" font-size="10.5" font-weight="600">Recurring verification failures: accepting alg=none · RS256→HS256 confusion ·</text>
+  <text x="530" y="482" fill="#e8b0b0" font-size="10.5" font-weight="600">trusting kid/jku to fetch the key externally · not checking expiry</text>
+
+  <!-- OAuth -->
+  <rect x="40" y="520" width="920" height="162" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="60" y="544" fill="#e8e8f0" font-size="12.5" font-weight="700">OAuth 2.0 and OIDC – the two most often mixed up</text>
+  <rect x="60" y="558" width="430" height="52" rx="7" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="78" y="578" fill="#bcd6f0" font-size="11" font-weight="600">OAuth 2.0 = authorization</text>
+  <text x="78" y="596" fill="#8a8aa0" font-size="10.5">The delegation "this app may access my resources". It does not say who the user is.</text>
+
+  <rect x="510" y="558" width="450" height="52" rx="7" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="528" y="578" fill="#f0c0d8" font-size="11" font-weight="600">OIDC = authentication</text>
+  <text x="528" y="596" fill="#8a8aa0" font-size="10.5">Puts an ID token on OAuth to standardize "who this user is".</text>
+
+  <text x="60" y="634" fill="#e6a572" font-size="10.5" font-weight="600">What OAuth 2.1 (still an IETF draft as of 2026) makes mandatory – every item back-calculated from a real incident</text>
+  <text x="60" y="654" fill="#c8c8d8" font-size="10.5">PKCE required · exact redirect URI match · refresh token rotation required · implicit and password grants removed · no bearer tokens in query strings</text>
+  <text x="60" y="672" fill="#8a8aa0" font-size="10.5">The substance of the revision is "promoting optional security recommendations to required". A decision made on the premise that deployed implementations do not follow recommendations.</text>
+</svg>

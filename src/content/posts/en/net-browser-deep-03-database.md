@@ -1,6 +1,6 @@
 Part 13 folded the physical form of indexes and isolation levels into one line each, in §1 and §2. The inside of those two lines is this piece's scope. **Pages are fixed in size, and reads do not block writes.**
 
-![Inside indexes and concurrency](/images/net-browser/deep-03-db.svg)
+![Inside indexes and concurrency](/images/net-browser/en/deep-03-db.svg)
 
 ---
 

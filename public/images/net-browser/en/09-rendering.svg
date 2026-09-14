@@ -1,0 +1,120 @@
+<svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="i1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5a5a78"/>
+    </marker>
+    <marker id="i2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8b7cf6"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1000" height="700" rx="12" fill="#0a0a14" stroke="#2a2a3e"/>
+  <text x="500" y="34" text-anchor="middle" fill="#e8e8f0" font-size="19" font-weight="700">From bytes to pixels – and where the JavaScript engine wedges in</text>
+  <text x="500" y="56" text-anchor="middle" fill="#8a8aa0" font-size="12">The stages are split so they can be skipped. What gets skipped is the performance difference.</text>
+
+  <!-- 파이프라인 -->
+  <text x="40" y="90" fill="#8a8aa0" font-size="11" font-weight="600">Renderer main thread</text>
+  <g text-anchor="middle">
+    <rect x="40" y="102" width="120" height="54" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="100" y="124" fill="#bcd6f0" font-size="11.5" font-weight="600">Parsing</text>
+    <text x="100" y="142" fill="#8a8aa0" font-size="10">HTML → DOM</text>
+
+    <rect x="176" y="102" width="120" height="54" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="236" y="124" fill="#bcd6f0" font-size="11.5" font-weight="600">Style</text>
+    <text x="236" y="142" fill="#8a8aa0" font-size="10">CSSOM · cascade</text>
+
+    <rect x="312" y="102" width="120" height="54" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="372" y="124" fill="#bcd6f0" font-size="11.5" font-weight="600">Layout</text>
+    <text x="372" y="142" fill="#8a8aa0" font-size="10">box position · size</text>
+
+    <rect x="448" y="102" width="120" height="54" rx="8" fill="#141a22" stroke="#6f9fd8"/>
+    <text x="508" y="124" fill="#bcd6f0" font-size="11.5" font-weight="600">Paint</text>
+    <text x="508" y="142" fill="#8a8aa0" font-size="10">draw command list</text>
+  </g>
+
+  <text x="620" y="90" fill="#8a8aa0" font-size="11" font-weight="600">Compositing · GPU</text>
+  <g text-anchor="middle">
+    <rect x="604" y="102" width="110" height="54" rx="8" fill="#12201c" stroke="#34d399"/>
+    <text x="659" y="124" fill="#a7f3d0" font-size="11.5" font-weight="600">Composite</text>
+    <text x="659" y="142" fill="#8a8aa0" font-size="10">layer placement</text>
+
+    <rect x="730" y="102" width="110" height="54" rx="8" fill="#12201c" stroke="#34d399"/>
+    <text x="785" y="124" fill="#a7f3d0" font-size="11.5" font-weight="600">Raster</text>
+    <text x="785" y="142" fill="#8a8aa0" font-size="10">tiles → pixels</text>
+
+    <rect x="856" y="102" width="104" height="54" rx="8" fill="#12201c" stroke="#34d399"/>
+    <text x="908" y="124" fill="#a7f3d0" font-size="11.5" font-weight="600">Display</text>
+    <text x="908" y="142" fill="#8a8aa0" font-size="10">submit frame</text>
+  </g>
+
+  <g stroke="#5a5a78" stroke-width="1.3" marker-end="url(#i1)">
+    <line x1="160" y1="129" x2="174" y2="129"/>
+    <line x1="296" y1="129" x2="310" y2="129"/>
+    <line x1="432" y1="129" x2="446" y2="129"/>
+    <line x1="568" y1="129" x2="602" y2="129"/>
+    <line x1="714" y1="129" x2="728" y2="129"/>
+    <line x1="840" y1="129" x2="854" y2="129"/>
+  </g>
+
+  <!-- 건너뛰기 -->
+  <path d="M 100 166 L 100 190 L 659 190 L 659 162" stroke="#e6a572" stroke-width="1.4" fill="none" marker-end="url(#i1)" stroke-dasharray="5 4"/>
+  <text x="380" y="206" text-anchor="middle" fill="#e6a572" font-size="10.5">transform · opacity animations and scrolling skip layout and paint, recompositing only</text>
+  <text x="380" y="224" text-anchor="middle" fill="#8a8aa0" font-size="10.5">Make the same movement with top/left and every frame reruns from layout – that is the real difference between the two</text>
+
+  <!-- JS 개입 -->
+  <rect x="40" y="244" width="450" height="196" rx="10" fill="#161226" stroke="#8b7cf6" stroke-width="1.5"/>
+  <text x="60" y="268" fill="#d8d0f8" font-size="12.5" font-weight="700">Where JavaScript wedges in</text>
+  <text x="60" y="290" fill="#c8c8d8" font-size="10.5">A script can change the document, so the parser stops when it meets one.</text>
+  <rect x="60" y="302" width="410" height="40" rx="6" fill="#12121f" stroke="#3a3a52"/>
+  <text x="76" y="320" font-family="Menlo, monospace" font-size="10.5" fill="#c8c8d8">&lt;script src&gt;      parsing stops → download → execute → resume</text>
+  <text x="76" y="336" font-family="Menlo, monospace" font-size="10.5" fill="#a7f3d0">&lt;script defer&gt;    parsing continues → in order, after parsing</text>
+  <text x="60" y="364" fill="#c8c8d8" font-size="10.5">Order within one frame – one task → all microtasks → rendering opportunity</text>
+  <rect x="60" y="376" width="410" height="52" rx="6" fill="#12121f" stroke="#3a3a52"/>
+  <text x="76" y="394" font-size="10.5" fill="#8a8aa0">setTimeout(fn, 0) → the next task. It can slip past a frame.</text>
+  <text x="76" y="410" font-size="10.5" fill="#8a8aa0">Promise.then(fn)  → right after the current task. Always runs before rendering.</text>
+  <text x="76" y="424" font-size="10.5" fill="#e6a572">Reading a layout value (offsetHeight and the like) forces layout on the spot.</text>
+
+  <!-- 엔진 -->
+  <rect x="510" y="244" width="450" height="196" rx="10" fill="#12121f" stroke="#3a3a52"/>
+  <text x="530" y="268" fill="#e8e8f0" font-size="12.5" font-weight="700">What the engine does and does not do</text>
+  <rect x="530" y="282" width="196" height="70" rx="7" fill="#1a1420" stroke="#db8fb4"/>
+  <text x="548" y="302" fill="#f0c0d8" font-size="11" font-weight="600">The JS engine provides</text>
+  <text x="548" y="320" fill="#8a8aa0" font-size="10">the language itself – syntax, object</text>
+  <text x="548" y="336" fill="#8a8aa0" font-size="10">model, GC, Promise, execution</text>
+
+  <rect x="742" y="282" width="200" height="70" rx="7" fill="#141a22" stroke="#6f9fd8"/>
+  <text x="760" y="302" fill="#bcd6f0" font-size="11" font-weight="600">The host provides</text>
+  <text x="760" y="320" fill="#8a8aa0" font-size="10">document · fetch · timers ·</text>
+  <text x="760" y="336" fill="#8a8aa0" font-size="10">storage – all on the browser side</text>
+
+  <text x="530" y="376" fill="#c8c8d8" font-size="10.5">Because of this separation the same engine is used outside the browser.</text>
+  <text x="530" y="396" fill="#8a8aa0" font-size="10.5">Node.js · Deno · Electron · edge runtimes · extension scripting in DBs and proxies.</text>
+  <text x="530" y="416" fill="#8a8aa0" font-size="10.5">Only the host is swapped, so the same language runs where there is no DOM.</text>
+
+  <!-- JIT -->
+  <rect x="40" y="460" width="920" height="222" rx="10" fill="#1f1a12" stroke="#e6a572"/>
+  <text x="60" y="484" fill="#f0cba8" font-size="12.5" font-weight="700">Why an interpreter stopped being enough, and the shape of the answer</text>
+  <text x="60" y="506" fill="#c8c8d8" font-size="10.5">After Ajax made web pages applications (Part 01), JavaScript execution time became the bottleneck. Competition converged in 2008.</text>
+
+  <g>
+    <rect x="60" y="520" width="284" height="66" rx="7" fill="#12121f" stroke="#3a3a52"/>
+    <text x="78" y="540" fill="#c8c8d8" font-size="11" font-weight="600">2008 – V8 (Chrome)</text>
+    <text x="78" y="558" fill="#8a8aa0" font-size="10">open-sourced on 2 September, the day Chrome shipped</text>
+    <text x="78" y="574" fill="#8a8aa0" font-size="10">designed on the premise of machine code from the start</text>
+
+    <rect x="358" y="520" width="284" height="66" rx="7" fill="#12121f" stroke="#3a3a52"/>
+    <text x="376" y="540" fill="#c8c8d8" font-size="11" font-weight="600">2008 – TraceMonkey (Firefox)</text>
+    <text x="376" y="558" fill="#8a8aa0" font-size="10">JavaScript's first JIT compiler</text>
+    <text x="376" y="574" fill="#8a8aa0" font-size="10">JaegerMonkey follows in 2009</text>
+
+    <rect x="656" y="520" width="284" height="66" rx="7" fill="#12121f" stroke="#3a3a52"/>
+    <text x="674" y="540" fill="#c8c8d8" font-size="11" font-weight="600">2008 – SquirrelFish Extreme (Safari)</text>
+    <text x="674" y="558" fill="#8a8aa0" font-size="10">the JavaScriptCore line</text>
+    <text x="674" y="574" fill="#8a8aa0" font-size="10">three camps moved in the same year</text>
+  </g>
+
+  <text x="60" y="612" fill="#f0cba8" font-size="11" font-weight="600">Why "compile during execution" rather than "compile ahead"</text>
+  <text x="60" y="632" fill="#c8c8d8" font-size="10.5">JavaScript is dynamically typed, so what value arrives cannot be known before execution. The engine first runs it in the interpreter and observes,</text>
+  <text x="60" y="650" fill="#c8c8d8" font-size="10.5">then compiles only hot code to machine code with observed assumptions such as "an integer always arrives here". Break the assumption and it falls back to the interpreter.</text>
+  <text x="60" y="670" fill="#e6a572" font-size="10.5" font-weight="600">So JIT is both an optimization and "code leaning on assumptions". Why that matters for security is covered in a separate series.</text>
+</svg>
