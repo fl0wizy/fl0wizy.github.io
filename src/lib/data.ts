@@ -509,6 +509,32 @@ export function getPostById(id: string): BlogPost | undefined {
 }
 
 /**
+ * Returns the posts that sit next to a given one in reading order.
+ *
+ * Neighbours are taken from the post's own category and ordered oldest first,
+ * so a series reads front to back. `blogPosts` arrives newest first, hence the
+ * reversal. Posts outside the category are skipped: jumping from the last web
+ * security post into an unrelated travel entry would not be a "next post".
+ */
+export function getAdjacentPosts(id: string): {
+  prev: BlogPost | undefined;
+  next: BlogPost | undefined;
+} {
+  const current = getPostById(id);
+  if (!current || !current.published) return { prev: undefined, next: undefined };
+
+  const ordered = blogPosts
+    .filter(post => post.published && post.category === current.category)
+    .slice()
+    .reverse();
+
+  const index = ordered.findIndex(post => post.id === id);
+  if (index === -1) return { prev: undefined, next: undefined };
+
+  return { prev: ordered[index - 1], next: ordered[index + 1] };
+}
+
+/**
  * Converts a date string into an "about N hr ago" form.
  */
 export function getRelativeTime(dateString: string): string {

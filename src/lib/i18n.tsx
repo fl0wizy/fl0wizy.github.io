@@ -90,6 +90,9 @@ export const ui = {
   backToBlog: { ko: '블로그로 돌아가기', en: 'Back to blog' },
   tableOfContents: { ko: '목차', en: 'Contents' },
   readingTime: { ko: '분 분량', en: ' min read' },
+  prevPost: { ko: '이전 글', en: 'Previous' },
+  nextPost: { ko: '다음 글', en: 'Next' },
+  postNavLabel: { ko: '글 사이 이동', en: 'Post navigation' },
   langLabel: { ko: '언어', en: 'Language' },
   // Profile sections
   about: { ko: '소개', en: 'About' },

@@ -13,6 +13,7 @@ import {
   getCategoryLabel,
   getReadingTime,
   extractHeadings,
+  getAdjacentPosts,
 } from '../lib/data';
 import './Post.css';
 
@@ -116,6 +117,10 @@ export default function Post() {
   const post = id ? getPostById(id) : undefined;
 
   const headings = useMemo(() => (post ? extractHeadings(post.content) : []), [post]);
+  const { prev, next } = useMemo(
+    () => (id ? getAdjacentPosts(id) : { prev: undefined, next: undefined }),
+    [id],
+  );
   const [activeId, setActiveId] = useState('');
 
   // Assign ids to rendered headings in document order and highlight the TOC on scroll (scrollspy)
@@ -233,6 +238,39 @@ export default function Post() {
                 <span key={tag} className="tag">#{tag}</span>
               ))}
             </div>
+          )}
+
+          {/* previous / next post within the same category */}
+          {(prev || next) && (
+            <nav className="post-nav" aria-label={t('postNavLabel')}>
+              {prev ? (
+                <Link to={`/post/${prev.id}`} className="post-nav-link prev">
+                  <span className="post-nav-dir">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                    {t('prevPost')}
+                  </span>
+                  <span className="post-nav-title">{L(prev.title)}</span>
+                </Link>
+              ) : (
+                <span className="post-nav-link empty" aria-hidden="true" />
+              )}
+
+              {next ? (
+                <Link to={`/post/${next.id}`} className="post-nav-link next">
+                  <span className="post-nav-dir">
+                    {t('nextPost')}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6" />
+                    </svg>
+                  </span>
+                  <span className="post-nav-title">{L(next.title)}</span>
+                </Link>
+              ) : (
+                <span className="post-nav-link empty" aria-hidden="true" />
+              )}
+            </nav>
           )}
         </div>
 
