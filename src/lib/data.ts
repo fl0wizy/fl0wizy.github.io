@@ -308,12 +308,12 @@ export const profileData: ProfileData = {
       tags: ['CTF', 'Web Security', 'Machine Learning'],
     },
     {
-      title: { ko: 'HACKSIUM 2026 BUSAN 본선 (10위)', en: 'HACKSIUM 2026 BUSAN Finals (10th place)' },
+      title: { ko: 'HACKSIUM 2026 BUSAN 본선 진출', en: 'HACKSIUM 2026 BUSAN (Finalist)' },
       organizer: { ko: '부산정보산업진흥원·동남권정보보호클러스터', en: 'Busan IT Industry Promotion Agency & Southeast Information Security Cluster' },
       period: '2026-09',
       description: {
-        ko: '해양·항만·위성 OT 시나리오 기반 2일간(2026-09-11 ~ 09-12) 라이브파이어 사이버 방어전 본선 진출 / 4인 방어팀 10위',
-        en: 'Two-day live-fire cyber defense finals (2026-09-11 to 09-12) on a maritime, port and satellite OT scenario / 10th as part of a four-person defense team',
+        ko: '해양·항만·위성 OT 시나리오 기반 2일간(2026-09-11 ~ 09-12) 라이브파이어 사이버 방어전 본선 진출 / 4인 방어팀으로 참가',
+        en: 'Cleared qualifiers for a two-day live-fire cyber defense final (2026-09-11 to 09-12) on a maritime, port and satellite OT scenario / competed as part of a four-person defense team',
       },
       tags: ['Live Fire', 'Blue Team', 'OT Security'],
     },
