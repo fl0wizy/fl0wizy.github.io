@@ -185,10 +185,10 @@ export function getCategoryLabel(id: string): LocalizedText {
 
 export const profileData: ProfileData = {
   name: 'flowizy',
-  title: { ko: '보안 연구자', en: 'SECURITY RESEARCHER' },
+  title: { ko: '엔지니어 · 보안 연구자', en: 'ENGINEER · SECURITY RESEARCHER' },
   bio: {
-    ko: '취약점을 코드 한 줄의 성질이 아니라 자산 흐름과 참여자 권한 구조의 성질로 접근. 행위자별 위협 모델을 먼저 세우고 불변식이 깨지는 지점을 추적. 데이터 가용성 계층(EigenDA, Celestia, Avail) 대상 PoC·CVSS 포함 정식 취약점 리포트 9건 작성. DeFi·RWA 프로토콜 감사.',
-    en: 'Treats a vulnerability as a property of asset flows and participant privilege structures, not of any single line of code — per-actor threat model first, then the point where an invariant breaks. 9 formal vulnerability reports with PoCs and CVSS scores against data availability layers (EigenDA, Celestia, Avail). DeFi and RWA protocol audits.',
+    ko: '백엔드와 인프라를 직접 만들고, 같은 시스템을 공격자 관점에서 검증. 둘을 같이 하는 것이 일하는 방식. 만드는 쪽으로는 단독 설계·구현한 Go 수집 파이프라인, 인증·CI/CD·GCP 인프라를 코드로 쓰고 운영하는 플랫폼, npm에 배포한 오픈소스 가드. 깨는 쪽으로는 데이터 가용성 계층(EigenDA, Celestia, Avail) 대상 PoC·CVSS 포함 정식 취약점 리포트 9건과 DeFi·RWA 프로토콜 감사. 취약점은 코드 한 줄의 성질이 아니라 자산 흐름과 참여자 권한 구조의 성질로 접근 — 행위자별 위협 모델을 먼저 세우고 불변식이 깨지는 지점을 추적.',
+    en: 'Builds backends and infrastructure, and verifies the same systems from an attacker\'s perspective. Doing both is the practice, not a hedge. On the building side: a Go ingestion pipeline designed and implemented solo, a platform whose auth, CI/CD and GCP infrastructure are written and operated as code, and an open-source guard published to npm. On the breaking side: 9 formal vulnerability reports with PoCs and CVSS scores against data availability layers (EigenDA, Celestia, Avail), plus DeFi and RWA protocol audits. Treats a vulnerability as a property of asset flows and participant privilege structures, not of any single line of code — per-actor threat model first, then the point where an invariant breaks.',
   },
   profileImage: '/images/chaegeon.jpg', // profile image path
   contacts: [
@@ -320,6 +320,26 @@ export const profileData: ProfileData = {
   ],
   projects: [
     {
+      title: { ko: 'hack-tree - 보안 지식 학습 플랫폼', en: 'hack-tree - Security Knowledge Learning Platform' },
+      type: { ko: '풀스택 · DevSecOps', en: 'Full-stack & DevSecOps' },
+      year: '2026-07 ~ 2026-08',
+      description: {
+        ko: '웹 해킹·포너블·CS·커널 533개 보안 노드를 트리와 공격 체인 그래프로 탐색하는 초대제 플랫폼 단독 설계·구축·운영 / 초대 기반 인증·RBAC 자체 구현(IDOR 방지, argon2, rate limiting, pytest 114건 검증) / GitHub Actions -> GHCR -> SSH CI/CD 자동 롤백 / Terraform·cloud-init 기반 GCP IaC / 빌드·운영 과정 자체를 컨테이너·클라우드 훈련장으로 삼은 것이 설계 목표',
+        en: 'Sole designer, builder and operator of an invite-only platform navigating 533 security nodes across web hacking, pwnable, CS and kernel as a tree and attack-chain graph / invite-based auth and RBAC from scratch (IDOR prevention, argon2, rate limiting, 114 pytest cases) / GitHub Actions -> GHCR -> SSH CI/CD with automatic rollback / GCP infrastructure as code with Terraform and cloud-init / building and operating it was itself the goal - the delivery pipeline is as much the deliverable as the site',
+      },
+      tags: ['Next.js', 'FastAPI', 'Terraform', 'CI/CD', 'DevSecOps'],
+    },
+    {
+      title: { ko: '기와대장 - Solana 수집·분류 엔진', en: 'daejang - Solana Ingestion & Classification Engine' },
+      type: { ko: '백엔드 · 데이터 파이프라인', en: 'Backend & Data Pipeline' },
+      year: '2026-08 ~ ongoing',
+      description: {
+        ko: '암호화폐 납세증명 제품(BackwardLabs, GIWA 액셀러레이터) Go 백엔드의 Solana 어댑터 단독 설계·구현, 백엔드 저장소 최다 커미터 / RPC 왕복 0.47초로 3만 건 계정이 15분 실행 예산을 넘겨, 동시 8 워커 + 중단 지점 재개형 수집으로 재설계하고 부분 성공 대신 전체 실패를 택함(조용한 누락은 납세 도메인에서 미신고) / 원본 응답 append-only 보관 + 해석 분리로 분류 규칙 변경 시 RPC 0회 재실행, 결과는 덮어쓰지 않고 리비전 추가 / 잔고 차이(검증자 산출) → 명령 구조 → 이름 순으로 신뢰도 계층화, 이름은 sha256("global:<명령명>") 앞 8바이트 검산 통과분만 채택하고 미확정은 사유를 달아 보류',
+        en: 'Sole designer and implementer of the Solana adapter in the Go backend of a crypto tax-proof product (BackwardLabs, GIWA accelerator); top committer on the backend repository / a 30k-transaction account could not finish inside the 15-minute execution budget at 0.47s per RPC round trip, so ingestion was rebuilt as a checkpointed, resumable pipeline with 8 concurrent workers that fails the whole batch rather than passing a partial result downstream - silent loss is an unfiled return in this domain / raw responses kept append-only with interpretation separated, so a rule change re-runs with zero RPC calls and appends a revision instead of overwriting / classification layered by trust: balance deltas (validator-computed, unforgeable), then instruction structure, then names accepted only when sha256("global:<name>")[:8] matches the transaction data, with anything unresolved deferred with a reason rather than guessed',
+      },
+      tags: ['Go', 'Solana', 'Data Pipeline', 'Backend'],
+    },
+    {
       title: { ko: 'BonDA - DA 생태계 위협 모델링·모니터링', en: 'BonDA - Threat Modeling & Monitoring for the DA Ecosystem' },
       type: { ko: '위협 모델링 · 취약점 연구', en: 'Threat Modeling & Vulnerability Research' },
       year: '2026-05 ~ 2026-06',
@@ -328,22 +348,12 @@ export const profileData: ProfileData = {
         en: 'STRIDE threat modeling across four data availability layers (EthereumDA/PeerDAS, EigenDA, Celestia, Avail) securing $35.98B across 73 L2s, plus a real-time monitoring dashboard / data collected from self-operated Ethereum full nodes (EL, CL) / 9 formal vulnerability reports with PoCs and CVSS 3.1 scores / e.g. EigenDA operator DoS - gRPC flood PoC measured at roughly 800% CPU saturation',
       },
       tags: ['STRIDE', 'DA Layer', 'PoC', 'CVSS'],
-      link: 'https://bonda.me',
-    },
-    {
-      title: { ko: 'hack-tree - 보안 지식 학습 플랫폼', en: 'hack-tree - Security Knowledge Learning Platform' },
-      type: { ko: '풀스택 · DevSecOps', en: 'Full-stack & DevSecOps' },
-      year: '2026-07 ~ ongoing',
-      description: {
-        ko: '웹 해킹·포너블·CS 292개 보안 노드를 트리와 공격 체인 그래프로 탐색하는 초대제 플랫폼 단독 설계·구축·운영 / 초대 기반 인증·RBAC 자체 구현(IDOR 방지, argon2, rate limiting, pytest 114건 검증) / GitHub Actions -> GHCR -> SSH CI/CD 자동 롤백 / Terraform·cloud-init 기반 GCP IaC',
-        en: 'Sole designer, builder and operator of an invite-only platform navigating 292 security nodes across web hacking, pwnable and CS as a tree and attack-chain graph / invite-based auth and RBAC from scratch (IDOR prevention, argon2, rate limiting, 114 pytest cases) / GitHub Actions -> GHCR -> SSH CI/CD with automatic rollback / GCP infrastructure as code with Terraform and cloud-init',
-      },
-      tags: ['Next.js', 'FastAPI', 'Terraform', 'CI/CD', 'DevSecOps'],
+      link: 'https://upside4th.gitbook.io/bonda',
     },
     {
       title: { ko: '블록체인 감사 프로젝트', en: 'Blockchain Audit Project' },
       type: { ko: 'DeFi 보안 · 감사', en: 'DeFi Security & Audit' },
-      year: '2025-07 ~ ongoing',
+      year: '2025-07 ~ 2026',
       description: {
         ko: '크로스체인 자산 시스템 Flare FAsset 5주 감사를 시작으로 Trader Joe·Ekubo(DEX), Rootstock(사이드체인), Centrifuge v3.1(RWA)까지 참여자별 공격 벡터 도출 방법론 확장',
         en: 'From a five-week audit of Flare FAsset (cross-chain assets) through Trader Joe and Ekubo (DEX), Rootstock (sidechain) and Centrifuge v3.1 (RWA) - an audit methodology built on deriving attack vectors per participant',
@@ -417,6 +427,26 @@ export const profileData: ProfileData = {
   ],
   skills: [
     {
+      name: { ko: '백엔드', en: 'Backend' },
+      category: { ko: '서버 · 데이터', en: 'Server & Data' },
+      level: 'intermediate',
+      description: {
+        ko: 'Go·Python·TypeScript / 레이트 리밋 걸린 외부 API 대상 동시·재개형 수집 파이프라인 설계 / 원본 append-only 보관으로 재처리 비용을 외부 호출 0회로',
+        en: 'Go, Python and TypeScript / concurrent, resumable ingestion pipelines against rate-limited external APIs / append-only raw storage so reprocessing costs zero external calls',
+      },
+      tags: ['Go', 'Python', 'TypeScript', 'FastAPI', 'PostgreSQL'],
+    },
+    {
+      name: { ko: '인프라 / DevOps', en: 'Infra / DevOps' },
+      category: { ko: '클라우드 · 배포', en: 'Cloud & Delivery' },
+      level: 'intermediate',
+      description: {
+        ko: 'Docker·GCP·Terraform·cloud-init으로 인프라 코드화·운영 / GitHub Actions -> GHCR -> SSH 배포에 헬스체크·자동 롤백',
+        en: 'Infrastructure codified and operated with Docker, GCP, Terraform and cloud-init / GitHub Actions to GHCR to SSH delivery with health checks and automatic rollback',
+      },
+      tags: ['Docker', 'GCP', 'Terraform', 'GitHub Actions', 'CI/CD'],
+    },
+    {
       name: { ko: 'Web3 보안', en: 'Web3 security' },
       category: { ko: '스마트 컨트랙트', en: 'Smart Contracts' },
       level: 'intermediate',
@@ -445,16 +475,6 @@ export const profileData: ProfileData = {
         en: 'Stack and heap exploitation / ROP, format string, tcache / centered on bypassing mitigations',
       },
       tags: ['ROP', 'Heap', 'Tcache', 'Format String'],
-    },
-    {
-      name: { ko: '개발 / 인프라', en: 'Dev / Infra' },
-      category: 'DevSecOps',
-      level: 'intermediate',
-      description: {
-        ko: 'Python·Go·TypeScript 개발 / Docker·GCP·Terraform·CI/CD 기반 인프라 코드화·운영',
-        en: 'Development in Python, Go and TypeScript / infrastructure as code and operations with Docker, GCP, Terraform and CI/CD',
-      },
-      tags: ['Python', 'Go', 'TypeScript', 'Docker', 'Terraform'],
     },
   ],
 };
