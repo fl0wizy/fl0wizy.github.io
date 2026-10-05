@@ -187,8 +187,8 @@ export const profileData: ProfileData = {
   name: 'flowizy',
   title: { ko: '엔지니어 · 보안 연구자', en: 'ENGINEER · SECURITY RESEARCHER' },
   bio: {
-    ko: '백엔드와 인프라를 직접 만들고, 같은 시스템을 공격자 관점에서 검증. 둘을 같이 하는 것이 일하는 방식. 만드는 쪽으로는 단독 설계·구현한 Go 수집 파이프라인, 인증·CI/CD·GCP 인프라를 코드로 쓰고 운영하는 플랫폼, npm에 배포한 오픈소스 가드. 깨는 쪽으로는 데이터 가용성 계층(EigenDA, Celestia, Avail) 대상 PoC·CVSS 포함 정식 취약점 리포트 9건과 DeFi·RWA 프로토콜 감사. 취약점은 코드 한 줄의 성질이 아니라 자산 흐름과 참여자 권한 구조의 성질로 접근 — 행위자별 위협 모델을 먼저 세우고 불변식이 깨지는 지점을 추적.',
-    en: 'Builds backends and infrastructure, and verifies the same systems from an attacker\'s perspective. Doing both is the practice, not a hedge. On the building side: a Go ingestion pipeline designed and implemented solo, a platform whose auth, CI/CD and GCP infrastructure are written and operated as code, and an open-source guard published to npm. On the breaking side: 9 formal vulnerability reports with PoCs and CVSS scores against data availability layers (EigenDA, Celestia, Avail), plus DeFi and RWA protocol audits. Treats a vulnerability as a property of asset flows and participant privilege structures, not of any single line of code — per-actor threat model first, then the point where an invariant breaks.',
+    ko: '시스템을 아키텍처 단위로 먼저 그려 놓고, 그 그림이 실제와 어긋나는 자리를 찾는 일을 좋아합니다. 블록체인과 웹 프로토콜을 감사하고 있고, 백엔드와 인증, 배포 파이프라인, 클라우드 인프라를 직접 만들어 보며 얻은 감각이 그 작업에 그대로 쓰입니다.',
+    en: 'I like sketching out a system at the architecture level and then hunting for the places where that sketch and the real thing diverge. I audit blockchain and web protocols, and what I picked up building backends, auth, deployment pipelines and cloud infrastructure myself carries straight over into that work.',
   },
   profileImage: '/images/chaegeon.jpg', // profile image path
   contacts: [
@@ -198,7 +198,7 @@ export const profileData: ProfileData = {
     { type: 'cantina', label: 'CANTINA', value: 'fl0wizy', link: 'https://cantina.xyz/u/fl0wizy' },
     { type: 'discord', label: 'DISCORD', value: '_flowizy' },
     { type: 'telegram', label: 'TELEGRAM', value: '@chaegunn', link: 'https://t.me/chaegunn' },
-    { type: 'linkedin', label: 'LINKEDIN', value: 'Chaegeon Oh', link: 'https://www.linkedin.com/in/%EC%B1%84%EA%B1%B4-%EC%98%A4-159157342/' },
+    { type: 'linkedin', label: 'LINKEDIN', value: 'Chaegeon Oh', link: 'https://www.linkedin.com/in/chaegeonoh/' },
     { type: 'github', label: 'GITHUB', value: 'fl0wizy', link: 'https://github.com/fl0wizy' },
     { type: 'email', label: { ko: '개인 이메일', en: 'PERSONAL EMAIL' }, value: 'dhcorjs063@gmail.com', link: 'mailto:dhcorjs063@gmail.com' },
     { type: 'email', label: { ko: '학교 이메일', en: 'ACADEMIC EMAIL' }, value: 'dhcorjs@ajou.ac.kr', link: 'mailto:dhcorjs@ajou.ac.kr' },
