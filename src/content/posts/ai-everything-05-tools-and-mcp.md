@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-05-tools-and-mcp"
-title: "AI의 모든 것 (05) – 툴 엔지니어링과 MCP: 버튼 200개짜리 리모컨을 만들지 마라"
-titleEn: "Everything About AI (05) – Tool Engineering and MCP: Don't Build a 200-Button Remote"
+title: "[AI시리즈] 툴 엔지니어링과 MCP: 버튼 200개짜리 리모컨을 만들지 마라"
+titleEn: "[AI Series] Tool Engineering and MCP: Don't Build a 200-Button Remote"
 description: "툴 폭발 문제와 스코프로 둘러싸는 법, MCP 대 A2A, 그리고 Skill을 운영 매뉴얼로 만들기."
 descriptionEn: "The tool explosion problem and how to scope around it, MCP vs A2A, and turning a Skill into an operations manual."
 date: "2026-08-02 09:50"

@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-08-eval-harness"
-title: "AI의 모든 것 (08) – 평가 하네스: '더 나아진 것 같다'는 지표가 아니다"
-titleEn: "Everything About AI (08) – The Eval Harness: 'It Feels Better' Is Not a Metric"
+title: "[AI시리즈] 평가 하네스: '더 나아진 것 같다'는 지표가 아니다"
+titleEn: "[AI Series] The Eval Harness: 'It Feels Better' Is Not a Metric"
 description: "'더 나아진 것 같다'는 지표가 아니다 – 루브릭, LLM-as-judge, 환경 상태 평가, 그리고 회귀 평가."
 descriptionEn: "'It feels better' is not a metric – rubrics, LLM-as-judge, environment-state evaluation and regression evals."
 date: "2026-08-02 10:20"

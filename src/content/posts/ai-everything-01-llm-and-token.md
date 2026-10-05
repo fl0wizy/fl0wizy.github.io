@@ -1,7 +1,7 @@
 ---
 id: "ai-everything-01-llm-and-token"
-title: "AI의 모든 것 (01) – LLM과 토큰: 예측 기계의 해부"
-titleEn: "Everything About AI (01) – LLMs and Tokens: Anatomy of a Prediction Machine"
+title: "[AI시리즈] LLM과 토큰: 예측 기계의 해부"
+titleEn: "[AI Series] LLMs and Tokens: Anatomy of a Prediction Machine"
 description: "AI ⊃ ML ⊃ 딥러닝 ⊃ LLM 지도, '토큰 가중치' 오해의 해체, 그리고 토크나이제이션이 어디서 일어나고 무엇을 비용으로 치르는지."
 descriptionEn: "The AI ⊃ ML ⊃ deep learning ⊃ LLM map, dismantling the 'token weight' misconception, and where tokenization happens and what it costs."
 date: "2026-08-02 09:10"
