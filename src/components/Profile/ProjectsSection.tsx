@@ -29,7 +29,15 @@ export default function ProjectsSection() {
                 </div>
                 <span className="project-year">{project.year}</span>
               </div>
-              <p className="project-description">{L(project.description)}</p>
+              {Array.isArray(project.description) ? (
+                <ul className="project-bullets">
+                  {project.description.map((line, lineIndex) => (
+                    <li key={lineIndex}>{L(line)}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="project-description">{L(project.description)}</p>
+              )}
               {project.tags && project.tags.length > 0 && (
                 <div className="project-tags">
                   {project.tags.map((tag, tagIndex) => (

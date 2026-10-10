@@ -58,7 +58,8 @@ export interface Project {
   title: LocalizedText;
   type: LocalizedText;
   year: string;
-  description: LocalizedText;
+  // A single paragraph, or a list rendered as bullets.
+  description: LocalizedText | LocalizedText[];
   tags: string[];
   link?: string;
 }
@@ -320,33 +321,104 @@ export const profileData: ProfileData = {
   ],
   projects: [
     {
-      title: { ko: 'hack-tree - 보안 지식 학습 플랫폼', en: 'hack-tree - Security Knowledge Learning Platform' },
-      type: { ko: '풀스택 · DevSecOps', en: 'Full-stack & DevSecOps' },
-      year: '2026-07 ~ 2026-08',
-      description: {
-        ko: '웹 해킹·포너블·CS·커널 533개 보안 노드를 트리와 공격 체인 그래프로 탐색하는 초대제 플랫폼 단독 설계·구축·운영 / 초대 기반 인증·RBAC 자체 구현(IDOR 방지, argon2, rate limiting, pytest 114건 검증) / GitHub Actions -> GHCR -> SSH CI/CD 자동 롤백 / Terraform·cloud-init 기반 GCP IaC / 빌드·운영 과정 자체를 컨테이너·클라우드 훈련장으로 삼은 것이 설계 목표',
-        en: 'Sole designer, builder and operator of an invite-only platform navigating 533 security nodes across web hacking, pwnable, CS and kernel as a tree and attack-chain graph / invite-based auth and RBAC from scratch (IDOR prevention, argon2, rate limiting, 114 pytest cases) / GitHub Actions -> GHCR -> SSH CI/CD with automatic rollback / GCP infrastructure as code with Terraform and cloud-init / building and operating it was itself the goal - the delivery pipeline is as much the deliverable as the site',
-      },
-      tags: ['Next.js', 'FastAPI', 'Terraform', 'CI/CD', 'DevSecOps'],
+      title: { ko: 'ChainWard - 온체인 프롬프트 인젝션 가드 (OSS)', en: 'ChainWard - On-chain Prompt Injection Guard (OSS)' },
+      type: { ko: '오픈소스 · AI 보안', en: 'Open Source & AI Security' },
+      year: '2026-08 ~ 2026-11 · ongoing',
+      description: [
+        {
+          ko: '2026 오픈소스 개발자대회 출품작, 팀장 / 1차 심사 통과 후 라이선스 검증 단계 진행 중',
+          en: 'Entry to the 2026 Open Source Developer Contest as team lead / passed the first round, now in license review',
+        },
+        {
+          ko: '문제: 토큰 이름·NFT 메타데이터·트랜잭션 메모는 누구나 쓰는 문자열인데, AI 에이전트가 이를 프롬프트에 넣으면 데이터가 지시로 읽힘',
+          en: 'Problem: token names, NFT metadata and transaction memos are attacker-writable strings, and an agent that pastes them into a prompt can read data as instructions',
+        },
+        {
+          ko: '5계층 탐지(구조·패턴·분류기·기만·차등 해석) + 라이브러리 / ElizaOS 플러그인 / 코드 수정 없는 프록시 3개 진입점',
+          en: 'Five detection layers (structure, pattern, classifier, deception, differential parsing) behind three entry points: library, ElizaOS plugin, and a zero-code proxy',
+        },
+        {
+          ko: 'npm 배포(chainward, @chainwards/eliza) / 런타임 의존성 0 · 테스트 312개 · MIT',
+          en: 'Published on npm (chainward, @chainwards/eliza) / zero runtime dependencies, 312 tests, MIT',
+        },
+        {
+          ko: '264회 실측: 설득이 필요 없는 공격(활성 마크다운 통과)은 모델 정렬만으로 79.2% 새어 나가고 가드 적용 시 0% / 오탐 0% · 유용성 100% 유지',
+          en: 'Measured over 264 calls: attacks that need no persuasion (active markdown pass-through) leak 79.2% of the time on model alignment alone and 0% with the guard / 0% false positives, 100% utility kept',
+        },
+      ],
+      tags: ['TypeScript', 'LLM Security', 'Prompt Injection', 'npm'],
+      link: 'https://github.com/onchain-guard/ChainWard',
     },
     {
       title: { ko: '기와대장 - Solana 수집·분류 엔진', en: 'daejang - Solana Ingestion & Classification Engine' },
       type: { ko: '백엔드 · 데이터 파이프라인', en: 'Backend & Data Pipeline' },
       year: '2026-08 ~ ongoing',
-      description: {
-        ko: '암호화폐 납세증명 제품(BackwardLabs, GIWA 액셀러레이터) Go 백엔드의 Solana 어댑터 단독 설계·구현, 백엔드 저장소 최다 커미터 / RPC 왕복 0.47초로 3만 건 계정이 15분 실행 예산을 넘겨, 동시 8 워커 + 중단 지점 재개형 수집으로 재설계하고 부분 성공 대신 전체 실패를 택함(조용한 누락은 납세 도메인에서 미신고) / 원본 응답 append-only 보관 + 해석 분리로 분류 규칙 변경 시 RPC 0회 재실행, 결과는 덮어쓰지 않고 리비전 추가 / 잔고 차이(검증자 산출) → 명령 구조 → 이름 순으로 신뢰도 계층화, 이름은 sha256("global:<명령명>") 앞 8바이트 검산 통과분만 채택하고 미확정은 사유를 달아 보류',
-        en: 'Sole designer and implementer of the Solana adapter in the Go backend of a crypto tax-proof product (BackwardLabs, GIWA accelerator); top committer on the backend repository / a 30k-transaction account could not finish inside the 15-minute execution budget at 0.47s per RPC round trip, so ingestion was rebuilt as a checkpointed, resumable pipeline with 8 concurrent workers that fails the whole batch rather than passing a partial result downstream - silent loss is an unfiled return in this domain / raw responses kept append-only with interpretation separated, so a rule change re-runs with zero RPC calls and appends a revision instead of overwriting / classification layered by trust: balance deltas (validator-computed, unforgeable), then instruction structure, then names accepted only when sha256("global:<name>")[:8] matches the transaction data, with anything unresolved deferred with a reason rather than guessed',
-      },
-      tags: ['Go', 'Solana', 'Data Pipeline', 'Backend'],
+      description: [
+        {
+          ko: 'BackwardLabs(GIWA 액셀러레이터)의 암호화폐 납세증명 제품 / Go 백엔드의 Solana 어댑터 단독 설계·구현, 머지된 PR 30건 이상',
+          en: 'Crypto tax-proof product at BackwardLabs (GIWA accelerator) / sole designer and implementer of the Solana adapter in the Go backend, 30+ merged PRs',
+        },
+        {
+          ko: '수집: RPC 왕복 0.47초로 3만 건 계정이 15분 예산을 넘겨, 동시 8 워커 + 중단 지점 재개형으로 재설계 / 부분 성공 대신 전체 실패를 택함(조용한 누락 = 미신고)',
+          en: 'Ingestion: at 0.47s per RPC round trip a 30k-transaction account blew the 15-minute budget, so it became a resumable pipeline with 8 workers that fails the whole batch rather than passing a partial one (silent loss = an unfiled return)',
+        },
+        {
+          ko: '재처리: 원본 응답 append-only 보관 + 해석 분리로 규칙 변경 시 RPC 0회 재실행, 결과는 덮어쓰지 않고 리비전 추가',
+          en: 'Reprocessing: raw responses kept append-only and interpretation separated, so a rule change re-runs with zero RPC calls and appends a revision',
+        },
+        {
+          ko: '분류: 잔고 차이 → 명령 구조 → 이름 순으로 신뢰도 계층화 / 이름은 sha256("global:<명령명>") 앞 8바이트 검산 통과분만 채택, 미확정은 사유를 달아 보류',
+          en: 'Classification: balance deltas, then instruction structure, then names, in order of trust / names accepted only when sha256("global:<name>")[:8] matches, anything unresolved deferred with a reason',
+        },
+        {
+          ko: '결과: 실행 로그의 명령 이름으로 미결 4,212건 → 2건 / 단계 간 건수 대사 테스트로 저장 33,223건 중 4,359건만 넘기던 무오류 누락 결함 검출',
+          en: 'Results: execution-log instruction names cut unresolved transactions from 4,212 to 2 / a stage-to-stage count reconciliation test caught a silent bug that forwarded only 4,359 of 33,223 stored rows',
+        },
+      ],
+      tags: ['Go', 'Solana', 'PostgreSQL', 'Data Pipeline'],
+    },
+    {
+      title: { ko: 'hack-tree - 보안 지식 학습 플랫폼', en: 'hack-tree - Security Knowledge Learning Platform' },
+      type: { ko: '풀스택 · DevSecOps', en: 'Full-stack & DevSecOps' },
+      year: '2026-07 ~ 2026-08',
+      description: [
+        {
+          ko: '웹 해킹·포너블·CS·커널 533개 보안 노드를 트리와 공격 체인 그래프로 탐색하는 초대제 플랫폼 / 기획부터 운영까지 단독',
+          en: 'Invite-only platform navigating 533 security nodes across web hacking, pwnable, CS and kernel as a tree and attack-chain graph / built and run solo',
+        },
+        {
+          ko: '인증·RBAC 자체 구현: 초대 기반 가입, IDOR 방지, argon2, rate limiting / pytest 114건으로 경계조건 고정',
+          en: 'Auth and RBAC from scratch: invite-based signup, IDOR prevention, argon2, rate limiting / boundaries pinned by 114 pytest cases',
+        },
+        {
+          ko: 'GitHub Actions → GHCR → SSH CI/CD, 헬스체크 실패 시 자동 롤백',
+          en: 'GitHub Actions → GHCR → SSH CI/CD with automatic rollback on failed health checks',
+        },
+        {
+          ko: 'Terraform·cloud-init 기반 GCP IaC / 빌드·운영 과정 자체를 컨테이너·클라우드 훈련장으로 삼은 것이 설계 목표',
+          en: 'GCP infrastructure as code with Terraform and cloud-init / the build and operation themselves were the training ground',
+        },
+      ],
+      tags: ['Next.js', 'FastAPI', 'Terraform', 'CI/CD', 'DevSecOps'],
     },
     {
       title: { ko: 'BonDA - DA 생태계 위협 모델링·모니터링', en: 'BonDA - Threat Modeling & Monitoring for the DA Ecosystem' },
       type: { ko: '위협 모델링 · 취약점 연구', en: 'Threat Modeling & Vulnerability Research' },
       year: '2026-05 ~ 2026-06',
-      description: {
-        ko: '73개 L2가 의존하는 총 $35.98B 규모 데이터 가용성 계층 4종(EthereumDA/PeerDAS, EigenDA, Celestia, Avail) STRIDE 위협 모델링 + 실시간 모니터링 대시보드 / 이더리움 풀노드(EL·CL) 직접 운영해 데이터 수집 / PoC·CVSS 3.1 포함 정식 취약점 리포트 9건 / 예: EigenDA 오퍼레이터 DoS - gRPC 플러딩 PoC로 CPU 약 800% 포화 실측',
-        en: 'STRIDE threat modeling across four data availability layers (EthereumDA/PeerDAS, EigenDA, Celestia, Avail) securing $35.98B across 73 L2s, plus a real-time monitoring dashboard / data collected from self-operated Ethereum full nodes (EL, CL) / 9 formal vulnerability reports with PoCs and CVSS 3.1 scores / e.g. EigenDA operator DoS - gRPC flood PoC measured at roughly 800% CPU saturation',
-      },
+      description: [
+        {
+          ko: '73개 L2, 총 $35.98B를 떠받치는 데이터 가용성 계층 4종(EthereumDA/PeerDAS, EigenDA, Celestia, Avail) STRIDE 위협 모델링',
+          en: 'STRIDE threat modeling of four data availability layers (EthereumDA/PeerDAS, EigenDA, Celestia, Avail) securing $35.98B across 73 L2s',
+        },
+        {
+          ko: '이더리움 풀노드(EL·CL) 직접 운영해 데이터 수집 + 실시간 모니터링 대시보드',
+          en: 'Self-operated Ethereum full nodes (EL, CL) for data collection, plus a real-time monitoring dashboard',
+        },
+        {
+          ko: 'PoC·CVSS 3.1 포함 정식 취약점 리포트 9건 / 예: EigenDA 오퍼레이터 DoS - gRPC 플러딩 PoC로 CPU 약 800% 포화 실측',
+          en: '9 formal vulnerability reports with PoCs and CVSS 3.1 scores / e.g. EigenDA operator DoS - gRPC flood PoC measured at roughly 800% CPU saturation',
+        },
+      ],
       tags: ['STRIDE', 'DA Layer', 'PoC', 'CVSS'],
       link: 'https://upside4th.gitbook.io/bonda',
     },
