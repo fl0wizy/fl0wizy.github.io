@@ -206,6 +206,17 @@ export const profileData: ProfileData = {
   ],
   experiences: [
     {
+      title: { ko: 'Solana 담당 개발자', en: 'Solana Developer' },
+      company: { ko: 'BackwardLabs (GIWA GASOK 액셀러레이터)', en: 'BackwardLabs (GIWA GASOK accelerator)' },
+      period: { ko: '2026-08 ~ 현재', en: '2026-08 ~ present' },
+      description: {
+        ko: '두나무 GIWA 웹3 액셀러레이터 GIWA GASOK 참여 팀에서 암호화폐 납세증명 제품 개발 / Solana 수집·분류 담당 (Phase 3 PRODUCTIZE 진행 중)',
+        en: 'Building a crypto tax-proof product in a team of GIWA GASOK, the Dunamu GIWA Web3 accelerator / responsible for Solana ingestion and classification (Phase 3 PRODUCTIZE in progress)',
+      },
+      tags: ['Solana', 'Data Pipeline', 'Product'],
+      current: true,
+    },
+    {
       title: { ko: 'Layer-A 회장', en: 'President of Layer-A' },
       company: { ko: 'Layer-A (아주대학교 블록체인 학회)', en: 'Layer-A (Blockchain Society, Ajou University)' },
       period: '2026-08 ~ 2027-01',
@@ -323,7 +334,7 @@ export const profileData: ProfileData = {
     {
       title: { ko: 'ChainWard - 온체인 프롬프트 인젝션 가드 (OSS)', en: 'ChainWard - On-chain Prompt Injection Guard (OSS)' },
       type: { ko: '오픈소스 · AI 보안', en: 'Open Source & AI Security' },
-      year: '2026-08 ~ 2026-11 · ongoing',
+      year: '2026-07 ~ 2026-11 · ongoing',
       description: [
         {
           ko: '2026 오픈소스 개발자대회 출품작, 팀장 / 1차 심사 통과 후 라이선스 검증 단계 진행 중',
@@ -474,8 +485,8 @@ export const profileData: ProfileData = {
       subInfo: 'A.K.A flowizy',
       period: '2026-02 ~ 2026-06',
       description: {
-        ko: '밸류체인·EVM·DeFi·암호학·클라우드/인프라·LLM 보안·ERC-4337 공수 교육 과정 수료 / 캡스톤 프로젝트로 BonDA 제출',
-        en: 'Offensive and defensive coursework across value chain, EVM, DeFi, cryptography, cloud/infrastructure, LLM security and ERC-4337 / BonDA delivered as the capstone',
+        ko: '밸류체인·EVM·DeFi·암호학·클라우드/인프라·LLM 보안·ERC-4337 공수 교육 과정 수료 / 캡스톤으로 DA 위협 모델링 프로젝트 BonDA 수행',
+        en: 'Offensive and defensive coursework across value chain, EVM, DeFi, cryptography, cloud/infrastructure, LLM security and ERC-4337 / BonDA, a DA threat-modeling project, delivered as the capstone',
       },
       tags: ['Solidity', 'Foundry', 'Web3', 'Audit', 'Threat Modeling'],
     },
