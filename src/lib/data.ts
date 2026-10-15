@@ -444,14 +444,28 @@ export const profileData: ProfileData = {
       tags: ['EVM', 'Solidity', 'Audit', 'RWA'],
     },
     {
-      title: { ko: '온체인 데이터 시각화', en: 'Visualize on-chain data' },
+      title: { ko: '온체인 데이터 시각화', en: 'On-chain Data Visualization' },
       type: { ko: '데이터 분석 · 시각화', en: 'Data Analytics & Visualization' },
       year: '2025-03 ~ 2025-06',
-      description: {
-        ko: '멀티체인 온체인 레코드 약 2억 건 적재 후 노드 그래프·트리맵·히트맵으로 시각화',
-        en: 'Roughly 200 million on-chain records from multiple chains, loaded and made legible as node graphs, treemaps and heatmaps',
-      },
-      tags: ['Java', 'SpringBoot', 'Vue.js'],
+      description: [
+        {
+          ko: 'Cosmos SDK 기반 체인의 2년치 트랜잭션 약 2억 건을 적재하고, 어떤 토큰에 돈이 몰리고 어느 체인을 거쳐 움직이는지를 비전공자도 읽을 수 있는 가시화 맵으로 구성',
+          en: 'Loaded about 200 million transactions covering two years of Cosmos SDK chains and turned them into maps that non-specialists can read: which tokens draw money and which chains it moves through',
+        },
+        {
+          ko: '노드 맵, 히트맵, 트리맵 등 6가지 표현을 같은 데이터에 붙여 비교 / 2년치를 3개월 단위 동심원과 타임라인으로 나눠 시계열 변화를 표현',
+          en: 'Put six views (node maps, heatmaps, treemaps and more) on the same data to compare what each shows best / split two years into 3-month rings with a timeline to show change over time',
+        },
+        {
+          ko: '3인 팀에서 UI 설계, 수집부터 화면까지 파이프라인 설계, Vue 프론트엔드 담당 / 체인 내부 단위(uatom)와 표시 이름(ATOM), 송수신 체인을 따로 저장해 IBC로 체인을 건너는 흐름까지 추적',
+          en: 'Team of 3: owned UI design, the pipeline from collection to screen, and the Vue frontend / stored base units (uatom) apart from display names (ATOM) and recorded source and destination chains to trace IBC transfers',
+        },
+        {
+          ko: '아주대 파란학기제 2025-1 성과발표 수상',
+          en: 'Award at the Ajou Paran Semester 2025-1 showcase',
+        },
+      ],
+      tags: ['Cosmos SDK', 'Vue.js', 'D3.js', 'Spring Boot'],
       link: 'https://github.com/paran-timestamper/blockchain-analytics',
     },
   ],
