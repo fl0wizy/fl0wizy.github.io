@@ -304,10 +304,10 @@ export const profileData: ProfileData = {
       organizer: 'Hypersonic',
       period: { ko: '2026 상반기', en: 'H1 2026' },
       description: {
-        ko: 'Hypersonic CTF 2026 1위',
-        en: '1st place, Hypersonic CTF 2026',
+        ko: 'Hypersonic CTF 2026 1위 / 스테가노그래피·Crypto 분야 담당 / i_am_a_stegosaurus: PNG 메타데이터의 DNA 코돈에서 평문 앞부분을 얻고 filter byte의 TAPS 힌트로 LFSR을 의심해 Berlekamp-Massey로 키 스트림 복구',
+        en: '1st place, Hypersonic CTF 2026 / solved the steganography and crypto challenges / i_am_a_stegosaurus: known plaintext from DNA codons in PNG metadata and a TAPS hint in the filter bytes led to recovering the LFSR keystream with Berlekamp-Massey',
       },
-      tags: ['CTF', 'Web3', 'Security'],
+      tags: ['CTF', 'Steganography', 'Crypto'],
     },
     {
       title: { ko: 'KISIA CTF 2026 본선 (9위)', en: 'KISIA CTF 2026 Finals (9th place)' },
@@ -394,8 +394,8 @@ export const profileData: ProfileData = {
       year: '2026-07 ~ 2026-08',
       description: [
         {
-          ko: '웹 해킹·포너블·CS·커널 533개 보안 노드를 트리와 공격 체인 그래프로 탐색하는 초대제 플랫폼 / 기획부터 운영까지 단독',
-          en: 'Invite-only platform navigating 533 security nodes across web hacking, pwnable, CS and kernel as a tree and attack-chain graph / built and run solo',
+          ko: 'Whois 정보보안 동아리 부원 교육을 위해 연 초대제 학습 플랫폼 / 웹 해킹·포너블·CS·커널 533개 보안 노드를 트리와 공격 체인 그래프로 탐색 / 기획부터 운영까지 1인',
+          en: 'Invite-only learning platform opened to train members of the Whois infosec club / 533 security nodes across web hacking, pwnable, CS and kernel as a tree and attack-chain graph / planned, built and run by one person',
         },
         {
           ko: '인증·RBAC 자체 구현: 초대 기반 가입, IDOR 방지, argon2, rate limiting / pytest 114건으로 경계조건 고정',
