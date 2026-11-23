@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import type { CSSProperties } from 'react';
-import { categories, getPostCountByCategory, getCategoryColor } from '../../lib/data';
+import { categories, getPostCountByCategory, getCategoryColor, resolveCategoryId } from '../../lib/data';
 import { useLang, useT } from '../../lib/i18n';
 import type { Category } from '../../lib/data';
 import './Sidebar.css';
@@ -47,25 +46,10 @@ const Icons = {
       <line x1="1" y1="14" x2="4" y2="14" />
     </svg>
   ),
-  circuit: () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <rect x="7" y="7" width="10" height="10" rx="1" />
-      <line x1="12" y1="2" x2="12" y2="7" />
-      <line x1="12" y1="17" x2="12" y2="22" />
-      <line x1="2" y1="12" x2="7" y2="12" />
-      <line x1="17" y1="12" x2="22" y2="12" />
-    </svg>
-  ),
   terminal: () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <polyline points="4 17 10 11 4 5" />
       <line x1="12" y1="19" x2="20" y2="19" />
-    </svg>
-  ),
-  lock: () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
     </svg>
   ),
   code: () => (
@@ -138,6 +122,7 @@ function CategoryItem({ category, level, selectedCategory, onSelect }: CategoryI
     <div className="category-item-wrapper">
       <button
         className={`category-item ${isSelected ? 'selected' : ''} level-${level}`}
+        aria-current={isSelected ? 'page' : undefined}
         onClick={() => onSelect(category.id)}
         style={{ paddingLeft: `${level * 16 + 12}px`, '--cat': getCategoryColor(category.id) } as CSSProperties}
       >
@@ -170,13 +155,14 @@ export default function Sidebar({ onCategorySelect }: SidebarProps) {
   const { lang, setLang } = useLang();
   const t = useT();
   const location = useLocation();
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const selectedCategory = location.pathname.startsWith('/category/')
+    ? resolveCategoryId(location.pathname.split('/')[2])
+    : 'all';
 
   const isProfileActive = location.pathname === '/profile';
   const isBlogActive = location.pathname === '/' || location.pathname.startsWith('/blog') || location.pathname.startsWith('/category');
 
   const handleCategorySelect = (categoryId: string) => {
-    setSelectedCategory(categoryId);
     onCategorySelect?.(categoryId);
   };
 

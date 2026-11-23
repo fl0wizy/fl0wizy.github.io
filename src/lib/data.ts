@@ -113,22 +113,20 @@ export const categories: Category[] = [
     name: { ko: '보안', en: 'Security' },
     icon: 'shield',
     children: [
-      { id: 'web-security', name: { ko: '웹 보안', en: 'Web Security' }, icon: 'globe' },
+      { id: 'web-network', name: 'web/network', icon: 'globe', mergedIds: ['web-security'] },
       {
         id: 'web3-blockchain',
-        name: { ko: 'Web3 / 블록체인', en: 'Web3 / Blockchain' },
+        name: 'web3/blockchain',
         icon: 'zap',
         // Keep the sidebar shallow. research/study/CTF are not things a reader
         // picks -- they only describe the nature of a post -- so they surface as
         // badges (categoryLabels) and collapse into this single node in the list.
         mergedIds: ['research-article', 'study-dev-security', 'wargame-ctf'],
       },
-      { id: 'reversing', name: { ko: '리버싱', en: 'Reversing' }, icon: 'cpu' },
-      { id: 'pwn', name: { ko: '시스템 해킹', en: 'Pwn' }, icon: 'terminal' },
-      { id: 'crypto', name: { ko: '암호', en: 'Crypto' }, icon: 'lock' },
-      { id: 'hardware', name: { ko: '하드웨어', en: 'Hardware' }, icon: 'circuit' },
+      { id: 'system', name: 'system', icon: 'terminal', mergedIds: ['reversing', 'pwn', 'crypto', 'hardware'] },
     ],
   },
+  { id: 'cs', name: 'CS', icon: 'cpu' },
   { id: 'ai', name: 'AI', icon: 'bot' },
   { id: 'development', name: { ko: '개발', en: 'Development' }, icon: 'code' },
   { id: 'travel', name: { ko: '여행', en: 'Travel' }, icon: 'map' },
@@ -141,6 +139,9 @@ export const categories: Category[] = [
 export const categoryColors: Record<string, string> = {
   all: '#a79bea',
   security: '#a79bea', // parent (security) - brand purple (soft)
+  'web-network': '#6f9fd8',
+  system: '#e6a572',
+  cs: '#74c195',
   'web-security': '#6f9fd8', // blue
   'web3-blockchain': '#a79bea', // purple
   'research-article': '#5fc2b2', // teal
@@ -158,10 +159,14 @@ export const categoryColors: Record<string, string> = {
 
 // ===== Category id -> display label =====
 export const categoryLabels: Record<string, LocalizedText> = {
+  all: { ko: '전체', en: 'All' },
+  'web-network': 'web/network',
+  system: 'system',
+  cs: 'CS',
   daily: { ko: '일상', en: 'DAILY' },
   security: { ko: '보안', en: 'SECURITY' },
   'web-security': { ko: '웹 보안', en: 'Web Security' },
-  'web3-blockchain': { ko: 'Web3/블록체인', en: 'Web3/Blockchain' },
+  'web3-blockchain': 'web3/blockchain',
   'research-article': { ko: '리서치/아티클', en: 'Research/Article' },
   'study-dev-security': { ko: '스터디', en: 'Study' },
   'wargame-ctf': { ko: '워게임/CTF', en: 'Wargame/CTF' },
@@ -579,12 +584,24 @@ export const profileData: ProfileData = {
 
 // ===== Utility functions =====
 
+export function resolveCategoryId(categoryId: string, list: Category[] = categories): string {
+  for (const category of list) {
+    if (category.id === categoryId || category.mergedIds?.includes(categoryId)) return category.id;
+    if (category.children) {
+      const resolved = resolveCategoryId(categoryId, category.children);
+      if (resolved !== categoryId) return resolved;
+    }
+  }
+  return categoryId;
+}
+
 /**
  * Counts the posts in a category.
  */
 // Collect the node and every descendant id from the category tree.
-// Parent categories (security, web3-blockchain) never carry posts directly, so this
-// list is what makes a parent click surface the posts hanging off its descendants.
+// Parent categories (security, web3-blockchain) collect posts directly and through
+// descendants and legacy format IDs; this list keeps all of those paths visible
+// when a parent category is selected.
 // Returns null for an id that is not in the tree.
 function collectSubtreeIds(categoryId: string, list: Category[] = categories): string[] | null {
   for (const category of list) {
@@ -611,7 +628,8 @@ function collectSubtreeIds(categoryId: string, list: Category[] = categories): s
 }
 
 function matchesCategory(categoryId: string): (post: BlogPost) => boolean {
-  const ids = new Set(collectSubtreeIds(categoryId) ?? [categoryId]);
+  const resolved = resolveCategoryId(categoryId);
+  const ids = new Set(collectSubtreeIds(resolved) ?? [resolved]);
   return post => post.published && ids.has(post.category);
 }
 

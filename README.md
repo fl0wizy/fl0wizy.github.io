@@ -57,18 +57,17 @@ published: true                   # false로 설정하면 숨김
 
 ### 사용 가능한 카테고리
 
-- `daily` - 일상
 - `security` - 보안
-- `web-security` - Web Security
-- `web3-blockchain` - Web3/Blockchain
-- `research-article` - Research/Article
-- `study-dev-security` - Study
-- `wargame-ctf` - Wargame/CTF
-- `reversing` - Reversing
-- `pwn` - Pwn
-- `crypto` - Crypto
+- `web-network` - 보안 / web/network
+- `web3-blockchain` - 보안 / web3/blockchain
+- `system` - 보안 / system
+- `cs` - CS
+- `ai` - AI
 - `development` - 개발
 - `travel` - 여행
+- `daily` - 일상
+
+기존 카테고리 ID로 들어오는 링크는 새 분류에 연결됩니다. 기존 Web3 글의 `research-article`, `study-dev-security`, `wargame-ctf`는 글의 형식을 나타내는 배지로 유지되며, `web3/blockchain`에 함께 집계됩니다.
 
 ### 프로필 수정하기
 

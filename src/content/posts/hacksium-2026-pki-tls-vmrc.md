@@ -5,7 +5,7 @@ titleEn: "[HACKSIUM 2026] Why the Console Would Not Open: CA Certificates, the T
 description: "VM 콘솔 하나를 여는 데 세 번 막혔다. URL 스킴 핸들러, 신뢰 저장소, ESXi 직결 경로. 각 실패가 어느 계층의 일이었고 왜 그랬는지, 그리고 인증서를 받는 순간 확인할 것과 등록할 곳 – 실제 관측값 기준 정리."
 descriptionEn: "Opening a single VM console failed three times: the URL scheme handler, the trust store, and the direct-to-ESXi path. Which layer each failure lived in and why, plus what to check and where to register a certificate the moment you receive one, from real observed values."
 date: "2026-09-12 20:00"
-category: "web-security"
+category: "web-network"
 tags: ["HACKSIUM", "PKI", "X.509", "TLS", "VMRC", "vSphere", "vCenter", "VMCA", "Keychain", "Live Fire"]
 published: true
 cover: "/images/covers/tls-wide.svg"

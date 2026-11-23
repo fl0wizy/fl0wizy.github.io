@@ -28,6 +28,9 @@ const SITE_NAME = "flowizy's DevLog";
 const CATEGORY_IDS = [
   'all',
   'security',
+  'web-network',
+  'system',
+  'cs',
   'web-security',
   'web3-blockchain',
   'research-article',
@@ -36,6 +39,7 @@ const CATEGORY_IDS = [
   'reversing',
   'pwn',
   'crypto',
+  'hardware',
   'ai',
   'development',
   'travel',

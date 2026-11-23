@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import PostArchive from '../components/PostArchive/PostArchive';
-import { getPostsByCategory, getCategoryLabel } from '../lib/data';
+import { getPostsByCategory, getCategoryLabel, resolveCategoryId } from '../lib/data';
 import { L, useT } from '../lib/i18n';
 import './Category.css';
 
@@ -12,7 +12,7 @@ export default function Category() {
   // One source of truth for category names: lib/data. This page used to keep
   // its own copy, which drifted out of sync with the sidebar.
   // The hero is brand copy, so its category name stays English even in Korean.
-  const categoryLabel = L(getCategoryLabel(categoryId || ''), 'en');
+  const categoryLabel = L(getCategoryLabel(resolveCategoryId(categoryId || '')), 'en');
 
   return (
     <div className="category-page">

@@ -5,7 +5,7 @@ titleEn: "[KISIA-CTF final] captcha-v2: Turning a CAPTCHA Into Its Own Labeling 
 description: "오답 응답에 담긴 expected_answer 필드 하나가 CAPTCHA의 라벨링 비용을 0으로 떨어뜨린다. 라벨 수확부터 CRNN+CTC 모델 학습, 90초 안에 60문제를 한 번도 틀리지 않고 통과하기까지."
 descriptionEn: "A single expected_answer field in the wrong-answer response drops the CAPTCHA's labeling cost to zero. From harvesting labels to training a CRNN+CTC model to clearing 60 rounds in 90 seconds without a miss."
 date: "2026-08-19 10:00"
-category: "web-security"
+category: "web-network"
 tags: ["KISIA CTF", "CAPTCHA", "CWE-209", "CRNN", "CTC", "Machine Learning", "Writeup"]
 published: true
 cover: "/images/kisia-captcha-v2/v2_mosaic.png"
