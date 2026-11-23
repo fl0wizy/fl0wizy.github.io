@@ -11,6 +11,7 @@ export interface BlogPost {
   cover?: string;
   series?: string;
   seriesOrder?: number;
+  tocDepth?: number;
   content: string;
   // English body, present when src/content/posts/en/<slug>.md exists.
   // Absent means the post is untranslated and the Korean body is shown instead.
@@ -761,7 +762,8 @@ export interface TocHeading {
  * use the same numbering as the ids Post attaches to h2 at render time, so TOC
  * clicks and scroll tracking line up exactly. (`#` inside fenced code is skipped.)
  */
-export function extractHeadings(content: string): TocHeading[] {
+// A post can opt into nested headings with tocDepth; the default remains h2.
+export function extractHeadings(content: string, maxLevel = 2): TocHeading[] {
   const lines = content.split('\n');
   const out: TocHeading[] = [];
   let inFence = false;
@@ -774,9 +776,10 @@ export function extractHeadings(content: string): TocHeading[] {
     if (inFence) continue;
     const m = line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
     if (!m) continue;
-    if (m[1].length !== 2) continue; // top-level headings (##) only
+    if (m[1].length < 2 || m[1].length > maxLevel) continue; // h2 by default; nested headings when requested
     const text = m[2]
       .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+      .replace(/\\([~_*`])/g, '$1')
       .replace(/[*_`]/g, '')
       .trim();
     out.push({ id: `heading-${i}`, text, level: m[1].length });

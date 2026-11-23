@@ -9,6 +9,7 @@ interface PostFrontmatter {
   cover?: string;
   series?: string;
   seriesOrder?: number;
+  tocDepth?: number;
   date?: string;
   category?: string;
   tags?: string[];
@@ -83,6 +84,12 @@ function parseFrontmatter(markdown: string): { frontmatter: PostFrontmatter; con
     if (key === 'seriesOrder') {
       const order = Number(value);
       if (Number.isInteger(order) && order > 0) frontmatter.seriesOrder = order;
+      continue;
+    }
+
+    if (key === 'tocDepth') {
+      const depth = Number(unquote(value));
+      if (Number.isInteger(depth) && depth >= 2 && depth <= 4) frontmatter.tocDepth = depth;
       continue;
     }
 
@@ -162,6 +169,7 @@ export const blogPosts: BlogPost[] = Object.entries(markdownModules)
       cover: frontmatter.cover,
       series: frontmatter.series,
       seriesOrder: frontmatter.seriesOrder,
+      tocDepth: frontmatter.tocDepth,
       category: frontmatter.category || 'daily',
       tags,
       published: frontmatter.published ?? true,

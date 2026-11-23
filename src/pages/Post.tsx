@@ -137,7 +137,7 @@ export default function Post() {
   // Table of contents and reading time follow the visible body, not post.content.
   const untranslated = lang === 'en' && !post?.contentEn;
 
-  const headings = useMemo(() => extractHeadings(visibleBody(post, lang)), [post, lang]);
+  const headings = useMemo(() => extractHeadings(visibleBody(post, lang), post?.tocDepth ?? 2), [post, lang]);
   const { prev, next } = useMemo(
     () => (id ? getAdjacentPosts(id) : { prev: undefined, next: undefined }),
     [id],
@@ -149,8 +149,11 @@ export default function Post() {
     if (headings.length === 0) return;
 
     // Collect top-level headings (h2) in document order and number their ids to match extractHeadings.
+    // Include the nested levels selected by the post so every TOC link gets the matching id.
+    const selector = [...new Set(headings.map(heading => heading.level))]
+      .map(level => `.post-content h${level}`).join(', ');
     const els = Array.from(
-      document.querySelectorAll<HTMLElement>('.post-content h2'),
+      document.querySelectorAll<HTMLElement>(selector),
     );
     els.forEach((el, i) => {
       if (headings[i]) el.id = headings[i].id;
