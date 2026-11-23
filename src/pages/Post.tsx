@@ -11,6 +11,7 @@ import {
   formatDate,
   getCategoryColor,
   getCategoryLabel,
+  resolveCategoryId,
   getReadingTime,
   extractHeadings,
   getAdjacentPosts,
@@ -184,7 +185,8 @@ export default function Post() {
     );
   }
 
-  const categoryLabel = getCategoryLabel(post.category);
+  const categoryId = resolveCategoryId(post.category);
+  const categoryLabel = getCategoryLabel(categoryId);
   const categoryColor = getCategoryColor(post.category);
   const readingTime = getReadingTime(visibleBody(post, lang));
 
@@ -222,6 +224,9 @@ export default function Post() {
           {/* category badge */}
           <div className="post-category-line">
             <span className="post-category-badge">{L(categoryLabel)}</span>
+            {categoryId !== post.category && (
+              <span className="post-format-label">{L(getCategoryLabel(post.category))}</span>
+            )}
           </div>
 
           {/* title */}

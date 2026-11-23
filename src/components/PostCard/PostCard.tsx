@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategoryColor, getCategoryLabel, getReadingTime } from '../../lib/data';
+import { getCategoryColor, getCategoryLabel, getReadingTime, resolveCategoryId } from '../../lib/data';
 import type { BlogPost } from '../../lib/data';
 import { useLang } from '../../lib/i18n';
 import './PostCard.css';
@@ -11,7 +11,8 @@ interface PostCardProps {
 
 export default function PostCard({ post }: PostCardProps) {
   const { L, lang } = useLang();
-  const categoryLabel = getCategoryLabel(post.category);
+  const categoryId = resolveCategoryId(post.category);
+  const categoryLabel = getCategoryLabel(categoryId);
   const categoryColor = getCategoryColor(post.category);
   const readingTime = getReadingTime(lang === 'en' && post.contentEn ? post.contentEn : post.content);
 
@@ -25,7 +26,12 @@ export default function PostCard({ post }: PostCardProps) {
         )}
         <div className="post-card-body">
           <div className="post-card-header">
-            <span className="post-category-badge">{L(categoryLabel)}</span>
+            <div className="post-category-labels">
+              <span className="post-category-badge">{L(categoryLabel)}</span>
+              {categoryId !== post.category && (
+                <span className="post-format-label">{L(getCategoryLabel(post.category))}</span>
+              )}
+            </div>
             <div className="post-card-meta">
               <time dateTime={post.date.replace(' ', 'T')}>
                 {post.date.slice(0, 10).replaceAll('-', '.')}

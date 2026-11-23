@@ -91,10 +91,22 @@
 }
 
 /* Category Line - its own row */
-.post-category-line {
+.post-category-line,
+.post-category-labels {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.post-category-line {
   margin-bottom: 0.8rem;
+}
+
+.post-format-label {
+  color: #b5b0c4;
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
 /* Category Badge - solid-outline variant (category signature color) */
