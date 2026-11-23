@@ -512,9 +512,9 @@
 
 .rail-head {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.14em;
-  color: var(--text-muted);
+  color: #9b94ac;
   margin-bottom: 0.8rem;
 }
 
@@ -533,9 +533,9 @@
   padding: 0.32rem 0.75rem;
   margin-left: -1px;
   border-left: 2px solid transparent;
-  font-size: 0.74rem;
+  font-size: 0.8125rem;
   line-height: 1.45;
-  color: var(--text-muted);
+  color: #aaa4bc;
   transition: color var(--transition-fast), border-color var(--transition-fast);
 }
 
