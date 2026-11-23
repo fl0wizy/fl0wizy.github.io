@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
@@ -9,7 +9,6 @@ import type { Lang } from '../lib/i18n';
 import {
   getPostById,
   formatDate,
-  getRelativeTime,
   getCategoryColor,
   getCategoryLabel,
   getReadingTime,
@@ -127,6 +126,11 @@ export default function Post() {
   const navigate = useNavigate();
   const post = id ? getPostById(id) : undefined;
 
+  // Open articles at their headline while preserving explicit section links.
+  useLayoutEffect(() => {
+    if (!window.location.hash) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [id]);
+
   // Table of contents and reading time follow the visible body, not post.content.
   const untranslated = lang === 'en' && !post?.contentEn;
 
@@ -186,6 +190,9 @@ export default function Post() {
 
   // Heading ids are assigned after render in useEffect, in document order (safe under StrictMode double render).
   const components: Components = {
+    table: ({ children }) => (
+      <div className="post-table-scroll"><table>{children}</table></div>
+    ),
     a: ({ ...props }) => <a {...props} target="_blank" rel="noopener noreferrer" />,
     pre: ({ children }) => <CodeBlock lang={extractLang(children)}>{children}</CodeBlock>,
   };
@@ -231,10 +238,9 @@ export default function Post() {
               </svg>
               {formatDate(post.date)}
             </span>
-            <span className="post-relative-time">{getRelativeTime(post.date)}</span>
             <span className="post-reading-time">
               <ClockIcon />
-              {readingTime}{t('readingTime')}
+              {L({ ko: `약 ${readingTime}분`, en: `~${readingTime} min read` })}
             </span>
           </div>
         </header>

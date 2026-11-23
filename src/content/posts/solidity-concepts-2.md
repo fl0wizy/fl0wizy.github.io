@@ -1,14 +1,13 @@
 ---
 id: "solidity-concepts-2"
-title: "Solidity 개념 2: 상태 변수, 타입 시스템, 매핑과 배열"
-titleEn: "Solidity Concepts 2: State Variables, the Type System, Mappings and Arrays"
-description: "상태 변수 가시성, constant와 immutable, struct, enum, 값 타입과 참조 타입, 배열 슬라이스와 매핑 – Solidity의 데이터 모델."
-descriptionEn: "State variable visibility, constant vs immutable, struct, enum, value and reference types, array slices and mappings - Solidity's data model."
+title: "Solidity 2: 상태 변수와 타입, 배열과 매핑"
+titleEn: "Solidity 2: State, Types, Arrays, and Mappings"
+description: "constant와 immutable, 값 타입과 참조 타입, 배열과 매핑을 통해 상태 데이터의 동작을 정리한다."
+descriptionEn: "Understanding state data through constant and immutable variables, value and reference types, arrays, and mappings."
 date: "2026-04-04 19:20"
 category: "study-dev-security"
 tags: ["Solidity", "Storage", "Struct", "Mapping", "Type System"]
 published: true
-cover: "/images/covers/solidity-02-wide.svg"
 ---
 
 # Solidity 개념 정리 2: 상태 변수, 타입 시스템, 매핑과 배열

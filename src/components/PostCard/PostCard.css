@@ -2,7 +2,8 @@
   min-width: 0;
   overflow: hidden;
   background: #101019;
-  border: 1px solid #252535;
+  border: 1px solid #302c40;
+  border-top: 2px solid color-mix(in srgb, var(--cat) 60%, #302c40);
   border-radius: 12px;
   transition: border-color var(--transition-normal), transform var(--transition-normal), box-shadow var(--transition-normal);
   animation: slideUp 0.5s ease-out backwards;
@@ -17,7 +18,7 @@
 /* Hover effect */
 .post-card:hover {
   border-color: color-mix(in srgb, var(--cat) 60%, #252535);
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
 }
 
@@ -25,6 +26,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 1.375rem 1.5rem;
   color: inherit;
   text-decoration: none;
 }
@@ -39,44 +41,6 @@
   border-radius: inherit;
 }
 
-.post-card-cover {
-  position: relative;
-  height: 10rem;
-  flex-shrink: 0;
-  overflow: hidden;
-  background: linear-gradient(135deg, #171b30, #25203b);
-  border-bottom: 1px solid #252535;
-  display: grid;
-  place-items: center;
-}
-
-.post-card-cover img {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.post-card:hover .post-card-cover img {
-  transform: scale(1.035);
-}
-
-.post-card-cover-label {
-  color: var(--cat);
-  font-size: 2rem;
-  font-weight: 600;
-}
-
-.post-card-body {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding: 1.125rem;
-}
-
 /* Post Header */
 .post-card-header {
   display: flex;
@@ -84,7 +48,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 0.625rem;
+  margin-bottom: 1rem;
 }
 
 .post-card-meta {
@@ -116,11 +80,11 @@
 
 /* Post Title */
 .post-card .post-title {
-  font-size: 1.25rem;
-  font-weight: 650;
-  color: var(--text-primary);
-  margin: 0 0 0.625rem;
-  line-height: 1.45;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f3f0fa;
+  margin: 0 0 0.875rem;
+  line-height: 1.4;
   letter-spacing: -0.025em;
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -134,12 +98,12 @@
 
 /* Post Description */
 .post-card .post-description {
-  font-size: 0.875rem;
-  color: #b1b1c1;
-  line-height: 1.6;
-  margin: 0 0 0.875rem;
+  font-size: 1rem;
+  color: #c5c2d1;
+  line-height: 1.7;
+  margin: 0 0 1.25rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -159,20 +123,22 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .post-card-cover {
-    height: 8.5rem;
+  .post-card-link {
+    padding: 1.25rem;
+  }
+
+  .post-card .post-title {
+    font-size: 1.375rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .post-card,
-  .post-card-cover img {
+  .post-card {
     animation: none;
     transition: none;
   }
 
-  .post-card:hover,
-  .post-card:hover .post-card-cover img {
+  .post-card:hover {
     transform: none;
   }
 }

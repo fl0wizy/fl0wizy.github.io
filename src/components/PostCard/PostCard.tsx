@@ -18,34 +18,25 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <article className="post-card" style={{ '--cat': categoryColor } as CSSProperties}>
       <Link to={`/post/${post.id}`} className="post-card-link">
-        <div className="post-card-cover" aria-hidden="true">
-          {post.cover ? (
-            <img src={post.cover} alt="" width="800" height="320" loading="lazy" decoding="async" />
-          ) : (
-            <span className="post-card-cover-label" aria-hidden="true">{L(categoryLabel)}</span>
-          )}
-        </div>
-        <div className="post-card-body">
-          <div className="post-card-header">
-            <span className="post-category-badge">{L(categoryLabel)}</span>
-            <div className="post-card-meta">
-              <time dateTime={post.date.replace(' ', 'T')}>
-                {post.date.slice(0, 10).replaceAll('-', '.')}
-              </time>
-              <span aria-hidden="true">·</span>
-              <span>{L({ ko: `약 ${readingTime}분`, en: `~${readingTime} min read` })}</span>
-            </div>
+        <div className="post-card-header">
+          <span className="post-category-badge">{L(categoryLabel)}</span>
+          <div className="post-card-meta">
+            <time dateTime={post.date.replace(' ', 'T')}>
+              {post.date.slice(0, 10).replaceAll('-', '.')}
+            </time>
+            <span aria-hidden="true">·</span>
+            <span>{L({ ko: `약 ${readingTime}분`, en: `~${readingTime} min read` })}</span>
           </div>
-          <h2 className="post-title">{L(post.title)}</h2>
-          <p className="post-description">{L(post.description)}</p>
-          {post.tags && post.tags.length > 0 && (
-            <div className="post-tags">
-              {post.tags.slice(0, 3).map((tag) => (
-                <span key={tag} className="post-tag">#{tag}</span>
-              ))}
-            </div>
-          )}
         </div>
+        <h2 className="post-title">{L(post.title)}</h2>
+        <p className="post-description">{L(post.description)}</p>
+        {post.tags && post.tags.length > 0 && (
+          <div className="post-tags">
+            {post.tags.slice(0, 3).map((tag) => (
+              <span key={tag} className="post-tag">#{tag}</span>
+            ))}
+          </div>
+        )}
       </Link>
     </article>
   );

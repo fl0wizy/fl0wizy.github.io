@@ -2,13 +2,12 @@
 id: "can-ai-save-web3"
 title: "AI는 Web3를 구할 수 있는가?"
 titleEn: "Can AI Save Web3?"
-description: "AI가 web3에 미치는 영향에 대한 폭넓은 분석과 개인적 관점."
-descriptionEn: "A broad analysis of AI's impact on web3, with my own take on it."
+description: "개발과 보안에 미치는 AI의 영향을 바탕으로 Web3의 취약점과 활용 가능성을 살펴본다."
+descriptionEn: "A personal view of AI in development and security, and what those changes could mean for Web3."
 date: "2026-08-02 00:00"
 category: "research-article"
 tags: ["web3", "AI", "Finance"]
 published: true
-cover: "/images/covers/ai-web3-wide.svg"
 ---
 
 ## 아무도 예상 못 한 병목

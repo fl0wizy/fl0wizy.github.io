@@ -1,14 +1,13 @@
 ---
 id: "future-of-web3-audit"
-title: "Web3 감사의 미래: 코드에서 금융 시스템으로, 다시 신뢰로"
-titleEn: "The Future of Web3 Audit: From Code to Financial Systems, and Back to Trust"
-description: "Web3 보안은 더 이상 코드만의 문제가 아니다. FTX·Drift·Resolv·Aave-CoW로 보는 시스템 수준 보안과 컴포저빌리티 리스크."
-descriptionEn: "Web3 security is no longer a problem of code alone. Through FTX, Drift, Resolv and Aave-CoW, this piece lays out why system-level security and composability risk matter."
+title: "Web3 보안 감사: 코드와 금융 시스템의 위험"
+titleEn: "Web3 Audits: Code and Financial System Risks"
+description: "FTX, Drift, Resolv, Aave-CoW 사례로 코드 감사가 놓치는 시스템 의존성과 컴포저빌리티 위험을 살펴본다."
+descriptionEn: "Examining system dependencies and composability risks through FTX, Drift, Resolv, and Aave-CoW."
 date: "2026-04-04 19:50"
 category: "research-article"
 tags: ["Web3", "Audit", "DeFi", "Security", "Research"]
 published: true
-cover: "/images/covers/web3-audit-wide.svg"
 ---
 
 # Web3 Audit의 미래: 코드에서 금융 시스템으로, 그리고 다시 “신뢰”로

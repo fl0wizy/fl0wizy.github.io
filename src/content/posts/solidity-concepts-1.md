@@ -1,14 +1,13 @@
 ---
 id: "solidity-concepts-1"
-title: "Solidity 개념 1: EVM, 파일 구조, ABI"
-titleEn: "Solidity Concepts 1: EVM, File Structure, ABI"
-description: "Solidity와 EVM의 관계, 소스 파일 구성, pragma, ABI, NatSpec, SMTChecker – 기초 한 번에 훑기."
-descriptionEn: "The relationship between Solidity and the EVM, source file layout, pragma, ABI, NatSpec and SMTChecker - the fundamentals in one pass."
+title: "Solidity 1: EVM과 ABI의 기본 구조"
+titleEn: "Solidity 1: EVM and ABI Basics"
+description: "소스 파일 구조와 pragma, EVM 실행 환경, ABI 인코딩을 연결해 Solidity의 기본 구조를 정리한다."
+descriptionEn: "Connecting source files and pragma declarations to EVM execution and ABI encoding."
 date: "2026-04-04 19:10"
 category: "study-dev-security"
 tags: ["Solidity", "EVM", "ABI", "Pragma", "NatSpec"]
 published: true
-cover: "/images/covers/solidity-01-wide.svg"
 ---
 
 # Solidity 개념 정리 1: EVM, 파일 구조, ABI

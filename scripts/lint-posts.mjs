@@ -172,14 +172,6 @@ for (const { file, dir, label, isEn } of targets) {
       hint: `src/lib/data.ts 의 categories / categoryColors / categoryLabels 세 곳에 추가하세요.`,
     });
   }
-  if (fm.cover?.startsWith('/') && !fs.existsSync(path.join(PUBLIC_DIR, decodeURIComponent(fm.cover)))) {
-    problems.push({
-      level: 'error',
-      line: 1,
-      msg: `썸네일 파일 없음: ${fm.cover}`,
-      hint: `public${fm.cover} 위치에 파일을 두세요.`,
-    });
-  }
   if (fm.published === 'false') {
     problems.push({ level: 'warn', line: 1, msg: 'published: false — 배포되지 않습니다' });
   }

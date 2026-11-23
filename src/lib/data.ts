@@ -8,7 +8,6 @@ export interface BlogPost {
   id: string;
   title: LocalizedText;
   description: LocalizedText;
-  cover?: string;
   content: string;
   // English body, present when src/content/posts/en/<slug>.md exists.
   // Absent means the post is untranslated and the Korean body is shown instead.
