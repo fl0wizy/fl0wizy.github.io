@@ -9,6 +9,8 @@ category: "research-article"
 tags: ["Web3", "Audit", "DeFi", "Security", "Research"]
 published: true
 cover: "/images/covers/web3-audit.svg"
+topic: "Web3 보안"
+topicEn: "Web3 security"
 ---
 
 # Web3 Audit의 미래: 코드에서 금융 시스템으로, 그리고 다시 “신뢰”로

@@ -9,6 +9,8 @@ category: "research-article"
 tags: ["web3", "AI", "Finance"]
 published: true
 cover: "/images/covers/ai-web3.svg"
+topic: "AI·Web3 리서치"
+topicEn: "AI & Web3 research"
 ---
 
 ## 아무도 예상 못 한 병목

@@ -9,6 +9,8 @@ category: "study-dev-security"
 tags: ["Solidity", "Storage", "Struct", "Mapping", "Type System"]
 published: true
 cover: "/images/covers/solidity-02.svg"
+topic: "Solidity·상태와 타입"
+topicEn: "State & types"
 ---
 
 # Solidity 개념 정리 2: 상태 변수, 타입 시스템, 매핑과 배열

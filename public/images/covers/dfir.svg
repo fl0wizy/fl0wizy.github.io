@@ -1,10 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
-<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101827"/><stop offset="1" stop-color="#17152b"/></linearGradient><radialGradient id="glow"><stop stop-color="#7eafe5" stop-opacity=".16"/><stop offset="1" stop-color="#7eafe5" stop-opacity="0"/></radialGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#cad4ef" stroke-opacity=".045"/></pattern></defs>
-<rect width="800" height="450" fill="url(#bg)"/><rect width="800" height="450" fill="url(#grid)"/><ellipse cx="590" cy="210" rx="320" ry="290" fill="url(#glow)"/>
-<rect x="48" y="48" width="28" height="3" rx="1.5" fill="#7eafe5"/>
-<g font-family="Arial, Helvetica, sans-serif"><text x="90" y="55" fill="#aebbd1" font-size="15" letter-spacing="3">HACKSIUM 2026</text>
-<text x="48" y="228" fill="#eef2ff" font-size="68" font-weight="700" letter-spacing="-2">DFIR</text>
-<text x="50" y="268" fill="#7eafe5" font-size="21">Tracing initial access</text></g>
-<g fill="#16243a" stroke="#7eafe5" stroke-width="2"><rect x="484" y="106" width="224" height="62" rx="10"/><rect x="504" y="184" width="224" height="62" rx="10"/><rect x="484" y="262" width="224" height="62" rx="10"/></g><g fill="#c6dcf6" font-family="monospace" font-size="20"><text x="514" y="145">Prefetch</text><text x="534" y="223">Amcache</text><text x="514" y="301">$MFT</text></g><g stroke="#7eafe5" stroke-width="2" fill="none"><path d="M466 137H444V293H466"/><circle cx="444" cy="215" r="7" fill="#7eafe5"/></g>
-<path d="M48 366H752" stroke="#cad4ef" stroke-opacity=".12"/><text x="48" y="402" fill="#97a6bd" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="2">FLOWIZY / RESEARCH NOTES</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="800" height="320">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#101827" />
+      <stop offset="1" stop-color="#17152b" />
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop stop-color="#7eafe5" stop-opacity=".16" />
+      <stop offset="1" stop-color="#7eafe5" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cad4ef" stroke-opacity=".045" />
+    </pattern>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)" />
+  <rect width="800" height="450" fill="url(#grid)" />
+  <ellipse cx="590" cy="210" rx="320" ry="290" fill="url(#glow)" />
+  <rect x="48" y="48" width="28" height="3" rx="1.5" fill="#7eafe5" />
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="90" y="55" fill="#aebbd1" font-size="15" letter-spacing="3">HACKSIUM 2026</text>
+    <text x="48" y="184" fill="#eef2ff" font-size="68" font-weight="700" letter-spacing="-2">DFIR</text>
+    <text x="50" y="224" fill="#7eafe5" font-size="21">Tracing initial access</text>
+  </g>
+  <g transform="translate(90 -2) scale(.85)">
+    <g fill="#16243a" stroke="#7eafe5" stroke-width="2">
+      <rect x="484" y="106" width="224" height="62" rx="10" />
+      <rect x="504" y="184" width="224" height="62" rx="10" />
+      <rect x="484" y="262" width="224" height="62" rx="10" />
+    </g>
+    <g fill="#c6dcf6" font-family="monospace" font-size="20">
+      <text x="514" y="145">Prefetch</text>
+      <text x="534" y="223">Amcache</text>
+      <text x="514" y="301">$MFT</text>
+    </g>
+    <g stroke="#7eafe5" stroke-width="2" fill="none">
+      <path d="M466 137H444V293H466" />
+      <circle cx="444" cy="215" r="7" fill="#7eafe5" />
+    </g>
+  </g>
 </svg>

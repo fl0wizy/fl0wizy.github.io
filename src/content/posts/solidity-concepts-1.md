@@ -9,6 +9,8 @@ category: "study-dev-security"
 tags: ["Solidity", "EVM", "ABI", "Pragma", "NatSpec"]
 published: true
 cover: "/images/covers/solidity-01.svg"
+topic: "Solidity·EVM 기초"
+topicEn: "Solidity & EVM basics"
 ---
 
 # Solidity 개념 정리 1: EVM, 파일 구조, ABI

@@ -1,4 +1,6 @@
 .blog-page {
+  max-width: 1104px;
+  margin-inline: auto;
   padding-bottom: 4rem;
   animation: fadeIn 0.4s ease-out;
 }
@@ -14,7 +16,7 @@
 .posts-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .no-posts {

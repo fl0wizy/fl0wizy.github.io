@@ -9,6 +9,8 @@ category: "web-security"
 tags: ["KISIA CTF", "CAPTCHA", "CWE-209", "CRNN", "CTC", "Machine Learning", "Writeup"]
 published: true
 cover: "/images/kisia-captcha-v2/v2_mosaic.png"
+topic: "웹 취약점 분석"
+topicEn: "Web vulnerability analysis"
 ---
 
 # [KISIA-CTF final] captcha-v2: CAPTCHA를 자기 자신의 라벨 오라클로 만들기

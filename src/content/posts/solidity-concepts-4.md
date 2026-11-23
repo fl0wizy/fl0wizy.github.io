@@ -9,6 +9,8 @@ category: "study-dev-security"
 tags: ["Solidity", "Event", "LOG", "ECDSA", "selfdestruct"]
 published: true
 cover: "/images/covers/solidity-04.svg"
+topic: "Solidity·이벤트와 해싱"
+topicEn: "Events & hashing"
 ---
 
 # Solidity 개념 정리 4: 이벤트, 해시, selfdestruct, 스타일 가이드

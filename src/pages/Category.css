@@ -1,4 +1,6 @@
 .category-page {
+  max-width: 1104px;
+  margin-inline: auto;
   padding-bottom: 4rem;
   animation: fadeIn 0.4s ease-out;
 }
