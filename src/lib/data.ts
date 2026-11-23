@@ -9,6 +9,8 @@ export interface BlogPost {
   title: LocalizedText;
   description: LocalizedText;
   cover?: string;
+  series?: string;
+  seriesOrder?: number;
   content: string;
   // English body, present when src/content/posts/en/<slug>.md exists.
   // Absent means the post is untranslated and the Korean body is shown instead.
@@ -185,6 +187,16 @@ export function getCategoryColor(id: string): string {
 
 export function getCategoryLabel(id: string): LocalizedText {
   return categoryLabels[id] ?? id;
+}
+
+export const seriesLabels: Record<string, LocalizedText> = {
+  'ai-foundations': { ko: 'AI 학습 노트', en: 'AI Study Notes' },
+};
+
+export function getSeriesPosts(series: string): BlogPost[] {
+  return blogPosts
+    .filter(post => post.published && post.series === series)
+    .sort((a, b) => (a.seriesOrder ?? 0) - (b.seriesOrder ?? 0));
 }
 
 // ===== Profile data =====
@@ -672,8 +684,15 @@ export function getAdjacentPosts(id: string): {
   const current = getPostById(id);
   if (!current || !current.published) return { prev: undefined, next: undefined };
 
+  if (current.series) {
+    const series = getSeriesPosts(current.series);
+    const index = series.findIndex(post => post.id === id);
+    return { prev: series[index - 1], next: series[index + 1] };
+  }
+
+  // Standalone concept notes stay outside a numbered reading sequence.
   const ordered = blogPosts
-    .filter(post => post.published && post.category === current.category)
+    .filter(post => post.published && !post.series && post.category === current.category)
     .slice()
     .reverse();
 

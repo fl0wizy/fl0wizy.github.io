@@ -7,6 +7,8 @@ interface PostFrontmatter {
   description?: string;
   descriptionEn?: string;
   cover?: string;
+  series?: string;
+  seriesOrder?: number;
   date?: string;
   category?: string;
   tags?: string[];
@@ -78,6 +80,12 @@ function parseFrontmatter(markdown: string): { frontmatter: PostFrontmatter; con
       continue;
     }
 
+    if (key === 'seriesOrder') {
+      const order = Number(value);
+      if (Number.isInteger(order) && order > 0) frontmatter.seriesOrder = order;
+      continue;
+    }
+
     const parsed = unquote(value);
 
     if (key === 'id') frontmatter.id = parsed;
@@ -86,6 +94,7 @@ function parseFrontmatter(markdown: string): { frontmatter: PostFrontmatter; con
     else if (key === 'description') frontmatter.description = parsed;
     else if (key === 'descriptionEn') frontmatter.descriptionEn = parsed;
     else if (key === 'cover') frontmatter.cover = parsed;
+    else if (key === 'series') frontmatter.series = parsed;
     else if (key === 'date') frontmatter.date = parsed;
     else if (key === 'category') frontmatter.category = parsed;
   }
@@ -151,6 +160,8 @@ export const blogPosts: BlogPost[] = Object.entries(markdownModules)
         : frontmatter.description || '',
       date: frontmatter.date || '1970-01-01 00:00',
       cover: frontmatter.cover,
+      series: frontmatter.series,
+      seriesOrder: frontmatter.seriesOrder,
       category: frontmatter.category || 'daily',
       tags,
       published: frontmatter.published ?? true,
@@ -158,4 +169,5 @@ export const blogPosts: BlogPost[] = Object.entries(markdownModules)
       contentEn: englishBodies.get(slug),
     };
   })
-  .sort((a, b) => parsePostDate(b.date) - parsePostDate(a.date));
+  .sort((a, b) => parsePostDate(b.date) - parsePostDate(a.date)
+    || (a.seriesOrder ?? Number.MAX_SAFE_INTEGER) - (b.seriesOrder ?? Number.MAX_SAFE_INTEGER));

@@ -96,6 +96,7 @@ const targets = [
 
 let errors = 0;
 let warns = 0;
+const seriesOrders = new Map();
 
 function report(label, problems) {
   if (!problems.length) return;
@@ -180,7 +181,25 @@ for (const { file, dir, label, isEn } of targets) {
     problems.push({ level: 'error', line: 1, msg: `썸네일 파일 없음: ${fm.cover}` });
   }
 
+  if (fm.series || fm.seriesOrder) {
+    const order = Number(fm.seriesOrder);
+    if (!fm.series || !Number.isInteger(order) || order < 1) {
+      problems.push({ level: 'error', line: 1, msg: '시리즈에는 series와 1 이상의 정수 seriesOrder가 필요합니다' });
+    } else if (fm.published !== 'false') {
+      const entries = seriesOrders.get(fm.series) ?? [];
+      entries.push(order);
+      seriesOrders.set(fm.series, entries);
+    }
+  }
+
   report(label, problems);
+}
+
+for (const [series, entries] of seriesOrders) {
+  entries.sort((a, b) => a - b);
+  if (entries.some((order, index) => order !== index + 1)) {
+    report(`series: ${series}`, [{ level: 'error', line: 1, msg: '공개 시리즈 순번은 중복이나 누락 없이 1부터 이어져야 합니다' }]);
+  }
 }
 
 console.log(

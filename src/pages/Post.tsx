@@ -15,6 +15,8 @@ import {
   getReadingTime,
   extractHeadings,
   getAdjacentPosts,
+  getSeriesPosts,
+  seriesLabels,
 } from '../lib/data';
 import type { BlogPost } from '../lib/data';
 import './Post.css';
@@ -189,13 +191,16 @@ export default function Post() {
   const categoryLabel = getCategoryLabel(categoryId);
   const categoryColor = getCategoryColor(post.category);
   const readingTime = getReadingTime(visibleBody(post, lang));
+  const seriesPosts = post.series ? getSeriesPosts(post.series) : [];
 
   // Heading ids are assigned after render in useEffect, in document order (safe under StrictMode double render).
   const components: Components = {
     table: ({ children }) => (
       <div className="post-table-scroll"><table>{children}</table></div>
     ),
-    a: ({ ...props }) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+    a: ({ href, children, title }) => href?.startsWith('/')
+      ? <Link to={href} title={title}>{children}</Link>
+      : <a href={href} title={title} target="_blank" rel="noopener noreferrer">{children}</a>,
     pre: ({ children }) => <CodeBlock lang={extractLang(children)}>{children}</CodeBlock>,
   };
 
@@ -251,6 +256,25 @@ export default function Post() {
         </header>
 
         <div className="post-container">
+          {post.series && (
+            <details className="post-series" key={post.id}>
+              <summary>
+                {L(seriesLabels[post.series] ?? post.series)}
+                <span>{post.seriesOrder} / {seriesPosts.length}</span>
+              </summary>
+              <nav aria-label={L({ ko: '시리즈 목차', en: 'Series contents' })}>
+                <ol>
+                  {seriesPosts.map(entry => (
+                    <li key={entry.id}>
+                      <Link to={`/post/${entry.id}`} aria-current={entry.id === post.id ? 'page' : undefined}>
+                        {L(entry.title)}
+                      </Link>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            </details>
+          )}
           {untranslated && (
             <p className="post-untranslated-notice">{t('untranslatedBody')}</p>
           )}

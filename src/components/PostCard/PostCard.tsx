@@ -31,6 +31,14 @@ export default function PostCard({ post }: PostCardProps) {
               {categoryId !== post.category && (
                 <span className="post-format-label">{L(getCategoryLabel(post.category))}</span>
               )}
+              {post.seriesOrder && (
+                <span className="post-format-label">
+                  {L({ ko: '학습', en: 'Study' })} {String(post.seriesOrder).padStart(2, '0')}
+                </span>
+              )}
+              {post.category === 'ai' && !post.series && (
+                <span className="post-format-label">{L({ ko: '개념 정리', en: 'Concepts' })}</span>
+              )}
             </div>
             <div className="post-card-meta">
               <time dateTime={post.date.replace(' ', 'T')}>

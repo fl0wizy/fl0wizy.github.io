@@ -109,6 +109,46 @@
   line-height: 1.5;
 }
 
+.post-series {
+  margin-bottom: 1.75rem;
+  border: 1px solid #302c40;
+  border-radius: 10px;
+  background: #12111d;
+  font-size: 0.875rem;
+}
+
+.post-series summary {
+  padding: 0.875rem 1rem;
+  cursor: pointer;
+  color: #d6c9fb;
+}
+
+.post-series summary span {
+  margin-left: 0.75rem;
+  color: #aaa4bc;
+}
+
+.post-series ol {
+  margin: 0;
+  padding: 0 1.25rem 1rem 2.75rem;
+}
+
+.post-series li {
+  padding: 0.25rem 0;
+  color: #a49bb8;
+}
+
+.post-series a {
+  color: #bcb6cd;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.post-series a[aria-current="page"] {
+  color: #d6c9fb;
+  font-weight: 650;
+}
+
 /* Category Badge - solid-outline variant (category signature color) */
 .post-category-badge {
   display: inline-flex;
