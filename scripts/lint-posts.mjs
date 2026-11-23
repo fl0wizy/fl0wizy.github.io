@@ -176,6 +176,10 @@ for (const { file, dir, label, isEn } of targets) {
     problems.push({ level: 'warn', line: 1, msg: 'published: false — 배포되지 않습니다' });
   }
 
+  if (fm.cover?.startsWith('/') && !fs.existsSync(path.join(PUBLIC_DIR, decodeURIComponent(fm.cover)))) {
+    problems.push({ level: 'error', line: 1, msg: `썸네일 파일 없음: ${fm.cover}` });
+  }
+
   report(label, problems);
 }
 

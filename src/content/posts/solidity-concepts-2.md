@@ -8,6 +8,7 @@ date: "2026-04-04 19:20"
 category: "study-dev-security"
 tags: ["Solidity", "Storage", "Struct", "Mapping", "Type System"]
 published: true
+cover: "/images/covers/solidity-02-wide.svg"
 ---
 
 # Solidity 개념 정리 2: 상태 변수, 타입 시스템, 매핑과 배열

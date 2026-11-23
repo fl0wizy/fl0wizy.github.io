@@ -8,6 +8,7 @@ date: "2026-08-02 00:00"
 category: "research-article"
 tags: ["web3", "AI", "Finance"]
 published: true
+cover: "/images/covers/ai-web3-wide.svg"
 ---
 
 ## 아무도 예상 못 한 병목
