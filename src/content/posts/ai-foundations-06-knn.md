@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-06-knn"
 title: "4장. KNN: 가까운 사례로 예측하기"
+titleEn: "Chapter 4. KNN: Predicting from Nearby Examples"
 description: "거리와 이웃 수, 특성 스케일링과 차원의 저주를 통해 KNN의 예측과 한계를 살펴본다."
+descriptionEn: "Explore KNN through distance, the number of neighbors, feature scaling, and the curse of dimensionality."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "KNN", "Machine Learning"]

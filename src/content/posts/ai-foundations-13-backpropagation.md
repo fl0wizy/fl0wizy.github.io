@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-13-backpropagation"
 title: "11장. 오차 역전파: 손실에서 가중치까지"
+titleEn: "Chapter 11. Backpropagation: From Loss to Weights"
 description: "신경망의 순전파와 손실 계산을 따라간 뒤, 미분을 거꾸로 전달해 매개변수를 갱신한다."
+descriptionEn: "Compute a neural network’s forward pass and loss, then propagate derivatives backward to update its parameters."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "Backpropagation", "Deep Learning"]

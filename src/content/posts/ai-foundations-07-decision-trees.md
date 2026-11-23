@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-07-decision-trees"
 title: "5장. 결정 트리: 질문으로 공간 나누기"
+titleEn: "Chapter 5. Decision Trees: Splitting the Feature Space"
 description: "불순도와 정보 이득으로 분기를 고르고, 트리의 깊이와 가지치기로 과적합을 제어한다."
+descriptionEn: "Choose splits using impurity and information gain, and control overfitting through depth limits and pruning."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "Decision Tree", "Machine Learning"]

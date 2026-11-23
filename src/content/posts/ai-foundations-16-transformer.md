@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-16-transformer"
 title: "14장. 어텐션과 Transformer 구조"
+titleEn: "Chapter 14. Attention and the Transformer"
 description: "어텐션과 위치 인코딩, 인코더와 디코더를 연결해 Transformer의 학습과 생성을 살펴본다."
+descriptionEn: "Connect attention, positional encoding, encoders, and decoders to Transformer training and generation."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "Attention", "Transformer"]

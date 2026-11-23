@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-12-computational-graphs"
 title: "10장. 계산 그래프: 연산과 미분 연결하기"
+titleEn: "Chapter 10. Computational Graphs: Operations and Derivatives"
 description: "작은 연산 노드의 순전파와 역전파를 따라가며 연쇄 법칙과 기울기의 흐름을 이해한다."
+descriptionEn: "Follow forward and backward passes through small operations to understand the chain rule and gradient flow."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "Computational Graph", "Deep Learning"]

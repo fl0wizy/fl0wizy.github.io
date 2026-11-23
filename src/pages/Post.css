@@ -209,17 +209,6 @@
   white-space: nowrap;
 }
 
-.post-reading-time {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--cat, var(--accent-purple));
-  font-size: 0.8125rem;
-  font-family: var(--font-mono);
-  margin-left: auto;
-  white-space: nowrap;
-}
-
 /* Post Content Styles - high contrast, large body text (optimized for reading) */
 .post-untranslated-notice {
   margin: 0 0 1.5rem;

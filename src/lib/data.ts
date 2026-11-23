@@ -734,21 +734,6 @@ export function formatDate(dateString: string): string {
   return `${datePart} / ${timePart}`;
 }
 
-/**
- * Estimates reading time in minutes from the body length.
- * Approximated at ~500 Korean characters/min and ~200 English words/min.
- */
-export function getReadingTime(content: string): number {
-  const text = content
-    .replace(/```[\s\S]*?```/g, ' ') // skip code blocks
-    .replace(/`[^`]*`/g, ' ')
-    .replace(/[#>*_~\-|]/g, ' ');
-  const korean = (text.match(/[가-힣]/g) || []).length;
-  const words = (text.match(/[A-Za-z0-9]+/g) || []).length;
-  const minutes = Math.ceil(korean / 500 + words / 200);
-  return Math.max(1, minutes);
-}
-
 export interface TocHeading {
   id: string;
   text: string;

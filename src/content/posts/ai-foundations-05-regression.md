@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-05-regression"
 title: "3장. 회귀: 예측값과 확률 만들기"
+titleEn: "Chapter 3. Regression: Predictions and Probabilities"
 description: "선형 회귀와 로지스틱 회귀의 예측, 비용 함수, 경사 하강법과 규제를 정리한다."
+descriptionEn: "Study prediction, cost functions, gradient descent, and regularization in linear and logistic regression."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "Regression", "Gradient Descent"]

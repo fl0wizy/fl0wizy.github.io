@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategoryColor, getCategoryLabel, getReadingTime, resolveCategoryId } from '../../lib/data';
+import { getCategoryColor, getCategoryLabel, resolveCategoryId } from '../../lib/data';
 import type { BlogPost } from '../../lib/data';
 import { useLang } from '../../lib/i18n';
 import './PostCard.css';
@@ -10,11 +10,10 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
-  const { L, lang } = useLang();
+  const { L } = useLang();
   const categoryId = resolveCategoryId(post.category);
   const categoryLabel = getCategoryLabel(categoryId);
   const categoryColor = getCategoryColor(post.category);
-  const readingTime = getReadingTime(lang === 'en' && post.contentEn ? post.contentEn : post.content);
 
   return (
     <article className="post-card" style={{ '--cat': categoryColor } as CSSProperties}>
@@ -44,8 +43,6 @@ export default function PostCard({ post }: PostCardProps) {
               <time dateTime={post.date.replace(' ', 'T')}>
                 {post.date.slice(0, 10).replaceAll('-', '.')}
               </time>
-              <span aria-hidden="true">·</span>
-              <span>{L({ ko: `약 ${readingTime}분`, en: `~${readingTime} min read` })}</span>
             </div>
           </div>
           <h2 className="post-title">{L(post.title)}</h2>

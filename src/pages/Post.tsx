@@ -12,7 +12,6 @@ import {
   getCategoryColor,
   getCategoryLabel,
   resolveCategoryId,
-  getReadingTime,
   extractHeadings,
   getAdjacentPosts,
   getSeriesPosts,
@@ -20,14 +19,6 @@ import {
 } from '../lib/data';
 import type { BlogPost } from '../lib/data';
 import './Post.css';
-
-// Clock icon (reading time)
-const ClockIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="12" cy="12" r="10" />
-    <polyline points="12 6 12 12 16 14" />
-  </svg>
-);
 
 const CopyIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -134,7 +125,7 @@ export default function Post() {
     if (!window.location.hash) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [id]);
 
-  // Table of contents and reading time follow the visible body, not post.content.
+  // The table of contents follows the visible body, not post.content.
   const untranslated = lang === 'en' && !post?.contentEn;
 
   const headings = useMemo(() => extractHeadings(visibleBody(post, lang), post?.tocDepth ?? 2), [post, lang]);
@@ -193,7 +184,6 @@ export default function Post() {
   const categoryId = resolveCategoryId(post.category);
   const categoryLabel = getCategoryLabel(categoryId);
   const categoryColor = getCategoryColor(post.category);
-  const readingTime = getReadingTime(visibleBody(post, lang));
   const seriesPosts = post.series ? getSeriesPosts(post.series) : [];
 
   // Heading ids are assigned after render in useEffect, in document order (safe under StrictMode double render).
@@ -240,7 +230,7 @@ export default function Post() {
           {/* title */}
           <h1 className="post-title">{L(post.title)}</h1>
 
-          {/* date + reading time */}
+          {/* publication date */}
           <div className="post-meta">
             <span className="post-date">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -250,10 +240,6 @@ export default function Post() {
                 <line x1="3" y1="10" x2="21" y2="10" />
               </svg>
               {formatDate(post.date)}
-            </span>
-            <span className="post-reading-time">
-              <ClockIcon />
-              {L({ ko: `약 ${readingTime}분`, en: `~${readingTime} min read` })}
             </span>
           </div>
         </header>

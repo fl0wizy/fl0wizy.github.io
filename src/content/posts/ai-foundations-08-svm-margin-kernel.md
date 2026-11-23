@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-08-svm-margin-kernel"
 title: "6장. SVM ①: 마진과 커널"
+titleEn: "Chapter 6. SVM I: Margins and Kernels"
 description: "최대 마진과 소프트 마진에서 출발해 커널 트릭, RBF와 하이퍼파라미터로 이어진다."
+descriptionEn: "Start with maximum and soft margins, then connect the kernel trick, RBF kernels, and hyperparameters."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "SVM", "Kernel"]

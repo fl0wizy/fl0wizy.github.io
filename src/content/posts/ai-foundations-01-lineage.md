@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-01-lineage"
 title: "AI의 계보"
+titleEn: "The Lineage of AI"
 description: "기호주의부터 Transformer와 LLM까지, 앞선 방법의 한계가 다음 방법으로 이어진 과정을 정리한다."
+descriptionEn: "Trace how the limits of earlier approaches led from symbolic AI to Transformer models and LLMs."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "History", "Machine Learning"]

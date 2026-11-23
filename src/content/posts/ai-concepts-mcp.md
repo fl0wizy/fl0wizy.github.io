@@ -1,7 +1,9 @@
 ---
 id: "ai-concepts-mcp"
 title: "MCP: AI와 도구를 연결하는 표준"
+titleEn: "MCP: A Standard for Connecting AI and Tools"
 description: "MCP의 등장 배경과 Host·Client·Server 구조, 도구 호출 흐름과 Skill과의 차이를 정리한다."
+descriptionEn: "Study the motivation for MCP, its host–client–server architecture, tool calls, and how it differs from skills."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "MCP", "Agent"]

@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-09-svm-prediction"
 title: "6장. SVM ②: 학습과 예측, 신경망과의 관계"
+titleEn: "Chapter 6. SVM II: Prediction and Neural Networks"
 description: "서포트 벡터와 유사도로 만드는 예측식을 살펴보고, 커널과 신경망의 차이를 정리한다."
+descriptionEn: "Follow support vectors and similarity into the prediction equation, and compare kernels with neural networks."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "SVM", "Neural Network"]

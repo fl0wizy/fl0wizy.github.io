@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-15-rnn"
 title: "13장. RNN: 순서와 기억을 다루는 신경망"
+titleEn: "Chapter 13. RNNs: Sequence and Memory"
 description: "순환 구조와 시간에 따른 역전파를 살펴보고 LSTM과 GRU가 기억을 유지하는 방식을 정리한다."
+descriptionEn: "Study recurrent connections and backpropagation through time, then examine memory in LSTMs and GRUs."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "RNN", "LSTM"]

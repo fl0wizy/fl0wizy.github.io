@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-03-machine-learning"
 title: "1장. 기계학습이란 무엇인가"
+titleEn: "Chapter 1. What Is Machine Learning?"
 description: "데이터와 특성, 학습과 일반화, 손실과 평가를 연결해 기계학습의 기본 지도를 그린다."
+descriptionEn: "Connect data and features, learning and generalization, loss and evaluation to build a map of machine learning."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "Machine Learning", "Generalization"]

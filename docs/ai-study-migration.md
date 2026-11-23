@@ -1,5 +1,11 @@
 # AI study migration
 
+## English editions
+
+All 17 posts have English titles, summaries, and bodies in `src/content/posts/en/` as of 2026-11-24. They share the original IDs, series order, links, and 256 source figures. Image captions and the surrounding explanations are translated; the original figure labels are retained. Executable code is preserved, with Korean comments translated. Python syntax trees were compared for all 33 executable Python examples. Translated prose was checked for numerical and mathematical notation changes, and corrected where needed.
+
+## Original import
+
 Published on 2026-11-24 from the user-selected AI Notion pages.
 
 - 16 source pages became 17 posts: 16 ordered study entries and one standalone MCP concept note.

@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-10-ensemble"
 title: "7장. 앙상블: 여러 모델의 판단 결합하기"
+titleEn: "Chapter 7. Ensembles: Combining Model Decisions"
 description: "배깅과 랜덤 포레스트, 부스팅과 스태킹이 모델의 편향과 분산을 어떻게 바꾸는지 살펴본다."
+descriptionEn: "Examine how bagging, random forests, boosting, and stacking change the bias and variance of predictions."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "Ensemble", "Random Forest"]

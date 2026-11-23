@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-11-deep-learning"
 title: "8장. 딥러닝의 기본 개념"
+titleEn: "Chapter 8. The Fundamentals of Deep Learning"
 description: "퍼셉트론과 다층 신경망, 활성화 함수, 손실과 옵티마이저를 학습 과정에 연결한다."
+descriptionEn: "Connect perceptrons, multilayer networks, activation functions, losses, and optimizers to the training process."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "Deep Learning", "Neural Network"]

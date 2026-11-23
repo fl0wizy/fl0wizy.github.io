@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-14-cnn"
 title: "12장. CNN: 이미지의 공간 구조 학습하기"
+titleEn: "Chapter 12. CNNs: Learning Spatial Features"
 description: "합성곱과 패딩, 스트라이드와 풀링으로 이미지의 국소적 특징을 학습하는 과정을 정리한다."
+descriptionEn: "Explore how convolution, padding, stride, and pooling extract local features from images."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "CNN", "Deep Learning"]

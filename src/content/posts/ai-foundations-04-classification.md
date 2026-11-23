@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-04-classification"
 title: "2장. 분류와 평가 지표"
+titleEn: "Chapter 2. Classification and Evaluation Metrics"
 description: "이진 분류와 혼동 행렬, 정밀도와 재현율, ROC와 임계값으로 분류기의 판단을 평가한다."
+descriptionEn: "Evaluate classification decisions using confusion matrices, precision and recall, ROC curves, and thresholds."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "Classification", "Evaluation"]

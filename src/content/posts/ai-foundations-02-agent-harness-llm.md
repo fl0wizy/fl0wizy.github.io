@@ -1,7 +1,9 @@
 ---
 id: "ai-foundations-02-agent-harness-llm"
 title: "AI, LLM, 에이전트와 하네스의 차이"
+titleEn: "AI, LLMs, Agents, and Harnesses"
 description: "모델, API, 하네스, 도구와 에이전트가 각각 무엇을 맡는지 실행 구조로 구분한다."
+descriptionEn: "Distinguish the roles of models, APIs, harnesses, tools, and agents through their execution architecture."
 date: "2026-11-24 00:00"
 category: "ai"
 tags: ["AI", "LLM", "Agent", "Harness"]
