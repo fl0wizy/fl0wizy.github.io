@@ -1,7 +1,7 @@
 ---
 id: "hacksium-2026-dfir-initial-access"
-title: "Windows 침해 분석: 초기 침투 흔적 추적"
-titleEn: "Windows Incident Analysis: Tracing Initial Access"
+title: "[HACKSIUM 2026] Windows 침해 분석: 초기 침투 흔적 추적"
+titleEn: "[HACKSIUM 2026] Windows Incident Analysis: Tracing Initial Access"
 description: "Prefetch, Amcache, LNK로 실행 흔적을 교차 확인하고 DLL 사이드로딩과 지속성을 추적한다."
 descriptionEn: "Cross-checking Prefetch, Amcache, and LNK evidence to trace DLL sideloading and persistence."
 date: "2026-09-13 12:00"

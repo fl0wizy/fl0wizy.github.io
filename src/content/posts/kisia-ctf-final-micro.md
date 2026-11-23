@@ -1,7 +1,7 @@
 ---
 id: "kisia-ctf-final-micro"
-title: "ESP32-C3 메모리 읽기: ADC 인증과 RTC 우회"
-titleEn: "ESP32-C3 Memory Reads: ADC and RTC Checks"
+title: "[KISIA CTF 2026] ESP32-C3 메모리 읽기: ADC 인증과 RTC 우회"
+titleEn: "[KISIA CTF 2026] ESP32-C3 Memory Reads: ADC and RTC Checks"
 description: "WiFi 쓰기와 USB 읽기를 RTC 메모리로 연결하고, ADC 지문과 리셋 조건을 분석한다."
 descriptionEn: "Connecting WiFi writes and USB reads through RTC memory, then examining ADC fingerprints and reset conditions."
 date: "2026-08-20 18:00"

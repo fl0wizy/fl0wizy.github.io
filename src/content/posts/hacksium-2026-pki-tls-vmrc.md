@@ -1,7 +1,7 @@
 ---
 id: "hacksium-2026-pki-tls-vmrc"
-title: "VMRC 연결 오류: 인증서와 TLS 진단"
-titleEn: "VMRC Connection Failures: Certificates and TLS"
+title: "[HACKSIUM 2026] VMRC 연결 오류: 인증서와 TLS 진단"
+titleEn: "[HACKSIUM 2026] VMRC Connection Failures: Certificates and TLS"
 description: "인증서 신뢰 사슬과 TLS 핸드셰이크를 바탕으로 VMRC 연결 실패를 계층별로 진단한다."
 descriptionEn: "Diagnosing VMRC connection failures through certificate trust, the TLS handshake, and ESXi connection paths."
 date: "2026-09-12 20:00"

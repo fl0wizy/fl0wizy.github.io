@@ -1,7 +1,7 @@
 ---
 id: "kisia-ctf-final-captcha-v2"
-title: "CAPTCHA 우회: 정답 노출을 이용한 자동 풀이"
-titleEn: "CAPTCHA Bypass Through Leaked Answers"
+title: "[KISIA CTF 2026] CAPTCHA 우회: 정답 노출을 이용한 자동 풀이"
+titleEn: "[KISIA CTF 2026] CAPTCHA Bypass Through Leaked Answers"
 description: "expected_answer 노출로 학습 데이터를 모으고 CRNN+CTC 모델로 captcha-v2를 자동 풀이한다."
 descriptionEn: "Collecting training labels from leaked expected_answer values and building a CRNN+CTC solver for captcha-v2."
 date: "2026-08-19 10:00"
