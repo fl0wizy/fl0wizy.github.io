@@ -8,9 +8,7 @@ date: "2026-04-05 01:00"
 category: "research-article"
 tags: ["Ethereum", "UX", "Web3", "EIP", "Account Abstraction", "Research"]
 published: true
-cover: "/images/covers/ethereum-ux.svg"
-topic: "이더리움 UX"
-topicEn: "Ethereum UX"
+cover: "/images/covers/ethereum-ux-wide.svg"
 ---
 
 # 이더리움 UX 로드맵 완전 분석: 32,000건의 사용자 리포트가 말하는 것

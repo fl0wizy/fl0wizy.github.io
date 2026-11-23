@@ -1,16 +1,14 @@
 .blog-page {
-  max-width: 1104px;
+  max-width: 1360px;
   margin-inline: auto;
   padding-bottom: 4rem;
   animation: fadeIn 0.4s ease-out;
 }
 
-.archive-section {
-  padding: 0 4.5rem;
-}
-
-.archive-section .section-header {
-  animation: slideInLeft 0.5s ease-out 0.3s backwards;
+.blog-page .hero-header,
+.category-page .hero-header {
+  height: 200px;
+  margin-inline: 3rem;
 }
 
 .posts-list {
@@ -42,7 +40,9 @@
 }
 
 @media (max-width: 768px) {
-  .archive-section {
-    padding: 0 1.5rem;
+  .blog-page .hero-header,
+  .category-page .hero-header {
+    height: 180px;
+    margin-inline: 1.5rem;
   }
 }

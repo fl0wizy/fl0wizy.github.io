@@ -18,13 +18,12 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <article className="post-card" style={{ '--cat': categoryColor } as CSSProperties}>
       <Link to={`/post/${post.id}`} className="post-card-link">
-        <div className="post-card-cover">
+        <div className="post-card-cover" aria-hidden="true">
           {post.cover ? (
             <img src={post.cover} alt="" width="800" height="320" loading="lazy" decoding="async" />
           ) : (
             <span className="post-card-cover-label" aria-hidden="true">{L(categoryLabel)}</span>
           )}
-          {post.topic && <span className="post-card-topic">{L(post.topic)}</span>}
         </div>
         <div className="post-card-body">
           <div className="post-card-header">

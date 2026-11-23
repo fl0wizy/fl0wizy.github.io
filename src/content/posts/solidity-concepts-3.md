@@ -8,9 +8,7 @@ date: "2026-04-04 19:30"
 category: "study-dev-security"
 tags: ["Solidity", "Function", "Calldata", "Fallback", "Exception"]
 published: true
-cover: "/images/covers/solidity-03.svg"
-topic: "Solidity·함수와 메모리"
-topicEn: "Functions & memory"
+cover: "/images/covers/solidity-03-wide.svg"
 ---
 
 # Solidity 개념 정리 3: 함수, 가시성, 메모리 모델, 예외 처리

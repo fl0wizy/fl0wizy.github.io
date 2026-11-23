@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
-import PostCard from '../components/PostCard';
+import PostArchive from '../components/PostArchive/PostArchive';
 import { getPostsByCategory, getCategoryLabel } from '../lib/data';
 import { L, useT } from '../lib/i18n';
 import './Category.css';
@@ -22,20 +22,7 @@ export default function Category() {
         highlightWord={categoryLabel}
       />
 
-      <section className="filtered-section">
-        <h2 className="section-header">{t('filteredPosts')}</h2>
-        <div className="posts-list">
-          {posts.length > 0 ? (
-            posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))
-          ) : (
-            <div className="no-posts">
-              <p>{t('noPostsInCategory')}</p>
-            </div>
-          )}
-        </div>
-      </section>
+      <PostArchive posts={posts} title={t('filteredPosts')} />
     </div>
   );
 }

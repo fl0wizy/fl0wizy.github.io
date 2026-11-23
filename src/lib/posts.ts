@@ -7,8 +7,6 @@ interface PostFrontmatter {
   description?: string;
   descriptionEn?: string;
   cover?: string;
-  topic?: string;
-  topicEn?: string;
   date?: string;
   category?: string;
   tags?: string[];
@@ -88,8 +86,6 @@ function parseFrontmatter(markdown: string): { frontmatter: PostFrontmatter; con
     else if (key === 'description') frontmatter.description = parsed;
     else if (key === 'descriptionEn') frontmatter.descriptionEn = parsed;
     else if (key === 'cover') frontmatter.cover = parsed;
-    else if (key === 'topic') frontmatter.topic = parsed;
-    else if (key === 'topicEn') frontmatter.topicEn = parsed;
     else if (key === 'date') frontmatter.date = parsed;
     else if (key === 'category') frontmatter.category = parsed;
   }
@@ -155,9 +151,6 @@ export const blogPosts: BlogPost[] = Object.entries(markdownModules)
         : frontmatter.description || '',
       date: frontmatter.date || '1970-01-01 00:00',
       cover: frontmatter.cover,
-      topic: frontmatter.topicEn
-        ? { ko: frontmatter.topic || '', en: frontmatter.topicEn }
-        : frontmatter.topic,
       category: frontmatter.category || 'daily',
       tags,
       published: frontmatter.published ?? true,

@@ -8,9 +8,7 @@ date: "2026-09-13 12:00"
 category: "web-security"
 tags: ["HACKSIUM", "DFIR", "Forensics", "Initial Access", "MITRE ATT&CK", "DLL Sideloading", "Prefetch", "Amcache", "MFT", "Remcos", "capa", "Windows"]
 published: true
-cover: "/images/covers/dfir.svg"
-topic: "침해 사고 분석"
-topicEn: "Incident analysis"
+cover: "/images/covers/dfir-wide.svg"
 ---
 
 # [HACKSIUM 2026] 초기 침투는 어디에 흔적을 남기는가

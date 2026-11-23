@@ -1,0 +1,237 @@
+.post-archive {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 224px;
+  grid-template-areas: 'results rail';
+  gap: 2rem;
+  padding: 0 3rem;
+}
+
+.archive-results {
+  grid-area: results;
+  min-width: 0;
+}
+
+.archive-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.archive-results-header .section-header {
+  margin: 0;
+}
+
+.archive-result-count {
+  color: #a2a2b4;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.archive-rail {
+  grid-area: rail;
+  min-width: 0;
+  align-self: start;
+  position: sticky;
+  top: 2rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid #252535;
+  display: grid;
+  gap: 2rem;
+}
+
+.rail-heading {
+  display: block;
+  margin: 0 0 0.9rem;
+  color: #dad9e7;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.archive-search-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid #323044;
+  border-radius: 8px;
+  background: #101019;
+  color: #a2a2b4;
+}
+
+.archive-search-field:focus-within {
+  border-color: var(--accent-purple);
+  outline: 2px solid rgba(149, 128, 255, 0.18);
+}
+
+.archive-search-field svg {
+  flex-shrink: 0;
+}
+
+.archive-search-field input {
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+.archive-search-field input::placeholder {
+  color: #9694a8;
+}
+
+.archive-recent ul {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.archive-recent a {
+  display: block;
+  color: #bdbbcf;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.archive-recent a:hover {
+  color: var(--accent-purple-light);
+}
+
+.archive-recent a > span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.archive-recent time {
+  display: block;
+  margin-top: 0.25rem;
+  color: #9a98ac;
+  font-size: 0.75rem;
+}
+
+.archive-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.archive-tag-list button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+  padding: 0.35rem 0.625rem;
+  border: 1px solid #343047;
+  border-radius: 7px;
+  color: #bdb8d3;
+  background: rgba(149, 128, 255, 0.04);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.archive-tag-list button:hover,
+.archive-tag-list button.active {
+  border-color: var(--accent-purple);
+  color: var(--accent-purple-light);
+  background: rgba(149, 128, 255, 0.12);
+}
+
+.archive-tag-list button > span:first-child {
+  overflow-wrap: anywhere;
+}
+
+.archive-tag-count {
+  color: #9a98ac;
+  font-size: 0.75rem;
+}
+
+.archive-rail a:focus-visible,
+.archive-rail button:focus-visible,
+.archive-active-filter button:focus-visible {
+  outline: 2px solid var(--accent-purple-light);
+  outline-offset: 3px;
+}
+
+.archive-active-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-purple);
+  border-radius: 8px;
+  background: rgba(149, 128, 255, 0.06);
+  color: #c9bfef;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.archive-active-filter button {
+  color: var(--accent-purple-light);
+  font-size: 0.8125rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1439px) {
+  .post-archive {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'rail' 'results';
+    gap: 1.5rem;
+  }
+
+  .archive-rail {
+    position: static;
+    padding: 0;
+    border: 0;
+    grid-template-columns: minmax(200px, 1fr) minmax(0, 2fr);
+    gap: 1.25rem;
+  }
+
+  .archive-recent {
+    display: none;
+  }
+
+  .archive-tag-list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .archive-tag-list button {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .archive-search-field input {
+    font-size: 1rem;
+  }
+
+  .post-archive {
+    padding: 0 1.5rem;
+  }
+
+  .archive-rail {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .rail-heading {
+    margin-bottom: 0.5rem;
+  }
+}

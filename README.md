@@ -39,8 +39,6 @@ id: "my-new-post"                 # URL에 사용될 고유 ID
 title: "글 제목"
 description: "간단한 설명"
 cover: "/images/my-cover.jpg"     # 목록 카드의 썸네일 (선택, 가로로 긴 이미지 권장)
-topic: "스마트 컨트랙트 보안"      # 썸네일 우측 상단의 주제 라벨 (선택)
-topicEn: "Smart contract security" # 영어 주제 라벨 (선택)
 date: "2026-01-29 10:00"          # YYYY-MM-DD HH:MM 형식
 category: "daily"                 # 카테고리 ID
 tags: ["태그1", "태그2"]
@@ -53,6 +51,7 @@ published: true                   # false로 설정하면 숨김
 ```
 
 글 목록은 `date` 기준 최신순으로 자동 정렬됩니다.
+홈과 카테고리 페이지의 탐색 영역에서 글을 검색하거나 태그로 좁혀 볼 수 있습니다. 최근 글과 태그별 개수는 공개 글에서 자동으로 집계됩니다.
 
 본문 렌더링은 `react-markdown` + `remark-gfm` 기반이라 표, 체크리스트, 취소선 같은 GitHub 스타일 마크다운도 사용할 수 있습니다.
 

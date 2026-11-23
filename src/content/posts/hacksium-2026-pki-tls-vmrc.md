@@ -8,9 +8,7 @@ date: "2026-09-12 20:00"
 category: "web-security"
 tags: ["HACKSIUM", "PKI", "X.509", "TLS", "VMRC", "vSphere", "vCenter", "VMCA", "Keychain", "Live Fire"]
 published: true
-cover: "/images/covers/tls.svg"
-topic: "인증서·통신 보안"
-topicEn: "Certificates & TLS"
+cover: "/images/covers/tls-wide.svg"
 ---
 
 # [HACKSIUM 2026] 콘솔이 열리지 않은 이유: CA 인증서, TLS 핸드셰이크, VMRC 해부
