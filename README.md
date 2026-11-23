@@ -38,6 +38,7 @@ npm run deploy
 id: "my-new-post"                 # URL에 사용될 고유 ID
 title: "글 제목"
 description: "간단한 설명"
+cover: "/images/my-cover.jpg"     # 목록 카드의 썸네일 (선택, 가로 16:9 권장)
 date: "2026-01-29 10:00"          # YYYY-MM-DD HH:MM 형식
 category: "daily"                 # 카테고리 ID
 tags: ["태그1", "태그2"]

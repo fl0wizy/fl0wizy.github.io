@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101827"/><stop offset="1" stop-color="#17152b"/></linearGradient><radialGradient id="glow"><stop stop-color="#a3c76d" stop-opacity=".16"/><stop offset="1" stop-color="#a3c76d" stop-opacity="0"/></radialGradient><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#cad4ef" stroke-opacity=".045"/></pattern></defs>
+<rect width="800" height="450" fill="url(#bg)"/><rect width="800" height="450" fill="url(#grid)"/><ellipse cx="590" cy="210" rx="320" ry="290" fill="url(#glow)"/>
+<rect x="48" y="48" width="28" height="3" rx="1.5" fill="#a3c76d"/>
+<g font-family="Arial, Helvetica, sans-serif"><text x="90" y="55" fill="#aebbd1" font-size="15" letter-spacing="3">AI / WEB3</text>
+<text x="48" y="228" fill="#eef2ff" font-size="68" font-weight="700" letter-spacing="-2">AI + Web3</text>
+<text x="50" y="268" fill="#a3c76d" font-size="21">Exploring the intersection</text></g>
+<g fill="#1c2b2c" stroke="#a3c76d" stroke-width="2"><path d="M538 135L602 98L666 135V209L602 246L538 209Z"/><path d="M594 220L658 183L722 220V294L658 331L594 294Z"/><path d="M538 135L602 172L666 135M602 172V246M594 220L658 257L722 220M658 257V331" fill="none"/></g>
+<path d="M48 366H752" stroke="#cad4ef" stroke-opacity=".12"/><text x="48" y="402" fill="#97a6bd" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="2">FLOWIZY / RESEARCH NOTES</text>
+</svg>

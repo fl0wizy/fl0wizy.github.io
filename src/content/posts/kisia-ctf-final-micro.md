@@ -8,6 +8,7 @@ date: "2026-08-20 18:00"
 category: "hardware"
 tags: ["KISIA CTF", "ESP32-C3", "Hardware", "eFuse", "Secure Boot", "Firmware Reverse Engineering", "Writeup"]
 published: true
+cover: "/images/kisia-micro/board_wired.png"
 ---
 
 # [KISIA-CTF final] micro: ADC 지문과 RTC 게이트를 넘어 eFuse에 닿기

@@ -8,6 +8,7 @@ date: "2026-04-04 19:40"
 category: "study-dev-security"
 tags: ["Solidity", "Event", "LOG", "ECDSA", "selfdestruct"]
 published: true
+cover: "/images/covers/solidity-04.svg"
 ---
 
 # Solidity 개념 정리 4: 이벤트, 해시, selfdestruct, 스타일 가이드

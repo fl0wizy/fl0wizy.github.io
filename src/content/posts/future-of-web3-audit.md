@@ -8,6 +8,7 @@ date: "2026-04-04 19:50"
 category: "research-article"
 tags: ["Web3", "Audit", "DeFi", "Security", "Research"]
 published: true
+cover: "/images/covers/web3-audit.svg"
 ---
 
 # Web3 Audit의 미래: 코드에서 금융 시스템으로, 그리고 다시 “신뢰”로
