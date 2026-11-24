@@ -13,7 +13,7 @@ cover: "/images/covers/ai-foundations-15-rnn.svg"
 published: true
 ---
 
-## 1. 공간의 이웃을 보았다면, 이제 시간의 앞뒤를 보자
+## 서론
 
 앞 장: [합성곱 신경망 - 12장](/post/ai-foundations-14-cnn)
 

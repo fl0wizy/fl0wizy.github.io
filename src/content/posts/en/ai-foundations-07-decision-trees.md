@@ -1,8 +1,8 @@
-## What is a decision tree?
-
-![Chapter 5. Decision Trees: Splitting the Feature Space — Figure 1](/images/ai-study/82111615d952833ee119.png)
+## Introduction
 
 KNN searched around new inputs, and linear regression applied the same weighted sum to all inputs. The tree divides the input space into several regions and gives predictions of the same leaf to samples that arrive in those regions. Instead of a weight matrix, **feature number, threshold, child node, and leaf value** becomes the learning result.
+
+![Chapter 5. Decision Trees: Splitting the Feature Space — Figure 1](/images/ai-study/82111615d952833ee119.png)
 
 Each model we've seen so far has come at a price. The linear model assumed in advance that the data would be a straight line (weighted sum), so if a curve was needed, the features had to be increased through polynomial regression, and at the cost of feature explosion and scaling. KNN does not assume the shape, but predictions are slow, sensitive to feature size, and it is difficult to explain why the answer was given.
 

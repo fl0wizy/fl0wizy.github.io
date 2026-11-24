@@ -1,4 +1,4 @@
-## Start with the Big Picture
+## Introduction
 
 At the center of machine learning is the goal of **learning relationships from data we have seen so far and applying those relationships to data we have not yet seen**. Learning here does not mean getting rid of all the code that people used. People determine data representation, model structure, learning criteria, and evaluation methods. Within that framework, specific judgment rules are determined using data.
 

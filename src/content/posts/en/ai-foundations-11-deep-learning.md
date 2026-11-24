@@ -1,13 +1,8 @@
-- **Artificial Neural Network**
-  - **Single layer perceptron**
-  - **Multilayer Perceptron**
-  - **Deep Neural Network (DNN)**
-- **Basic concepts of deep learning**
-  - **Reset Weights**
-  - **Batch Normalization**
-  - **parameter update**
-  - **Learning rate scheduling**
-  - **regularization method**
+## Introduction
+
+Deep learning uses multiple neural-network layers to build features for a task. Starting with a perceptron, this article connects multilayer and deep networks with initialization, batch normalization, parameter updates, learning rates, and regularization.
+
+## From a Perceptron to a Deep Network
 
 Let’s start our deep learning story with the perceptron. Perceptron is the smallest artificial neural network. It's confusing because it has several names, but it's actually a ladder connected in one row.
 

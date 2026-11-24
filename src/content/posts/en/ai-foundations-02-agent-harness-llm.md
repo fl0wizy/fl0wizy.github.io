@@ -1,3 +1,5 @@
+## Introduction
+
 If you've looked at AI's genealogy page, you've probably seen that we eventually arrived at the current Transformer model. On top of Transformer, a language model learned from large-scale text, called LLM (Large Language model), was released (what we commonly call AI), and companies such as Anthropic and OpenAI began to speak of this model.
 
 “The model we created answers like a human no matter what you ask, and the accuracy and completeness of its answers are very high.” Anthropic named this model Claude and released it into series such as Opus, Sonnet, and Haiku, and OpenAI released the GPT series model.

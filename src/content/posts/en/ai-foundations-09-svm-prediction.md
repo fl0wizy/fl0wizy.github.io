@@ -1,3 +1,7 @@
+## Introduction
+
+The previous article explained margins and kernels. This article follows what training leaves behind and how a kernel SVM uses that result to predict a new input.
+
 ## 9. Learning and prediction of kernel SVM - Ultimately, “how similar is it to the support vector?”
 
 ![Chapter 6. SVM II: Prediction and Neural Networks — Figure 9](/images/ai-study/171eaf395017ed319382.png)

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="1280" viewBox="0 0 500 1280" role="img" aria-labelledby="title desc" lang="ko">
+<title id="title">AI 개념의 포함 관계</title><desc id="desc">AI에는 규칙을 직접 쓰는 기호주의와 데이터로 배우는 머신러닝이 있다. 머신러닝에는 고전적 방법과 신경망이 있고, 신경망에는 얕은 망과 딥러닝이 있다.</desc>
+<rect width="500" height="1280" rx="16" fill="#fbfcfe"/>
+<g fill="none" stroke="#aeb8c9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 144V415H48M32 246H48"/><path d="M64 478V793H80M64 603H80"/><path d="M96 856V1137H112M96 954H112"/></g>
+<g font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+<rect x="16" y="24" width="468" height="120" rx="12" fill="#eef1fc" stroke="#aebbe1" stroke-width="2"/>
+<text x="38" y="66" fill="#192536" font-size="28" font-weight="700">인공지능 / AI</text>
+<text x="38" y="102" fill="#3d4c60" font-size="23">지능적인 일을 하는 기계를 만드는 시도</text>
+<rect x="48" y="184" width="436" height="124" rx="12" fill="#f2eff9" stroke="#c6bbdc" stroke-width="2"/>
+<text x="70" y="226" fill="#192536" font-size="28" font-weight="700">기호주의 AI</text>
+<text x="70" y="262" fill="#3d4c60" font-size="23">사람이 지식과 규칙을 직접 작성</text>
+<text x="70" y="291" fill="#3d4c60" font-size="23">전문가 시스템 · 시그니처 탐지</text>
+<rect x="48" y="352" width="436" height="126" rx="12" fill="#eaf6f2" stroke="#99c9b7" stroke-width="2"/>
+<text x="70" y="394" fill="#192536" font-size="28" font-weight="700">머신러닝 / 기계학습</text>
+<text x="70" y="430" fill="#3d4c60" font-size="23">데이터에서 패턴·판단 기준을 학습</text>
+<rect x="80" y="520" width="404" height="166" rx="12" fill="#f0f7f4" stroke="#b0cdbf" stroke-width="2"/>
+<text x="102" y="562" fill="#192536" font-size="25" font-weight="700">고전 머신러닝</text>
+<text x="102" y="598" fill="#3d4c60" font-size="23">주로 사람이 설계한 특징을 사용</text>
+<text x="102" y="627" fill="#3d4c60" font-size="23">회귀 · KNN · 트리 · SVM · 앙상블</text>
+<text x="102" y="656" fill="#3d4c60" font-size="23">k-means · PCA</text>
+<rect x="80" y="730" width="404" height="126" rx="12" fill="#efecfa" stroke="#b5a8d8" stroke-width="2"/>
+<text x="102" y="772" fill="#192536" font-size="25" font-weight="700">신경망</text>
+<text x="102" y="808" fill="#3d4c60" font-size="23">연결된 뉴런의 가중치를 학습</text>
+<rect x="112" y="898" width="372" height="112" rx="12" fill="#f5f2fc" stroke="#c8bce0" stroke-width="2"/>
+<text x="134" y="940" fill="#192536" font-size="25" font-weight="700">얕은 신경망</text>
+<text x="134" y="976" fill="#3d4c60" font-size="23">퍼셉트론 · 작은 MLP</text>
+<rect x="112" y="1054" width="372" height="166" rx="12" fill="#eee8fb" stroke="#ad9bce" stroke-width="2"/>
+<text x="134" y="1096" fill="#192536" font-size="25" font-weight="700">딥러닝</text>
+<text x="134" y="1132" fill="#3d4c60" font-size="23">깊은 층으로 특징을 학습</text>
+<text x="134" y="1161" fill="#3d4c60" font-size="23">DNN · CNN · RNN/LSTM</text>
+<text x="134" y="1190" fill="#3d4c60" font-size="23">Transformer</text>
+<text x="24" y="1260" fill="#526174" font-size="15">포함 관계를 보여 주는 지도입니다. 시대순이 아닙니다.</text></g></svg>

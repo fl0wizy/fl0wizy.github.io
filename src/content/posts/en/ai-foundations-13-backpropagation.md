@@ -1,4 +1,4 @@
-## 1. Expand computational graph to learning of entire neural network
+## Introduction
 
 In [computational graph - Chapter 10](/post/ai-foundations-12-computational-graphs), complex calculations are divided into smaller operations such as addition, multiplication, and activation functions. Forward propagation calculates the actual value, and backpropagation calculates how sensitive the final result is to changes in the front input.
 

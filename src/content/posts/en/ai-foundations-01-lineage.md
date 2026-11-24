@@ -1,44 +1,8 @@
-## How the Concepts Fit Together
+## Introduction
 
-- **Artificial Intelligence (AI):** Any attempt to create machines that perform intelligent tasks.
-- **symbolic AI:** Among AI, a method in which humans directly write rules. We don't learn from data
-- **machine learning (= machine learning):** Among AI, a method of learning patterns or decision criteria from data. There is supervised learning that provides the correct answer, and there is also unsupervised learning that finds the structure without the correct answer.
-- **classical machine learning:** Among machine learning, a method of learning predictive functions or data structures based on features mainly designed by humans. regression, KNN, decision tree, **SVM**, ensemble (2\~Chapter 7)
-- **Deep Learning:** Among machine learning, a deep neural network learns features on its own. CNN, RNN, Transformer (8\~Chapter 14)
+What should we give a computer so it can judge whether a connection log describes an attack? We can supply rules written by people, let a model learn decision criteria from past records, or use a neural network to learn representations of the logs as well.
 
-```py
-Artificial Intelligence (AI) — Any attempt to create machines that perform intelligent tasks like humans.
-├── symbolic AI AI — humans write the rules themselves (expert system, signature-based IDS)
-│ ※ It is not machine learning because it does not learn from data.
-│
-└── machine learning (= machine learning) — Learning patterns or judgment standards from data
-    ├── Classic machine learning — Learning predictive functions and data structures mainly from human-designed features
-    │ Linear/logistic regression, KNN, decision tree, SVM, ensemble (random forest, XGBoost),
-    │ k-means, PCA ← Lecture 2~Chapter 7
-    │
-    └── Neural network — Creates a function with layers that mimic neurons
-          ├── Shallow neural network: perceptron, MLP with 1 hidden layer ← Chapter 8 first part
-          └── Deep Learning — Learn features step by step by building deep layers
-                DNN, CNN, RNN·LSTM, Transformer          ← 8, 10~Chapter 14
-```
-
-| genealogy | key answer | representative technique |
-| --- | --- | --- |
-| **symbolic AI** (Symbolic AI) | People write down knowledge as rules | Expert system, signature-based IDS |
-| **Classical statistical learning** | Here, we focus on the method of learning boundaries or functions from human-designed features. | regression, KNN, decision tree, SVM, ensemble |
-| **connectionism** (Connectionism) | A network that mimics neurons even learns its own features | Perceptron, backpropagation, CNN, RNN, Transformer |
-
-In this article, we follow the development of AI through three streams: symbolic AI, classical statistical learning, and connectionism. However, they are not completely separate categories. Neural networks and deep learning also learn from data, so they can be included in statistical learning. Here, the abbreviated term “statistical learning” mainly refers to the classical method in which humans designed features. The three streams did not appear and replace one after another, but competed over each other over time and leadership shifted.
-
-To briefly summarize the changes in AI genealogy over time: symbolic AI → connectionism (perceptron) → statistical learning → connectionism (transformer, GPT)
-
-In other words, the large-scale language models we use, such as GPT or Claude, belong to connectionism. Codex and Claude Code are apps that connect such models with tools to make them do real work. The model itself and the executable program surrounding it will be distinguished in the following harness page.
-
-I will describe the story in more detail one by one. And each detailed technique will be discussed separately.
-
-- symbolic AI
-- statistical learning
-- connection caution
+This article compares three ways to solve the same SSH attack-detection problem. We will examine what each approach struggles with before placing AI, machine learning, and deep learning on a relationship map and following the historical changes.
 
 ## Three Approaches to AI
 
@@ -160,7 +124,31 @@ Current frontier models such as GPT belong to connectionism. This is because kno
 
 And the three genealogies are still used together today. In the security field, known attacks are often divided into rules (symbolic AI), organized numerical data is divided into tree ensembles (statistical learning), and raw data such as logs/binaries/sentences are divided into neural networks (connectionism).
 
----
+## Placing the Approaches on a Map
+
+Now that we have compared the approaches, we can place their names on one map. The figure shows **which concepts sit inside broader concepts**, rather than the order in which they appeared.
+
+![AI branches into rule-based symbolic AI and data-driven machine learning; machine learning includes classical methods and neural networks, while neural networks include shallow networks and deep learning](/images/ai-study/ai-lineage-map-en.svg)
+
+Deep learning is part of machine learning, and machine learning is part of AI. A neural network need not be deep. This map separates directly written symbolic rules from methods that learn from data.
+
+### Names and Relationships
+
+- **Artificial intelligence (AI):** The broad field of building machines that perform intelligent tasks.
+- **Symbolic AI:** People write knowledge and rules directly, rather than learning them from data.
+- **Machine learning:** Models learn patterns or decision criteria from data. Supervised learning uses labels; unsupervised learning looks for structure without labels.
+- **Classical machine learning:** Here, methods that mainly learn predictions or data structure from human-designed features, including regression, KNN, decision trees, SVMs, and ensembles (Chapters 2–7).
+- **Deep learning:** Multilayer neural networks that learn features through successive transformations, including CNNs, RNNs, and Transformers (Chapters 8–14).
+
+| genealogy | key answer | representative technique |
+| --- | --- | --- |
+| **symbolic AI** (Symbolic AI) | People write down knowledge as rules | Expert system, signature-based IDS |
+| **Classical statistical learning** | Here, we focus on the method of learning boundaries or functions from human-designed features. | regression, KNN, decision tree, SVM, ensemble |
+| **connectionism** (Connectionism) | A network that mimics neurons even learns its own features | Perceptron, backpropagation, CNN, RNN, Transformer |
+
+In this article, we follow the development of AI through three streams: symbolic AI, classical statistical learning, and connectionism. However, they are not completely separate categories. Neural networks and deep learning also learn from data, so they can be included in statistical learning. Here, the abbreviated term “statistical learning” mainly refers to the classical method in which humans designed features. The three streams did not appear and replace one after another, but competed over each other over time and leadership shifted.
+
+Large language models such as GPT and Claude belong to the neural-network stream. Codex and Claude Code are applications that connect such models with tools to perform work. The [next article](/post/ai-foundations-02-agent-harness-llm) distinguishes a model from the execution software around it.
 
 ## Changes by era
 

@@ -1,4 +1,4 @@
-## 1. Retrieving Relevant Information Instead of Passing Memory Along
+## Introduction
 
 Previous chapter: [recurrent neural network - Chapter 13](/post/ai-foundations-15-rnn)
 

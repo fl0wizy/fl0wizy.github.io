@@ -13,7 +13,7 @@ cover: "/images/covers/ai-foundations-14-cnn.svg"
 published: true
 ---
 
-## 1. 가중치를 학습하는 법을 알았다면, 이제 연결 구조를 고를 차례다
+## 서론
 
 [딥러닝의 기본 개념 - 8장](/post/ai-foundations-11-deep-learning)에서는 뉴런이 가중합과 활성화 함수를 반복해 복잡한 판단을 만든다는 것을 배웠다. [계산 그래프 - 10장](/post/ai-foundations-12-computational-graphs)과 [오차 역전파 - 11장](/post/ai-foundations-13-backpropagation)에서는 최종 손실에서 출발해 각 가중치를 얼마나 고칠지 계산했다.
 

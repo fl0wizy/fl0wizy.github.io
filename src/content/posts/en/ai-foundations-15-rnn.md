@@ -1,4 +1,4 @@
-## 1. If you have seen the neighborhood in space, now let’s look ahead and behind in time.
+## Introduction
 
 Previous chapter: [convolutional neural network - Chapter 12](/post/ai-foundations-14-cnn)
 

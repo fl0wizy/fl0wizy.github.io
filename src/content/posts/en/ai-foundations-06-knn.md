@@ -1,8 +1,8 @@
-## What is KNN?
-
-![Chapter 4. KNN: Predicting from Nearby Examples — Figure 1](/images/ai-study/b458fdbdb4849a4033e6.png)
+## Introduction
 
 The regression in the previous chapter summarized the entire data into one function. When KNN receives new input, it finds surrounding examples and answers. Both methods attempt to generalize, but they make predictions differently. Since preprocessing, storage, and search structure creation can occur in KNN's fit(), let's understand it as "there is no process of learning weights by differentiating the global loss" rather than "no calculation is performed."
+
+![Chapter 4. KNN: Predicting from Nearby Examples — Figure 1](/images/ai-study/b458fdbdb4849a4033e6.png)
 
 Chapter 3's regression used the same framework for all five branches. Establish a model using weighted sum, determine the cost function, and find θ using gradient descent. When learning is complete, the training data is discarded and only θ is carried around. This is **model-based learning** summarized in Chapter 1.
 

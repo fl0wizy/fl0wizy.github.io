@@ -1,3 +1,5 @@
+## Introduction
+
 The ensemble referred to here is a technique to create a stronger prediction model by combining several models. The random forest seen at the end of Chapter 5 decision tree is a representative example. Instead of making one model better, the key is to gather the judgments of several appropriate models so that each can erase each other's mistakes.
 
 ## Key Terms

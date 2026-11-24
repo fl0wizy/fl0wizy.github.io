@@ -1,4 +1,4 @@
-## 1. Now that you know how to learn the weights, it’s time to choose a connection structure.
+## Introduction
 
 In [Basic concepts of deep learning - Chapter 8](/post/ai-foundations-11-deep-learning), we learned that neurons make complex decisions by repeating weighted sums and activation functions. In [computational graph - Chapter 10](/post/ai-foundations-12-computational-graphs) and [backpropagation - Chapter 11](/post/ai-foundations-13-backpropagation), we started from the final loss and calculated how much to change each weight.
 

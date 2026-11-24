@@ -11,6 +11,8 @@ cover: "/images/covers/ai-concepts-mcp.svg"
 published: true
 ---
 
+## 서론
+
 하네스 페이지에서 MCP를 "외부 서비스를 하네스에 꽂는 공통 규격"이라고 한 줄로 적었다. 이 페이지는 그 규격이 왜 생겼고, 어떻게 생겼고, 실제로 어떤 순서로 호출되는지를 정리한다.
 
 ## 1. MCP는 왜 생겼나

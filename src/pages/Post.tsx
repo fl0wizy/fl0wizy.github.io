@@ -268,7 +268,7 @@ export default function Post() {
             <p className="post-untranslated-notice">{t('untranslatedBody')}</p>
           )}
 
-          <article className="post-content">
+          <article className="post-content" data-category={categoryId}>
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
               {visibleBody(post, lang)}
             </ReactMarkdown>

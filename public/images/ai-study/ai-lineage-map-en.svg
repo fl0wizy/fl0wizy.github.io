@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="1280" viewBox="0 0 500 1280" role="img" aria-labelledby="title desc" lang="en">
+<title id="title">How AI concepts fit together</title><desc id="desc">AI includes directly written symbolic rules and data-driven machine learning. Machine learning includes classical methods and neural networks, which can be shallow or deep.</desc>
+<rect width="500" height="1280" rx="16" fill="#fbfcfe"/>
+<g fill="none" stroke="#aeb8c9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 144V415H48M32 246H48"/><path d="M64 478V793H80M64 603H80"/><path d="M96 856V1137H112M96 954H112"/></g>
+<g font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+<rect x="16" y="24" width="468" height="120" rx="12" fill="#eef1fc" stroke="#aebbe1" stroke-width="2"/>
+<text x="38" y="66" fill="#192536" font-size="26" font-weight="700">Artificial intelligence / AI</text>
+<text x="38" y="102" fill="#3d4c60" font-size="23">Machines that perform intelligent tasks</text>
+<rect x="48" y="184" width="436" height="124" rx="12" fill="#f2eff9" stroke="#c6bbdc" stroke-width="2"/>
+<text x="70" y="226" fill="#192536" font-size="28" font-weight="700">Symbolic AI</text>
+<text x="70" y="262" fill="#3d4c60" font-size="23">People write knowledge and rules</text>
+<text x="70" y="291" fill="#3d4c60" font-size="23">Expert systems · signature detection</text>
+<rect x="48" y="352" width="436" height="126" rx="12" fill="#eaf6f2" stroke="#99c9b7" stroke-width="2"/>
+<text x="70" y="394" fill="#192536" font-size="28" font-weight="700">Machine learning</text>
+<text x="70" y="430" fill="#3d4c60" font-size="23">Learn patterns and decision rules</text>
+<rect x="80" y="520" width="404" height="166" rx="12" fill="#f0f7f4" stroke="#b0cdbf" stroke-width="2"/>
+<text x="102" y="562" fill="#192536" font-size="25" font-weight="700">Classical machine learning</text>
+<text x="102" y="598" fill="#3d4c60" font-size="23">Mainly human-designed features</text>
+<text x="102" y="627" fill="#3d4c60" font-size="23">Regression · KNN · trees · SVMs</text>
+<text x="102" y="656" fill="#3d4c60" font-size="23">Ensembles · k-means · PCA</text>
+<rect x="80" y="730" width="404" height="126" rx="12" fill="#efecfa" stroke="#b5a8d8" stroke-width="2"/>
+<text x="102" y="772" fill="#192536" font-size="25" font-weight="700">Neural networks</text>
+<text x="102" y="808" fill="#3d4c60" font-size="23">Learn weights between</text>
+<text x="102" y="837" fill="#3d4c60" font-size="23">connected units</text>
+<rect x="112" y="898" width="372" height="112" rx="12" fill="#f5f2fc" stroke="#c8bce0" stroke-width="2"/>
+<text x="134" y="940" fill="#192536" font-size="25" font-weight="700">Shallow networks</text>
+<text x="134" y="976" fill="#3d4c60" font-size="23">Perceptron · small MLP</text>
+<rect x="112" y="1054" width="372" height="166" rx="12" fill="#eee8fb" stroke="#ad9bce" stroke-width="2"/>
+<text x="134" y="1096" fill="#192536" font-size="25" font-weight="700">Deep learning</text>
+<text x="134" y="1132" fill="#3d4c60" font-size="23">Learn features through deep layers</text>
+<text x="134" y="1161" fill="#3d4c60" font-size="23">DNN · CNN · RNN/LSTM</text>
+<text x="134" y="1190" fill="#3d4c60" font-size="23">Transformer</text>
+<text x="24" y="1260" fill="#526174" font-size="15">A map of relationships, rather than a historical timeline.</text></g></svg>

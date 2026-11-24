@@ -1,3 +1,5 @@
+## Introduction
+
 On the harness page, MCP is written in one line as “a common standard for plugging external services into harness.” This page organizes why the standard was created, what it looks like, and in what order it is actually called.
 
 ## 1. Why was MCP created?

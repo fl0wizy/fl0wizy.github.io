@@ -1,4 +1,4 @@
-## What is regression?
+## Introduction
 
 In Chapter 1, it was said that machine learning creates rules (functions) on its own when given data and the correct answer. At this time, the problem is divided into two depending on what the correct answer looks like. Classification in Chapter 2 involves choosing one of the given boxes, such as "Is it attack or normal?", and regression involves guessing **one number**, such as "What is the risk score?" Guessing life satisfaction by looking at GDP or guessing risk score by looking at traffic features are all regressions.
 

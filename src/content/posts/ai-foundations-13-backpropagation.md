@@ -13,7 +13,7 @@ cover: "/images/covers/ai-foundations-13-backpropagation.svg"
 published: true
 ---
 
-## 1. 계산 그래프를 신경망 전체의 학습으로 확장하기
+## 서론
 
 [계산 그래프 - 10장](/post/ai-foundations-12-computational-graphs)에서는 복잡한 계산을 덧셈, 곱셈, 활성화 함수처럼 작은 연산으로 나눴다. 순전파에서는 실제 값을 계산했고, 역전파에서는 마지막 결과가 앞쪽 입력의 변화에 얼마나 민감한지 계산했다.
 

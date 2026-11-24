@@ -13,6 +13,8 @@ cover: "/images/covers/ai-foundations-12-computational-graphs.svg"
 published: true
 ---
 
+## 서론
+
 **신경망은 가중치를 고칠 방향을 어떻게 알아낼까**
 
 신경망의 학습을 간단히 설명하면, 예측과 정답의 차이를 구한 다음 그 차이가 줄어들도록 가중치를 고치는 과정이다. 앞서 살펴본 경사 하강법, 모멘텀, Adam도 모두 이 과정에서 가중치를 어떻게 움직일지 정하는 방법이었다.

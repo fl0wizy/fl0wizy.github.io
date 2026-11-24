@@ -13,6 +13,10 @@ cover: "/images/covers/ai-foundations-09-svm-prediction.svg"
 published: true
 ---
 
+## 서론
+
+앞 글에서는 SVM이 마진을 넓히고 커널로 비선형 경계를 만드는 이유를 살펴봤다. 이번에는 학습이 끝난 뒤 무엇이 남으며, 새 입력의 예측값을 어떻게 계산하는지 따라가 본다.
+
 ## 9. 커널 SVM의 학습과 예측 - 결국 "서포트 벡터와 얼마나 닮았나"
 
 ![SVM - 6장 — 9번 그림](/images/ai-study/171eaf395017ed319382.png)

@@ -1,4 +1,4 @@
-## What is SVM?
+## Introduction
 
 Logistic regression classifies two classes by drawing a straight line (hyperplane) between them. However, if the data is clearly divided into normal traffic and attack traffic, there is not just one straight line that perfectly separates the two, but numerous. If you look at the training data, all accuracy is 100%. So which of these straight lines is strong for new data?
 

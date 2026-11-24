@@ -259,6 +259,37 @@
   color: var(--text-reading);
 }
 
+/* Neutral prose colors keep study notes distinct from the purple navigation. */
+.post-content[data-category='ai'] {
+  --text-reading: #d6d9e1;
+  --text-title: #f1f3f8;
+  --text-primary: #f1f3f8;
+  line-height: 1.95;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.post-content[data-category='ai'] h2 {
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid #2b2f3b;
+}
+
+.post-content[data-category='ai'] > h2:first-child + p {
+  padding: 1rem 1.15rem;
+  border-left: 3px solid #a99be5;
+  border-radius: 0 8px 8px 0;
+  background: #14161f;
+  color: #e2e5ed;
+}
+
+.post-content[data-category='ai'] li {
+  margin-block: 0.7rem;
+}
+
+.post-content[data-category='ai'] thead {
+  background: #1a1e28;
+}
+
 .post-content a {
   color: var(--accent-purple-light);
   text-decoration: underline;

@@ -1,3 +1,5 @@
+## Introduction
+
 **How does a neural network figure out the direction to fix the weights**
 
 To briefly explain the learning of a neural network, it is the process of finding the difference between the prediction and the correct answer and then adjusting the weights to reduce the difference. Gradient descent, momentum, and Adam, which we looked at earlier, were all methods of determining how to move the weights in this process.

@@ -13,7 +13,7 @@ cover: "/images/covers/ai-foundations-16-transformer.svg"
 published: true
 ---
 
-## 1. 기억을 계속 넘기는 대신, 필요한 정보를 직접 찾아보면 어떨까
+## 서론
 
 앞 장: [순환 신경망 - 13장](/post/ai-foundations-15-rnn)
 

@@ -1,3 +1,5 @@
+## Introduction
+
 The classification referred to here is a matter of looking at the input and guessing which of several predetermined categories it belongs to. This category is called a class.
 
 - Input: Features of a single piece of data. For example, values such as number of packets, number of bytes, and port.

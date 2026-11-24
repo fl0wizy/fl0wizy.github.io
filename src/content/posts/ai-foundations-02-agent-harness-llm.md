@@ -13,6 +13,8 @@ cover: "/images/covers/ai-foundations-02-agent-harness-llm.svg"
 published: true
 ---
 
+## 서론
+
 AI의 계보 페이지를 봤다면 결국 현재 Transformer 모델에 도달했다는 것을 봤을 것이다. Transformer 위에서 대규모 텍스트로 학습한 언어 모델, 즉 LLM(Large Language model)이 나왔고(우리가 흔히 AI라고 부르는 것이다), Anthropic과 OpenAI 같은 회사들이 이 모델을 앞세워 이렇게 말하기 시작했다.
 
 “우리가 만든 모델은 네가 무엇을 물어보든 사람처럼 답하고, 그 답의 정확도와 완성도가 매우 높다.” Anthropic은 이 모델에 Claude라는 이름을 붙이고 Opus, Sonnet, Haiku 같은 계열로 나눠 내놓았고, OpenAI는 GPT 계열 모델을 내놓았다.

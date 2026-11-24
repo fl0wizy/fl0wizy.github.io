@@ -13,6 +13,8 @@ cover: "/images/covers/ai-foundations-04-classification.svg"
 published: true
 ---
 
+## 서론
+
 여기서 말하는 분류란 입력을 보고, 미리 정해진 몇 개의 카테고리 중 어디에 속하는지 맞히는 문제이다. 이 카테고리를 클래스라고 부른다.
 
 - 입력 : 데이터 하나의 특징들이다. 예를 들어 패킷 수, 바이트 수, 포트 같은 값이다.
