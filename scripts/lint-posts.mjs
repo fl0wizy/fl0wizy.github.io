@@ -117,6 +117,16 @@ for (const { file, dir, label, isEn } of targets) {
 
   // --- 1. 의도치 않은 취소선 ---
   const tree = await processor.run(processor.parse(body));
+  // A standalone backslash is literal prose, not an empty-line directive.
+  for (const node of collect(tree, 'text')) {
+    if (!node.value.split('\n').some((line) => /^[ \t]*\\+[ \t]*$/.test(line))) continue;
+    problems.push({
+      level: 'error',
+      line: (node.position?.start?.line ?? 0) + offset,
+      msg: '본문에 단독 백슬래시가 표시됩니다',
+      hint: '빈 줄로 바꾸세요. 코드와 수식에 필요한 백슬래시는 유지하세요.',
+    });
+  }
   for (const node of collect(tree, 'delete')) {
     const line = (node.position?.start?.line ?? 0) + offset;
     const inner = plainText(node).replace(/\s+/g, ' ');

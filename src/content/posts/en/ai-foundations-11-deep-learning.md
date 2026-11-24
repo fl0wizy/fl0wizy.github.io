@@ -256,17 +256,10 @@ The rules that modify the weights are called optimizers. Gradient descent (SGD) 
    - **Momentum**: Like a ball rolling down a slope, it gives inertia in the direction it was moving so far. The alternating left and right movements cancel each other out, and the same movements accumulate and become faster. In an ideal case where the slope is constant, the cumulative movement amount with an inertia coefficient of 0.9 can approach 10 times the basic movement amount. There is no guarantee that the actual learning time will be 1/10th of that.
    - **Nesterov Momentum**: Preview the slope of the front position you will arrive at if you follow the inertia. If it looks like it's going to pass the bottom, it's like applying the brakes in advance, so momentum converges faster than normal.
 2. Separate stride length for each weight - adaptive series
-\
 
-\
 - AdaGrad: Weights that have moved a lot so far shorten the stride, and weights that have moved less increase the stride. In a long valley, the steep direction moves slowly and the gentle direction moves quickly, leading straight to the bottom. In the regression section, the optimizer automatically does the work of rounding the valley through feature scaling. The downside is that the stride length continues to decrease, so if you learn it for a long time, it becomes 0 and learning stops.
-\
 
-\
 - RMSProp: Gradually forget about old records and set your stride based on recent movements. Since the stride length does not fade to 0, it is much more advantageous for long learning.
-\
-
-\
 
 a combination of two branches
 

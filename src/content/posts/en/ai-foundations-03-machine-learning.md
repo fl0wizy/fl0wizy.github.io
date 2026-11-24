@@ -67,10 +67,7 @@ model.predict(X_new) # Result: Use the created function (= inference)
 → When we select a model, the 7B parameters mean that there are a lot of values in the model, but there is a difference between having a large number of parameters and having a large parameter value.
   1. Large number of parameters = large model
 
-\
-
 This is what you mean when you say something like “70B model.”
-\
 
   - **Meaning:** This means that there are many values that can create rules. In other words, the shapes that a function can have become more diverse, allowing complex patterns to be created. This means that the range of functions that can be expressed can be expanded. Actual performance also depends on structure, data, learning method, and amount of computation.
   - **Good point:** It catches patterns that simple models cannot structurally catch. Underfitting is reduced (solution “Robust model with more parameters” in Chapter 1, slide 24).
@@ -78,47 +75,25 @@ This is what you mean when you say something like “70B model.”
   - **Problem 2 - Cost:** If there are many parameters, more data is needed to learn, and it takes more computation and memory. Predictions are also slower.
   - **Problem 3 - Interpretation:** If there are two parameters, it can be read as “If GDP increases by 1, satisfaction increases by θ₁.” If there are hundreds of millions, it is difficult to read why such a decision was made.
 
-\
-
 But why are large neural networks so good these days?
-\
 
-\
-
-\
 - **Classical expectation:** If there are more parameters than data, overfitting is required. That's why large neural networks were doubted in the 1990s, and this is one of the reasons why SVM won at that time.
-\
 
-\
 - **What is actually observed:** Large neural networks often generalize well even when the parameters are much larger than the data. It has also been reported that when the model is increased further, the error increases once and then decreases again (double descent, Belkin et al. 2019). But the reason why is still not fully explained.
-\
 
-\
 - **Condition:** Data, regularization (Dropout, weight decay), and computation must scale with model size. Just raising the model is not effective. The scaling law is the observation that performance increases predictably when model size, data amount, and calculation amount are increased together. This is why LLM has become so big.
-\
-
-\
 
   2. Large parameter value = large weight number
 
   - **Meaning:** If the weight is large, even a small change in the input will result in a large change in the output. The function becomes sharper and more sensitive.
   - **Why it's bad:** Sensitive functions are prone to bending to fit every noise in the training data. That is, a sign of overfitting.
   - Solution - regularization: Add “penalties for larger weights” to the loss.
-\
 
-\
 - Ridge regression (L2): penalizes weighted sums of squares.
-\
 
-\
 - Lasso regression (L1): Penalizes the weighted absolute value sum. Some weights become completely 0, which also has a feature selection effect.
-\
 
-\
 - Weight decay in neural networks: Same idea.
-\
-
-\
 
   - Connection with SVM
     - SVM is a model whose objective function includes regularization that keeps the weights small from the beginning. This is why SVM is strong on new data.
@@ -178,17 +153,10 @@ Anomaly detection finds new points that are far away from the area where normal 
 - Security: Out of 10,000 alerts, only 100 were judged by analysts, and only a portion of the millions of binaries collected were analyzed.
 - Problem solved: Supervised learning requires a lot of labels (cost), and unsupervised learning does not provide the correct answer (goal). Semi-supervised learning fills the gap.
 - How to do one - two representative methods:
-\
 
-\
 - Label propagation after clustering: First, unsupervised grouping, human labeling only a few items in each group, and then spreading to all the same groupings. The photo app groups faces by person, and when the user gives a name to one photo, that name is added to the entire group.
-\
 
-\
 - Self-training: Create a model with labeled data and retrain it by attaching a temporary correct answer (pseudo label) to unlabeled data that the model is confident about. Repeat this process.
-\
-
-\
 
 - Premise: The assumption is that “close data has the same correct answer.” When this assumption is broken, incorrect labels spread.
 - In security: A typical structure is where analysts judge only 100 out of 10,000 alerts, and the model uses the remaining 9,900 for learning based on those decisions.
@@ -324,25 +292,14 @@ There are two points of failure in this flow.
 - Problem: If there are errors, outliers, and noise mixed in, the model learns from them.
 - Outliers: Obvious outliers are removed or corrected directly.
 - Missing values: When some samples are missing a characteristic, you have four options.
-\
 
-\
 - Discard a feature: When a feature is missing from most samples
-\
 
-\
 - Discard samples: When missing samples are few
-\
 
-\
 - Fill in values: Fill in with the average or median value.
-\
 
-\
 - Compare two models: Learn and compare the model with the features included and the model without the features separately.
-\
-
-\
 
 4. **Irrelevant features**
 
