@@ -56,6 +56,8 @@ export interface Award {
   period: LocalizedText;
   description: LocalizedText;
   tags: string[];
+  // Entries without a placing; rendered with a muted marker and a badge.
+  participation?: boolean;
 }
 
 export interface Project {
@@ -299,6 +301,17 @@ export const profileData: ProfileData = {
       tags: ['Data Analysis', 'Visualization', 'Project'],
     },
     {
+      title: { ko: 'DEF CON 33 MetaCTF', en: 'DEF CON 33 MetaCTF' },
+      organizer: 'MetaCTF',
+      period: '2025-08',
+      description: {
+        ko: '라스베이거스 DEF CON 33 해외연수 중 현장에서 열린 MetaCTF에 참가',
+        en: 'Competed in MetaCTF on site at DEF CON 33 in Las Vegas during an overseas program',
+      },
+      tags: ['CTF', 'DEF CON'],
+      participation: true,
+    },
+    {
       title: { ko: 'EwhaChain x BNB 아이디어 해커톤 (대상)', en: 'EwhaChain x BNB Idea Hackathon (Grand Prize)' },
       organizer: 'EwhaChain x BNB',
       period: '2025-08',
@@ -317,6 +330,28 @@ export const profileData: ProfileData = {
         en: '4th place at Monad Blitz 3rd, recognized for build completeness and the idea behind it',
       },
       tags: ['Monad', 'Competition', 'Prototyping'],
+    },
+    {
+      title: { ko: 'ASCII 해커톤 (SecureBridge)', en: 'ASCII Hackathon (SecureBridge)' },
+      organizer: 'ASCII',
+      period: '2026-01',
+      description: {
+        ko: '문자로 온 링크를 브라우저보다 먼저 받아 위험도를 판정하고 접속 기록을 블록체인에 남기는 Android 앱 / Flutter 프론트엔드 전체 담당',
+        en: 'An Android app that catches links from text messages before the browser, rates their risk and records each visit on a blockchain / built the whole Flutter frontend',
+      },
+      tags: ['Hackathon', 'Android', 'Flutter'],
+      participation: true,
+    },
+    {
+      title: { ko: 'Codegate 2026', en: 'Codegate 2026' },
+      organizer: 'Codegate',
+      period: '2026',
+      description: {
+        ko: 'RF I/Q 캡처에 숨은 플래그를 찾는 신호 분석 문제를 LoRa 가설에서 OFDM 구조 분석으로 좁혀 가며 풀이',
+        en: 'Worked an RF signal challenge on I/Q captures, narrowing it from a LoRa hypothesis to an OFDM structure analysis',
+      },
+      tags: ['CTF', 'RF', 'Signal Analysis'],
+      participation: true,
     },
     {
       title: { ko: 'Hypersonic CTF 2026 (1위)', en: 'Hypersonic CTF 2026 (1st place)' },
@@ -347,6 +382,38 @@ export const profileData: ProfileData = {
         en: 'Cleared qualifiers for a two-day live-fire cyber defense final (2026-09-11 to 09-12) on a maritime, port and satellite OT scenario / competed as part of a four-person defense team',
       },
       tags: ['Live Fire', 'Blue Team', 'OT Security'],
+    },
+    {
+      title: { ko: 'SoftBank Hackathon 2026 예선', en: 'SoftBank Hackathon 2026 Qualifier' },
+      organizer: { ko: 'SoftBank (KOREC·Progate 운영)', en: 'SoftBank (run by KOREC and Progate)' },
+      period: { ko: '2026-09-28 ~ 10-04', en: '2026-09-28 ~ 10-04' },
+      description: {
+        ko: '서류 심사 통과 후 참가 (200/500) / 주제 One Action, Infinite Clouds: AI로 로컬 웹 앱을 클라우드와 온프레미스에 원터치로 배포 / 팀 Orchid에서 Control Plane(오케스트레이터), 화면 전체, 온프레미스 배포 대상 담당',
+        en: 'Passed document screening (200 of 500) / theme One Action, Infinite Clouds: one-touch AI deployment of a local web app to cloud and on-premises / on team Orchid I owned the Control Plane (orchestrator), the whole UI and the on-premises target',
+      },
+      tags: ['Hackathon', 'Cloud', 'On-premises'],
+      participation: true,
+    },
+    {
+      title: { ko: 'HITCON CTF 2026 (4위)', en: 'HITCON CTF 2026 (4th place)' },
+      organizer: 'HITCON',
+      period: { ko: '2026-10-23 ~ 10-25', en: '2026-10-23 ~ 10-25' },
+      description: {
+        ko: 'Korea Hacking Club Alliance 팀으로 출전해 4위',
+        en: '4th place with team Korea Hacking Club Alliance',
+      },
+      tags: ['CTF', 'International'],
+    },
+    {
+      title: { ko: 'SoftBank Hackathon 2026 본선', en: 'SoftBank Hackathon 2026 Finals' },
+      organizer: { ko: 'SoftBank (KOREC·Progate 운영)', en: 'SoftBank (run by KOREC and Progate)' },
+      period: { ko: '2026-11-02 ~ 11-08', en: '2026-11-02 ~ 11-08' },
+      description: {
+        ko: '예선 대회 통과 후 참가 (45/200) / 주제 Beyond Lock-In: 가동 중인 시스템을 멈추지 않고 다른 클라우드나 온프레미스로 옮기는 멀티 클라우드 관리 플랫폼 / 팀 Iron에서 보안과 온프레미스 담당 / AWS와 온프레미스 사이 양방향 DB 이전을 실측해 컷오버 쓰기 멈춤 75ms·50ms, 남은 자원 0',
+        en: 'Advanced from the qualifier (45 of 200) / theme Beyond Lock-In: a multi-cloud platform that moves a running system to another cloud or on-premises without stopping it / on team Iron I owned security and on-premises / measured two-way database migration between AWS and on-premises: write pause at cutover of 75 ms and 50 ms, zero leftover resources',
+      },
+      tags: ['Hackathon', 'Cloud Migration', 'Security'],
+      participation: true,
     },
   ],
   projects: [

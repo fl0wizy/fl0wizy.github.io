@@ -121,6 +121,29 @@
   margin: 0 0 0.2rem;
 }
 
+.award-kind {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid rgba(160, 160, 160, 0.3);
+  border-radius: 6px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  vertical-align: middle;
+}
+
+/* Participation entries: muted marker so placings stay the visual focus. */
+.awards-section .timeline-item.participation::before {
+  background: rgba(160, 160, 160, 0.55);
+  box-shadow: none;
+}
+
+.awards-section .timeline-item.participation .award-icon {
+  background: rgba(160, 160, 160, 0.1);
+  color: var(--text-muted);
+}
+
 .award-organizer {
   font-size: 0.75rem;
   color: var(--text-muted);

@@ -14,7 +14,7 @@ export default function AwardsSection() {
       <h2 className="section-header">{t('awards')}</h2>
       <div className="timeline">
         {awards.map((award, index) => (
-          <div key={index} className="timeline-item">
+          <div key={index} className={award.participation ? 'timeline-item participation' : 'timeline-item'}>
             <div className="award-card">
               <div className="award-header">
                 <div className="award-icon">
@@ -24,7 +24,10 @@ export default function AwardsSection() {
                   </svg>
                 </div>
                 <div className="award-title-info">
-                  <h3 className="award-title">{L(award.title)}</h3>
+                  <h3 className="award-title">
+                    {L(award.title)}
+                    {award.participation && <span className="award-kind">{t('participation')}</span>}
+                  </h3>
                   <p className="award-organizer">{L(award.organizer)}</p>
                 </div>
                 <span className="award-period">{L(award.period)}</span>
