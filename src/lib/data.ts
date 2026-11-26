@@ -312,12 +312,12 @@ export const profileData: ProfileData = {
       participation: true,
     },
     {
-      title: { ko: 'EwhaChain x BNB 아이디어 해커톤 (대상)', en: 'EwhaChain x BNB Idea Hackathon (Grand Prize)' },
+      title: { ko: 'EwhaChain x BNB 아이디어 해커톤 (최우수상)', en: 'EwhaChain x BNB Idea Hackathon (Excellence Award)' },
       organizer: 'EwhaChain x BNB',
       period: '2025-08',
       description: {
-        ko: '블록체인 제품 아이디어 기획·발표로 해커톤 대상 수상',
-        en: 'Grand prize for a blockchain product idea, planned and pitched',
+        ko: '블록체인 제품 아이디어 기획·발표로 해커톤 최우수상 수상',
+        en: 'Excellence Award for a blockchain product idea, planned and pitched',
       },
       tags: ['Hackathon', 'Ideation', 'Blockchain'],
     },
@@ -399,8 +399,8 @@ export const profileData: ProfileData = {
       organizer: 'HITCON',
       period: { ko: '2026-10-23 ~ 10-25', en: '2026-10-23 ~ 10-25' },
       description: {
-        ko: 'Korea Hacking Club Alliance 팀으로 출전해 4위',
-        en: '4th place with team Korea Hacking Club Alliance',
+        ko: 'Korea Hacking Club Alliance 팀으로 출전해 최종 4위',
+        en: 'Final rank 4th with team Korea Hacking Club Alliance',
       },
       tags: ['CTF', 'International'],
     },

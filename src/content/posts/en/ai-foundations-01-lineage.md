@@ -1,51 +1,51 @@
 ## Introduction
 
-What should we give a computer so it can judge whether a connection log describes an attack? We can supply rules written by people, let a model learn decision criteria from past records, or use a neural network to learn representations of the logs as well.
+What should we give a computer so it can judge whether an email in the inbox is spam? We can supply rules written by people, let a model learn decision criteria from past emails, or use a neural network to learn representations of the email text as well.
 
-This article compares three ways to solve the same SSH attack-detection problem. We will examine what each approach struggles with before placing AI, machine learning, and deep learning on a relationship map and following the historical changes.
+This article solves one problem, spam email classification, three times in a row. Holding the problem fixed narrows the difference between the three approaches to one question: who makes the rules and the features. We will examine what each approach struggles with before placing AI, machine learning, and deep learning on a relationship map and following the historical changes.
 
 ## Three Approaches to AI
 
 ### Symbolic AI
 
-Symbolic AI is where humans put in rules. For example, when it comes to AI that detects network intrusions, the logic is as follows.
+Symbolic AI is where humans put in rules. For example, an AI that filters spam email could use logic like this.
 
 ```txt
-IF destination port is 22 (SSH)
-AND If there are more than 5 connection attempts within 60 seconds from the same origin.
-THEN “SSH brute force attack” alert
+IF   the subject or body contains "free", "winner" or "loan"
+AND  the sender is not in the address book
+THEN move the email to the spam folder
 ```
 
 Although symbolic AI led the early days of AI, it faced the following limitations.
 
-- Weak against variants: If an attacker or spammer changes “free” to “free” or “free,” the rule will pass. Even if ransomware slightly changes the message sentence, the rules may miss it.
+- Weak against variants: If a spammer writes “fr.ee” or “f-r-e-e” instead of “free,” the rule passes. Adding more words to the list only invites the next variant.
 
-- The number of exceptions increases endlessly: “If there are more than 5 connections in 60 seconds, it is an attack,” and the automatic backup script is also triggered. If you add an exception rule, another exception will occur. Rules begin to conflict with each other.
+- The number of exceptions increases endlessly: A rule that sends every email containing “free” to spam also catches the “free shipping” notice from a shop you use. If you add an exception rule, another exception will occur. Rules begin to conflict with each other.
 
-- There is some knowledge that cannot be written down as rules: An experienced security analyst looks at the logs and feels “something is wrong,” but cannot translate that feeling into IF-THEN. The same goes for the ability to recognize a cat in a photo.
+- There is some knowledge that cannot be written down as rules: A person glances at an email and immediately feels “this looks like an ad,” but cannot translate that feeling into IF-THEN. The same goes for the ability to recognize a cat in a photo.
 
 - Human time is the bottleneck: The cost of interviewing experts, writing down and maintaining rules is called the “knowledge acquisition bottleneck.” This is the main reason why the expert system collapsed in the 1980s.
 
-However, this does not mean that the rule base has completely disappeared. In security, rule-based detection is still the first line of defense. For known attacks, the rules are the fastest and most accurate, and they immediately explain why they were detected. Therefore, in practice, known attacks are often left to rules, and new or ambiguous ones are left to machine learning.
+However, this does not mean that the rule base has completely disappeared. In mail filters and security products, rule-based detection is still the first line of defense. For known spam phrases and known attacks, rules are the fastest and most accurate, and they immediately explain why something was caught. Therefore, in practice, known attacks are often left to rules, and new or ambiguous ones are left to machine learning.
 
 ### Statistical Learning
 
 Due to the above limitations of symbolic AI, a system that finds rules and decision criteria from data has become necessary. Here, let’s look at supervised learning first. When a person provides data and correct answers instead of rules, the machine finds a decision criteria from the data. However, in the example below, the number to express the data, i.e. the feature, is determined by the person. k-means, which groups similar data without an answer, or PCA, which finds important directions of change, are also machine learning, but the learning method is different from the current attack/normal classification.
 
-If we make the same SSH brute force detection using statistical learning, it is as follows.
+Building the same spam classifier with statistical learning looks like this.
 
-1. Humans design features: number of connection attempts in 60 seconds, login failure rate, number of accounts attempted, connection times
-2. Attaching answers to past records: Label tens of thousands of connection records as “attack” or “normal.”
-3. The model finds the boundary: A model, such as an SVM, calculates the boundary that best divides the attack and the normal in the space of these features.
+1. Humans design features: number of advertising words, number of links, number of legitimate emails previously received from this sender, number of exclamation marks in the subject
+2. Attaching answers to past emails: Label tens of thousands of emails as “spam” or “normal.”
+3. The model finds the boundary: A model, such as an SVM, calculates the boundary that best divides spam and normal email in the space of these features.
 
 ```txt
-[Number of attempts, failure rate, number of accounts, time zone] Correct answer
-[ 48, 0.98, 35, 3 o'clock ] → Attack
-[6, 0.00, 1, 14 o'clock] → Normal (automatic backup script)
-[12, 0.75, 9, 2 o'clock] → Attack
+[ad words, links, past legit, !]   label
+[   5,      8,       0,     4 ]  →  spam
+[   2,      1,      23,     0 ]  →  normal (shop notice)
+[   3,      6,       0,     2 ]  →  spam
 ```
 
-The model learned in this way learns on its own that “it is normal if the failure rate is 0 even if the number of attempts is high” without a person writing it down as a rule. In symbolic AI, the ever-increasing number of exception rules are automatically processed within the data.
+A model trained this way learns on its own that “an email with ad words is still normal if the sender has sent many legitimate emails before,” without a person writing it down as a rule. In symbolic AI, the ever-increasing number of exception rules are automatically processed within the data.
 
 Statistical learning solves the limitations of symbolic AI as follows.
 
@@ -59,9 +59,9 @@ Representative techniques are regression, KNN, decision tree, SVM, and ensemble.
 
 However, statistical learning also encountered the following limitations.
 
-- Features are still created by humans: The performance of a model depends on which features are selected by humans. If a person cannot come up with a feature called “login failure rate,” the model cannot learn it either. The bottleneck has simply shifted from “rule writing” to “feature design.”
+- Features are still created by humans: The performance of a model depends on which features are selected by humans. If a person cannot come up with a feature called “number of links,” the model cannot learn it either. The bottleneck has simply shifted from “rule writing” to “feature design.”
 
-- It cannot directly handle raw data: If you just input pixels from images, bytes from malware, or sentences from logs, performance drops significantly. A person must first summarize it into meaningful numbers.
+- It cannot directly handle raw data: If you just input pixels from images, bytes from malware, or sentences from emails, performance drops significantly. A person must first summarize it into meaningful numbers.
 
 - As the data grows, it cannot handle it: Kernel SVM increases the amount of calculation in proportion to the square of the number of data. As the data increased to millions, learning itself became difficult.
 
@@ -83,16 +83,15 @@ Actually, connectionism is not a new method. In 1958, around the same time as sy
 
 Then, in the 2010s, all three things came together at the same time. These are the large-scale data created by the Internet, GPUs that make calculations dozens of times faster, and learning tips (ReLU, good initialization, regularization, etc.) that prevent learning from collapsing even when layers are stacked deeply. Thanks to this, deep learning with tens to hundreds of layers became possible, and connectionism became mainstream again, significantly outperforming the method of using human-designed features in the 2012 image recognition competition.
 
-The same SSH brute force detection can be made with connectionism as follows: Instead of humans extracting features such as “failure rate” or “number of attempts,” logs are entered almost as is.
+Building the same spam classifier with connectionism looks like this. Instead of humans extracting features such as “number of ad words” or “number of links,” the email text goes in almost as is.
 
 ```txt
-03:12:01  10.0.0.5  admin  FAIL
-03:12:03  10.0.0.5  root   FAIL
-03:12:04  10.0.0.7  test   FAIL
-... → The model learns the order pattern itself → Attack
+Subject: [HR] Confirm your tax documents
+Body:    Verify your account at the link below.
+      →  model learns the context  →  spam (phishing)
 ```
 
-This way, you can catch patterns that people may not have thought of before. For example, an attack that is attempted little by little over several hours from multiple IPs is not easily affected by the “5 times in 60 seconds” rule or human-designed features. The neural network finds these patterns on its own throughout the log flow.
+This way, you can catch patterns that people may not have thought of before. For example, a phishing email written politely like a company notice, with no ad words and no exclamation marks, slips past a rule that looks for “free” and past human-designed features alike. The neural network finds such patterns on its own from the context of the whole text.
 
 Connectionism solves the limitations of statistical learning as follows.
 
@@ -108,11 +107,11 @@ However, connectionism also has the following limitations.
 
 - It takes a lot of data and calculations: If there is less data, it is worse than statistical learning. Large models cost a lot of GPU money to train.
 
-- It is difficult to explain the basis for judgment: Hundreds of millions of weights are intertwined, so it is difficult for a person to read “Why was this connection determined to be an attack?” Security analysts need to know the evidence to be able to respond.
+- It is difficult to explain the basis for judgment: Hundreds of millions of weights are intertwined, so it is difficult for a person to read “Why was this email judged to be spam?” Operators need to know the evidence to correct emails that were filtered by mistake.
 
 - You can be fooled by small variations: An attack (adversarial attack) is possible that overturns the model's judgment by slightly manipulating input that is almost identical to a human. This is a particularly big weakness in the security field where attackers exist.
 
-- Learns biases in data as they are: By learning from data collected in a specific environment, you can learn traces of the collection environment, not the attack itself.
+- Learns biases in data as they are: By learning from data collected in a specific environment, you can learn traces of the collection environment, not the spam itself.
 
 Current frontier models such as GPT belong to connectionism. This is because knowledge is stored in learned weights rather than human-written rules. However, AI that is actually serviced does not work with models alone. It calls up tools like calculators and searches, and follows human-defined safety rules. This is the same concept as guardrails, tooling, and MCP. In other words, the model is connectionism, and the system surrounding it is a mixture of the three genealogies.
 
@@ -152,7 +151,7 @@ Large language models such as GPT and Claude belong to the neural-network stream
 
 ## Changes by era
 
-Previously, we compared “who creates the rules and features” for the same SSH attack detection problem. Now let’s look at “why that method attracted attention at that time” in chronological order. If the first part is a comparison of operation methods, the following is a process in which the selection changed as the data and calculation environment changed.
+Previously, we compared “who creates the rules and features” for the same spam classification problem. Now let’s look at “why that method attracted attention at that time” in chronological order. If the first part is a comparison of operation methods, the following is a process in which the selection changed as the data and calculation environment changed.
 
 ### 1. People write the rules themselves → The beginning of symbolic AI (1950s~1960s)
 The name “artificial intelligence (AI)” was first used at the Dartmouth Conference in 1956. At the time, researchers thought that if people wrote down their knowledge as an “IF-THEN” rule, the computer would combine the rules to come to a conclusion. This is symbolic AI.
